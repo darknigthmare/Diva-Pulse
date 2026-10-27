@@ -1,0 +1,16 @@
+PASS V32 current release and explicitly selected storage mode load
+PASS Beat-loop split is available from the actual Director button
+PASS A nonzero source phase selects explicit schema 20
+PASS Repeated cuts preserve samples after multiple wraps and tempo changes
+PASS Actual UI merge accepts continuous loop phases
+PASS Loop merge is undone as one edit
+PASS Out-of-range phase is rejected without modifying the saved draft
+PASS Real renderer consumes the loop-phase clock
+PASS Export advertises schema 20 and retains all phase offsets
+PASS Director save commits phased clips with the applied-draft marker
+PASS Schema 20 reimport restores the editable source phase
+PASS Loop-phase controls stay within mobile dialog width
+PASS Downgraded phase document refuses import without touching the song
+PASS Refused studio save retains song, dirty edit and recovery together
+PASS Studio retry commits the song and deletes its recovery in one transaction
+PASS No unhandled browser exception

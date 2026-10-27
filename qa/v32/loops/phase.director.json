@@ -1,0 +1,87 @@
+{
+  "format": "DIVA-PULSE-DIRECTOR",
+  "version": 20,
+  "director": {
+    "duration": 62.9375,
+    "count": 1,
+    "rhythm": {
+      "bpm": 120,
+      "tempoMap": [
+        {
+          "time": 0,
+          "bpm": 120
+        },
+        {
+          "time": 3,
+          "bpm": 180
+        },
+        {
+          "time": 9,
+          "bpm": 75
+        }
+      ]
+    },
+    "slots": [
+      {
+        "modelAssetId": "7b81eb90-97ed-42eb-bf7c-260fc9d83c35",
+        "clips": [
+          {
+            "id": "phase-test",
+            "motionAssetId": "093f74f1-0445-4a3e-a971-410fecb8fe83",
+            "start": 1,
+            "end": 3.7,
+            "motionStart": 0.1,
+            "sourceBpm": 90,
+            "loopBeats": 4,
+            "rate": 1.25,
+            "loop": true,
+            "transition": 0,
+            "camera": false
+          },
+          {
+            "id": "phase-test-split-1",
+            "motionAssetId": "093f74f1-0445-4a3e-a971-410fecb8fe83",
+            "start": 3.7,
+            "end": 22,
+            "motionStart": 0.1,
+            "sourceBpm": 90,
+            "loopBeats": 4,
+            "rate": 1.25,
+            "loop": true,
+            "transition": 0,
+            "camera": false,
+            "loopPhaseBeats": 3.6250000000000018
+          },
+          {
+            "id": "phase-test-split-1-split-1",
+            "motionAssetId": "093f74f1-0445-4a3e-a971-410fecb8fe83",
+            "start": 22,
+            "end": 40,
+            "motionStart": 0.1,
+            "sourceBpm": 90,
+            "loopBeats": 4,
+            "rate": 1.25,
+            "loop": true,
+            "transition": 0,
+            "camera": false,
+            "loopPhaseBeats": 3.8125
+          }
+        ],
+        "motionAssetId": null,
+        "rate": 1,
+        "offsetMs": 0,
+        "rotationY": 0,
+        "scale": 1,
+        "ik": true
+      }
+    ],
+    "version": 20,
+    "enabled": true,
+    "spacing": 1.5,
+    "useCamera": true,
+    "formations": [],
+    "cuts": [],
+    "cameraTrack": [],
+    "lightTrack": []
+  }
+}

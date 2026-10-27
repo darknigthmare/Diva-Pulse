@@ -1,0 +1,140 @@
+{
+  "version": "32.0.0",
+  "buildSha256": "22bdfe014b5781e43149e821f1cb1f5248f66086ff4711e1f5192f8e01976ca9",
+  "passed": 32,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V31 current release and explicitly selected storage mode load",
+      "passed": true
+    },
+    {
+      "name": "Keyboard block selection exposes pressed state",
+      "passed": true
+    },
+    {
+      "name": "Modifier click extends selection without moving events",
+      "passed": true
+    },
+    {
+      "name": "Actual pointer drag moves clips, camera, light and formation together",
+      "passed": true
+    },
+    {
+      "name": "Whole pointer gesture has one undo entry",
+      "passed": true
+    },
+    {
+      "name": "Pointer cancellation publishes no partial mixed edit",
+      "passed": true
+    },
+    {
+      "name": "Collision during group drag leaves every track unchanged",
+      "passed": true
+    },
+    {
+      "name": "Clip split is available in live UI",
+      "passed": true
+    },
+    {
+      "name": "UI merge restores contiguous source timing",
+      "passed": true
+    },
+    {
+      "name": "Clip can be copied from D1 to same-model D3",
+      "passed": true
+    },
+    {
+      "name": "Formation positions are editable without changing motion clips",
+      "passed": true
+    },
+    {
+      "name": "All montage operations leave saved song and charts intact",
+      "passed": true
+    },
+    {
+      "name": "Audition starts native Web Audio without starting the game transport",
+      "passed": true
+    },
+    {
+      "name": "Audio cursor and rendered MMD share one time source",
+      "passed": true
+    },
+    {
+      "name": "Pause disconnects source and freezes audition cursor",
+      "passed": true
+    },
+    {
+      "name": "Scrub then resume starts from requested audio second",
+      "passed": true
+    },
+    {
+      "name": "Scrubbing while playing replaces source at requested position",
+      "passed": true
+    },
+    {
+      "name": "Half-speed audition follows half the audio-context elapsed time",
+      "passed": true
+    },
+    {
+      "name": "A/B loop uses native source boundaries and a wrapped cursor",
+      "passed": true
+    },
+    {
+      "name": "Invalid A/B edit does not corrupt the active loop",
+      "passed": true
+    },
+    {
+      "name": "Stop silences source and returns to A",
+      "passed": true
+    },
+    {
+      "name": "Space toggles audition outside text fields",
+      "passed": true
+    },
+    {
+      "name": "Audio and formation controls fit a phone-width viewport",
+      "passed": true
+    },
+    {
+      "name": "Audition adds no score or note changes",
+      "passed": true
+    },
+    {
+      "name": "Closing Director disposes audition nodes but preserves shared game context",
+      "passed": true
+    },
+    {
+      "name": "Unsaved formation edit recovers without starting sound",
+      "passed": true
+    },
+    {
+      "name": "Director export preserves formation geometry and schema 19",
+      "passed": true
+    },
+    {
+      "name": "Save publishes formation and completed-draft marker atomically",
+      "passed": true
+    },
+    {
+      "name": "Director JSON reimports the saved formation coordinates",
+      "passed": true
+    },
+    {
+      "name": "Closing during async audio preparation cannot start a stale audition",
+      "passed": true
+    },
+    {
+      "name": "Native renderer remains healthy",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeHTTP": true,
+  "scope": "Native HTTP/IndexedDB. Chromium + SwiftShader, native Web Audio, controlled keyboard/mouse and 390px viewport. Not acoustic latency, physical iPhone, stylus or screen-reader qualification."
+}

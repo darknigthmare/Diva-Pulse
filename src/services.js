@@ -49,23 +49,31 @@
             }
         }
         async put(store,value){return this.atomic([[store,value]]);}
-        async atomic(rows){
-            this.guard();if(this.reason?.startsWith('La base a été ouverte'))throw Error(this.reason);if(!Array.isArray(rows))throw Error('Transaction invalide.');if(!rows.length)return;
-            // Freeze the requested state before any async boundary; a caller may keep editing.
+        async atomic(rows,options={}){
+            this.guard();if(this.reason?.startsWith('La base a été ouverte'))throw Error(this.reason);
+            if(!Array.isArray(rows)||!options||typeof options!=='object'||!Array.isArray(options.deletes??[]))throw Error('Transaction invalide.');
+            // Freeze requested state before any async boundary; callers may keep editing.
             const staged=rows.map(row=>{if(!Array.isArray(row)||row.length!==2)throw Error('Ligne de transaction invalide.');const [store,value]=row;this.guard(store);if(!value||typeof value.id!=='string'||!value.id)throw Error('Identifiant de sauvegarde manquant.');return [store,structuredClone(value)];});
+            const seen=new Set(),writes=new Set(staged.map(([store,value])=>JSON.stringify([store,value.id])));
+            const deletes=(options.deletes??[]).map(row=>{if(!Array.isArray(row)||row.length!==2)throw Error('Suppression de transaction invalide.');const [store,id]=row;this.guard(store);if(typeof id!=='string'||!id)throw Error('Identifiant de suppression manquant.');const key=JSON.stringify([store,id]);if(seen.has(key)||writes.has(key))throw Error('Suppression dupliquée ou en conflit avec une écriture.');seen.add(key);return [store,id];});
+            if(!staged.length&&!deletes.length)return;
             try{
                 this.assertWritable();
-                if(!this.db){for(const [store,value] of staged)this.memory[store].set(value.id,value);}
-                else await new Promise((resolve,reject)=>{const tx=this.db.transaction([...new Set(staged.map(r=>r[0]))],'readwrite');tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||Error('Sauvegarde impossible.'));tx.onabort=()=>reject(tx.error||Error('Sauvegarde annulée.'));try{for(const [store,value]of staged)tx.objectStore(store).put(value);}catch(e){tx.abort();reject(e);}});
-                for(const [store,value]of staged)this.remember(store,value);this.emit({type:'commit',rows:staged});
-            }catch(e){this.emit({type:'write-error',error:e,rows:staged});throw e;}
+                if(!this.db){for(const [store,id]of deletes)this.memory[store].delete(id);for(const [store,value]of staged)this.memory[store].set(value.id,value);}
+                else await new Promise((resolve,reject)=>{
+                    const tx=this.db.transaction([...new Set([...staged,...deletes].map(r=>r[0]))],'readwrite');
+                    tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||Error('Sauvegarde impossible.'));tx.onabort=()=>reject(tx.error||Error('Sauvegarde annulée.'));
+                    try{for(const [store,id]of deletes)tx.objectStore(store).delete(id);for(const [store,value]of staged)tx.objectStore(store).put(value);}
+                    catch(e){try{tx.abort();}catch{}reject(e);}
+                });
+                // Only the complete event may promote snapshots or signal success.
+                for(const [store,id]of deletes)this.lastCommitted.delete(store+':'+id);
+                for(const [store,value]of staged)this.remember(store,value);
+                this.emit({type:'commit',rows:staged,deletes});
+                for(const [store,id]of deletes)this.emit({type:'delete',store,id});
+            }catch(e){this.emit({type:'write-error',error:e,rows:staged,deletes});throw e;}
         }
-        async del(store,id){
-            this.guard(store);this.assertWritable();if(typeof id!=='string'||!id)throw Error('Identifiant de suppression manquant.');
-            if(!this.db)this.memory[store].delete(id);
-            else await new Promise((resolve,reject)=>{const tx=this.db.transaction(store,'readwrite');tx.objectStore(store).delete(id);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||Error('Suppression impossible.'));tx.onabort=()=>reject(tx.error||Error('Suppression annulée.'));});
-            this.lastCommitted.delete(store+':'+id);this.emit({type:'delete',store,id});
-        }
+        async del(store,id){return this.atomic([],{deletes:[[store,id]]});}
     }
     class AudioTransport {
         constructor() { this.ctx = null; this.buffer = null; this.source = null; this.playing = false; this.anchor = 0; this.offset = 0; this.rate = 1; this.volume = .65; this.sfxVolume = .18; this.pausedAt = 0; }

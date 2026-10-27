@@ -427,7 +427,10 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
         render(time = 0, bpm = 120, { menu = false, preview = false, pv = false, energy = .4,beat=time*bpm/60 } = {}) {
             if (!this.available)
                 return;
-            if(this.directorPreview!==undefined){time=this.directorPreview;menu=false;preview=true;beat=time*bpm/60;}
+            // V31: sample the audition clock at render time, not from an older UI timer.
+            const directorClock=this.directorClock?.();
+            if(directorClock){this.directorPreview=directorClock.time;bpm=directorClock.bpm;beat=directorClock.beat;}
+            if(this.directorPreview!==undefined){time=this.directorPreview;menu=false;preview=true;if(!directorClock)beat=time*bpm/60;}
             else if(menu&&this.autoShowPlan&&this.autoShowPlan.mode!=='off'){const duration=this.autoShowPlan.duration;time=((time%duration)+duration)%duration;beat=root.PulseAutoShow.beatAt(this.autoShowPlan,time);}
             const plan=this.directorPreview!==undefined?null:this.autoShowPlan, A=root.PulseAutoShow;
             const show=plan&&(!menu||preview)?A.sample(plan,time,{reduceMotion:this.reduceMotion,aspect:(this.canvas.clientWidth||960)/(this.canvas.clientHeight||540)}):null;

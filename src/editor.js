@@ -99,38 +99,23 @@
             ctx.fillText(C.LANES[n.lane], n.x * 320, n.y * 180);
         } }
         async newChart() { await this.autosave(); this.load(C.validateChart({ title: this.app.song.title, difficulty: this.app.difficulty, bpm: this.app.song.bpm || 120, source: 'manual', notes: [] })); this.dirty = true; this.fill(); }
-        async save() {
-            if (!this.chart)
-                return;
-            this.chart = C.validateChart(this.chart);
-            const source = this.chart.source;
-            if (this.dirty && ['demo', 'dsc', 'json', 'csv', 'midi', 'midi-native', 'catalogue', 'academy', 'generated'].includes(source)) {
-                this.chart.id = C.uid();
-                this.chart.parent = { id: this.originalId, signature: C.chartSignature(this.app.song.charts.find(c => c.id === this.originalId) || this.chart), source };
-                this.chart.source = 'manual-derived';
+        async save({draftKey=null}={}) {
+            if (!this.chart) return;
+            const chart=C.validateChart(this.chart),source=chart.source,song=this.app.song;
+            if(song.id!==this.ownerId)throw Error('La partition appartient à un autre morceau.');
+            if(this.dirty&&['demo','dsc','json','csv','midi','midi-native','catalogue','academy','generated'].includes(source)){
+                chart.id=C.uid();
+                chart.parent={id:this.originalId,signature:C.chartSignature(song.charts.find(c=>c.id===this.originalId)||chart),source};
+                chart.source='manual-derived';
             }
-            const song = this.app.song;
-            if (song.id !== this.ownerId)
-                throw Error('La partition appartient à un autre morceau.');
-            let index = song.charts.findIndex(c => c.id === this.chart.id);
-            const snapshot = structuredClone(song.charts);
-            if (index < 0)
-                song.charts.push(structuredClone(this.chart));
-            else
-                song.charts[index] = structuredClone(this.chart);
-            try {
-                await this.app.saveSong();
-            }
-            catch (e) {
-                song.charts = snapshot;
-                throw e;
-            }
-            this.originalId = this.chart.id;
-            this.dirty = false;
-            this.app.selectedChartId = this.chart.id;
-            this.app.difficulty = this.chart.difficulty;
-            this.fill();
-            this.app.toast('Partition enregistrée. Les versions source sont conservées.');
+            const candidate=structuredClone(song),index=candidate.charts.findIndex(c=>c.id===chart.id);
+            if(index<0)candidate.charts.push(structuredClone(chart));else candidate.charts[index]=structuredClone(chart);
+            // The chart and removal of its recovery copy commit together. An abort
+            // leaves both the source song and the in-memory edit available to retry.
+            await this.app.store.atomic([['songs',candidate]],{deletes:draftKey?[['settings',draftKey]]:[]});
+            Object.assign(song,candidate);this.chart=chart;this.originalId=chart.id;this.dirty=false;
+            this.app.selectedChartId=chart.id;this.app.difficulty=chart.difficulty;
+            this.fill();this.app.toast('Partition enregistrée. Les versions source sont conservées.');
         }
         async autosave() { this.stop(); if (this.dirty)
             await this.save(); }

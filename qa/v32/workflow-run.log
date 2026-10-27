@@ -1,0 +1,18 @@
+PASS V30 loads current build; storage matches explicitly requested mode
+PASS UI snapping integrates variable tempo and both offsets
+PASS UI uses actual meter-aware bar snapping
+PASS G aligns a mixed group preserving spacing
+PASS Keyboard undo restores complete group
+PASS Keyboard redo restores accepted group
+PASS Keyboard copy/paste preserves clip-camera offsets
+PASS S splits at cursor preserving VMD time
+PASS Native field selection/deletion does not trigger scene commands
+PASS Keyboard select-all covers all tracks
+PASS Deletion is a single mixed-track edit
+PASS pointercancel does not commit partial drag
+PASS Editing leaves saved scene and notes unchanged
+PASS Recovery clears stale selections and redo
+PASS Expanded editor fits phone-width viewport
+PASS Keyboard save publishes cut and closes editor
+PASS Future schema is rejected without overwrite
+PASS No unhandled JavaScript exception

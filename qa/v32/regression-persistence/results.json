@@ -1,0 +1,67 @@
+{
+  "version": "32.0.0",
+  "buildSha256": "22bdfe014b5781e43149e821f1cb1f5248f66086ff4711e1f5192f8e01976ca9",
+  "passed": 14,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "True HTTP origin and native IndexedDB are active",
+      "passed": true
+    },
+    {
+      "name": "First window owns the exclusive writer lease",
+      "passed": true
+    },
+    {
+      "name": "Cross-store transaction commits song, bytes and distinct chart draft",
+      "passed": true
+    },
+    {
+      "name": "Full browser close/reopen retains saved song",
+      "passed": true
+    },
+    {
+      "name": "Binary asset bytes survive full browser reopen",
+      "passed": true
+    },
+    {
+      "name": "Separate draft survives without overwriting saved chart",
+      "passed": true
+    },
+    {
+      "name": "Second real window is read-only under native Web Locks",
+      "passed": true
+    },
+    {
+      "name": "Second-window transaction is rejected without mutating either store",
+      "passed": true
+    },
+    {
+      "name": "Read-only window can still construct a portable backup",
+      "passed": true
+    },
+    {
+      "name": "Closing writer then reloading transfers lease safely",
+      "passed": true
+    },
+    {
+      "name": "Offline shell installs and controls the actual HTTP page",
+      "passed": true
+    },
+    {
+      "name": "Offline reload boots current V29 from service-worker cache",
+      "passed": true
+    },
+    {
+      "name": "Offline reload retains library and imported binary bytes",
+      "passed": true
+    },
+    {
+      "name": "No unhandled application exception across native persistence flow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "scope": "Localhost and persistent Chromium profile; true IndexedDB, Web Locks and SW offline reload. Not OS PWA installation, iPhone/Safari or storage-eviction certification."
+}

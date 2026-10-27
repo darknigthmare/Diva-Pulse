@@ -4,7 +4,8 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 from playwright.sync_api import sync_playwright
 import threading, json, hashlib, os, traceback
-R=Path(__file__).resolve().parents[1]; Q=R/'qa/v30/workflow'; Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1]; Q=R/os.environ.get('PULSE_QA_DIR','qa/v32/regression-workflow'); Q.mkdir(parents=True,exist_ok=True)
+version=(R/'VERSION.txt').read_text().strip()
 checks=[]; errors=[]; failure=None
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*args): pass
@@ -27,7 +28,7 @@ try:
   if os.environ.get('PULSE_DOCUMENT_MODE')=='1':p.set_content((R/'index.html').read_text())
   else:p.goto(f'http://127.0.0.1:{server.server_port}/',wait_until='domcontentloaded')
   p.wait_for_function('document.documentElement.dataset.v28Ready==="true"');idle()
-  ok('V30 loads current build; storage matches explicitly requested mode',p.evaluate('PulseCore.VERSION==="30.0.0"') and (os.environ.get('PULSE_DOCUMENT_MODE')=='1' or p.evaluate('PulseApp.store.persistent')))
+  ok('V30 loads current build; storage matches explicitly requested mode',p.evaluate('PulseCore.VERSION')==version and (os.environ.get('PULSE_DOCUMENT_MODE')=='1' or p.evaluate('PulseApp.store.persistent')))
   p.evaluate('PulseApp.showView("wardrobe");document.getElementById("mmdPanel").open=true')
   p.locator('#mmdInput').set_input_files([str(R/'examples/v27/PENDULE.pmx'),str(R/'examples/v27/ANCRAGE.vmd')]);p.wait_for_selector('#miCommit');p.locator('#miCommit').click();idle()
   p.evaluate('''async()=>{const a=PulseApp;a.chart.tempoMap=[{time:0,bpm:120},{time:3.3,bpm:60}];a.chart.bpm=120;a.chart.gridOffset=.2;a.chart.offset=.25;a.chart.meterMap=[{beat:0,numerator:3,denominator:4},{beat:6,numerator:7,denominator:8}];a.song.scene.mmdDirector=PulseDirector.normalizeDirector({duration:a.song.duration,count:2,slots:[{clips:[{id:'a',start:1.13,end:5.13,rate:1.5,motionStart:2,transition:.2}]},{clips:[{start:2.13,end:6.13}]}],cameraTrack:[{time:1.63}],lightTrack:[{time:2.13}]});await a.store.put('songs',a.song);window.saved30=JSON.stringify(a.song.scene);window.notes30=JSON.stringify(a.song.charts);a.openMMDDirector();}''')
@@ -64,5 +65,5 @@ except Exception as e:
  failure=str(e);print(traceback.format_exc(),flush=True)
 finally:
  server.shutdown();server.server_close()
-(Q/'results.json').write_text(json.dumps({'version':'30.0.0','buildSha256':hashlib.sha256((R/'index.html').read_bytes()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'failure':failure,'checks':checks,'errors':errors,'documentMode':os.environ.get('PULSE_DOCUMENT_MODE')=='1','scope':('Injected document: no durable-storage qualification. ' if os.environ.get('PULSE_DOCUMENT_MODE')=='1' else 'Native HTTP/IndexedDB. ')+'Chromium and SwiftShader. Actual keyboard/mouse, phone viewport emulation; not physical iPhone certification.'},ensure_ascii=False,indent=2))
+(Q/'results.json').write_text(json.dumps({'version':version,'buildSha256':hashlib.sha256((R/'index.html').read_bytes()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'failure':failure,'checks':checks,'errors':errors,'documentMode':os.environ.get('PULSE_DOCUMENT_MODE')=='1','scope':('Injected document: no durable-storage qualification. ' if os.environ.get('PULSE_DOCUMENT_MODE')=='1' else 'Native HTTP/IndexedDB. ')+'Chromium and SwiftShader. Actual keyboard/mouse, phone viewport emulation; not physical iPhone certification.'},ensure_ascii=False,indent=2))
 if failure:raise SystemExit(1)

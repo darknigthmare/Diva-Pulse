@@ -1,0 +1,76 @@
+{
+  "version": "32.0.0",
+  "buildSha256": "22bdfe014b5781e43149e821f1cb1f5248f66086ff4711e1f5192f8e01976ca9",
+  "passed": 16,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V32 current release and explicitly selected storage mode load",
+      "passed": true
+    },
+    {
+      "name": "Beat-loop split is available from the actual Director button",
+      "passed": true
+    },
+    {
+      "name": "A nonzero source phase selects explicit schema 20",
+      "passed": true
+    },
+    {
+      "name": "Repeated cuts preserve samples after multiple wraps and tempo changes",
+      "passed": true
+    },
+    {
+      "name": "Actual UI merge accepts continuous loop phases",
+      "passed": true
+    },
+    {
+      "name": "Loop merge is undone as one edit",
+      "passed": true
+    },
+    {
+      "name": "Out-of-range phase is rejected without modifying the saved draft",
+      "passed": true
+    },
+    {
+      "name": "Real renderer consumes the loop-phase clock",
+      "passed": true
+    },
+    {
+      "name": "Export advertises schema 20 and retains all phase offsets",
+      "passed": true
+    },
+    {
+      "name": "Director save commits phased clips with the applied-draft marker",
+      "passed": true
+    },
+    {
+      "name": "Schema 20 reimport restores the editable source phase",
+      "passed": true
+    },
+    {
+      "name": "Loop-phase controls stay within mobile dialog width",
+      "passed": true
+    },
+    {
+      "name": "Downgraded phase document refuses import without touching the song",
+      "passed": true
+    },
+    {
+      "name": "Refused studio save retains song, dirty edit and recovery together",
+      "passed": true
+    },
+    {
+      "name": "Studio retry commits the song and deletes its recovery in one transaction",
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser exception",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeHTTP": true,
+  "scope": "Native HTTP/IndexedDB. Chromium + SwiftShader, native Web Audio, controlled keyboard/mouse and 390px viewport. Not acoustic latency, physical iPhone, stylus or screen-reader qualification."
+}
