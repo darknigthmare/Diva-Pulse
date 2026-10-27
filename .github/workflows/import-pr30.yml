@@ -1,4 +1,4 @@
-name: Import reviewed V30 package into PR branch
+name: Finalize reviewed V30 mobile controls
 on:
   push:
     branches: ['feat/v30-director-workflow']
@@ -8,11 +8,8 @@ permissions:
 defaults:
   run:
     shell: bash
-concurrency:
-  group: diva-pr30-import
-  cancel-in-progress: false
 jobs:
-  import:
+  finish:
     if: github.ref == 'refs/heads/feat/v30-director-workflow'
     runs-on: ubuntu-latest
     timeout-minutes: 8
@@ -20,48 +17,40 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Receive reviewed delivery
-        env:
-          PACKAGE_URL: 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-ada4-81f4-89ee-a7d7e80f2149/raw?se=2026-10-27T13%3A03%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=d0a897d2-5136-5459-b31e-55c79df7b8dc&skoid=e5f84a89-964a-4fd3-92c2-c2cb3a12ea16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-27T11%3A56%3A27Z&ske=2026-10-28T11%3A56%3A27Z&sks=b&skv=2026-02-06&sig=tQGT13%2BdEI3ruda59DMgPgA/z5BC8YYhNNGBb5yMSk4%3D'
-        run: |
-          curl --fail --silent --show-error --location --retry 2 --max-time 90 "$PACKAGE_URL" --output "$RUNNER_TEMP/pr30.zip"
-          echo 'f1ddf0af690116447eb5395d3488ef7c8e4c6ab19212008e6b87cb647556bba9  '"$RUNNER_TEMP/pr30.zip" | sha256sum --check
-          python3 - <<'PY'
-          import hashlib,json,os,pathlib,stat,zipfile,subprocess
-          root=pathlib.Path.cwd()
-          assert subprocess.check_output(['git','rev-parse','HEAD^'],text=True).strip()=='dd6c3b1e1970fcfc6f6f12f278e46feb1221d8eb','Unexpected branch state'
-          with zipfile.ZipFile(pathlib.Path(os.environ['RUNNER_TEMP'])/'pr30.zip') as z:
-              manifest=json.loads(z.read('V30_DELIVERY_MANIFEST.json'))
-              assert manifest['base']=='1552fd8f89a27f0914a203f2d973b3beee17f4e5'
-              assert manifest['branch']=='feat/v30-director-workflow'
-              assert set(z.namelist())==set(manifest['files'])|{'V30_DELIVERY_MANIFEST.json'}
-              for name,spec in manifest['files'].items():
-                  p=pathlib.PurePosixPath(name)
-                  assert not p.is_absolute() and '..' not in p.parts and '\\' not in name
-                  assert not any(x in ('.git','.env') for x in p.parts)
-                  assert not stat.S_ISLNK(z.getinfo(name).external_attr >> 16)
-                  data=z.read(name)
-                  assert len(data)==spec['size'] and hashlib.sha256(data).hexdigest()==spec['sha256']
-                  if p.parts[0]=='.github':continue
-                  dest=root/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
-              (root/'planning/V30_DELIVERY_MANIFEST.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
-          PY
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify source and workbook
+      - name: Apply reviewed readability fix and stronger existing check
         run: |
-          python3 tools/verify_release.py
-          npm test > "$RUNNER_TEMP/pr30-logic.tap"
-          grep '^# pass 862$' "$RUNNER_TEMP/pr30-logic.tap"
-          grep '^# fail 0$' "$RUNNER_TEMP/pr30-logic.tap"
-          echo '23a96415144c05b32d80c4cbc921bc164983e89ff68fbaeab5f4d0bca07c84b0  planning/DIVA_PULSE_MANQUANTS_V30.xlsx' | sha256sum --check
-      - name: Commit code and workbook to PR branch only
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          assert subprocess.check_output(['git','rev-parse','HEAD^'],text=True).strip()=='95733be0e43e24e98378daef408e021ddac71bd0'
+          p=Path('src/director.css')
+          addition='/* V30: retain readable labels and touch targets instead of squeezing six columns. */\n#modal.director-modal .director-batch .buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}\n@media(max-width:600px){\n #modal.director-modal .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}\n #modal.director-modal .director-batch .buttons{grid-template-columns:repeat(2,minmax(0,1fr))}\n #modal.director-modal .buttons button{min-height:48px;word-break:normal;overflow-wrap:normal;hyphens:none}\n}\n'
+          assert addition not in p.read_text();p.write_text(p.read_text()+addition)
+          p=Path('tests/v30_browser_test.py');s=p.read_text()
+          old='document.getElementById("modalContent").scrollWidth<=document.getElementById("modalContent").clientWidth+1'
+          new=old+'&&[...document.querySelectorAll(".director-batch .buttons button")].every(b=>b.getBoundingClientRect().width>=120&&b.getBoundingClientRect().height>=48)'
+          assert s.count(old)==1;p.write_text(s.replace(old,new))
+          for name in ['workflow','regression-director']:
+              p=Path('qa/v30')/name/'results.json'
+              dest=Path('qa/v30/local-before-mobile')/name/'results.json'
+              dest.parent.mkdir(parents=True,exist_ok=True);p.rename(dest)
+          Path('qa/v30/README.md').write_text('V30 verification\n================\n\nThe reports in local-before-mobile are historical injected-document checks before the final CSS readability fix. They are not native persistence evidence. Current commit-linked native evidence is produced by Pull request quality and attached as an Actions artifact. Its verified.json must match the current index.html SHA-256. No physical iPhone, hardware timing or universal MMD certification is claimed.\n')
+          PY
+          python3 build.py
+          python3 tools/verify_release.py > qa/v30/release-check.txt
+          echo '797cf9923ddf47b6e8a9c08ffd895951fae4d9e7ec0f16c9f43ddcecee2ac36b  index.html' | sha256sum --check
+          npm test > qa/v30/logic.tap
+          grep '^# pass 862$' qa/v30/logic.tap
+          grep '^# fail 0$' qa/v30/logic.tap
+      - name: Publish source-only changes to PR branch
         run: |
           test "$GITHUB_REF" = 'refs/heads/feat/v30-director-workflow'
           git diff --exit-code -- .github
           git config user.name 'Diva Pulse maintenance'
           git config user.email '7942594+darknigthmare@users.noreply.github.com'
           git add --all
-          git commit -m 'feat: V30 musical editing, safe recovery and 114-item Excel tracker'
+          git commit -m 'fix: readable Director touch controls and current-build QA separation'
           git push origin HEAD:feat/v30-director-workflow
