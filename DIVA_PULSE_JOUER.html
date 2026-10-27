@@ -162,6 +162,13 @@ dialog#modal:has(#faceGraph25){width:min(1050px,calc(100vw - 24px));max-width:ca
 @media(max-width:480px){.director-clip{grid-template-columns:repeat(2,minmax(0,1fr))}.director-clip label:nth-child(2){grid-column:auto}.director-batch{padding:10px}}
 
 #directorMessage{position:static}
+/* V30: retain readable labels and touch targets instead of squeezing six columns. */
+#modal.director-modal .director-batch .buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+@media(max-width:600px){
+ #modal.director-modal .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #modal.director-modal .director-batch .buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #modal.director-modal .buttons button{min-height:48px;word-break:normal;overflow-wrap:normal;hyphens:none}
+}
 
 .auto-show-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #385358;background:linear-gradient(120deg,#122329,#131d32);border-radius:10px;margin:10px 0}.auto-show-card p{font-size:12px;margin:4px 0;color:#bacbd1}.auto-show-card button{flex-shrink:0;font-size:11px}.auto-show-options{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin:16px 0}.auto-show-locks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;padding:14px;background:#111d2c;border-radius:10px}.auto-show-sections{max-height:240px;overflow:auto;font-size:13px}.auto-show-summary{margin-top:16px;padding:14px;border-left:3px solid #72e0cb;background:#101d28}.automap-importbar{flex-wrap:wrap}.auto-show-settings{margin-top:16px}
 @media(max-width:700px){.auto-show-card{align-items:stretch;flex-direction:column}.auto-show-options,.auto-show-locks{grid-template-columns:1fr}.auto-show-card button{white-space:normal}.auto-show-summary p{overflow-wrap:anywhere}}

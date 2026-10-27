@@ -53,7 +53,7 @@ try:
   select(['clip:0:0']);field('dTime',3,'input');key('s');draft();p.locator('#closeModal').click();p.locator('#openMmdDirector').click();p.wait_for_selector('#dRecover',state='visible');key('Control+a');p.locator('#dRecover').click()
   ok('Recovery clears stale selections and redo',p.locator('#dSelected').inner_text().startswith('0 ') and p.locator('#dRedo').is_disabled())
   p.locator('#directorContent details').evaluate_all('(els)=>els.forEach(e=>e.open=true)');p.screenshot(path=str(Q/'desktop.png'),animations='disabled');p.set_viewport_size({'width':390,'height':844})
-  ok('Expanded editor fits phone-width viewport',p.evaluate('document.getElementById("modalContent").scrollWidth<=document.getElementById("modalContent").clientWidth+1'))
+  ok('Expanded editor fits phone-width viewport',p.evaluate('document.getElementById("modalContent").scrollWidth<=document.getElementById("modalContent").clientWidth+1&&[...document.querySelectorAll(".director-batch .buttons button")].every(b=>b.getBoundingClientRect().width>=120&&b.getBoundingClientRect().height>=48)'))
   p.screenshot(path=str(Q/'mobile.png'),animations='disabled');p.set_viewport_size({'width':1280,'height':900});key('Control+s');idle()
   ok('Keyboard save publishes cut and closes editor',p.evaluate('!document.getElementById("modal").open&&PulseApp.song.scene.mmdDirector.slots[0].clips.length===2'))
   before=p.evaluate('JSON.stringify(PulseApp.song.scene)');p.locator('#directorInput').set_input_files({'name':'future.director.json','mimeType':'application/json','buffer':json.dumps({'format':'DIVA-PULSE-DIRECTOR','version':999,'director':{}}).encode()});idle()
