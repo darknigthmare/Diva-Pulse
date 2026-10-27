@@ -1,0 +1,50 @@
+name: Pull request quality
+on:
+  pull_request:
+  push:
+    branches: ['feat/v30-director-workflow']
+  workflow_dispatch:
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Snapshot reviewed sources
+        run: |
+          python3 - <<'PY'
+          import pathlib,zipfile
+          with zipfile.ZipFile('review-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in pathlib.Path('.').rglob('*'):
+                  if p.is_file() and p.name!='review-source.zip' and not any(x in ('.git','qa','node_modules','__pycache__') for x in p.parts):
+                      z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-source
+          path: review-source.zip
+          retention-days: 7
+      - name: Verify deterministic build and logical tests
+        run: |
+          mkdir -p qa/pr
+          python3 build.py
+          npm test | tee qa/pr/logic.tap
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr-verification
+          path: qa/pr/
+          retention-days: 30
