@@ -1,0 +1,28 @@
+PASS V34 modules boot on the selected storage surface
+PASS Inventory protects persistent, unknown and in-memory draft references
+PASS Media names are literal text, never inserted as HTML
+PASS Cleanup requires explicit selection and backup acknowledgement
+PASS Selection alone is not destructive authorization
+PASS Selection plus acknowledgement enables requested cleanup
+PASS Exported inventory contains metadata and references, not binary payloads
+PASS Any committed change marks the open inventory stale
+PASS Rescanning does not silently reselect previously checked media
+PASS Transaction recheck preserves a newly referenced runtime asset
+PASS Real IDB abort after deletion request restores bytes and emits no successful commit
+PASS Confirmed cleanup removes only the selected orphan
+PASS Cleanup leaves songs and charts identical
+PASS A missing reference is visible and disables destructive cleanup
+PASS AudioContext suspension pauses the live game and clears source inputs
+PASS Suspended input cannot score or arm a held source
+PASS AudioContext recovery alone does not restart a paused game
+PASS Explicit resume starts the same paused song
+PASS Multiple hold gauges remain readable with all decorative VFX off
+PASS Hold HUD redraws do not alter score or replay data
+PASS Hold status stays within the narrow viewport
+PASS Releasing one hold does not clear a second lane gauge
+PASS A closed audio context is recreated safely on explicit resume
+PASS Hold-gauge preference persists through its settings handler
+PASS Hiding the document pauses the actual Director audition without discarding the draft
+PASS Returning visible leaves the Director paused until explicitly resumed
+PASS Director can resume normally after an interruption
+PASS No uncaught browser errors in V34 flow

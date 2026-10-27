@@ -26,3 +26,8 @@ python3 tools/verify_release.py
 ```
 
 Les deux HTML autonomes sont générés depuis `src/`, sans CDN. Les formats sauvegardés ne suivent pas le numéro de version de l'application : le Director conserve ses schémas 19/20. Les rapports historiques ne sont pas additionnés aux tests courants. La CI de revue finale est en lecture seule, ne pousse pas vers main et ne fusionne aucune PR. Les résultats à citer doivent correspondre au SHA du build réellement testé.
+
+
+## Proposition V34
+
+Nettoyage explicite des médias inutilisés avec revalidation transactionnelle, diagnostic des références, interruptions audio sûres et jauges HOLD indépendantes des éclats. Voir [guide V34](docs/V34_BIBLIOTHEQUE_LIVE.md) et [Excel courant](planning/DIVA_PULSE_MANQUANTS_V34.xlsx). La PR reste séparée de main.

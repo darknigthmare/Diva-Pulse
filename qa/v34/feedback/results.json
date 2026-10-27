@@ -1,0 +1,100 @@
+{
+  "version": "34.0.0",
+  "buildSha256": "1c6efbe5d93ef8ecdb09eef0d1f00eadd0c1bf5a2b425030679ab6ef608c0d35",
+  "passed": 22,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V33 release and cosmetic module installed",
+      "passed": true
+    },
+    {
+      "name": "HTTP mode uses real IndexedDB, document mode explicitly temporary",
+      "passed": true
+    },
+    {
+      "name": "Autoplay respects disabled hit sound on both audio paths",
+      "passed": true
+    },
+    {
+      "name": "A judged note creates one procedural sound, not a double trigger",
+      "passed": true
+    },
+    {
+      "name": "Pause stops active feedback voices and clears transient effects",
+      "passed": true
+    },
+    {
+      "name": "Paused input cannot arm a stuck gameplay source",
+      "passed": true
+    },
+    {
+      "name": "Delayed resume after leaving the song cannot restart hidden audio",
+      "passed": true
+    },
+    {
+      "name": "Lost touch capture releases only its own source",
+      "passed": true
+    },
+    {
+      "name": "Last device release ends the hold without a duplicate judgment",
+      "passed": true
+    },
+    {
+      "name": "Native Web Audio and VFX remain bounded under 1000 feedback events",
+      "passed": true
+    },
+    {
+      "name": "Effects do not mutate result, replay log or charts",
+      "passed": true
+    },
+    {
+      "name": "Live zero-volume setting stops feedback voices immediately",
+      "passed": true
+    },
+    {
+      "name": "COOL success draws halo and bounded spark rays",
+      "passed": true
+    },
+    {
+      "name": "System reduced-motion disables particles and stage movement",
+      "passed": true
+    },
+    {
+      "name": "In-game reduced-motion also uses a stationary ring",
+      "passed": true
+    },
+    {
+      "name": "Reduced-effects option removes extra visuals but leaves judgments intact",
+      "passed": true
+    },
+    {
+      "name": "Actual offline audio render has a finite signal and silent tail",
+      "passed": true
+    },
+    {
+      "name": "New sound preference persists through the real settings handler",
+      "passed": true
+    },
+    {
+      "name": "Refused preference save preserves the saved option and resets the control",
+      "passed": true
+    },
+    {
+      "name": "Feedback settings fit a narrow viewport without clipped controls",
+      "passed": true
+    },
+    {
+      "name": "Losing focus pauses play and clears all inputs and sounds",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript error in the full V33 flow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "mode": "http",
+  "scope": "Chromium software GPU; actual Web Audio. HTTP and native IndexedDB. No physical device or acoustic latency certification."
+}

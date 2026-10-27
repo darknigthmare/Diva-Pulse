@@ -1,0 +1,24 @@
+{
+  "version": "34.0.0",
+  "buildSha256": "1c6efbe5d93ef8ecdb09eef0d1f00eadd0c1bf5a2b425030679ab6ef608c0d35",
+  "workbookSha256": "cc26466281078c00bddb86272cba432edf715295c1c2cea74cd3c8acc735a359",
+  "logicPassed": 1042,
+  "newLogic": 47,
+  "launcherPassed": 10,
+  "browserChecks": {
+    "vault-live": 28,
+    "feedback": 22,
+    "loops": 16,
+    "audition": 32,
+    "regression-workflow": 18,
+    "regression-director": 23,
+    "regression-persistence": 14,
+    "transactions": 11
+  },
+  "browserTotal": 164,
+  "backlogItems": 136,
+  "done": 49,
+  "open": 87,
+  "sheets": 17,
+  "scope": "HTTP/IndexedDB for current flows, native abort after deletion. 23 Director regression checks use injected document. Real Web Audio API but software GPU, no acoustic or physical-device certification."
+}

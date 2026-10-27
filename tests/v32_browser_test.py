@@ -6,7 +6,7 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 from playwright.sync_api import sync_playwright
 import threading,json,hashlib,os,traceback
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v33/loops';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v34/loops';Q.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];failure=None;version=(R/'VERSION.txt').read_text().strip()
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*args):pass

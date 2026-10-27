@@ -1,0 +1,67 @@
+{
+  "format": "DIVA-PULSE-MEDIA-REPORT",
+  "version": 1,
+  "assets": [
+    {
+      "id": "qa-draft",
+      "name": "qa-draft",
+      "kind": "audio",
+      "bytes": 4,
+      "type": "audio/wav",
+      "valid": true,
+      "references": [
+        "mémoire:7.director.slots.0.motionAssetId"
+      ],
+      "protected": true
+    },
+    {
+      "id": "qa-free",
+      "name": "<img src=x onerror=alert(1)>",
+      "kind": "audio",
+      "bytes": 4,
+      "type": "audio/wav",
+      "valid": true,
+      "references": [],
+      "protected": false
+    },
+    {
+      "id": "qa-live",
+      "name": "qa-live",
+      "kind": "audio",
+      "bytes": 4,
+      "type": "audio/wav",
+      "valid": true,
+      "references": [
+        "settings:qa-media-root.audioAsset"
+      ],
+      "protected": true
+    },
+    {
+      "id": "qa-unknown",
+      "name": "qa-unknown",
+      "kind": "audio",
+      "bytes": 4,
+      "type": "audio/wav",
+      "valid": true,
+      "references": [
+        "settings:qa-media-root.future.anything"
+      ],
+      "protected": true
+    }
+  ],
+  "issues": [],
+  "orphans": [
+    {
+      "id": "qa-free",
+      "name": "<img src=x onerror=alert(1)>",
+      "kind": "audio",
+      "bytes": 4,
+      "type": "audio/wav",
+      "valid": true,
+      "references": [],
+      "protected": false
+    }
+  ],
+  "totalBytes": 16,
+  "protectedCount": 3
+}

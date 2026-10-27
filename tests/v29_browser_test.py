@@ -4,7 +4,7 @@ Document injection uses temporary storage; durability is a separate test suite.
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json, hashlib, traceback, os
-R=Path(__file__).resolve().parents[1];Q=R/os.environ.get('PULSE_QA_DIR','qa/v33/regression-director');Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/os.environ.get('PULSE_QA_DIR','qa/v34/regression-director');Q.mkdir(parents=True,exist_ok=True)
 version=(R/'VERSION.txt').read_text().strip()
 checks=[];errors=[];failure=None;p=None
 html=(R/'index.html').read_text()

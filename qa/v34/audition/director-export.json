@@ -1,0 +1,141 @@
+{
+  "format": "DIVA-PULSE-DIRECTOR",
+  "version": 19,
+  "director": {
+    "duration": 62.9375,
+    "count": 3,
+    "slots": [
+      {
+        "modelAssetId": "41756983-303f-4905-a42c-be535e6ec6c3",
+        "clips": [
+          {
+            "id": "a",
+            "start": 1,
+            "end": 7,
+            "rate": 1.5,
+            "motionStart": 2,
+            "sourceBpm": null,
+            "loopBeats": null,
+            "motionAssetId": null,
+            "transition": 0,
+            "loop": true,
+            "camera": false
+          },
+          {
+            "start": 12,
+            "end": 14,
+            "sourceBpm": null,
+            "loopBeats": null,
+            "id": "",
+            "motionAssetId": null,
+            "rate": 1,
+            "motionStart": 0,
+            "transition": 0,
+            "loop": true,
+            "camera": false
+          }
+        ],
+        "motionAssetId": null,
+        "rate": 1,
+        "offsetMs": 0,
+        "rotationY": 0,
+        "scale": 1,
+        "ik": true
+      },
+      {
+        "modelAssetId": "41756983-303f-4905-a42c-be535e6ec6c3",
+        "clips": [
+          {
+            "start": 2,
+            "end": 8,
+            "sourceBpm": null,
+            "loopBeats": null,
+            "id": "",
+            "motionAssetId": null,
+            "rate": 1,
+            "motionStart": 0,
+            "transition": 0,
+            "loop": true,
+            "camera": false
+          }
+        ],
+        "motionAssetId": null,
+        "rate": 1,
+        "offsetMs": 0,
+        "rotationY": 0,
+        "scale": 1,
+        "ik": true
+      },
+      {
+        "modelAssetId": "41756983-303f-4905-a42c-be535e6ec6c3",
+        "clips": [],
+        "motionAssetId": null,
+        "rate": 1,
+        "offsetMs": 0,
+        "rotationY": 0,
+        "scale": 1,
+        "ik": true
+      }
+    ],
+    "cameraTrack": [
+      {
+        "time": 1,
+        "easing": "smooth",
+        "yaw": 0,
+        "pitch": 10,
+        "distance": 7,
+        "fov": 40,
+        "target": [
+          0,
+          1.6,
+          0
+        ]
+      }
+    ],
+    "lightTrack": [
+      {
+        "time": 2,
+        "easing": "smooth",
+        "intensity": 1,
+        "color": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "formations": [
+      {
+        "time": 1.5,
+        "positions": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            -1.25,
+            0,
+            0
+          ]
+        ],
+        "lead": 0,
+        "visible": [
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "version": 19,
+    "enabled": true,
+    "spacing": 1.5,
+    "useCamera": true,
+    "cuts": []
+  }
+}

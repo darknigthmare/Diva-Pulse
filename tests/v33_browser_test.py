@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
 from functools import partial
 import threading,json,hashlib,os,traceback
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v33/feedback';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v34/feedback';Q.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];failure=None;version=(R/'VERSION.txt').read_text().strip();mode='injected' if os.getenv('PULSE_DOCUMENT_MODE')=='1' else 'http'
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*args):pass

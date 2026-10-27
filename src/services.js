@@ -77,7 +77,7 @@
     }
     class AudioTransport {
         constructor() { this.ctx = null; this.buffer = null; this.source = null; this.playing = false; this.anchor = 0; this.offset = 0; this.rate = 1; this.volume = .65; this.sfxVolume = .18; this.pausedAt = 0; }
-        async init() { if (!this.ctx) {
+        async init() { if(this.ctx?.state==='closed'){this.stop();this.ctx=null;this.gain=null;this.sfxGain=null;} if (!this.ctx) {
             const AC = root.AudioContext || root.webkitAudioContext;
             if (!AC)
                 throw Error('Web Audio indisponible.');

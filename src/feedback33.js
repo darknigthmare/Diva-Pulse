@@ -60,16 +60,28 @@ class SoundBank{
  constructor(audio){this.audio=audio;this.cache=new Map();this.voices=new Set();this.stats={played:0,dropped:0};}
  stop(){for(const v of [...this.voices]){try{v.source.stop();}catch{}v.cleanup();}}
  play(event,settings={}){try{return this._play(event,settings||{});}catch{this.stats.dropped++;return false;}}
+ prepareContext(ctx){if(this.context!==ctx){this.stop();this.cache.clear();this.context=ctx;}}
+ bufferFor(ctx,event,style){
+  const spec=soundSpec(event,style);if(!spec)return null;
+  const key=JSON.stringify([ctx.sampleRate,style,spec]);let buffer=this.cache.get(key);
+  if(!buffer){const data=pcm(spec,ctx.sampleRate);buffer=ctx.createBuffer(1,data.length,ctx.sampleRate);buffer.copyToChannel(data,0);
+   if(this.cache.size>=MAX_CACHE)this.cache.delete(this.cache.keys().next().value);this.cache.set(key,buffer);}
+  return buffer;
+ }
+ prewarm(settings={}){
+  const ctx=this.audio.ctx;if(!ctx||ctx.state!=='running')return 0;
+  this.prepareContext(ctx);const style=options(settings).sfxStyle;let count=0;
+  for(const rating of RATINGS)for(let lane=0;lane<6;lane++)for(const type of ['tap','slide']){this.bufferFor(ctx,{rating,note:{lane,type}},style);count++;}
+  return count;
+ }
  _play(event,settings){
   const a=this.audio,ctx=a.ctx,opts=options(settings);
   if(!ctx||ctx.state!=='running'||!a.sfxGain||settings.hitSound===false||!(a.sfxVolume>0))return false;
   if(['MISS','WRONG','SAD'].includes(event?.rating)&&!opts.missSound)return false;
   const spec=soundSpec(event,opts.sfxStyle);if(!spec)return false;
+  this.prepareContext(ctx);
   if(this.voices.size>=MAX_VOICES){this.stats.dropped++;return false;}
-  if(this.context!==ctx){this.stop();this.cache.clear();this.context=ctx;}
-  const key=JSON.stringify([ctx.sampleRate,opts.sfxStyle,spec]);let buffer=this.cache.get(key);
-  if(!buffer){const data=pcm(spec,ctx.sampleRate);buffer=ctx.createBuffer(1,data.length,ctx.sampleRate);buffer.copyToChannel(data,0);
-   if(this.cache.size>=MAX_CACHE)this.cache.delete(this.cache.keys().next().value);this.cache.set(key,buffer);}
+  const buffer=this.bufferFor(ctx,event,opts.sfxStyle);
   const source=ctx.createBufferSource(),gain=ctx.createGain();gain.gain.value=.12;source.buffer=buffer;
   const v={source,cleanup:()=>{source.onended=null;try{source.disconnect();gain.disconnect();}catch{}this.voices.delete(v);}};
   try{source.connect(gain);gain.connect(a.sfxGain);source.onended=v.cleanup;this.voices.add(v);source.start();this.stats.played++;return true;}

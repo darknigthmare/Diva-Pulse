@@ -188,7 +188,7 @@ function install(app){
   $('dExport').onclick=()=>root.PulseServices.download(JSON.stringify({format:'DIVA-PULSE-DIRECTOR',version:session.draft.version,director:session.draft},null,2),app.song.title+'.director.json');
   $('dTime').oninput=()=>{session.time=+$('dTime').value;if(session.audition)session.time=session.audition.seek(Math.min(session.time,session.audition.duration));$('dTimeLabel').textContent=session.time.toFixed(2)+' s';if(session.loaded){app.stage.directorPreview=session.time;app.stage.render(session.time,app.chart?.bpm||120,{preview:true});drawPreview();}};
   $('dPreview').onclick=()=>app.run(()=>loadAudition(false),'Préparation de l’aperçu MMD…');
-  $('dPlay').onclick=()=>{if(session.audition?.playing){pauseAudition();return;}const current=session;app.run(async()=>{await loadAudition(true);if(session!==current||!current.audition)return;await current.audition.context.resume();if(session!==current)return;current.audition.play(Math.min(current.time,current.audition.duration));drawPreview();},'Préparation de l’écoute…');};
+  $('dPlay').onclick=()=>{if(session.audition?.playing){pauseAudition();return;}const current=session,epoch=app.liveEpoch34?.();app.run(async()=>{await loadAudition(true);if(session!==current||!current.audition||document.hidden||app.liveEpoch34?.()!==epoch)return;await current.audition.context.resume();if(session!==current||document.hidden||app.liveEpoch34?.()!==epoch||current.audition.context.state!=='running')return;current.audition.play(Math.min(current.time,current.audition.duration));drawPreview();},'Préparation de l’écoute…');};
   $('dStop').onclick=()=>{pauseAudition();session.time=session.loopEnabled?session.loopA:0;if(session.audition)session.audition.seek(session.time);drawPreview();$('dTime').value=session.time;$('dTimeLabel').textContent=session.time.toFixed(2)+' s';};
   $('dAudioRate').onchange=()=>{try{session.audioRate=Number($('dAudioRate').value);session.audition?.setRate(session.audioRate);drawPreview();}catch(e){reportError(e);}};
   $('dAudioVolume').oninput=()=>{session.audioVolume=Number($('dAudioVolume').value);session.audition?.setVolume(session.audioVolume);};
@@ -201,6 +201,7 @@ function install(app){
   $('dSave').onclick=()=>app.run(async()=>{const current=session,owner=app.song;if(!current||current.owner!==owner.id)throw Error('Le morceau a changé.');await app.directorDraftWrite;if(session!==current||app.song!==owner)throw Error('La session Director a changé.');const rows=E.publication(owner,current.draft,current.packId);await app.store.atomic(rows);Object.assign(owner,rows[0][1]);app.directorRecoveries.delete(current.owner);if(session===current){app.closeModal();renderMMD();}app.toast('Spectacle et fin du brouillon enregistrés ensemble. Les partitions sont inchangées.');},'Sauvegarde du spectacle…');
   $('modal').scrollTop=sc;$('directorMessage').textContent='Brouillon — '+d.slots.reduce((n,s)=>n+s.clips.length,0)+' clips · '+d.cameraTrack.length+' clés caméra · '+d.lightTrack.length+' clés lumière.';
  }
+ app.pauseDirectorAudition=()=>pauseAudition();
  function pauseAudition(){
   if(!session?.audition)return;
   session.time=session.audition.pause();
@@ -210,6 +211,7 @@ function install(app){
  async function loadAudition(withAudio){
   const current=session,owner=app.song;if(!current||current.owner!==owner.id)return;
   pauseAudition();
+  if(current.audition?.context.state==='closed'){current.audition.dispose();current.audition=null;delete app.directorAudition;}
   if(withAudio&&!current.audition){
    await app.audio.init();await app.prepareAudio();
    if(session!==current||app.song!==owner)return;

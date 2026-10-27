@@ -346,8 +346,8 @@
         pause() { if (this.view !== 'game' || this.paused || this.finishing)
             return; this.paused = true; this.audio.pause(); $('pvVideo').pause(); this.clearSources(); this.engine?.clearInputs(); this.openModal(`<div class="eyebrow">LIVE PAUSED</div><h2>ON GARDE LE TEMPO.</h2><p>${esc(this.song.title)} · ${this.formatTime(this.audio.time)}</p><div class="buttons"><button id="resumeGame" class="primary">REPRENDRE</button><button id="restartGame">RECOMMENCER</button><button id="leaveGame">QUITTER</button></div>`); $('resumeGame').onclick = () => this.resume(); $('restartGame').onclick = () => { this.closeModal(); this.run(() => this.startGame(this.mode, this.practice), 'Reprise du morceau…'); }; $('leaveGame').onclick = () => { this.closeModal(); this.showView('library'); }; }
         async resume() { if (!this.paused || this.view !== 'game' || this.finishing)
-            return; const chart = this.gameChart; await this.audio.init();
-            if (!this.paused || this.view !== 'game' || this.finishing || this.gameChart !== chart) return;
+            return; const chart = this.gameChart, epoch=this.liveEpoch34?.(); await this.audio.init();
+            if (!this.paused || this.view !== 'game' || this.finishing || this.gameChart !== chart || document.hidden || this.audio.ctx?.state!=='running' || this.liveEpoch34?.()!==epoch) return;
             this.clearSources(); this.audio.resume(); this.paused = false; this.closeModal(); }
         keyDown(e) {
             if (this.remapping !== undefined) {
@@ -776,5 +776,7 @@
     root.PulseV26.install(app);
     root.PulseV27.install(app);
     root.PulseFeedback33.install(app);
+    root.PulseMediaVault.install(app);
+    root.PulseLive34.install(app);
     app.init().catch(e => { console.error(e); document.body.innerHTML = `<div style="padding:40px;font-family:system-ui;color:#eef;background:#102;min-height:100vh"><h1>DIVA PULSE</h1><h2>Le démarrage n’a pas abouti.</h2><p>${esc(e.message)}</p><p>Utiliser le lanceur local fourni, puis un navigateur récent. Les données existantes ne sont pas supprimées.</p></div>`; });
 })(globalThis);

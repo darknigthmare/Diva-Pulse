@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 import threading, tempfile, json, hashlib, traceback, os
-R=Path(__file__).resolve().parents[1];Q=R/os.environ.get('PULSE_QA_DIR','qa/v33/regression-persistence');Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/os.environ.get('PULSE_QA_DIR','qa/v34/regression-persistence');Q.mkdir(parents=True,exist_ok=True)
 version=(R/'VERSION.txt').read_text().strip()
 checks=[];errors=[];failure=None;context=None
 class Handler(SimpleHTTPRequestHandler):

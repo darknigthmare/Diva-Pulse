@@ -10,7 +10,7 @@ function preferences(raw={}, {strict=false}={}){
  const keys=['KeyD','KeyF','KeyJ','KeyK','KeyS','KeyL'];
  if('keys'in raw&&(!Array.isArray(raw.keys)||raw.keys.length!==6||new Set(raw.keys).size!==6||raw.keys.some(k=>typeof k!=='string'||!/^(Key[A-Z]|Digit\d|Numpad\w+|Arrow(Left|Right|Up|Down)|Bracket(Left|Right)|Semicolon|Quote|Comma|Period|Slash|Backslash|Minus|Equal|Intl\w+)$/.test(k))))bad('keys',keys);
  if('midiMapping'in raw&&(!Array.isArray(raw.midiMapping)||raw.midiMapping.length!==6||new Set(raw.midiMapping).size!==6||raw.midiMapping.some(x=>!Number.isInteger(x)||x<0||x>127)))bad('midiMapping',[60,62,64,65,67,69]);
- for(const key of ['reduceMotion','showTouch','useVideo','noFail','outputClock','contrastNotes','hitSound','earlyLate','reducedEffects','padChords','autoMapImport','autoShowImport','autoFaceImport','audioMatchImport'])if(key in raw&&typeof raw[key]!=='boolean')bad(key,false);
+ for(const key of ['holdGauge','reduceMotion','showTouch','useVideo','noFail','outputClock','contrastNotes','hitSound','earlyLate','reducedEffects','padChords','autoMapImport','autoShowImport','autoFaceImport','audioMatchImport'])if(key in raw&&typeof raw[key]!=='boolean')bad(key,false);
  if('judgmentProfile'in raw&&!['standard','accessible','precision'].includes(raw.judgmentProfile))bad('judgmentProfile','standard');
  if(raw.chords){try{out.chords=C.validateChordBindings(raw.chords);if(out.chords.some(b=>(out.keys||keys).includes(b.code)))throw Error('Accord et touche unitaire en conflit.');}catch(e){bad('chords',[]);}}
  return {value:out,warnings};
