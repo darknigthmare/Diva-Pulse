@@ -1,0 +1,89 @@
+name: Integrate reviewed V32 into PR 1
+on:
+  push:
+    branches: ['feat/v30-director-workflow']
+    paths: ['.github/workflows/integrate32.yml']
+permissions:
+  contents: write
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: diva-pr1-integration32
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/feat/v30-director-workflow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and reconstruct reviewed source files
+        run: |
+          test "$(git rev-parse HEAD^)" = '034221662b07d1669fe48ef63c04f65c1f770551'
+          python3 tools/delivery32/apply.py
+          python3 build.py
+          mkdir -p qa/v32
+          python3 tools/verify_release.py | tee qa/v32/release-check.txt
+          npm test | tee qa/v32/logic.tap
+          python3 tests/launcher_test.py | tee qa/v32/launcher.txt
+          grep '^# pass 947$' qa/v32/logic.tap
+          grep '^# fail 0$' qa/v32/logic.tap
+      - name: Install pinned native browser test tooling
+        run: |
+          python3 -m pip install -r requirements-test.txt
+          python3 -m playwright install --with-deps chromium
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              print('CHROMIUM_PATH='+p.chromium.executable_path)
+          PY
+      - name: Run actual HTTP editor, audio and persistence scenarios
+        run: |
+          xvfb-run -a python3 tests/v32_browser_test.py | tee qa/v32/loops-run.log
+          xvfb-run -a python3 tests/v31_browser_test.py | tee qa/v32/audition-run.log
+          xvfb-run -a python3 tests/v30_browser_test.py | tee qa/v32/workflow-run.log
+          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v32/director-run.log
+          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v32/persistence-run.log
+          xvfb-run -a python3 tests/v32_transactions_test.py | tee qa/v32/transactions-run.log
+      - name: Require fresh successful evidence for this exact build
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          digest=hashlib.sha256(Path('index.html').read_bytes()).hexdigest()
+          checks={}
+          for name,count in [('loops',16),('audition',32),('regression-workflow',18),('regression-director',23),('regression-persistence',14),('transactions',11)]:
+              report=json.loads(Path(f'qa/v32/{name}/results.json').read_text())
+              assert report['version']=='32.0.0' and report['buildSha256']==digest, name
+              assert report['passed']==count and report['failed']==0 and report['failure'] is None,name
+              assert len(report['checks'])==count and all(x['passed'] for x in report['checks']),name
+              assert not report['errors'],name
+              checks[name]=count
+          Path('qa/v32/verified-source.json').write_text(json.dumps({'version':'32.0.0','buildSha256':digest,'logicPassed':947,'launcherPassed':10,'browserChecks':checks,'nativeRun':True},indent=2)+'\n')
+          PY
+      - name: Preserve evidence even when a test fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diva-pulse-v32-integration-${{ github.run_id }}
+          path: qa/v32/
+          retention-days: 30
+      - name: Publish verified source only to PR branch
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/feat/v30-director-workflow'
+          git diff --exit-code -- .github
+          git config user.name 'Diva Pulse maintenance'
+          git config user.email '7942594+darknigthmare@users.noreply.github.com'
+          rm -rf tools/delivery32
+          git add src tests tools/delivery32 build.py VERSION.txt package.json manifest.webmanifest sw.js index.html DIVA_PULSE_JOUER.html qa/v32
+          git commit -m 'feat: V31 audio editing and V32 phase-safe loops with native transactional QA'
+          git push origin HEAD:feat/v30-director-workflow
