@@ -26,13 +26,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build and verify all logical contracts
+      - name: Verify exact source build and logical contracts
+        env:
+          REVIEW_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          mkdir -p qa/v30
-          python3 tools/verify_release.py | tee qa/v30/release-check.txt
+          mkdir -p qa/v32
+          printf 'Review head: %s\nChecked-out commit: %s\n' "$REVIEW_HEAD" "$(git rev-parse HEAD)" > qa/v32/commit.txt
+          python3 tools/verify_release.py | tee qa/v32/release-check.txt
           git diff --exit-code -- index.html DIVA_PULSE_JOUER.html
-          npm test | tee qa/v30/logic.tap
-          python3 tests/launcher_test.py | tee qa/v30/launcher.txt
+          npm test | tee qa/v32/logic.tap
+          python3 tests/launcher_test.py | tee qa/v32/launcher.txt
       - name: Install pinned browser tooling
         run: |
           python3 -m pip install -r requirements-test.txt
@@ -42,17 +45,21 @@ jobs:
           with sync_playwright() as p:
               print('CHROMIUM_PATH='+p.chromium.executable_path)
           PY
-      - name: Run current and regression browser workflows
+      - name: Run fresh native and regression browser scenarios
         run: |
-          rm -f qa/v30/workflow/results.json qa/v30/regression-director/results.json qa/v30/regression-persistence/results.json
-          xvfb-run -a python3 tests/v30_browser_test.py | tee qa/v30/browser-run.log
-          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v30/regression-browser.log
-          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v30/persistence-run.log
-          python3 tools/verify_pr30.py
+          rm -f qa/v32/{loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v32/verified.json
+          xvfb-run -a python3 tests/v32_browser_test.py | tee qa/v32/loops-run.log
+          xvfb-run -a python3 tests/v31_browser_test.py | tee qa/v32/audition-run.log
+          xvfb-run -a python3 tests/v30_browser_test.py | tee qa/v32/workflow-run.log
+          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v32/director-run.log
+          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v32/persistence-run.log
+          xvfb-run -a python3 tests/v32_transactions_test.py | tee qa/v32/transactions-run.log
+      - name: Verify fresh evidence and exact workbook against backlog
+        run: python3 tools/verify_pr32.py
       - name: Preserve commit-linked evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: diva-pulse-v30-${{ github.run_id }}
-          path: qa/v30/
+          name: diva-pulse-v32-${{ github.run_id }}
+          path: qa/v32/
           retention-days: 30
