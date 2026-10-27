@@ -1,0 +1,55 @@
+name: Publish reviewed V32 tracker to PR 1
+on:
+  push:
+    branches: ['feat/v30-director-workflow']
+    paths: ['.github/workflows/tracker32.yml']
+permissions:
+  contents: write
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: diva-pr1-tracker32
+  cancel-in-progress: false
+jobs:
+  tracker:
+    if: github.ref == 'refs/heads/feat/v30-director-workflow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconstruct reviewed workbook and verify source-linked evidence
+        run: |
+          test "$(git rev-parse HEAD^)" = 'f4fa7d6d4baca70313d63622e8e7f0434c89ef97'
+          python3 tools/tracker32/apply.py
+          python3 tools/verify_release.py
+          npm test > "$RUNNER_TEMP/logic32.tap"
+          grep '^# pass 947$' "$RUNNER_TEMP/logic32.tap"
+          grep '^# fail 0$' "$RUNNER_TEMP/logic32.tap"
+          python3 tools/verify_pr32.py
+      - name: Publish code-linked tracker on the PR branch only
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/feat/v30-director-workflow'
+          git diff --exit-code -- .github src index.html DIVA_PULSE_JOUER.html
+          git config user.name 'Diva Pulse maintenance'
+          git config user.email '7942594+darknigthmare@users.noreply.github.com'
+          rm -rf tools/tracker32
+          git add planning/BACKLOG_V32.json planning/MANQUANTS_V32.csv planning/DIVA_PULSE_MANQUANTS_V32.xlsx planning/V32_RELEASE.json planning/README.md docs/V32_BOUCLES_SAUVEGARDES.md tools/verify_pr32.py tools/tracker32 qa/v32/verified.json
+          git commit -m 'docs: publish verified 123-item V32 workbook and detailed continuation backlog'
+          git push origin HEAD:feat/v30-director-workflow
+      - name: Preserve exact workbook and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: diva-pulse-v32-tracker-${{ github.run_id }}
+          path: |
+            planning/DIVA_PULSE_MANQUANTS_V32.xlsx
+            qa/v32/verified.json
+          retention-days: 30
