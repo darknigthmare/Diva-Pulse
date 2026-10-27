@@ -15,7 +15,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,12 +30,12 @@ jobs:
         env:
           REVIEW_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          mkdir -p qa/v33
-          printf 'Review head: %s\nChecked-out commit: %s\n' "$REVIEW_HEAD" "$(git rev-parse HEAD)" > qa/v33/commit.txt
-          python3 tools/verify_release.py | tee qa/v33/release-check.txt
+          mkdir -p qa/v34
+          printf 'Review head: %s\nChecked-out commit: %s\n' "$REVIEW_HEAD" "$(git rev-parse HEAD)" > qa/v34/commit.txt
+          python3 tools/verify_release.py | tee qa/v34/release-check.txt
           git diff --exit-code -- index.html DIVA_PULSE_JOUER.html
-          npm test | tee qa/v33/logic.tap
-          python3 tests/launcher_test.py | tee qa/v33/launcher.txt
+          npm test | tee qa/v34/logic.tap
+          python3 tests/launcher_test.py | tee qa/v34/launcher.txt
       - name: Install pinned driver and identify the runner browser
         timeout-minutes: 4
         run: |
@@ -43,26 +43,27 @@ jobs:
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$BROWSER"
           printf 'CHROMIUM_PATH=%s\n' "$BROWSER" >> "$GITHUB_ENV"
-          "$BROWSER" --version | tee qa/v33/browser-version.txt
-          python3 -m pip show playwright > qa/v33/driver-version.txt
+          "$BROWSER" --version | tee qa/v34/browser-version.txt
+          python3 -m pip show playwright > qa/v34/driver-version.txt
       - name: Run fresh native feedback and regression scenarios
         run: |
-          rm -f qa/v33/{feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v33/verified.json
-          xvfb-run -a python3 tests/v33_browser_test.py | tee qa/v33/feedback-run.log
-          xvfb-run -a python3 tests/v32_browser_test.py | tee qa/v33/loops-run.log
-          xvfb-run -a python3 tests/v31_browser_test.py | tee qa/v33/audition-run.log
-          xvfb-run -a python3 tests/v30_browser_test.py | tee qa/v33/workflow-run.log
-          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v33/director-run.log
-          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v33/persistence-run.log
-          xvfb-run -a python3 tests/v32_transactions_test.py | tee qa/v33/transactions-run.log
+          rm -f qa/v34/{vault-live,feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v34/verified.json
+          xvfb-run -a python3 tests/v34_browser_test.py | tee qa/v34/vault-live-run.log
+          xvfb-run -a python3 tests/v33_browser_test.py | tee qa/v34/feedback-run.log
+          xvfb-run -a python3 tests/v32_browser_test.py | tee qa/v34/loops-run.log
+          xvfb-run -a python3 tests/v31_browser_test.py | tee qa/v34/audition-run.log
+          xvfb-run -a python3 tests/v30_browser_test.py | tee qa/v34/workflow-run.log
+          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v34/director-run.log
+          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v34/persistence-run.log
+          xvfb-run -a python3 tests/v32_transactions_test.py | tee qa/v34/transactions-run.log
       - name: Check current evidence and exact Excel against the backlog
-        run: python3 tools/verify_pr33.py
+        run: python3 tools/verify_pr34.py
       - name: Preserve commit-linked evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: diva-pulse-v33-${{ github.run_id }}
+          name: diva-pulse-v34-${{ github.run_id }}
           path: |
-            qa/v33/
-            planning/DIVA_PULSE_MANQUANTS_V33.xlsx
+            qa/v34/
+            planning/DIVA_PULSE_MANQUANTS_V34.xlsx
           retention-days: 30

@@ -6,15 +6,15 @@ Jeu de rythme autonome : cinq difficultés, partitions éditables, AutoMap, Auto
 
 Lancer `LANCER_WINDOWS.bat` sous Windows ou `LANCER_MAC_LINUX.command` sous macOS/Linux. Python 3 doit être disponible. Autre possibilité : `python3 lancer.py`. Les données de bibliothèque restent dans le navigateur ; exporter un `.pulsebundle` avant migration ou nettoyage du stockage.
 
-## Proposition V33 — PR #1
+## Proposition V34 — PR #1
 
-[PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1), sans fusion dans main. Effets localisés selon le jugement, sons procéduraux Pulse/Arcade/Soft, mouvement réduit du système, budgets audio/visuels et correctifs de reprise audio et de capture tactile. Voir [le guide V33](docs/V33_RESSENTI_GAMEPLAY.md).
+[PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1), sans fusion dans main. Nettoyage explicite des médias inutilisés avec relecture transactionnelle des références ; protection des morceaux, des réglages et des brouillons ; diagnostic exportable. Mise en pause lors des interruptions audio, reprise manuelle et jauges HOLD lisibles même lorsque les effets sont coupés. Les sons sont préparés silencieusement avant le premier jugement.
 
-[Excel détaillé des 132 points](planning/DIVA_PULSE_MANQUANTS_V33.xlsx) · [JSON](planning/BACKLOG_V33.json) · [CSV](planning/MANQUANTS_V33.csv)
+[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V34.xlsx) · [JSON](planning/BACKLOG_V34.json) · [CSV](planning/MANQUANTS_V34.csv) · [Guide V34 et limites](docs/V34_BIBLIOTHEQUE_LIVE.md)
 
-Les fonctionnalités du Director et du Studio V30–V32 restent présentes : écoute indépendante, boucle A/B, montage groupé, grille à tempo variable, scission/fusion de clips compatibles, phase des boucles et sauvegardes atomiques. [Guide V30](docs/V30_MONTAGE.md) · [Guide V32](docs/V32_BOUCLES_SAUVEGARDES.md).
+Les effets localisés et les signatures Pulse/Arcade/Soft V33 restent présents, ainsi que l’écoute indépendante, la boucle A/B, le montage groupé, la grille à tempo variable, la scission/fusion de clips compatibles et les sauvegardes atomiques. [Guide V33](docs/V33_RESSENTI_GAMEPLAY.md) · [Guide V32](docs/V32_BOUCLES_SAUVEGARDES.md).
 
-L'Excel distingue ce qui est présent, partiel et non qualifié. Compatibilité universelle MMD, root motion avancé, retargeting, contenus finaux, latence physique et qualification sur appareils réels restent à traiter.
+Le classeur distingue 49 points réalisés dans leur périmètre, 25 partiels, 37 à faire et 25 à valider : 87 ouverts. Il ne constitue pas un pourcentage de finition du jeu. Root motion avancé, adaptation entre squelettes, corpus MMD, latence physique et qualification sur appareils réels restent ouverts.
 
 ## Développement
 
@@ -26,8 +26,3 @@ python3 tools/verify_release.py
 ```
 
 Les deux HTML autonomes sont générés depuis `src/`, sans CDN. Les formats sauvegardés ne suivent pas le numéro de version de l'application : le Director conserve ses schémas 19/20. Les rapports historiques ne sont pas additionnés aux tests courants. La CI de revue finale est en lecture seule, ne pousse pas vers main et ne fusionne aucune PR. Les résultats à citer doivent correspondre au SHA du build réellement testé.
-
-
-## Proposition V34
-
-Nettoyage explicite des médias inutilisés avec revalidation transactionnelle, diagnostic des références, interruptions audio sûres et jauges HOLD indépendantes des éclats. Voir [guide V34](docs/V34_BIBLIOTHEQUE_LIVE.md) et [Excel courant](planning/DIVA_PULSE_MANQUANTS_V34.xlsx). La PR reste séparée de main.
