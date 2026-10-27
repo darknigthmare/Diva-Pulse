@@ -10,12 +10,12 @@ defaults:
     shell: bash
 concurrency:
   group: diva-pr1-v33-integration
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   integrate:
     if: github.ref == 'refs/heads/feat/v30-director-workflow'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,7 +30,7 @@ jobs:
         run: |
           test "$GITHUB_REF" = 'refs/heads/feat/v30-director-workflow'
           git merge-base --is-ancestor 55b620f77a4084b2304987aec1c037db37fe1607 HEAD
-          command -v zstd || { sudo apt-get update; sudo apt-get install -y zstd; }
+          command -v zstd
           python3 tools/apply_feedback33.py
           python3 tools/receive_workbook33.py
           python3 tools/verify_pr33.py --tracker-only
@@ -39,15 +39,15 @@ jobs:
           python3 tools/verify_release.py | tee qa/v33/release-check.txt
           npm test | tee qa/v33/logic.tap
           python3 tests/launcher_test.py | tee qa/v33/launcher.txt
-      - name: Install pinned browser tooling
+      - name: Install pinned driver and use runner-provided Chrome
+        timeout-minutes: 4
         run: |
-          python3 -m pip install -r requirements-test.txt
-          python3 -m playwright install --with-deps chromium
-          python3 - <<'PY' >> "$GITHUB_ENV"
-          from playwright.sync_api import sync_playwright
-          with sync_playwright() as p:
-              print('CHROMIUM_PATH='+p.chromium.executable_path)
-          PY
+          python3 -m pip install --disable-pip-version-check --timeout 30 --retries 2 -r requirements-test.txt
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$BROWSER"
+          printf 'CHROMIUM_PATH=%s\n' "$BROWSER" >> "$GITHUB_ENV"
+          "$BROWSER" --version | tee qa/v33/browser-version.txt
+          python3 -m pip show playwright > qa/v33/driver-version.txt
       - name: Run fresh native feedback and regression tests
         run: |
           rm -f qa/v33/{feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v33/verified.json
