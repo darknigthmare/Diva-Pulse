@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 import threading, tempfile, json, hashlib, traceback, os
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/persistence';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v30/regression-persistence';Q.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];failure=None;context=None
 class Handler(SimpleHTTPRequestHandler):
  def log_message(self,*args):pass
@@ -44,7 +44,7 @@ try:
   p.evaluate('async()=>await navigator.serviceWorker.ready');p.wait_for_function('!!navigator.serviceWorker.controller')
   ok('Offline shell installs and controls the actual HTTP page',p.evaluate('!!navigator.serviceWorker.controller'))
   context.set_offline(True);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.PulseApp&&document.documentElement.dataset.v28Ready==="true"')
-  ok('Offline reload boots current V29 from service-worker cache',p.evaluate('!navigator.onLine&&PulseCore.VERSION==="29.0.0"&&document.title.includes("V29")'))
+  ok('Offline reload boots current V29 from service-worker cache',p.evaluate('!navigator.onLine&&PulseCore.VERSION==="30.0.0"&&document.title.includes("V30")'))
   ok('Offline reload retains library and imported binary bytes',p.evaluate('async()=>PulseApp.songs.some(s=>s.id==="qa-persist-song")&&(await PulseApp.store.get("assets","qa-binary")).blob.size===5'))
   p.screenshot(path=str(Q/'offline-reload.png'))
   ok('No unhandled application exception across native persistence flow',not errors)
@@ -56,5 +56,5 @@ finally:
   try:context.close()
   except Exception:pass
  server.shutdown();server.server_close();thread.join()
-(Q/'results.json').write_text(json.dumps({'version':'29.0.0','buildSha256':hashlib.sha256((R/'index.html').read_bytes()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'failure':failure,'checks':checks,'errors':errors,'scope':'Localhost and persistent Chromium profile; true IndexedDB, Web Locks and SW offline reload. Not OS PWA installation, iPhone/Safari or storage-eviction certification.'},ensure_ascii=False,indent=2))
+(Q/'results.json').write_text(json.dumps({'version':'30.0.0','buildSha256':hashlib.sha256((R/'index.html').read_bytes()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'failure':failure,'checks':checks,'errors':errors,'scope':'Localhost and persistent Chromium profile; true IndexedDB, Web Locks and SW offline reload. Not OS PWA installation, iPhone/Safari or storage-eviction certification.'},ensure_ascii=False,indent=2))
 if failure:raise SystemExit(1)

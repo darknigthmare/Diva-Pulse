@@ -4,7 +4,7 @@ Document injection uses temporary storage; durability is a separate test suite.
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json, hashlib, traceback, os
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/director';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v30/regression-director';Q.mkdir(parents=True,exist_ok=True)
 checks=[];errors=[];failure=None;p=None
 html=(R/'index.html').read_text()
 def ok(name,value=True):
@@ -23,7 +23,7 @@ try:
   b=w.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   p=b.new_page(viewport={'width':1280,'height':900});p.set_default_timeout(30000);p.on('pageerror',lambda e:errors.append(str(e)))
   p.set_content(html);p.wait_for_function('document.documentElement.dataset.v28Ready==="true"');idle()
-  ok('Current V29 bundle boots and retains the original 15 demo charts',p.evaluate('PulseCore.VERSION==="29.0.0"&&document.title.includes("V29")&&PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
+  ok('Current V29 bundle boots and retains the original 15 demo charts',p.evaluate('PulseCore.VERSION==="30.0.0"&&document.title.includes("V30")&&PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
   ok('Native software WebGL2 renderer is active',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl instanceof WebGL2RenderingContext'))
   p.evaluate('PulseApp.showView("wardrobe");document.getElementById("mmdPanel").open=true')
   p.locator('#mmdInput').set_input_files([str(R/'examples/v27/PENDULE.pmx'),str(R/'examples/v27/ANCRAGE.vmd')]);p.wait_for_selector('#miCommit');p.locator('#miCommit').click();idle();p.wait_for_function('PulseApp.stage.director?.models.length===1')
@@ -44,7 +44,7 @@ try:
   ok('Deleting a mixed group keeps all unselected events',len(d['slots'][0]['clips'])==2 and len(d['cameraTrack'])==2 and len(d['lightTrack'])==1)
   p.locator('#dUndo').click();d=draft();ok('Deletion is undoable in a single step',len(d['slots'][0]['clips'])==3)
   field('dTime',1.17,'input');p.locator('#dSnap').select_option('1');p.locator('#dSnapCursor').click()
-  expected=p.evaluate('PulseDirectorEdit.snap(1.17,PulseCore.tempoAt(PulseApp.chart,1.17),1,PulseApp.chart.gridOffset||0)')
+  expected=p.evaluate('PulseDirectorEdit.musicalSnap(1.17,PulseApp.chart,1,PulseApp.song.duration)')
   ok('Cursor snapping uses current chart tempo',abs(float(p.locator('#dTime').input_value())-expected)<.011)
   p.locator('#dPreview').click();idle();ok('Edited director preview loads real MMD with finite poses',p.evaluate('PulseApp.stage.director.models.length===1&&PulseApp.stage.director.models[0].bones.every(b=>[...b.p,...b.q].every(Number.isFinite))'))
   p.screenshot(path=str(Q/'01-director-desktop.png'),timeout=15000,animations='disabled')
@@ -70,5 +70,5 @@ except Exception as e:
  if p:
   try:p.screenshot(path=str(Q/'FAILURE.png'),timeout=5000)
   except Exception:pass
-(Q/'results.json').write_text(json.dumps({'version':'29.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'failure':failure,'checks':checks,'errors':errors,'scope':'Real Chromium + SwiftShader UI. Temporary document storage; not physical iPhone or universal MMD certification.'},ensure_ascii=False,indent=2))
+(Q/'results.json').write_text(json.dumps({'version':'30.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'failure':failure,'checks':checks,'errors':errors,'scope':'Real Chromium + SwiftShader UI. Temporary document storage; not physical iPhone or universal MMD certification.'},ensure_ascii=False,indent=2))
 if failure:raise SystemExit(1)
