@@ -1,7 +1,7 @@
 /* DIVA PULSE 3 — independent rhythm engine. No official game code or assets. */
 (function (root) {
     'use strict';
-    const VERSION = '32.0.0';
+    const VERSION = '33.0.0';
     const LANES = ['△', '□', '×', '○', '‹', '›'];
     const DIFFICULTIES = ['EASY', 'NORMAL', 'HARD', 'EXTREME', 'EX EXTREME'];
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -114,6 +114,7 @@
             this.errors.push(error * 1000); this.events.push({ note, rating, error, time: this.lastTime }); this.log.push({noteId:note?.id||null,lane:note?.lane,rating,error:error*1000,time:this.lastTime}); if (this.life <= 0 && !this.options.noFail)
             this.failed = true; }
         press(lane, time) {
+            if (!Number.isInteger(lane)||lane<0||lane>5||!Number.isFinite(time)) return null;
             this.accrueHolds(time);
             this.lastTime = time;
             if (this.held.has(lane))
@@ -144,7 +145,7 @@
                 this.activeHolds.set(lane, { start: time, end: time + Math.min(best.duration || 5, 5), awarded: 0, note: best });
             return { note: best, rating, delta };
         }
-        release(lane,time=this.lastTime) { this.accrueHolds(time); this.held.delete(lane);this.heldSince.delete(lane);this.chainArmed.delete(lane); this.activeHolds.delete(lane); }
+        release(lane,time=this.lastTime) { if(!Number.isInteger(lane)||lane<0||lane>5||!Number.isFinite(time))return; this.accrueHolds(time); this.held.delete(lane);this.heldSince.delete(lane);this.chainArmed.delete(lane); this.activeHolds.delete(lane); }
         clearInputs() { this.held.clear();this.heldSince.clear();this.chainArmed.clear(); this.activeHolds.clear(); }
         update(time, autoplay = false) {
             if (!Number.isFinite(time))

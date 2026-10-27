@@ -7,7 +7,7 @@ import csv,hashlib,json,re,sys,zipfile,xml.etree.ElementTree as ET
 from collections import Counter
 R=Path(__file__).resolve().parents[1];Q=R/'qa/v33';Q.mkdir(parents=True,exist_ok=True)
 W=R/'planning/DIVA_PULSE_MANQUANTS_V33.xlsx'
-BUILD='0b5962898eb04806a6f9fbf5917809f9631b1b1115803929b59434832cdc4d3d'
+BUILD='6f9e03d461b62f7263f2131116684bae3891d52f4fd77428fae316550d675ec2'
 WORKBOOK='79aca4e1a1f8835a3b70e82ed40956b12d62f647a3aeafb47f94595f92768565'
 assert hashlib.sha256(W.read_bytes()).hexdigest()==WORKBOOK
 ns={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}

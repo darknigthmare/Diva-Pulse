@@ -1,0 +1,14 @@
+PASS True HTTP origin and native IndexedDB are active
+PASS First window owns the exclusive writer lease
+PASS Cross-store transaction commits song, bytes and distinct chart draft
+PASS Full browser close/reopen retains saved song
+PASS Binary asset bytes survive full browser reopen
+PASS Separate draft survives without overwriting saved chart
+PASS Second real window is read-only under native Web Locks
+PASS Second-window transaction is rejected without mutating either store
+PASS Read-only window can still construct a portable backup
+PASS Closing writer then reloading transfers lease safely
+PASS Offline shell installs and controls the actual HTTP page
+PASS Offline reload boots current V29 from service-worker cache
+PASS Offline reload retains library and imported binary bytes
+PASS No unhandled application exception across native persistence flow

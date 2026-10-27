@@ -115,7 +115,11 @@ function install(app){
   try{await app.store.put('settings',candidate);app.settings=candidate;app.applySettings();}finally{sync();}
  },'Enregistrement du ressenti…');
  $('testFeedback33').onclick=()=>app.run(async()=>{await app.audio.init();const played=sounds.play({rating:'COOL',note:{lane:0,type:'tap'}},app.settings);app.toast(played?'Son de réussite joué.':'Sons désactivés ou volume nul : aucun son joué.');},'Essai sonore…');
- motion.addEventListener?.('change',()=>{effects.clear();app.stage.reduceMotion=reduced();sync();});
+ // Some browsers defer media-query change events while a surface is busy.
+ // Reconcile before the existing frame as well, never after stage rendering.
+ const syncMotion=()=>{const value=reduced();if(app.stage.reduceMotion!==value){effects.clear();app.stage.reduceMotion=value;sync();}};
+ motion.addEventListener?.('change',syncMotion);
+ wrap('frame',(prev,ts)=>{syncMotion();return prev(ts);});
  wrap('startGame',async(prev,...args)=>{reset();return prev(...args);});
  wrap('showView',(prev,view,...args)=>{if(view!=='game')reset();return prev(view,...args);});
  wrap('pause',prev=>{reset();return prev();});

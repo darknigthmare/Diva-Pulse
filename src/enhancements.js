@@ -39,7 +39,7 @@ function install(app){
     if(this.view==='editor'&&this.editor.recording){this.editor.recordPress(lane,this.audio.timeAt(stamp));return;}
     if(this.view==='game'&&!this.paused&&!['autoplay','pv','replay'].includes(this.mode)){
       if(this.mode==='play')this.replayInputs.push({time:t,lane,down:true});
-      this.engine?.press(lane,t);if(this.settings.hitSound)this.audio.sfx(lane);
+      this.engine?.press(lane,t);if(this.settings.hitSound&&!this.consumeFeedback33)this.audio.sfx(lane);
     }
   };
   app.releaseSource=function(source,stamp){

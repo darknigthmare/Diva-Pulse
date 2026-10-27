@@ -1,0 +1,56 @@
+{
+  "version": "33.0.0",
+  "buildSha256": "6f9e03d461b62f7263f2131116684bae3891d52f4fd77428fae316550d675ec2",
+  "passed": 11,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Transaction tests run on HTTP with real writable IndexedDB",
+      "passed": true
+    },
+    {
+      "name": "Real database initially stores phase-bearing schema 20 and binary data",
+      "passed": true
+    },
+    {
+      "name": "Abort occurs after a successful real IDB request, not an application mock",
+      "passed": true
+    },
+    {
+      "name": "Abort rolls back deletion, song update and binary overwrite together",
+      "passed": true
+    },
+    {
+      "name": "Abort cannot promote snapshots or emit a success notification",
+      "passed": true
+    },
+    {
+      "name": "Retry commits write and deletion with native completion",
+      "passed": true
+    },
+    {
+      "name": "Conflicting deletion refuses the whole native request before mutation",
+      "passed": true
+    },
+    {
+      "name": "Studio abort leaves source, edit, recovery and dirty state retryable",
+      "passed": true
+    },
+    {
+      "name": "Native Studio retry removes the old recovery and preserves source charts",
+      "passed": true
+    },
+    {
+      "name": "Reload retains the mixed commit, binary bytes and schema 20 phase",
+      "passed": true
+    },
+    {
+      "name": "No unhandled exception during native abort/retry flow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeHTTP": true,
+  "scope": "Real HTTP, IndexedDB, IDBTransaction.abort after a successful IDBRequest, mixed deletion rollback, Studio retry and page reload. Does not simulate OS crash, disk corruption or browser eviction."
+}

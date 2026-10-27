@@ -46,7 +46,7 @@ try:
   ok('Live zero-volume setting stops feedback voices immediately',p.evaluate('PulseApp.feedback33.sounds.voices.size===0&&!PulseApp.feedback33.sounds.play({rating:"COOL"},PulseApp.settings)'))
   p.evaluate('''window.drawProbe33=()=>{const a=PulseApp;let lines=0,arcs=0;const ctx={save(){},restore(){},beginPath(){},stroke(){},moveTo(){},lineTo(){lines++},arc(){arcs++}};a.feedback33.effects.clear();a.feedback33.effects.push({rating:'COOL',note:{lane:0,x:.5,y:.5}},100);a.drawFeedback33(ctx,{x:0,y:0,width:100,height:100},15,120,1);return {lines,arcs};};PulseApp.settings.reducedEffects=false;PulseApp.settings.reduceMotion=false;PulseApp.settings.graphicsQuality=1.5;PulseApp.settings.vfxIntensity=.7;''')
   ok('COOL success draws halo and bounded spark rays',p.evaluate('drawProbe33().lines===8&&drawProbe33().arcs===1'))
-  p.emulate_media(reduced_motion='reduce');p.wait_for_timeout(100)
+  p.emulate_media(reduced_motion='reduce');p.wait_for_function('matchMedia("(prefers-reduced-motion: reduce)").matches && PulseApp.stage.reduceMotion===true',timeout=5000)
   ok('System reduced-motion disables particles and stage movement',p.evaluate('PulseApp.stage.reduceMotion===true&&drawProbe33().lines===0&&drawProbe33().arcs===1'))
   p.emulate_media(reduced_motion='no-preference');p.evaluate('PulseApp.settings.reduceMotion=true;PulseApp.applySettings()')
   ok('In-game reduced-motion also uses a stationary ring',p.evaluate('drawProbe33().lines===0&&drawProbe33().arcs===1'))

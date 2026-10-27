@@ -4,7 +4,7 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 from playwright.sync_api import sync_playwright
 import threading, json, hashlib, os, traceback
-R=Path(__file__).resolve().parents[1]; Q=R/os.environ.get('PULSE_QA_DIR','qa/v32/regression-workflow'); Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1]; Q=R/os.environ.get('PULSE_QA_DIR','qa/v33/regression-workflow'); Q.mkdir(parents=True,exist_ok=True)
 version=(R/'VERSION.txt').read_text().strip()
 checks=[]; errors=[]; failure=None
 class Quiet(SimpleHTTPRequestHandler):

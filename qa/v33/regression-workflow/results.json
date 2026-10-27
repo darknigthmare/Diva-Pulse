@@ -1,0 +1,84 @@
+{
+  "version": "33.0.0",
+  "buildSha256": "6f9e03d461b62f7263f2131116684bae3891d52f4fd77428fae316550d675ec2",
+  "passed": 18,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V30 loads current build; storage matches explicitly requested mode",
+      "passed": true
+    },
+    {
+      "name": "UI snapping integrates variable tempo and both offsets",
+      "passed": true
+    },
+    {
+      "name": "UI uses actual meter-aware bar snapping",
+      "passed": true
+    },
+    {
+      "name": "G aligns a mixed group preserving spacing",
+      "passed": true
+    },
+    {
+      "name": "Keyboard undo restores complete group",
+      "passed": true
+    },
+    {
+      "name": "Keyboard redo restores accepted group",
+      "passed": true
+    },
+    {
+      "name": "Keyboard copy/paste preserves clip-camera offsets",
+      "passed": true
+    },
+    {
+      "name": "S splits at cursor preserving VMD time",
+      "passed": true
+    },
+    {
+      "name": "Native field selection/deletion does not trigger scene commands",
+      "passed": true
+    },
+    {
+      "name": "Keyboard select-all covers all tracks",
+      "passed": true
+    },
+    {
+      "name": "Deletion is a single mixed-track edit",
+      "passed": true
+    },
+    {
+      "name": "pointercancel does not commit partial drag",
+      "passed": true
+    },
+    {
+      "name": "Editing leaves saved scene and notes unchanged",
+      "passed": true
+    },
+    {
+      "name": "Recovery clears stale selections and redo",
+      "passed": true
+    },
+    {
+      "name": "Expanded editor fits phone-width viewport",
+      "passed": true
+    },
+    {
+      "name": "Keyboard save publishes cut and closes editor",
+      "passed": true
+    },
+    {
+      "name": "Future schema is rejected without overwrite",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "documentMode": false,
+  "scope": "Native HTTP/IndexedDB. Chromium and SwiftShader. Actual keyboard/mouse, phone viewport emulation; not physical iPhone certification."
+}

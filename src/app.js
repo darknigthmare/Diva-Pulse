@@ -345,8 +345,10 @@
             throw Error('Aucun horodatage [mm:ss.xx] trouvé.'); this.song.lyrics = lyrics.sort((a, b) => a.time - b.time); await this.saveSong(); this.toast(`${lyrics.length} lignes de paroles associées.`); }
         pause() { if (this.view !== 'game' || this.paused || this.finishing)
             return; this.paused = true; this.audio.pause(); $('pvVideo').pause(); this.clearSources(); this.engine?.clearInputs(); this.openModal(`<div class="eyebrow">LIVE PAUSED</div><h2>ON GARDE LE TEMPO.</h2><p>${esc(this.song.title)} · ${this.formatTime(this.audio.time)}</p><div class="buttons"><button id="resumeGame" class="primary">REPRENDRE</button><button id="restartGame">RECOMMENCER</button><button id="leaveGame">QUITTER</button></div>`); $('resumeGame').onclick = () => this.resume(); $('restartGame').onclick = () => { this.closeModal(); this.run(() => this.startGame(this.mode, this.practice), 'Reprise du morceau…'); }; $('leaveGame').onclick = () => { this.closeModal(); this.showView('library'); }; }
-        async resume() { if (!this.paused)
-            return; await this.audio.init(); this.audio.resume(); this.paused = false; this.closeModal(); }
+        async resume() { if (!this.paused || this.view !== 'game' || this.finishing)
+            return; const chart = this.gameChart; await this.audio.init();
+            if (!this.paused || this.view !== 'game' || this.finishing || this.gameChart !== chart) return;
+            this.clearSources(); this.audio.resume(); this.paused = false; this.closeModal(); }
         keyDown(e) {
             if (this.remapping !== undefined) {
                 e.preventDefault();
@@ -495,9 +497,9 @@
                         if(this.mode==='replay')this.advanceReplay(time);else this.engine?.update(this.mode === 'autoplay' ? time : eTime, this.mode === 'autoplay');
                         if (this.engine?.events.length) {
                             for (const event of this.engine.events.splice(0)) {
-                                this.bursts.push({ ...event, when: ts });
+                                if(this.consumeFeedback33)this.consumeFeedback33(event,ts);else this.bursts.push({ ...event, when: ts });
                                 this.lastJudgment = { ...event, when: ts };
-                                if (this.mode === 'autoplay' && event.rating !== 'MISS')
+                                if (!this.consumeFeedback33 && this.settings.hitSound && this.mode === 'autoplay' && event.rating !== 'MISS')
                                     this.audio.sfx(event.note?.lane || 0);
                             }
                         }
@@ -644,6 +646,7 @@
                 ctx.stroke();
             }
             ctx.globalAlpha = 1;
+            this.drawFeedback33?.(ctx,rect,rad,ts,time-this.settings.inputOffset/1000*this.audio.rate);
             const e = this.engine;
             if (e) {
                 $('gameScore').textContent = String(e.score + e.holdBonus).padStart(8, '0');
@@ -772,5 +775,6 @@
     root.PulseV25.install(app);
     root.PulseV26.install(app);
     root.PulseV27.install(app);
+    root.PulseFeedback33.install(app);
     app.init().catch(e => { console.error(e); document.body.innerHTML = `<div style="padding:40px;font-family:system-ui;color:#eef;background:#102;min-height:100vh"><h1>DIVA PULSE</h1><h2>Le démarrage n’a pas abouti.</h2><p>${esc(e.message)}</p><p>Utiliser le lanceur local fourni, puis un navigateur récent. Les données existantes ne sont pas supprimées.</p></div>`; });
 })(globalThis);
