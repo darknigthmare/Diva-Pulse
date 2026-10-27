@@ -2,7 +2,7 @@ name: Integrate tested V33 feedback into PR 1
 on:
   push:
     branches: ['feat/v30-director-workflow']
-    paths: ['.github/workflows/integrate-feedback33.yml']
+    paths: ['.github/workflows/integrate-feedback33.yml', 'tools/verify_pr33.py']
 permissions:
   contents: write
 defaults:

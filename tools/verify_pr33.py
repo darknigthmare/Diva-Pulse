@@ -49,7 +49,8 @@ for name,count in expected.items():
  assert report['passed']==count and report['failed']==0 and report.get('failure') is None,(name,report)
  assert len(report['checks'])==count and all(x['passed'] for x in report['checks']) and not report['errors']
  if name=='feedback':assert report['mode']=='http'
- if name in ['loops','audition','regression-workflow']:assert report.get('nativeHTTP') is True,(name,'injected run is not native evidence')
+ if name in ['loops','audition']:assert report.get('nativeHTTP') is True,(name,'injected run is not native evidence')
+ if name=='regression-workflow':assert report.get('documentMode') is False,(name,'injected run is not native evidence')
 tap=(Q/'logic.tap').read_text();assert re.search(r'^# pass 995$',tap,re.M) and re.search(r'^# fail 0$',tap,re.M)
 assert re.search(r'^# skipped 0$',tap,re.M)
 assert 'TOTAL 10 PASS' in (Q/'launcher.txt').read_text()
