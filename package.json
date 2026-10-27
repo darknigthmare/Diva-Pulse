@@ -1,19 +1,20 @@
 {
-  "name": "diva-pulse-v27-secondary-dynamics",
-  "version": "27.0.0",
+  "name": "diva-pulse",
+  "version": "29.0.0",
   "private": true,
   "description": "Offline rhythm game with coherent AutoMap and an editable MMD Director",
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "build": "python3 build.py",
     "start": "python3 lancer.py",
-    "test:browser": "python3 tests/v27_browser_test.py",
-    "test:launcher": "python tests/launcher_test.py",
-    "test:browser:mmd": "python3 tests/v27_native_mmd_browser.py",
-    "test:browser:regression": "python3 tests/v27_run_regressions.py",
+    "test:browser": "python3 tests/v29_browser_test.py",
+    "test:launcher": "python3 tests/launcher_test.py",
+    "test:browser:mmd": "python3 tests/v28_native_mmd_browser.py",
+    "test:browser:regression": "python3 tests/run_browser_regressions.py",
     "test:bundle-benchmark": "node tests/v25_bundle_benchmark.cjs",
     "test:physics-benchmark": "node tests/v27_benchmark.cjs",
-    "test:browser:playback": "python3 tests/v27_playback_browser_test.py"
+    "test:browser:playback": "python3 tests/v28_playback_browser_test.py",
+    "test:browser:persistence": "python3 tests/v29_persistence_test.py"
   },
   "engines": {
     "node": ">=22"

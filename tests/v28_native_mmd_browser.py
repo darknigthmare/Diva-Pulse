@@ -1,7 +1,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import base64, os, json, hashlib
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/native-mmd';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/native-mmd';Q.mkdir(parents=True,exist_ok=True)
 HTML=(R/'DIVA_PULSE_JOUER.html').read_text();BUILD_SHA=hashlib.sha256(HTML.encode()).hexdigest()
 pmx=base64.b64encode((R/'tests/assets/minimal.pmx').read_bytes()).decode();vmd=base64.b64encode((R/'tests/assets/minimal.vmd').read_bytes()).decode();checks=[];errors=[]
 def ok(n,v=True):

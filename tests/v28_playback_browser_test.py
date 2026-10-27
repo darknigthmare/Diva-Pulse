@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import hashlib,json,traceback
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/playback';Q.mkdir(parents=True,exist_ok=True);html=(R/'index.html').read_text();checks=[];errors=[];failure=None
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/playback';Q.mkdir(parents=True,exist_ok=True);html=(R/'index.html').read_text();checks=[];errors=[];failure=None
 
 def ok(name,v=True):
  checks.append({'name':name,'passed':bool(v)});print(('PASS ' if v else 'FAIL ')+name,flush=True)
@@ -37,5 +37,5 @@ try:
   ok('No unhandled JavaScript exception',not errors);ok('No application frame failure',p.evaluate('!PulseApp.frameError'))
   b.close()
 except Exception as e:failure=str(e);print(traceback.format_exc(),flush=True)
-(Q/'browser-final.json').write_text(json.dumps({'version':'28.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'scope':'Opaque temporary document; SwiftShader; actual decoded original 8-second audio and original PMX. Playback window 800x520: larger software-rendered viewport previously triggered conservative slow-frame resets.'},indent=2,ensure_ascii=False))
+(Q/'browser-final.json').write_text(json.dumps({'version':(R/'VERSION.txt').read_text().strip(),'buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'scope':'Opaque temporary document; SwiftShader; actual decoded original 8-second audio and original PMX. Playback window 800x520: larger software-rendered viewport previously triggered conservative slow-frame resets.'},indent=2,ensure_ascii=False))
 if failure:raise SystemExit(1)

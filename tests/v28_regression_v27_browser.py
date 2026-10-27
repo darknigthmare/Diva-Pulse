@@ -5,7 +5,7 @@ No claim about native IndexedDB durability or physical GPU/device coverage.
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import hashlib,json,traceback,os
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/regression-v27';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/regression-v27';Q.mkdir(parents=True,exist_ok=True)
 html=(R/'index.html').read_text();checks=[];errors=[];warnings=[];failure=None;p=None
 
 def ok(name,value=True):
@@ -23,7 +23,7 @@ try:
   b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   p=b.new_page(viewport={'width':1000,'height':800});p.set_default_timeout(25000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda e:warnings.append(e.text) if e.type in ['warning','error'] else None)
   p.set_content(html);p.wait_for_function('document.documentElement.dataset.v27Ready==="true"');idle()
-  ok('Delivered V27 HTML boots',p.evaluate('PulseCore.VERSION==="28.0.0"&&document.title.includes("V28")'))
+  ok('Delivered V27 HTML boots',p.evaluate('PulseCore.VERSION==="29.0.0"&&document.title.includes("V29")'))
   ok('Real software WebGL2 context',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl instanceof WebGL2RenderingContext'))
   ok('Previous demos and 15 charts retained',p.evaluate('PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
   p.evaluate('window.sourceSong27=PulseApp.song;window.sourceCharts27=JSON.stringify(PulseApp.song.charts);PulseApp.showView("wardrobe");document.getElementById("mmdPanel").open=true')
@@ -96,5 +96,5 @@ except Exception as e:
  if p:
   try:p.screenshot(path=str(Q/'FAILURE.png'),timeout=10000)
   except:pass
-(Q/'browser-final.json').write_text(json.dumps({'version':'28.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'checks':checks,'failure':failure,'errors':errors,'warnings':warnings,'scope':'Chromium + SwiftShader; document injection and temporary storage. Original small PMX fixture; not real-world MMD compatibility certification.'},indent=2,ensure_ascii=False))
+(Q/'browser-final.json').write_text(json.dumps({'version':(R/'VERSION.txt').read_text().strip(),'buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),'checks':checks,'failure':failure,'errors':errors,'warnings':warnings,'scope':'Chromium + SwiftShader; document injection and temporary storage. Original small PMX fixture; not real-world MMD compatibility certification.'},indent=2,ensure_ascii=False))
 if failure:raise SystemExit(1)

@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import base64,json,hashlib,traceback
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/regression-v24';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/regression-v24';Q.mkdir(parents=True,exist_ok=True)
 html=(R/'index.html').read_text();checks=[];errors=[];warnings=[];failure=None;p=None
 F={n:base64.b64encode((R/'examples/v24'/n).read_bytes()).decode() for n in ['APPEND_STANDARD.pmx','CYCLE_1_SECONDE.vmd','IK_LIMITS.pmx']}
 def ok(name,value=True):
@@ -17,7 +17,7 @@ try:
  with sync_playwright() as w:
   b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   p=b.new_page(viewport={'width':1000,'height':800});p.set_default_timeout(20000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda e:warnings.append(e.text) if e.type in ['warning','error'] else None);p.set_content(html);p.wait_for_function('document.documentElement.dataset.reliabilityReady==="true"');idle()
-  ok('V24 delivered HTML initializes',p.evaluate('PulseCore.VERSION==="28.0.0"&&document.title.includes("V28")'))
+  ok('V24 delivered HTML initializes',p.evaluate('PulseCore.VERSION==="29.0.0"&&document.title.includes("V29")'))
   ok('Real WebGL2 context exists',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl instanceof WebGL2RenderingContext'))
   ok('Three demo songs and five difficulties retained',p.evaluate('PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
   p.evaluate('PulseApp.showView("settings")');p.locator('#storage24Refresh').click();idle()
@@ -74,5 +74,5 @@ except Exception as e:
  if p:
   try:p.screenshot(animations='disabled',timeout=12000,path=str(Q/'FAILURE.png'))
   except:pass
-(Q/'browser-final.json').write_text(json.dumps({'version':'28.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'warnings':warnings,'scope':'Real Chromium + software WebGL; temporary storage and simulated read-only state. No durability claim.'},indent=2,ensure_ascii=False))
+(Q/'browser-final.json').write_text(json.dumps({'version':(R/'VERSION.txt').read_text().strip(),'buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'warnings':warnings,'scope':'Real Chromium + software WebGL; temporary storage and simulated read-only state. No durability claim.'},indent=2,ensure_ascii=False))
 if failure:raise SystemExit(1)

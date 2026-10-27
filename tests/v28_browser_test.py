@@ -4,7 +4,7 @@ Temporary document injection is used; no native persistence claim.
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json,hashlib,traceback
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/features';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/features';Q.mkdir(parents=True,exist_ok=True)
 html=(R/'index.html').read_text();checks=[];errors=[];failure=None;p=None
 
 def ok(name,value=True):
@@ -23,7 +23,7 @@ try:
   b=w.chromium.launch(executable_path='/usr/bin/chromium',headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   p=b.new_page(viewport={'width':1000,'height':800});p.set_default_timeout(25000);p.on('pageerror',lambda e:errors.append(str(e)))
   p.set_content(html);p.wait_for_function('document.documentElement.dataset.v28Ready==="true"');idle()
-  ok('V28 final application initializes',p.evaluate('PulseCore.VERSION==="28.0.0"&&document.title.includes("V28")'))
+  ok('V28 final application initializes',p.evaluate('PulseCore.VERSION==="29.0.0"&&document.title.includes("V29")'))
   ok('Native WebGL2 software context',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl instanceof WebGL2RenderingContext'))
   ok('All original demos and difficulties retained',p.evaluate('PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
   p.evaluate('PulseApp.showView("wardrobe");document.getElementById("mmdPanel").open=true')
@@ -93,5 +93,5 @@ except Exception as e:
  if p:
   try:p.screenshot(path=str(Q/'FAILURE.png'),timeout=6000)
   except:pass
-(Q/'browser-final.json').write_text(json.dumps({'version':'28.0.0','buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'scope':'Chromium + SwiftShader; original PMX/VMD fixtures; temporary injected document, no physical device or native durability claim.'},ensure_ascii=False,indent=2))
+(Q/'browser-final.json').write_text(json.dumps({'version':(R/'VERSION.txt').read_text().strip(),'buildSha256':hashlib.sha256(html.encode()).hexdigest(),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'failure':failure,'errors':errors,'scope':'Chromium + SwiftShader; original PMX/VMD fixtures; temporary injected document, no physical device or native durability claim.'},ensure_ascii=False,indent=2))
 if failure:raise SystemExit(1)

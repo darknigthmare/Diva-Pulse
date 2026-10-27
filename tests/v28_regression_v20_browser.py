@@ -7,7 +7,7 @@ All media are the original V19 diagnostic fixtures bundled with this project.
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json, traceback, os, hashlib
-R=Path(__file__).resolve().parents[1];Q=R/'qa/v28/regression-v20';Q.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v29/regressions/regression-v20';Q.mkdir(parents=True,exist_ok=True)
 HTML=(R/'DIVA_PULSE_JOUER.html').read_text();BUILD_SHA=hashlib.sha256(HTML.encode()).hexdigest()
 checks=[];errors=[];warnings=[];requests=[];failure=None;p=None
 
