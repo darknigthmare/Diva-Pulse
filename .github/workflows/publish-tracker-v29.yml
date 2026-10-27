@@ -1,0 +1,74 @@
+name: Publish verified V29 tracker
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-tracker-v29.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: diva-pulse-v29-publication
+  cancel-in-progress: false
+jobs:
+  publish-tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch the approved tracker delivery
+        run: |
+          curl --fail --location --retry 3 --max-time 90 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JHwJlNzgmcxQy32tjF7NiVZPuH/979aaad3-d720-4bda-aaf4-574c6b2d79d9.zip' --output "$RUNNER_TEMP/tracker.zip"
+          echo 'c51db4de7303e5e99421b998d6f52bc1d42d5be35566b5e3024f285c6acc05ed  '"$RUNNER_TEMP/tracker.zip" | sha256sum --check
+      - name: Verify every file and retain any later user edits
+        shell: python
+        run: |
+          from pathlib import Path
+          import collections,hashlib,io,json,os,stat,zipfile,xml.etree.ElementTree as ET
+          root=Path.cwd()
+          assert (root/'VERSION.txt').read_text().strip()=='29.0.0', 'Release changed; re-audit before publishing'
+          assert hashlib.sha256((root/'index.html').read_bytes()).hexdigest()=='6b22f0cab9ab1123d037a618a7339a8de3c855e5c2f8d75992a0531e165eaf01'
+          expected={'README.md','docs/RAPPORT_V29.md','docs/DIVA_PULSE_SUIVI_COMPLET.xlsx','docs/suivi-v29.json','docs/suivi-v29.csv','docs/LIVRAISON_SUIVI_V29.json'}
+          with zipfile.ZipFile(Path(os.environ['RUNNER_TEMP'])/'tracker.zip') as z:
+              assert set(z.namelist())==expected and len(z.infolist())==len(expected)
+              assert all(not stat.S_ISLNK(i.external_attr>>16) and i.file_size<1000000 for i in z.infolist())
+              payload={name:z.read(name) for name in expected}
+          manifest=json.loads(payload['docs/LIVRAISON_SUIVI_V29.json'])
+          assert {r['path'] for r in manifest['files']}==expected-{'docs/LIVRAISON_SUIVI_V29.json'}
+          for row in manifest['files']:
+              b=payload[row['path']]
+              assert len(b)==row['size'] and hashlib.sha256(b).hexdigest()==row['sha256']
+          data=json.loads(payload['docs/suivi-v29.json'])
+          assert len(data['tasks'])==90 and len({t['ID'] for t in data['tasks']})==90
+          counts=collections.Counter(t['Statut'] for t in data['tasks'])
+          assert counts=={'À faire':50,'Partiel':14,'À valider':24,'Validé Chromium':1,'Optionnel':1}
+          excel=payload['docs/DIVA_PULSE_SUIVI_COMPLET.xlsx']
+          assert hashlib.sha256(excel).hexdigest()=='c627950147356dddd481ce41470004d20dbbaa991c4c8e1a12071b6303cf2d80'
+          with zipfile.ZipFile(io.BytesIO(excel)) as book:
+              xml=ET.fromstring(book.read('xl/workbook.xml'))
+              ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+              sheets=xml.findall('m:sheets/m:sheet',ns)
+              assert len(sheets)==7
+          for name,content in payload.items():
+              target=root/name
+              if target.exists() and target.read_bytes()!=content:
+                  previous=target.read_bytes()
+                  gitsha=hashlib.sha1(f'blob {len(previous)}\0'.encode()+previous).hexdigest()
+                  assert name=='README.md' and gitsha=='5fb0771e0cc32ec99b5205f5724b33a2bb6e0cc1', f'Existing edit retained; reconcile {name}'
+          for name,content in payload.items():
+              target=root/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(content)
+          print(json.dumps({'tasks':len(data['tasks']),'statuses':dict(counts),'sheets':[s.attrib['name'] for s in sheets],'excelSha256':hashlib.sha256(excel).hexdigest()},ensure_ascii=False))
+      - name: Commit the actual Excel, audit companions and report
+        run: |
+          git config user.name 'Diva Pulse maintenance'
+          git config user.email '7942594+darknigthmare@users.noreply.github.com'
+          git add README.md docs/DIVA_PULSE_SUIVI_COMPLET.xlsx docs/RAPPORT_V29.md docs/suivi-v29.json docs/suivi-v29.csv docs/LIVRAISON_SUIVI_V29.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs: add detailed 90-item Excel tracker, V29 evidence and project guide'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
