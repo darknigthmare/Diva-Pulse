@@ -1,0 +1,378 @@
+PASS Boot: three original songs and fifteen charts
+PASS Real WebGL2 context, shader and stage drawing
+PASS Modules: trio, per-slot costume and sakura stage
+PASS GLB: embedded skinned model and animation loaded
+PASS GLB: animation changes joint rotation
+PASS GLB: original cast restored after clearing import
+PASS Audio import: decoded eight-second WAV, empty chart library
+PASS No chart: play disabled rather than inventing a level
+PASS Native chart import: all fifteen notes unchanged
+PASS LRC: synchronized local lyrics imported
+PASS Pause: audio clock is frozen
+PASS Complete real-time Autoplay: 15/15 COOL and 100%
+PASS Autoplay never creates a record
+PASS Manual editor: click adds an independent note
+PASS Manual editor: target position changed precisely
+PASS Manual editor: undo
+PASS Manual editor: redo
+PASS Edited imports saved as new versions, source intact
+PASS PV director: timed camera, dance and stage event saved
+PASS JSON export action serializes chart, scene and lyrics
+PASS Actual audio worker creates five additional chart difficulties
+PASS Generation does not overwrite the original chart
+PASS Binary DSC import through UI preserves timing and chord mapping
+PASS Reimporting exact audio file reuses song and charts
+PASS Malformed import: friendly error, library unchanged
+PASS Library export contains all songs and original media
+PASS Library restore creates copies without overwriting originals
+PASS Tactile setting stored
+PASS Search filters the visible song library
+PASS Mobile portrait has no horizontal page overflow
+PASS Mobile landscape has no horizontal page overflow
+PASS No uncaught JS or rendering errors in all tested flows
+RESULT 32 passed / 0 failed. JS errors: []
+PASS Menu preview is not overridden by a time-zero PV event
+PASS Module preview uses chosen camera and animated dance
+PASS Two keyboard aliases: releasing one preserves the other HOLD
+PASS Releasing last alias clears held input
+PASS Gamepad adapter maps R1 to right slide (simulated)
+PASS Gamepad release clears input (simulated)
+PASS Normal mode receives timed keyboard events and clears the song (fixed-stage mode)
+PASS Normal eligible clear writes one local record
+PASS Practice actually loops the chosen audio segment
+PASS Live manual recording captures taps and held durations
+PASS Recorded chart is independently saved
+PASS Keyboard remapping updates the active binding
+PASS Bindings can be restored
+PASS No-fail session does not create or replace normal records
+PASS Local MP4 decodes and is associated to the song
+PASS PV viewer plays actual MP4 without rhythm notes
+PASS PV pause also pauses its video
+PASS Invalid GLB reports an error while preserving the built-in stage
+PASS No uncaught errors in advanced scenarios
+RESULT 19 passed / 0 failed
+PASS V3 initialization completes and WebGL2 draws
+PASS Help includes new workflows
+PASS MIDI import opens a preview and never commits before confirmation
+PASS Canceling MIDI import leaves chart library untouched
+PASS Native MIDI import restores all seven notes and three tempos
+PASS Chart audit opens and remains non-destructive
+PASS Tempo editor inserts event without retiming imported notes
+PASS Changing first BPM preserves later tempo events
+PASS Tempo changes participate in undo history
+PASS Select-all displays seven selected notes
+PASS Group paste creates seven notes with unique IDs
+PASS Arc layout only modifies selected group
+PASS Group layout and paste each undo atomically
+PASS Invalid group shift is rejected without partial changes
+PASS Target inspector edits angle and distance precisely
+PASS Editing MIDI makes a derivative and preserves the native source
+PASS MIDI export produces a standard binary file with exact native chart metadata
+PASS Auto PV aligns cuts to variable-tempo measures and audio bounds
+PASS PV camera blend and video offset stored per song
+PASS Variable-tempo metronome schedules real Web Audio playback
+PASS Reopening studio follows selected chart instead of stale derivative
+PASS Concert stage includes audience and moving beam subtree
+PASS Concert effects can be disabled
+PASS Cast spacing changes rig placement without rebuilding chart
+PASS Camera seeking is deterministic rather than frame-count dependent
+PASS Imported animated GLB supports orientation and scale controls
+PASS Output presentation clock is opt-in and reflected in settings
+PASS Normal input handlers produce a replay and session history
+PASS Offline replay simulation reproduces captured result
+PASS Replay export contains inputs and native chart, not media
+PASS Real-time replay including pause reproduces score and judgments
+PASS Replay is visibly non-ranked and never writes a record
+PASS Setlist saves actual song/chart references and preserves order
+PASS Setlist launch selects requested chart and concert progress
+PASS Next setlist track starts only after explicit result action
+PASS Restore is explicit and preferences stay unchecked by default
+PASS V3 restore duplicates songs and reattaches score IDs
+PASS V3 restore remaps setlists to newly copied songs
+PASS Temporary storage transactions reject all rows on error
+PASS Invalid library rejected before data mutation
+PASS Invalid replay reports error without opening a game
+PASS V3 portrait library: no horizontal document overflow
+PASS V3 portrait editor: no horizontal document overflow
+PASS V3 portrait wardrobe: no horizontal document overflow
+PASS V3 portrait settings: no horizontal document overflow
+PASS V3 landscape library: no horizontal document overflow
+PASS V3 landscape editor: no horizontal document overflow
+PASS V3 landscape wardrobe: no horizontal document overflow
+PASS V3 landscape settings: no horizontal document overflow
+PASS All V3 workflows have no uncaught JS or rendering error
+RESULT 50 passed / 0 failed
+PASS V4 integration is ready and existing WebGL scene renders
+PASS Catalog adds selected demo without removing source charts
+PASS Adding exact same song avoids duplicate catalog entries
+PASS Catalog export includes notes but no audio asset or binary data
+PASS Catalog import waits for explicit confirmation
+PASS Canceled catalog import makes no changes
+PASS Confirmed catalog import merges original note data
+PASS Builtin demo identity is recognized without title guessing
+PASS Catalog association keeps exact timing, position, offset and tempo
+PASS Re-associating identical level leaves six charts, not seven
+PASS Title-only candidate cannot be associated without checking confirmation
+PASS Explicit unverified association keeps timing and records unverified provenance
+PASS Audio analysis produces five previews without modifying the library
+PASS Generator preview honors tap-only and no-chord controls
+PASS Canceling generated preview adds no chart
+PASS Confirm adds exactly the five previewed levels
+PASS Generated notes are attached to measured attacks when quantization is off
+PASS Generation records phrase metadata and candidate tempo confidence
+PASS Strongest-channel analysis handles opposing stereo channels
+PASS Aborted audio analysis rejects before changing any song
+PASS Editor adds a named section without moving imported notes
+PASS Invalid section is rejected atomically
+PASS Section changes use ordinary undo history
+PASS Draft is stored separately, leaving catalog source untouched
+PASS Recovery restores editable draft without replacing source
+PASS Saving recovered catalog work creates a derivative and clears its draft
+PASS Failed song save retains dirty editor and recoverable draft
+PASS Retrying after storage recovery succeeds and removes stale draft
+PASS Draft with a deleted parent remains unsaved, not written over another chart
+PASS Keyboard chord shortcut is opt-in and can be added in settings
+PASS Chord configuration rejects a conflict with an existing single-symbol key
+PASS Note size, background mask and reduced effects are reflected in settings
+PASS Simulated Q key holds exactly the two configured lanes
+PASS Releasing chord does not release a separately held unit key
+PASS All keyboard sources release cleanly
+PASS Simulated L2 presses the configured dual-symbol macro
+PASS Simulated trigger release leaves no stuck lanes
+PASS Listen preview starts actual Web Audio playback
+PASS Leaving library automatically stops preview audio
+PASS Offline installation fails gracefully in an opaque origin
+PASS Temporary storage does not pretend to be durable
+PASS Practice dialog lists named chart sections
+PASS Choosing a named section fills its audio-time range
+PASS Practice starts at chosen speed without normal records
+PASS Perfect simulated loop advances speed by five percentage points
+PASS Failed loop retains its speed and records missed notes
+PASS Practice history uses separate state, not normal high scores
+PASS Practice HUD displays current attempt and speed
+PASS V4 backup includes original songs, global catalog and pending drafts
+PASS Restore preferences are opt-in and imports wait for confirmation
+PASS Canceling a backup restore changes no song rows
+PASS Confirmed V4 restore creates song copies with no overwrites
+PASS Restored catalog deduplicates rather than doubling entries
+PASS Restored drafts are remapped to copied song IDs
+PASS Malformed catalog in backup is rejected before writes
+PASS Library sort uses song IDs even when two songs have the same title
+PASS Canceling chart removal preserves all charts
+PASS Deletion dialog permits JSON export before removing a level
+PASS Confirmed removal deletes only the selected chart
+PASS V4 library fits viewport 390x844 without horizontal page overflow
+PASS V4 settings fits viewport 390x844 without horizontal page overflow
+PASS V4 editor fits viewport 390x844 without horizontal page overflow
+PASS V4 library fits viewport 844x390 without horizontal page overflow
+PASS V4 settings fits viewport 844x390 without horizontal page overflow
+PASS V4 editor fits viewport 844x390 without horizontal page overflow
+PASS Catalog dialog fits portrait viewport
+PASS Final real WebGL2 render reports no GL error
+PASS No uncaught JavaScript exceptions during V4 new workflows
+PASS Unavailable WebGL activates labeled 2D fallback, not an empty stage
+PASS Fallback canvas paints visible pixel content
+PASS Wardrobe labels fallback honestly and remains navigable
+PASS Fallback produced no uncaught exceptions
+TOTAL 72 PASS 0 FAIL
+PASS V5 boot preserves the three originals and fifteen existing charts
+PASS Actual WebGL2 stage renders the final V5 build
+PASS 3/4 can be applied from the studio without moving notes
+PASS Original imported/demo partition stays unchanged before save
+PASS 7/8 change begins at measure 3 and keeps custom groups
+PASS Mid-bar change is refused with the full prior chart intact
+PASS Refusal is explained to the user
+PASS Undo restores the previous signature map
+PASS Redo restores 7/8 without retiming
+PASS Saving a meter edit creates a derived chart instead of overwriting the demo
+PASS Exported MIDI contains the complete native meter map
+PASS PV button creates camera shots on mixed-meter boundaries
+FAIL meter-studio Page.evaluate: Error: QA PV write refused
+    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:135)
+    at UtilityScript.evaluate (<anonymous>:297:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+Traceback (most recent call last):
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 23, in group
+    try:fn()
+        ~~^^
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 54, in meters
+    p.evaluate('window.savedPV=JSON.stringify(PulseApp.song.scene.events);window.oldStorePut=PulseApp.store.put;PulseApp.store.put=()=>Promise.reject(Error("QA PV write refused"));');p.locator('#autoPV').click();p.locator('#confirmAutoPV').click();idle(p)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 8562, in evaluate
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.evaluate(expression=expression, arg=mapping.to_impl(arg))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 464, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 320, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Error: QA PV write refused
+    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:135)
+    at UtilityScript.evaluate (<anonymous>:297:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PASS Practice dialog starts real worker-processed 75% audio
+PASS Original audio remains the game timeline buffer
+PASS Prepared buffer length matches segment duration divided by rate
+PASS Count-in oscillators are scheduled separately from song data
+PASS Pause freezes the original musical timeline
+PASS Resume reuses the stretched buffer at physical playback rate 1
+PASS Adaptive loop prepares 80% audio only after successful attempt
+PASS Loop history records previous speed separately
+PASS Loop preparation overlay closes when audio is ready
+PASS Leaving practice drops the temporary pitch buffer
+PASS Multichannel audio is refused instead of discarding channels during stretching
+PASS Cancelled preparation cannot finish later and install an orphan buffer
+PASS Classic practice remains available at 25% without stretching
+PASS Input offset is converted from real milliseconds to slowed song time
+PASS Opaque-origin MIDI connection refusal is handled without device request
+PASS Simulated MIDI inputs appear without claiming physical device verification
+FAIL live-midi Page.wait_for_function: Timeout 14000ms exceeded.
+Traceback (most recent call last):
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 23, in group
+    try:fn()
+        ~~^^
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 89, in midi
+    p.locator('#midiMapRows button').first.click();p.evaluate('portA.onmidimessage({data:new Uint8Array([144,61,90]),timeStamp:performance.now()})');p.wait_for_function('PulseApp.settings.midiMapping[0]===61')
+                                                                                                                                                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 11595, in wait_for_function
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.wait_for_function(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 1110, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 878, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 14000ms exceeded.
+PASS Academy shows six lessons, all accessible
+PASS Desktop academy uses its full dialog width for readable three-column cards
+PASS First lesson installs one original audio and six charts
+PASS Lesson uses practice mode without ranked scores
+FAIL academy-and-backup Page.evaluate: TypeError: Cannot read properties of undefined (reading 'completed')
+    at eval (eval at evaluate (:290:30), <anonymous>:1:32)
+    at eval (<anonymous>)
+    at UtilityScript.evaluate (<anonymous>:290:30)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+Traceback (most recent call last):
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 23, in group
+    try:fn()
+        ~~^^
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 117, in academy
+    ok('A deterministic full-speed perfect lesson earns a separate medal',p.evaluate('PulseApp.v5State.academy.pulse.completed===true&&PulseApp.v5State.academy.pulse.attempts===1'))
+                                                                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 8562, in evaluate
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.evaluate(expression=expression, arg=mapping.to_impl(arg))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 464, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 320, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of undefined (reading 'completed')
+    at eval (eval at evaluate (:290:30), <anonymous>:1:32)
+    at eval (<anonymous>)
+    at UtilityScript.evaluate (<anonymous>:290:30)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+FAIL diagnostics-responsive Page.evaluate: Error: QA PV write refused
+    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:135)
+    at eval (eval at evaluate (:290:30), <anonymous>:1:16)
+    at eval (<anonymous>)
+    at UtilityScript.evaluate (<anonymous>:290:30)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+Traceback (most recent call last):
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 23, in group
+    try:fn()
+        ~~^^
+  File "/mnt/data/DIVA_PULSE_V5/tests/precision_browser_test.py", line 132, in diagnostics
+    nav(p,'settings');p.evaluate('PulseApp.store.put("assets",{id:"qa-unused",kind:"audio",blob:new Blob(["unused"])});');p.locator('#libraryHealth').click();idle(p)
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 8562, in evaluate
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.evaluate(expression=expression, arg=mapping.to_impl(arg))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 464, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 320, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/opt/pyvenv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Error: QA PV write refused
+    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:135)
+    at eval (eval at evaluate (:290:30), <anonymous>:1:16)
+    at eval (<anonymous>)
+    at UtilityScript.evaluate (<anonymous>:290:30)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+PASS No uncaught JavaScript exceptions in V5 scenarios
+PASS A corrupt stored chart no longer blocks startup of the remaining library
+PASS Corrupt raw record is still present and was not silently rewritten
+RESULT 35 passed / 4 failed; errors: []
+regression-v3.py : 32 réussis / 0 échecs
+advanced_browser_test.py : 19 réussis / 0 échecs
+creator_browser_test.py : 50 réussis / 0 échecs
+live_browser_test.py : 72 réussis / 0 échecs

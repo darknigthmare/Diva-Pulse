@@ -1,0 +1,11 @@
+PASS Actual PV starts audio and the physics world
+FAIL PV mesh receives a nonzero simulated bone rotation
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_playback_browser_test.py", line 18, in <module>
+    ok('PV mesh receives a nonzero simulated bone rotation',p.evaluate('Math.abs(PulseApp.stage.director.models[0].bones[1].q[2])>.02'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_playback_browser_test.py", line 9, in ok
+    if not v:raise AssertionError(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PV mesh receives a nonzero simulated bone rotation
+

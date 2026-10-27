@@ -1,0 +1,6 @@
+
+DIVA PULSE — MMD IMPORT & AUTO SHOW 23.0.0
+http://127.0.0.1:8765/
+Gardez cette fenêtre ouverte. Ctrl+C pour arrêter.
+Le serveur écoute uniquement cet ordinateur. Aucun média n’est téléversé.
+

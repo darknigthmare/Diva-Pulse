@@ -1,0 +1,10 @@
+FAIL V24 delivered HTML initializes
+Traceback (most recent call last):
+  File "/mnt/data/diva_resume_v28/DIVA_PULSE_V28/tests/v28_regression_v24_browser.py", line 20, in <module>
+    ok('V24 delivered HTML initializes',p.evaluate('PulseCore.VERSION==="28.0.0"&&document.title.includes("V27")'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/diva_resume_v28/DIVA_PULSE_V28/tests/v28_regression_v24_browser.py", line 10, in ok
+    if not value:raise AssertionError(name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: V24 delivered HTML initializes
+

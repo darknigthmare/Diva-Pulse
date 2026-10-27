@@ -1,0 +1,45 @@
+PASS V21 boot, automatic show and import tools are ready
+PASS Real WebGL2 context is available
+PASS New MMD bone palette has 1024 slots
+PASS Temporary storage is disclosed
+PASS ZIP preflight lists both real PMD models
+PASS Relative parent textures resolved before commit
+PASS Nothing is stored during preflight
+PASS Compatible VMD bone names are reported
+PASS Preflight uses the desktop dialog width instead of a half-width panel
+PASS Disposable pre-import preview actually renders the selected PMD
+PASS Preview leaves active scene and song data unchanged
+PASS Cancelling preview keeps the original scene and media
+PASS Missing texture prevents an unacknowledged import
+PASS Explicit acknowledgement enables degraded import
+PASS Invalid model appears as blocked
+PASS Validated ZIP creates a two-model MMD AutoShow
+PASS Both models actually load their parent-folder TGA texture
+PASS Material VAOs share a single position buffer per model
+PASS MMD bone animation changes with the song clock
+PASS Rendered troupe is error-free in WebGL
+PASS A frame rendered during texture decoding cannot corrupt the bone palette
+PASS Import did not change the rhythm charts
+PASS Default troupe is saved explicitly
+PASS One audio import creates 5 charts and inherits the selected cast
+PASS Inherited cast references the same stored assets without copying files
+PASS Inherited MMD troupe is animated by the new song AutoShow
+PASS Previously existing songs are not overwritten by a default troupe
+PASS Failed import keeps previous scene and retry controls
+PASS Failed import inserts no new media
+PASS Failed import reports write failure
+PASS 300-bone PMD is accepted by the preflight
+PASS Actual renderer loads and draws a 300-bone PMD
+PASS Backup contains all four MMD data files
+PASS Full library restores as copies
+PASS Default troupe preference is remapped to the restored source song
+PASS Restored troupe reloads with real textures and new asset IDs
+PASS Automatic reuse can be turned off without deleting the model
+PASS Preflight dialog fits a portrait viewport
+PASS Preflight button labels do not overflow on mobile
+PASS No unhandled JavaScript errors
+PASS No renderer frame failure
+PASS No-WebGL environment explicitly disables 3D preview
+PASS Pack can be stored in fallback mode without pretending to render it
+PASS Fallback import has no unhandled exception
+{"completed": true, "passed": 44, "failed": 0, "failure": null}

@@ -1,0 +1,68 @@
+{
+  "format": "DIVA-PULSE-FACE",
+  "version": 25,
+  "track": {
+    "version": 25,
+    "mode": "manual",
+    "duration": 8,
+    "offset": 0,
+    "gain": 1,
+    "maxOpen": 0.8,
+    "floor": 0.08,
+    "slot": -1,
+    "mouth": "auto",
+    "blink": false,
+    "respectVmd": true,
+    "sourceKind": "manual",
+    "sourceAsset": null,
+    "sourceName": "",
+    "sourceHash": null,
+    "seed": 25,
+    "keys": [
+      {
+        "time": 0,
+        "open": 0
+      },
+      {
+        "time": 1,
+        "open": 0
+      },
+      {
+        "time": 1.15,
+        "open": 0.8
+      },
+      {
+        "time": 1.6,
+        "open": 0
+      },
+      {
+        "time": 3,
+        "open": 0
+      },
+      {
+        "time": 3.2,
+        "open": 1
+      },
+      {
+        "time": 3.6,
+        "open": 0
+      },
+      {
+        "time": 5,
+        "open": 0
+      },
+      {
+        "time": 5.2,
+        "open": 0.65
+      },
+      {
+        "time": 5.8,
+        "open": 0
+      },
+      {
+        "time": 8,
+        "open": 0
+      }
+    ]
+  }
+}

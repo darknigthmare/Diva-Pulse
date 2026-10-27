@@ -1,0 +1,28 @@
+{
+  "version": "19.0.0",
+  "base": "V16 archive effectivement récupérée",
+  "baseSha256": "c2b9b84adec22d57c7d3d20997296bbbabe772dc9553f4b1a8665967467f19c8",
+  "standaloneSha256": "bd09683777adcd8a106b414731d01d8fb77f1bcdc6149b38ec24269ef38d7f05",
+  "logic": {
+    "passed": 338,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 57,
+    "failed": 0,
+    "completed": true,
+    "scope": "Chromium desktop document injected by Playwright, SwiftShader WebGL2, explicit in-memory storage fallback, original PMD/VMD/TGA/WAV fixtures, responsive viewport and no-WebGL fallback. HTTP/file navigation blocked by browser policy: IndexedDB browser restart NOT validated. No physical MIDI/gamepad/Safari test."
+  },
+  "pmxWebGL": {
+    "passed": 4,
+    "failed": 0
+  },
+  "launcher": {
+    "passed": 10,
+    "failed": 0
+  },
+  "networkDependencies": 0,
+  "persistenceAfterBrowserRestart": "not validated: local navigation blocked in test browser",
+  "physicalPeripherals": "not tested",
+  "deployment": "not performed"
+}

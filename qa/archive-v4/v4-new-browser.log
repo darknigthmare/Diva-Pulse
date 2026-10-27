@@ -1,0 +1,73 @@
+PASS V4 integration is ready and existing WebGL scene renders
+PASS Catalog adds selected demo without removing source charts
+PASS Adding exact same song avoids duplicate catalog entries
+PASS Catalog export includes notes but no audio asset or binary data
+PASS Catalog import waits for explicit confirmation
+PASS Canceled catalog import makes no changes
+PASS Confirmed catalog import merges original note data
+PASS Builtin demo identity is recognized without title guessing
+PASS Catalog association keeps exact timing, position, offset and tempo
+PASS Re-associating identical level leaves six charts, not seven
+PASS Title-only candidate cannot be associated without checking confirmation
+PASS Explicit unverified association keeps timing and records unverified provenance
+PASS Audio analysis produces five previews without modifying the library
+PASS Generator preview honors tap-only and no-chord controls
+PASS Canceling generated preview adds no chart
+PASS Confirm adds exactly the five previewed levels
+PASS Generated notes are attached to measured attacks when quantization is off
+PASS Generation records phrase metadata and candidate tempo confidence
+PASS Strongest-channel analysis handles opposing stereo channels
+PASS Aborted audio analysis rejects before changing any song
+PASS Editor adds a named section without moving imported notes
+PASS Invalid section is rejected atomically
+PASS Section changes use ordinary undo history
+PASS Draft is stored separately, leaving catalog source untouched
+PASS Recovery restores editable draft without replacing source
+PASS Saving recovered catalog work creates a derivative and clears its draft
+PASS Failed song save retains dirty editor and recoverable draft
+PASS Retrying after storage recovery succeeds and removes stale draft
+PASS Draft with a deleted parent remains unsaved, not written over another chart
+PASS Keyboard chord shortcut is opt-in and can be added in settings
+PASS Chord configuration rejects a conflict with an existing single-symbol key
+PASS Note size, background mask and reduced effects are reflected in settings
+PASS Simulated Q key holds exactly the two configured lanes
+PASS Releasing chord does not release a separately held unit key
+PASS All keyboard sources release cleanly
+PASS Simulated L2 presses the configured dual-symbol macro
+PASS Simulated trigger release leaves no stuck lanes
+PASS Listen preview starts actual Web Audio playback
+PASS Leaving library automatically stops preview audio
+PASS Offline installation fails gracefully in an opaque origin
+PASS Temporary storage does not pretend to be durable
+PASS Practice dialog lists named chart sections
+PASS Choosing a named section fills its audio-time range
+PASS Practice starts at chosen speed without normal records
+PASS Perfect simulated loop advances speed by five percentage points
+PASS Failed loop retains its speed and records missed notes
+PASS Practice history uses separate state, not normal high scores
+PASS Practice HUD displays current attempt and speed
+PASS V4 backup includes original songs, global catalog and pending drafts
+PASS Restore preferences are opt-in and imports wait for confirmation
+PASS Canceling a backup restore changes no song rows
+PASS Confirmed V4 restore creates song copies with no overwrites
+PASS Restored catalog deduplicates rather than doubling entries
+PASS Restored drafts are remapped to copied song IDs
+PASS Malformed catalog in backup is rejected before writes
+PASS Library sort uses song IDs even when two songs have the same title
+PASS Canceling chart removal preserves all charts
+PASS Deletion dialog permits JSON export before removing a level
+PASS Confirmed removal deletes only the selected chart
+PASS V4 library fits viewport 390x844 without horizontal page overflow
+PASS V4 settings fits viewport 390x844 without horizontal page overflow
+PASS V4 editor fits viewport 390x844 without horizontal page overflow
+PASS V4 library fits viewport 844x390 without horizontal page overflow
+PASS V4 settings fits viewport 844x390 without horizontal page overflow
+PASS V4 editor fits viewport 844x390 without horizontal page overflow
+PASS Catalog dialog fits portrait viewport
+PASS Final real WebGL2 render reports no GL error
+PASS No uncaught JavaScript exceptions during V4 new workflows
+PASS Unavailable WebGL activates labeled 2D fallback, not an empty stage
+PASS Fallback canvas paints visible pixel content
+PASS Wardrobe labels fallback honestly and remains navigable
+PASS Fallback produced no uncaught exceptions
+TOTAL 72 PASS 0 FAIL

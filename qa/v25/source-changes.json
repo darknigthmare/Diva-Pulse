@@ -1,0 +1,62 @@
+[
+  {
+    "file": "src/app.js",
+    "kind": "modified",
+    "sha256": "53a2f11fe6c5fa52df7b3e3b0e1a2287cc31bfb1375c16c757170bc3b540482d"
+  },
+  {
+    "file": "src/bundle-core.js",
+    "kind": "new",
+    "sha256": "790581f5720faf3dbb0fe46dcd039575c1976bfc7b5b68fd89b3c892c5873935"
+  },
+  {
+    "file": "src/core.js",
+    "kind": "modified",
+    "sha256": "74c618a7c1af9d34c57142666f1c51b79223034bb60eb6d12dffd35e7e847e22"
+  },
+  {
+    "file": "src/director-core.js",
+    "kind": "modified",
+    "sha256": "faa11202a1462638a36ff632d18a8a37b9b07788367106034ebdefde0f41b098"
+  },
+  {
+    "file": "src/enhancements.js",
+    "kind": "modified",
+    "sha256": "b596d3dc2f8f792799630f4ae88614ee7ba1cf8c012d3bc0550443c85587ff46"
+  },
+  {
+    "file": "src/face-core.js",
+    "kind": "new",
+    "sha256": "2bde47da7d393551eb7d2da9fd546c2ee29cf20e8f71852cd506dffe5bc79597"
+  },
+  {
+    "file": "src/quality.js",
+    "kind": "modified",
+    "sha256": "7e3b1923af42bfab9d3c874c33dbf6b6af1bd7fe9e5a0f0d06df31afffb64cd7"
+  },
+  {
+    "file": "src/reliability.js",
+    "kind": "modified",
+    "sha256": "0007629d0529054f29def6bd028e02afab86ad61c4c7648c6cefc9fc065ecd5e"
+  },
+  {
+    "file": "src/stage.js",
+    "kind": "modified",
+    "sha256": "9297670c9065b9a705d5717f4992348e20d1f9b6b1359a1b5b83454d9f09a4a7"
+  },
+  {
+    "file": "src/template.html",
+    "kind": "modified",
+    "sha256": "bc3acfb83db4ff090550028c37a2ae86694d0f299b2bd0aa866f2228cf8ec7a8"
+  },
+  {
+    "file": "src/v25-app.js",
+    "kind": "new",
+    "sha256": "a212030e37fa6b49368dd9c213c7c29434082d1b395b9eaf4e55e4e047fcc941"
+  },
+  {
+    "file": "src/v25.css",
+    "kind": "new",
+    "sha256": "c0637af1092bb028b6ac3a4de6e94f967b28472fac127e02abac365f3f033134"
+  }
+]

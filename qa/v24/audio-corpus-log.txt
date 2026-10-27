@@ -1,0 +1,102 @@
+[
+  {
+    "name": "binary",
+    "matched": 28,
+    "expected": 28,
+    "detected": 28,
+    "recall": 1,
+    "precision": 1,
+    "meanAbsErrorMs": 0.9069999999999594,
+    "bpmEstimate": 120.003,
+    "tempoConfidence": 0.97,
+    "notes": [
+      11,
+      18,
+      26,
+      32,
+      38
+    ],
+    "playability": true,
+    "warning": "Synthetic impulses, not a corpus of recorded songs or human ratings."
+  },
+  {
+    "name": "ternary",
+    "matched": 85,
+    "expected": 85,
+    "detected": 85,
+    "recall": 1,
+    "precision": 1,
+    "meanAbsErrorMs": 0.8920980392133933,
+    "bpmEstimate": 120.002,
+    "tempoConfidence": 0.577,
+    "notes": [
+      25,
+      30,
+      30,
+      82,
+      101
+    ],
+    "playability": true,
+    "warning": "Synthetic impulses, not a corpus of recorded songs or human ratings."
+  },
+  {
+    "name": "swing",
+    "matched": 56,
+    "expected": 56,
+    "detected": 56,
+    "recall": 1,
+    "precision": 1,
+    "meanAbsErrorMs": 0.851946428571496,
+    "bpmEstimate": 120,
+    "tempoConfidence": 0.672,
+    "notes": [
+      21,
+      29,
+      36,
+      68,
+      83
+    ],
+    "playability": true,
+    "warning": "Synthetic impulses, not a corpus of recorded songs or human ratings."
+  },
+  {
+    "name": "tempo-change",
+    "matched": 32,
+    "expected": 32,
+    "detected": 32,
+    "recall": 1,
+    "precision": 1,
+    "meanAbsErrorMs": 0.8687500000017501,
+    "bpmEstimate": 150.002,
+    "tempoConfidence": 0.59,
+    "notes": [
+      14,
+      21,
+      32,
+      37,
+      44
+    ],
+    "playability": true,
+    "warning": "Synthetic impulses, not a corpus of recorded songs or human ratings."
+  },
+  {
+    "name": "silence-break",
+    "matched": 21,
+    "expected": 21,
+    "detected": 21,
+    "recall": 1,
+    "precision": 1,
+    "meanAbsErrorMs": 0.8659523809522914,
+    "bpmEstimate": 120.002,
+    "tempoConfidence": 0.949,
+    "notes": [
+      10,
+      14,
+      21,
+      24,
+      28
+    ],
+    "playability": true,
+    "warning": "Synthetic impulses, not a corpus of recorded songs or human ratings."
+  }
+]

@@ -1,0 +1,220 @@
+TAP version 13
+# Subtest: V28 five fps preserves momentum and matches sixty fps at a fixed target
+ok 1 - V28 five fps preserves momentum and matches sixty fps at a fixed target
+  ---
+  duration_ms: 53.609255
+  type: 'test'
+  ...
+# Subtest: V28 sampled linear kinematic targets survive slow frames
+ok 2 - V28 sampled linear kinematic targets survive slow frames
+  ---
+  duration_ms: 31.155536
+  type: 'test'
+  ...
+# Subtest: V28 half-second frame is bounded, not an implicit seek
+ok 3 - V28 half-second frame is bounded, not an implicit seek
+  ---
+  duration_ms: 2.334427
+  type: 'test'
+  ...
+# Subtest: V28 pause with debt freezes pose and step count
+ok 4 - V28 pause with debt freezes pose and step count
+  ---
+  duration_ms: 3.951423
+  type: 'test'
+  ...
+# Subtest: V28 retained targets allow debt to drain on later advancing timestamps
+ok 5 - V28 retained targets allow debt to drain on later advancing timestamps
+  ---
+  duration_ms: 6.581029
+  type: 'test'
+  ...
+# Subtest: V28 catch-up is never more than twelve solver ticks per rendered timestamp
+ok 6 - V28 catch-up is never more than twelve solver ticks per rendered timestamp
+  ---
+  duration_ms: 15.848305
+  type: 'test'
+  ...
+# Subtest: V28 sustained overload is visible and resets rather than unbounded catch-up
+ok 7 - V28 sustained overload is visible and resets rather than unbounded catch-up
+  ---
+  duration_ms: 2.616298
+  type: 'test'
+  ...
+# Subtest: V28 real jump remains a reset with no history recomputation
+ok 8 - V28 real jump remains a reset with no history recomputation
+  ---
+  duration_ms: 10.713567
+  type: 'test'
+  ...
+# Subtest: V28 backward jump clears pending targets
+ok 9 - V28 backward jump clears pending targets
+  ---
+  duration_ms: 3.084958
+  type: 'test'
+  ...
+# Subtest: V28 target queue owns poses independently from caller arrays
+ok 10 - V28 target queue owns poses independently from caller arrays
+  ---
+  duration_ms: 3.036468
+  type: 'test'
+  ...
+# Subtest: V28 independent worlds do not share debt or frame queues
+ok 11 - V28 independent worlds do not share debt or frame queues
+  ---
+  duration_ms: 3.419763
+  type: 'test'
+  ...
+# Subtest: V28 dispose frees buffered history as well as bodies and joints
+ok 12 - V28 dispose frees buffered history as well as bodies and joints
+  ---
+  duration_ms: 8.166878
+  type: 'test'
+  ...
+# Subtest: V28 settings signatures are normalized and stable across key order
+ok 13 - V28 settings signatures are normalized and stable across key order
+  ---
+  duration_ms: 0.483842
+  type: 'test'
+  ...
+# Subtest: V28 recovery serializes normalized settings and canonical ID
+ok 14 - V28 recovery serializes normalized settings and canonical ID
+  ---
+  duration_ms: 0.381838
+  type: 'test'
+  ...
+# Subtest: V28 recovery does not mutate its source
+ok 15 - V28 recovery does not mutate its source
+  ---
+  duration_ms: 0.150645
+  type: 'test'
+  ...
+# Subtest: V28 reject null before a draft can be applied
+ok 16 - V28 reject null before a draft can be applied
+  ---
+  duration_ms: 0.256343
+  type: 'test'
+  ...
+# Subtest: V28 reject empty before a draft can be applied
+ok 17 - V28 reject empty before a draft can be applied
+  ---
+  duration_ms: 0.075552
+  type: 'test'
+  ...
+# Subtest: V28 reject invalid owner before a draft can be applied
+ok 18 - V28 reject invalid owner before a draft can be applied
+  ---
+  duration_ms: 0.061369
+  type: 'test'
+  ...
+# Subtest: V28 reject non-finite timestamp before a draft can be applied
+ok 19 - V28 reject non-finite timestamp before a draft can be applied
+  ---
+  duration_ms: 0.053609
+  type: 'test'
+  ...
+# Subtest: V28 reject negative timestamp before a draft can be applied
+ok 20 - V28 reject negative timestamp before a draft can be applied
+  ---
+  duration_ms: 0.051261
+  type: 'test'
+  ...
+# Subtest: V28 reject infinite cursor before a draft can be applied
+ok 21 - V28 reject infinite cursor before a draft can be applied
+  ---
+  duration_ms: 0.103745
+  type: 'test'
+  ...
+# Subtest: V28 reject negative cursor before a draft can be applied
+ok 22 - V28 reject negative cursor before a draft can be applied
+  ---
+  duration_ms: 0.135939
+  type: 'test'
+  ...
+# Subtest: V28 reject out-of-range setting before a draft can be applied
+ok 23 - V28 reject out-of-range setting before a draft can be applied
+  ---
+  duration_ms: 0.090019
+  type: 'test'
+  ...
+# Subtest: V28 reject invalid pack before a draft can be applied
+ok 24 - V28 reject invalid pack before a draft can be applied
+  ---
+  duration_ms: 0.069238
+  type: 'test'
+  ...
+# Subtest: V28 latest memory draft wins a stale saved copy
+ok 25 - V28 latest memory draft wins a stale saved copy
+  ---
+  duration_ms: 0.311849
+  type: 'test'
+  ...
+# Subtest: V28 latest tombstone prevents discarded draft resurrection
+ok 26 - V28 latest tombstone prevents discarded draft resurrection
+  ---
+  duration_ms: 0.304012
+  type: 'test'
+  ...
+# Subtest: V28 older tombstone does not erase a newer recovery
+ok 27 - V28 older tombstone does not erase a newer recovery
+  ---
+  duration_ms: 0.172014
+  type: 'test'
+  ...
+# Subtest: V28 stale memory cannot overwrite a newer persisted draft
+ok 28 - V28 stale memory cannot overwrite a newer persisted draft
+  ---
+  duration_ms: 0.232915
+  type: 'test'
+  ...
+# Subtest: V28 export filters recoveries by selected owner
+ok 29 - V28 export filters recoveries by selected owner
+  ---
+  duration_ms: 0.286249
+  type: 'test'
+  ...
+# Subtest: V28 export rejects a cursor beyond song duration
+ok 30 - V28 export rejects a cursor beyond song duration
+  ---
+  duration_ms: 0.570526
+  type: 'test'
+  ...
+# Subtest: V28 imported recoveries reject duplicate or absent owners
+ok 31 - V28 imported recoveries reject duplicate or absent owners
+  ---
+  duration_ms: 0.464148
+  type: 'test'
+  ...
+# Subtest: V28 imported recoveries reject tombstones and oversized collection
+ok 32 - V28 imported recoveries reject tombstones and oversized collection
+  ---
+  duration_ms: 2.513906
+  type: 'test'
+  ...
+# Subtest: V28 backup remapping attaches recovery to restored song and pack
+ok 33 - V28 backup remapping attaches recovery to restored song and pack
+  ---
+  duration_ms: 0.383745
+  type: 'test'
+  ...
+# Subtest: V28 remapping without restored owner fails
+ok 34 - V28 remapping without restored owner fails
+  ---
+  duration_ms: 0.173311
+  type: 'test'
+  ...
+# Subtest: V28 changes to saved settings or pack are separately diagnosed
+ok 35 - V28 changes to saved settings or pack are separately diagnosed
+  ---
+  duration_ms: 0.200425
+  type: 'test'
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 237.734812

@@ -1,0 +1,13 @@
+
+DIVA PULSE — ENCORE & LIBRARY EDITION 4.0.0
+http://127.0.0.1:52043/
+Gardez cette fenêtre ouverte. Ctrl+C pour arrêter.
+Le serveur écoute uniquement cet ordinateur. Aucun média n’est téléversé.
+
+127.0.0.1 - - [06/Oct/2026 08:52:52] "GET /pulse-health HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:53] "GET /pulse-health HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:53] "GET /manifest.webmanifest HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:53] "GET /sw.js HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:53] "GET /icons/icon-192.png HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2026 08:52:53] "GET /icons/icon-512.png HTTP/1.1" 200 -

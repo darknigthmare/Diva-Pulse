@@ -1,0 +1,5 @@
+PASS PMX diagnostic model is rendered by native runtime
+PASS VMD changes the PMX bone transform
+PASS WebGL remains error-free after MMD draw
+PASS MMD runtime controls expose camera, IK and looping
+{"buildSha256": "26607497eef26d7536a871b05efa34b64b2e69466bb9deede57bbbc04bd6a609", "passed": 4, "errors": []}

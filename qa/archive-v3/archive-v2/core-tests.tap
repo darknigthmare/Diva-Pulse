@@ -1,0 +1,298 @@
+TAP version 13
+# Subtest: Validation: canonical timing and coordinates retained exactly
+ok 1 - Validation: canonical timing and coordinates retained exactly
+  ---
+  duration_ms: 3.57503
+  type: 'test'
+  ...
+# Subtest: Validation: no input mutation
+ok 2 - Validation: no input mutation
+  ---
+  duration_ms: 0.22492
+  type: 'test'
+  ...
+# Subtest: Validation: notes sorted deterministically
+ok 3 - Validation: notes sorted deterministically
+  ---
+  duration_ms: 0.579579
+  type: 'test'
+  ...
+# Subtest: Validation: simultaneous duplicate lane rejected
+ok 4 - Validation: simultaneous duplicate lane rejected
+  ---
+  duration_ms: 0.381279
+  type: 'test'
+  ...
+# Subtest: Validation: negative or nonfinite time rejected
+ok 5 - Validation: negative or nonfinite time rejected
+  ---
+  duration_ms: 0.263837
+  type: 'test'
+  ...
+# Subtest: Validation: invalid lanes and positions rejected
+ok 6 - Validation: invalid lanes and positions rejected
+  ---
+  duration_ms: 0.19082
+  type: 'test'
+  ...
+# Subtest: Validation: malformed data rejected
+ok 7 - Validation: malformed data rejected
+  ---
+  duration_ms: 0.175508
+  type: 'test'
+  ...
+# Subtest: Validation: empty chart allowed only when requested
+ok 8 - Validation: empty chart allowed only when requested
+  ---
+  duration_ms: 0.120196
+  type: 'test'
+  ...
+# Subtest: Validation: note and BPM limits enforced
+ok 9 - Validation: note and BPM limits enforced
+  ---
+  duration_ms: 0.500894
+  type: 'test'
+  ...
+# Subtest: Signature changes after timing, offset or layout changes
+ok 10 - Signature changes after timing, offset or layout changes
+  ---
+  duration_ms: 0.554042
+  type: 'test'
+  ...
+# Subtest: Stats: chords, holds and slides counted separately
+ok 11 - Stats: chords, holds and slides counted separately
+  ---
+  duration_ms: 0.337965
+  type: 'test'
+  ...
+# Subtest: Judgment windows symmetric and bounded
+ok 12 - Judgment windows symmetric and bounded
+  ---
+  duration_ms: 0.132765
+  type: 'test'
+  ...
+# Subtest: Engine: perfect tap scores once only
+ok 13 - Engine: perfect tap scores once only
+  ---
+  duration_ms: 0.42324
+  type: 'test'
+  ...
+# Subtest: Engine: simultaneous chord needs both buttons
+ok 14 - Engine: simultaneous chord needs both buttons
+  ---
+  duration_ms: 0.200143
+  type: 'test'
+  ...
+# Subtest: Engine: wrong button does not consume correct note
+ok 15 - Engine: wrong button does not consume correct note
+  ---
+  duration_ms: 0.161056
+  type: 'test'
+  ...
+# Subtest: Engine: idle extra input is harmless
+ok 16 - Engine: idle extra input is harmless
+  ---
+  duration_ms: 0.094208
+  type: 'test'
+  ...
+# Subtest: Engine: expired notes miss and break combo
+ok 17 - Engine: expired notes miss and break combo
+  ---
+  duration_ms: 0.265008
+  type: 'test'
+  ...
+# Subtest: Engine: HOLD earns capped bonus and release stops it
+ok 18 - Engine: HOLD earns capped bonus and release stops it
+  ---
+  duration_ms: 0.159384
+  type: 'test'
+  ...
+# Subtest: Engine: HOLD cap remains five seconds
+ok 19 - Engine: HOLD cap remains five seconds
+  ---
+  duration_ms: 0.118263
+  type: 'test'
+  ...
+# Subtest: Engine: held slide chain continues without repressing
+ok 20 - Engine: held slide chain continues without repressing
+  ---
+  duration_ms: 0.333338
+  type: 'test'
+  ...
+# Subtest: Engine: releasing a chain causes later notes to miss
+ok 21 - Engine: releasing a chain causes later notes to miss
+  ---
+  duration_ms: 0.136039
+  type: 'test'
+  ...
+# Subtest: Engine: clearing paused inputs removes active holds
+ok 22 - Engine: clearing paused inputs removes active holds
+  ---
+  duration_ms: 0.133235
+  type: 'test'
+  ...
+# Subtest: Engine: chart offset is applied to judgments
+ok 23 - Engine: chart offset is applied to judgments
+  ---
+  duration_ms: 0.122689
+  type: 'test'
+  ...
+# Subtest: Engine: practice reset skips earlier notes
+ok 24 - Engine: practice reset skips earlier notes
+  ---
+  duration_ms: 0.12317
+  type: 'test'
+  ...
+# Subtest: Engine: fail and no-fail modes differ
+ok 25 - Engine: fail and no-fail modes differ
+  ---
+  duration_ms: 0.232171
+  type: 'test'
+  ...
+# Subtest: Engine: all 15 original demo charts finish at 100% autoplay
+ok 26 - Engine: all 15 original demo charts finish at 100% autoplay
+  ---
+  duration_ms: 29.382832
+  type: 'test'
+  ...
+# Subtest: DSC: complete synthetic fixture preserves mapped timing and positions
+ok 27 - DSC: complete synthetic fixture preserves mapped timing and positions
+  ---
+  duration_ms: 1.107153
+  type: 'test'
+  ...
+# Subtest: DSC: fly time and audio start accounted for
+ok 28 - DSC: fly time and audio start accounted for
+  ---
+  duration_ms: 0.177139
+  type: 'test'
+  ...
+# Subtest: DSC: BAR_TIME_SET formula supported
+ok 29 - DSC: BAR_TIME_SET formula supported
+  ---
+  duration_ms: 0.157771
+  type: 'test'
+  ...
+# Subtest: DSC: full symbol and HOLD mapping
+ok 30 - DSC: full symbol and HOLD mapping
+  ---
+  duration_ms: 0.304676
+  type: 'test'
+  ...
+# Subtest: DSC: missing MUSIC_PLAY emits explicit warning
+ok 31 - DSC: missing MUSIC_PLAY emits explicit warning
+  ---
+  duration_ms: 0.116621
+  type: 'test'
+  ...
+# Subtest: DSC: unknown opcode fails instead of approximating
+ok 32 - DSC: unknown opcode fails instead of approximating
+  ---
+  duration_ms: 0.111173
+  type: 'test'
+  ...
+# Subtest: DSC: unknown target type fails
+ok 33 - DSC: unknown target type fails
+  ---
+  duration_ms: 0.097864
+  type: 'test'
+  ...
+# Subtest: DSC: branch targets refused
+ok 34 - DSC: branch targets refused
+  ---
+  duration_ms: 0.178662
+  type: 'test'
+  ...
+# Subtest: DSC: truncated or missing end rejected
+ok 35 - DSC: truncated or missing end rejected
+  ---
+  duration_ms: 0.117863
+  type: 'test'
+  ...
+# Subtest: DSC: unsupported flying time never silently clamped
+ok 36 - DSC: unsupported flying time never silently clamped
+  ---
+  duration_ms: 0.087858
+  type: 'test'
+  ...
+# Subtest: CSV: notes survive a basic roundtrip
+ok 37 - CSV: notes survive a basic roundtrip
+  ---
+  duration_ms: 0.578919
+  type: 'test'
+  ...
+# Subtest: CSV: omitted optional positions default to center
+ok 38 - CSV: omitted optional positions default to center
+  ---
+  duration_ms: 0.110462
+  type: 'test'
+  ...
+# Subtest: History: undo/redo, branching and cap
+ok 39 - History: undo/redo, branching and cap
+  ---
+  duration_ms: 0.178522
+  type: 'test'
+  ...
+# Subtest: Snap grid and variable tempo lookup
+ok 40 - Snap grid and variable tempo lookup
+  ---
+  duration_ms: 0.119265
+  type: 'test'
+  ...
+# Subtest: Audio analysis: silence is not populated with fabricated beats
+ok 41 - Audio analysis: silence is not populated with fabricated beats
+  ---
+  duration_ms: 20.803806
+  type: 'test'
+  ...
+# Subtest: Audio analysis: attacks and 120 BPM detected on original pulses
+ok 42 - Audio analysis: attacks and 120 BPM detected on original pulses
+  ---
+  duration_ms: 56.677984
+  type: 'test'
+  ...
+# Subtest: Generator: deterministic, varied difficulties and no leading silence notes
+ok 43 - Generator: deterministic, varied difficulties and no leading silence notes
+  ---
+  duration_ms: 1.614496
+  type: 'test'
+  ...
+# Subtest: Generator: no quantization preserves exact detected attack times
+ok 44 - Generator: no quantization preserves exact detected attack times
+  ---
+  duration_ms: 0.181316
+  type: 'test'
+  ...
+# Subtest: Demo synthesis: deterministic finite audio, bounded and nonempty
+ok 45 - Demo synthesis: deterministic finite audio, bounded and nonempty
+  ---
+  duration_ms: 104.262156
+  type: 'test'
+  ...
+# Subtest: 3D matrix: translation, scaling and inversion compose correctly
+ok 46 - 3D matrix: translation, scaling and inversion compose correctly
+  ---
+  duration_ms: 0.61408
+  type: 'test'
+  ...
+# Subtest: 3D quaternion: interpolation remains normalized
+ok 47 - 3D quaternion: interpolation remains normalized
+  ---
+  duration_ms: 0.143701
+  type: 'test'
+  ...
+# Subtest: 3D meshes: indices and normals valid for all primitive types
+ok 48 - 3D meshes: indices and normals valid for all primitive types
+  ---
+  duration_ms: 1.853277
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 297.585306

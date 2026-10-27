@@ -1,0 +1,334 @@
+TAP version 13
+# Subtest: SHA-256 fallback matches Node crypto at 0 bytes
+ok 1 - SHA-256 fallback matches Node crypto at 0 bytes
+  ---
+  duration_ms: 8.838044
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1 bytes
+ok 2 - SHA-256 fallback matches Node crypto at 1 bytes
+  ---
+  duration_ms: 2.965265
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 3 bytes
+ok 3 - SHA-256 fallback matches Node crypto at 3 bytes
+  ---
+  duration_ms: 2.030937
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 55 bytes
+ok 4 - SHA-256 fallback matches Node crypto at 55 bytes
+  ---
+  duration_ms: 0.248977
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 56 bytes
+ok 5 - SHA-256 fallback matches Node crypto at 56 bytes
+  ---
+  duration_ms: 4.516019
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 63 bytes
+ok 6 - SHA-256 fallback matches Node crypto at 63 bytes
+  ---
+  duration_ms: 1.496928
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 64 bytes
+ok 7 - SHA-256 fallback matches Node crypto at 64 bytes
+  ---
+  duration_ms: 0.974302
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 65 bytes
+ok 8 - SHA-256 fallback matches Node crypto at 65 bytes
+  ---
+  duration_ms: 0.215083
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 127 bytes
+ok 9 - SHA-256 fallback matches Node crypto at 127 bytes
+  ---
+  duration_ms: 5.698767
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 128 bytes
+ok 10 - SHA-256 fallback matches Node crypto at 128 bytes
+  ---
+  duration_ms: 0.601748
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1025 bytes
+ok 11 - SHA-256 fallback matches Node crypto at 1025 bytes
+  ---
+  duration_ms: 5.552651
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1000000 bytes
+ok 12 - SHA-256 fallback matches Node crypto at 1000000 bytes
+  ---
+  duration_ms: 75.803681
+  type: 'test'
+  ...
+# Subtest: SHA-256 handles a nonzero byteOffset typed view
+ok 13 - SHA-256 handles a nonzero byteOffset typed view
+  ---
+  duration_ms: 0.70787
+  type: 'test'
+  ...
+# Subtest: Silence creates no artificial attacks or family
+ok 14 - Silence creates no artificial attacks or family
+  ---
+  duration_ms: 35.133551
+  type: 'test'
+  ...
+# Subtest: Invalid PCM formats, lengths and nonfinite audio are refused
+ok 15 - Invalid PCM formats, lengths and nonfinite audio are refused
+  ---
+  duration_ms: 4.794484
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 72 BPM pulses
+ok 16 - Attack timing and tempo on synthetic 72 BPM pulses
+  ---
+  duration_ms: 393.703224
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 100 BPM pulses
+ok 17 - Attack timing and tempo on synthetic 100 BPM pulses
+  ---
+  duration_ms: 829.316367
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 120 BPM pulses
+ok 18 - Attack timing and tempo on synthetic 120 BPM pulses
+  ---
+  duration_ms: 494.598544
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 156 BPM pulses
+ok 19 - Attack timing and tempo on synthetic 156 BPM pulses
+  ---
+  duration_ms: 401.212361
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 180 BPM pulses
+ok 20 - Attack timing and tempo on synthetic 180 BPM pulses
+  ---
+  duration_ms: 468.913496
+  type: 'test'
+  ...
+# Subtest: Opposite-phase stereo does not cancel during spectral analysis
+ok 21 - Opposite-phase stereo does not cancel during spectral analysis
+  ---
+  duration_ms: 421.166367
+  type: 'test'
+  ...
+# Subtest: Both stereo channels contribute when transients alternate L/R
+ok 22 - Both stereo channels contribute when transients alternate L/R
+  ---
+  duration_ms: 346.56413
+  type: 'test'
+  ...
+# Subtest: Very quiet musical audio retains attack positions
+ok 23 - Very quiet musical audio retains attack positions
+  ---
+  duration_ms: 120.175777
+  type: 'test'
+  ...
+# Subtest: Long musical break remains empty in every generated difficulty
+ok 24 - Long musical break remains empty in every generated difficulty
+  ---
+  duration_ms: 440.126934
+  type: 'test'
+  ...
+# Subtest: Local tempo windows warn on a substantial tempo change
+ok 25 - Local tempo windows warn on a substantial tempo change
+  ---
+  duration_ms: 640.823066
+  type: 'test'
+  ...
+# Subtest: Repeated analysis of the same PCM is deterministic
+ok 26 - Repeated analysis of the same PCM is deterministic
+  ---
+  duration_ms: 190.671699
+  type: 'test'
+  ...
+# Subtest: Worker-serializable analyzer is self contained
+ok 27 - Worker-serializable analyzer is self contained
+  ---
+  duration_ms: 200.224269
+  type: 'test'
+  ...
+# Subtest: Analysis progress is monotonic and terminates
+ok 28 - Analysis progress is monotonic and terminates
+  ---
+  duration_ms: 157.990505
+  type: 'test'
+  ...
+# Subtest: Family contains exactly the five supported difficulties
+ok 29 - Family contains exactly the five supported difficulties
+  ---
+  duration_ms: 13.013871
+  type: 'test'
+  ...
+# Subtest: Family timings, symbols, positions, types and holds are nested
+ok 30 - Family timings, symbols, positions, types and holds are nested
+  ---
+  duration_ms: 12.205693
+  type: 'test'
+  ...
+# Subtest: Difficulty counts increase without independently randomized patterns
+ok 31 - Difficulty counts increase without independently randomized patterns
+  ---
+  duration_ms: 62.818526
+  type: 'test'
+  ...
+# Subtest: Easy is two face symbols, no chord, hold or slide
+ok 32 - Easy is two face symbols, no chord, hold or slide
+  ---
+  duration_ms: 9.221865
+  type: 'test'
+  ...
+# Subtest: Advanced tiers add face-button chords and slides
+ok 33 - Advanced tiers add face-button chords and slides
+  ---
+  duration_ms: 75.033314
+  type: 'test'
+  ...
+# Subtest: Feature switches remove holds, slides and chords
+ok 34 - Feature switches remove holds, slides and chords
+  ---
+  duration_ms: 8.496967
+  type: 'test'
+  ...
+# Subtest: Generation leaves the supplied analysis untouched
+ok 35 - Generation leaves the supplied analysis untouched
+  ---
+  duration_ms: 12.101594
+  type: 'test'
+  ...
+# Subtest: Same options and seed produce the same signatures
+ok 36 - Same options and seed produce the same signatures
+  ---
+  duration_ms: 29.249734
+  type: 'test'
+  ...
+# Subtest: A different seed changes patterns, not the event time hierarchy
+ok 37 - A different seed changes patterns, not the event time hierarchy
+  ---
+  duration_ms: 13.181281
+  type: 'test'
+  ...
+# Subtest: Quantization never displaces an attack by more than 25 ms
+ok 38 - Quantization never displaces an attack by more than 25 ms
+  ---
+  duration_ms: 17.685434
+  type: 'test'
+  ...
+# Subtest: Low-confidence grid never forcibly quantizes an event
+ok 39 - Low-confidence grid never forcibly quantizes an event
+  ---
+  duration_ms: 15.206233
+  type: 'test'
+  ...
+# Subtest: Variable tempo disables quantization even with a requested grid
+ok 40 - Variable tempo disables quantization even with a requested grid
+  ---
+  duration_ms: 13.792883
+  type: 'test'
+  ...
+# Subtest: Manual BPM override changes grid, never entire audio or imported notes
+ok 41 - Manual BPM override changes grid, never entire audio or imported notes
+  ---
+  duration_ms: 9.835859
+  type: 'test'
+  ...
+# Subtest: Sparse songs can have equal tiers without invented notes
+ok 42 - Sparse songs can have equal tiers without invented notes
+  ---
+  duration_ms: 0.670997
+  type: 'test'
+  ...
+# Subtest: Generator cannot pad a known silent region with notes
+ok 43 - Generator cannot pad a known silent region with notes
+  ---
+  duration_ms: 7.336464
+  type: 'test'
+  ...
+# Subtest: All layouts stay inside safe bounds and do not overlap chord targets
+ok 44 - All layouts stay inside safe bounds and do not overlap chord targets
+  ---
+  duration_ms: 130.0417
+  type: 'test'
+  ...
+# Subtest: Family report rejects out-of-audio notes, duplicates and moved anchors
+ok 45 - Family report rejects out-of-audio notes, duplicates and moved anchors
+  ---
+  duration_ms: 18.427411
+  type: 'test'
+  ...
+# Subtest: Malformed options and insufficient attacks are refused
+ok 46 - Malformed options and insufficient attacks are refused
+  ---
+  duration_ms: 1.852934
+  type: 'test'
+  ...
+# Subtest: Empty existing chart does not prevent filling that difficulty
+ok 47 - Empty existing chart does not prevent filling that difficulty
+  ---
+  duration_ms: 0.324621
+  type: 'test'
+  ...
+# Subtest: Exact catalog source is chosen before generated missing levels
+ok 48 - Exact catalog source is chosen before generated missing levels
+  ---
+  duration_ms: 2.305913
+  type: 'test'
+  ...
+# Subtest: Title similarity and weak hashes never auto-attach a source chart
+ok 49 - Title similarity and weak hashes never auto-attach a source chart
+  ---
+  duration_ms: 2.38728
+  type: 'test'
+  ...
+# Subtest: Existing manual difficulty is never replaced by exact catalog
+ok 50 - Existing manual difficulty is never replaced by exact catalog
+  ---
+  duration_ms: 0.301017
+  type: 'test'
+  ...
+# Subtest: Generation and native MIDI roundtrip keep mapping timings and positions
+ok 51 - Generation and native MIDI roundtrip keep mapping timings and positions
+  ---
+  duration_ms: 36.303815
+  type: 'test'
+  ...
+# Subtest: Generated families can actually be autoplayed by the rhythm engine
+ok 52 - Generated families can actually be autoplayed by the rhythm engine
+  ---
+  duration_ms: 62.618403
+  type: 'test'
+  ...
+# Subtest: 60 seeded rhythm/tempo/density combinations satisfy every safety invariant
+ok 53 - 60 seeded rhythm/tempo/density combinations satisfy every safety invariant
+  ---
+  duration_ms: 463.20509
+  type: 'test'
+  ...
+# Subtest: 10-minute chart-family construction remains bounded
+ok 54 - 10-minute chart-family construction remains bounded
+  ---
+  duration_ms: 1060.048717
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7580.362623

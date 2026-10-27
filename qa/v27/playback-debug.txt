@@ -1,0 +1,1037 @@
+[
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": 0,
+    "view": "library",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 3,
+      "resets": 7,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": null,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -1.6594650793649395,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": null,
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -1.139818594104308,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.8902040816326524,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.8002267573696145,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.6899319727891156,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.5796371882086166,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.46934240362811774,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.3793650793650789,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.2806802721088424,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.15877551020408198,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "t": -0.051383219954647785,
+    "view": "game",
+    "paused": false,
+    "settings": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "stored": {
+      "version": 27,
+      "enabled": true,
+      "gravity": 9.8,
+      "damping": 0.08,
+      "iterations": 6,
+      "ground": false,
+      "collisions": true,
+      "strength": 1
+    },
+    "hidden": false,
+    "physics": 2,
+    "world": {
+      "steps": 17,
+      "resets": 26,
+      "reason": "saut / image trop lente",
+      "contacts": 0
+    },
+    "error": null,
+    "frameError": false,
+    "clips": [
+      {
+        "start": 0,
+        "end": 0.499037,
+        "rate": 1
+      },
+      {
+        "start": 0.499037,
+        "end": 4.4992370100005,
+        "rate": 1
+      },
+      {
+        "start": 4.4992370100005,
+        "end": 8,
+        "rate": 1
+      }
+    ]
+  }
+]

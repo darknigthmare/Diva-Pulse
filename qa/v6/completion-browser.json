@@ -1,0 +1,45 @@
+{
+  "suite": "V6 completion and 2D fallback",
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Automatic import remains enabled in the actual headless 2D fallback",
+      "passed": true
+    },
+    {
+      "name": "Dropping an actual audio File starts the automatic five-level import",
+      "passed": true
+    },
+    {
+      "name": "Library completion identifies the incomplete restored copy",
+      "passed": true
+    },
+    {
+      "name": "Completion targets the incomplete copy despite a complete song with the same hash",
+      "passed": true
+    },
+    {
+      "name": "Completing a restored duplicate leaves the earlier song unchanged",
+      "passed": true
+    },
+    {
+      "name": "Explicit target rejects a different audio file without replacing the song",
+      "passed": true
+    },
+    {
+      "name": "Completion of a deleted target fails rather than creating an unrelated song",
+      "passed": true
+    },
+    {
+      "name": "Cancel control is disabled during atomic commit and restored after commit",
+      "passed": true
+    },
+    {
+      "name": "Focused completion and 2D scenarios have no uncaught exception",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "environment": "Headless Chromium, opaque origin, real audio File/drop/analysis. Restored duplicate fixture and commit spy operate on temporary memory storage."
+}

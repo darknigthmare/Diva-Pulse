@@ -1,0 +1,209 @@
+{
+  "buildSha256": "0c88113152e6ac4299d35611b44abbd6964e81ec23baa1861a5b9005ed6b7cf0",
+  "passed": 39,
+  "total": 39,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V23 title, version and diagnostic entry point",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 renderer initialized",
+      "passed": true
+    },
+    {
+      "name": "36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002",
+      "passed": true
+    },
+    {
+      "name": "GPU feedback has no GL error",
+      "passed": true
+    },
+    {
+      "name": "SDEF PMX retains all three center buffers and weights at the renderer",
+      "passed": true
+    },
+    {
+      "name": "Two materials share one bone palette and one GPU palette upload",
+      "passed": true
+    },
+    {
+      "name": "Palette memory is reused across frames",
+      "passed": true
+    },
+    {
+      "name": "SDEF Z reflection reaches actual GPU attributes",
+      "passed": true
+    },
+    {
+      "name": "QDEF PMX uses the QDEF shader path",
+      "passed": true
+    },
+    {
+      "name": "Aborted preference write restores in-memory settings",
+      "passed": true
+    },
+    {
+      "name": "Failed favorite edit restores song and UI",
+      "passed": true
+    },
+    {
+      "name": "Failed UI edit reports error without unhandled rejection",
+      "passed": true
+    },
+    {
+      "name": "Export performs no write and preserves unsaved chart separately",
+      "passed": true
+    },
+    {
+      "name": "Refused metadata write preserves source and retry field",
+      "passed": true
+    },
+    {
+      "name": "Refused setlist save never publishes a phantom list",
+      "passed": true
+    },
+    {
+      "name": "Setlist save can be retried without losing its queue",
+      "passed": true
+    },
+    {
+      "name": "Refused setlist removal preserves the saved list",
+      "passed": true
+    },
+    {
+      "name": "Director mutation is saved as separate draft",
+      "passed": true
+    },
+    {
+      "name": "Closing and reopening offers explicit draft recovery",
+      "passed": true
+    },
+    {
+      "name": "Recovered draft remains undoable",
+      "passed": true
+    },
+    {
+      "name": "Refused draft write is visibly reported and retained in memory",
+      "passed": true
+    },
+    {
+      "name": "Memory recovery retains latest failed draft",
+      "passed": true
+    },
+    {
+      "name": "Portable backup contains Director recovery state",
+      "passed": true
+    },
+    {
+      "name": "Restored draft has new owner, pack and asset references",
+      "passed": true
+    },
+    {
+      "name": "Restored portable draft can be recovered from UI",
+      "passed": true
+    },
+    {
+      "name": "Director recovery controls fit mobile dialog",
+      "passed": true
+    },
+    {
+      "name": "Explicit save applies recovered draft and removes recovery marker",
+      "passed": true
+    },
+    {
+      "name": "Draft work and restore preserve rhythm chart contents",
+      "passed": true
+    },
+    {
+      "name": "Real GPU loss pauses the playing audio clock",
+      "passed": true
+    },
+    {
+      "name": "Context loss is detected without changing saved content",
+      "passed": true
+    },
+    {
+      "name": "Context restoration rebuilds and reloads both MMD models",
+      "passed": true
+    },
+    {
+      "name": "GPU recovery does not resume the performance without the player",
+      "passed": true
+    },
+    {
+      "name": "Restored renderer has valid GL state",
+      "passed": true
+    },
+    {
+      "name": "Integrated library audit leaves songs unchanged",
+      "passed": true
+    },
+    {
+      "name": "Audit export contains explicit capability limitations",
+      "passed": true
+    },
+    {
+      "name": "Settings shortcuts expose the six actual sections",
+      "passed": true
+    },
+    {
+      "name": "Invalid preference restore is atomic and leaves copies uninserted",
+      "passed": true
+    },
+    {
+      "name": "No unhandled exception in all V23 user journeys",
+      "passed": true
+    },
+    {
+      "name": "No persistent frame error",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "consoleWarnings": [
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "performance warning: READ-usage buffer was read back without waiting on a fence. This caused a graphics pipeline stall.",
+    "[DIVA PULSE] Error: QA song denied\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:142)\n    at <anonymous>:135:178\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: QA song denied\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:142)\n    at <anonymous>:143:284\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: QA delete list denied\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:36)\n    at <anonymous>:144:519\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: Réglage invalide : musicVolume\n    at bad (<anonymous>:7:45)\n    at Object.preferences (<anonymous>:9:267)\n    at <anonymous>:125:40\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46"
+  ],
+  "storage": "temporary",
+  "renderer": "Chromium WebGL2 SwiftShader"
+}

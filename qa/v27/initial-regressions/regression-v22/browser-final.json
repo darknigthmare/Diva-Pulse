@@ -1,0 +1,88 @@
+{
+  "buildSha256": "cf27b468e7ae6d89e118e0b25fade1c9ef05350305ee4d606c914fd6123427ca",
+  "passed": 18,
+  "total": 19,
+  "failure": "Renderer consumes music-beat source time",
+  "checks": [
+    {
+      "name": "V22 build and new UI ready",
+      "passed": true
+    },
+    {
+      "name": "Real software WebGL2 context",
+      "passed": true
+    },
+    {
+      "name": "Morph-only VMD has compatible morph names",
+      "passed": true
+    },
+    {
+      "name": "Independent preview renders the morph-only animation",
+      "passed": true
+    },
+    {
+      "name": "AutoShow selects the morph-only VMD",
+      "passed": true
+    },
+    {
+      "name": "Import keeps chart data intact",
+      "passed": true
+    },
+    {
+      "name": "Two materials share one UV buffer",
+      "passed": true
+    },
+    {
+      "name": "Material morph reaches zero opacity",
+      "passed": true
+    },
+    {
+      "name": "Material morph changes real framebuffer pixels",
+      "passed": true
+    },
+    {
+      "name": "Zero weight restores opacity without altering source",
+      "passed": true
+    },
+    {
+      "name": "UV morph reaches actual GPU buffer",
+      "passed": true
+    },
+    {
+      "name": "Seek resets UV GPU buffer",
+      "passed": true
+    },
+    {
+      "name": "Groups combine UV and opacity",
+      "passed": true
+    },
+    {
+      "name": "Surface renderer has no WebGL error",
+      "passed": true
+    },
+    {
+      "name": "Calibration has all three user fields",
+      "passed": true
+    },
+    {
+      "name": "BPM calibration is saved in motion metadata",
+      "passed": true
+    },
+    {
+      "name": "Source clock is present in actual AutoShow renderer clips",
+      "passed": true
+    },
+    {
+      "name": "Calibration never rewrites rhythm charts",
+      "passed": true
+    },
+    {
+      "name": "Renderer consumes music-beat source time",
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "consoleWarnings": [],
+  "storage": "temporary",
+  "renderer": "Chromium WebGL2 SwiftShader"
+}

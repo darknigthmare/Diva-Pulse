@@ -1,0 +1,16 @@
+{
+  "version": "24.0.0",
+  "htmlSha256": "d3435fc9cdc9136f252bd088b5566b403f724ada48b7817eff34c1416ace17d3",
+  "htmlBytes": 716882,
+  "logic": 603,
+  "browser": {
+    "features": 35,
+    "regression-v23": 39,
+    "regression-v22": 28,
+    "regression-v21": 44,
+    "regression-v20": 57
+  },
+  "nativeMMD": 4,
+  "launcher": 10,
+  "scope": "Temporary browser storage, software WebGL2, original technical fixtures; native multi-window persistence not validated."
+}

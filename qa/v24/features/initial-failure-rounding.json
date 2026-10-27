@@ -1,0 +1,78 @@
+{
+  "version": "24.0.0",
+  "buildSha256": "2d0282919c68dfa459d1a0ca8eb7e7959a0434991d26cb62f840968a17233eb8",
+  "passed": 15,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "V24 delivered HTML initializes",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 context exists",
+      "passed": true
+    },
+    {
+      "name": "Three demo songs and five difficulties retained",
+      "passed": true
+    },
+    {
+      "name": "Opaque origin storage accurately marked temporary",
+      "passed": true
+    },
+    {
+      "name": "No false persistent-storage promise in temporary mode",
+      "passed": true
+    },
+    {
+      "name": "Append PMX validates for import",
+      "passed": true
+    },
+    {
+      "name": "Append model renders in independent preview",
+      "passed": true
+    },
+    {
+      "name": "Imported MMD keeps rhythm charts unchanged",
+      "passed": true
+    },
+    {
+      "name": "Append translation reaches actual model pose",
+      "passed": true
+    },
+    {
+      "name": "Append rotation reaches actual model pose",
+      "passed": true
+    },
+    {
+      "name": "Backward seek resets append without accumulation",
+      "passed": true
+    },
+    {
+      "name": "Same time produces same appended pose",
+      "passed": true
+    },
+    {
+      "name": "Runtime IK limit is applied to actual bone quaternion",
+      "passed": true
+    },
+    {
+      "name": "Append and IK rendered without GL errors",
+      "passed": true
+    },
+    {
+      "name": "VMD analysis uses actual imported binary",
+      "passed": true
+    },
+    {
+      "name": "Period analysis offers half/double alternatives",
+      "passed": false
+    }
+  ],
+  "failure": "Period analysis offers half/double alternatives",
+  "errors": [],
+  "warnings": [
+    "[DIVA PULSE] Error: Protection indisponible ici : utilise le lanceur local ou HTTPS.\n    at <anonymous>:73:120\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46"
+  ],
+  "scope": "Real Chromium + software WebGL; temporary storage and simulated read-only state. No durability claim."
+}

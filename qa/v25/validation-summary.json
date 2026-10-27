@@ -1,0 +1,42 @@
+{
+  "version": "25.0.0",
+  "htmlSha256": "32bf29e2cb8428e27ae1a7286e8b16a1122175c5cc881e20f5d9f59d4fe8a06c",
+  "htmlBytes": 749592,
+  "unit": {
+    "passed": 664,
+    "failed": 0,
+    "new": 61
+  },
+  "browser": [
+    {
+      "suite": "features",
+      "passed": 40
+    },
+    {
+      "suite": "regression-v24",
+      "passed": 35
+    },
+    {
+      "suite": "regression-v23",
+      "passed": 39
+    },
+    {
+      "suite": "regression-v22",
+      "passed": 28
+    },
+    {
+      "suite": "regression-v21",
+      "passed": 44
+    },
+    {
+      "suite": "regression-v20",
+      "passed": 57
+    }
+  ],
+  "browserTotal": 243,
+  "nativeMMD": 4,
+  "launcher": 10,
+  "storageMode": "temporary",
+  "graphics": "Chromium/Xvfb/SwiftShader WebGL2",
+  "persistenceVerified": false
+}

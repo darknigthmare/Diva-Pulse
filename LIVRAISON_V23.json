@@ -1,0 +1,33 @@
+{
+  "version": "23.0.0",
+  "edition": "Audit & Compatibility",
+  "base": "V22",
+  "htmlSha256": "0c88113152e6ac4299d35611b44abbd6964e81ec23baa1861a5b9005ed6b7cf0",
+  "logic": {
+    "passed": 548,
+    "total": 548
+  },
+  "browser": {
+    "passed": 168,
+    "total": 168
+  },
+  "nativeMMD": {
+    "passed": 4,
+    "total": 4
+  },
+  "launcher": {
+    "passed": 10,
+    "total": 10
+  },
+  "auditFindings": 40,
+  "googleDrive": {
+    "uploaded": false,
+    "reason": "Current connector provides read actions only; V22 unchanged."
+  },
+  "validationLimits": [
+    "software WebGL2, not a physical GPU",
+    "temporary storage, no IndexedDB restart validation",
+    "no Safari/iOS or physical MIDI/gamepad validation",
+    "no universal MMD or SEGA 1:1 certification"
+  ]
+}

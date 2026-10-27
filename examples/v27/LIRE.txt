@@ -1,0 +1,3 @@
+Diagnostics originaux. Active le mode secondaire dans Modules > MMD Stage > Dynamique.
+Le pendule doit osciller sous gravite; pause et retour au debut testent la remise a zero.
+PHYSIQUE_PMD sert a controler les positions de corps relatives aux os PMD, pas a montrer un personnage final.

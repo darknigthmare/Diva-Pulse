@@ -1,0 +1,58 @@
+PASS Standalone document build V19 loads the library
+PASS Header identifies V19 rather than an old build
+PASS Real WebGL2 context available
+PASS Opaque test document honestly shows temporary storage
+PASS Accessible profile selected via settings
+PASS Settings expose actual Accessible timing windows
+PASS Precision choice is written to the active local store
+PASS Records separate nonstandard profiles
+PASS Actual file-input imports two PMDs, two VMDs and RLE TGA
+PASS A PMD renders with four bones and its remapped facial morph
+PASS RLE TGA is decoded and uploaded as a real GPU texture
+PASS PMD draw has no WebGL errors
+PASS All imported files are persisted atomically
+PASS Director UI builds two independent tracks
+PASS Auto-PV edits do not modify the saved song before confirmation
+PASS Preview loads both different PMD model instances
+PASS Preview cannot overwrite stored Director state
+PASS Timeline cursor drives the preview clock
+PASS Independent VMDs actually move the two root bones differently
+PASS Manual camera and light tracks are sampled by the renderer
+PASS Director light is sent to the WebGL shader
+PASS PMD geometry really contributes pixels to the WebGL frame
+PASS VMD blending reaches the weighted bone pose at 50%
+PASS Clip rate can be edited in the actual Director
+PASS Director undo restores the prior clip rate
+PASS Director redo restores the edit
+PASS Overlapping clips are rejected rather than partially accepted
+PASS Rejected clip edit did not change the valid draft
+PASS Dragging a timeline block changes its audio start in a free interval
+PASS Undo restores both the dragged clip and the removed neighbor
+PASS Manual camera key is loaded from the editable draft
+PASS A zero-intensity light key remains zero in the real shader
+PASS Failed Director save preserves the draft and leaves the song unchanged
+PASS Failed save is visible to the player
+PASS Director saves both models, clips, formation and camera/light tracks
+PASS Editing a complete spectacle leaves every chart unchanged
+PASS Production pulsepack export contains every MMD asset
+PASS Actual restoration creates a copy without replacing the source
+PASS Restored Director references newly created asset IDs
+PASS Restored PMD troupe really reloads in the renderer
+PASS Restore with missing MMD media cannot insert a partial song
+PASS Director remains within the simulated mobile viewport
+PASS Mobile Director button labels fit inside their controls
+PASS Escape really cleans up the Director
+PASS Real WAV decoding/worker analysis creates all five difficulties
+PASS Generated charts preserve exact inherited timing, lane and positions
+PASS Mapping does not invent notes in the silent start/end
+PASS Every generated chart shares the same tempo map
+PASS Gameplay uses the selected Precision judgment profile
+PASS Complete real-audio autoplay finishes at 100 percent
+PASS Autoplay cannot write a normal player record
+PASS Reloading saved song data retains MMD blobs and Director associations
+PASS No uncaught JavaScript errors across all integrated flows
+PASS No external runtime dependency or network request
+PASS Fallback library boots when WebGL is disabled
+PASS No-WebGL Director remains editable and reports preview unavailable
+PASS No-WebGL setup can still save an MMD Director for later playback
+{"passed": 57, "failed": 0, "completed": true, "failure": null}

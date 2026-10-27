@@ -1,0 +1,34 @@
+PASS V28 final application initializes
+PASS Native WebGL2 software context
+PASS All original demos and difficulties retained
+PASS No initial recovery is fabricated
+PASS Draft is written separately from source song
+PASS Draft contains validated settings and preview cursor
+PASS Temporary durability is honestly stated
+PASS Recovered settings affect real skeleton, not metadata only
+PASS Closing restores source and does not publish draft
+PASS Reopening offers explicit recovery without applying it
+PASS Recovery loads settings and saved cursor
+PASS Recovery still leaves committed song unchanged
+PASS Physics recovery fits mobile viewport
+PASS No horizontal overflow in mobile recovery form
+PASS Failed write preserves newest recovery in memory
+PASS Failed write is visible to the user
+PASS Failed publication preserves scene, charts and editable form
+PASS Backup is produced even while all writes are rejected
+PASS Newest failed-write recovery is exported
+PASS Legacy JSON backup transports independent physics recovery
+PASS Bundle restoration creates copies only
+PASS Restored recovery is rebound to copied owner and model pack
+PASS Restored source remains disabled until explicit save
+PASS Restored model and recovery run in actual renderer
+PASS Explicit publication saves source settings
+PASS Recovery tombstone is committed with the scene
+PASS Published draft is not resurrected
+PASS Discarding recovery preserves saved settings and does not resurrect on reopen
+PASS No discarded physics recovery appears in backup
+PASS Invalid recovery owner is rejected before restore confirmation
+PASS Source song and original notes survived entire round trip unchanged
+PASS No GPU error
+PASS No render-loop failure
+PASS No unhandled JavaScript error

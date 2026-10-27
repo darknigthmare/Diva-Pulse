@@ -1,0 +1,221 @@
+{
+  "checks": [
+    {
+      "name": "V3 initialization completes and WebGL2 draws",
+      "passed": true
+    },
+    {
+      "name": "Help includes new workflows",
+      "passed": true
+    },
+    {
+      "name": "MIDI import opens a preview and never commits before confirmation",
+      "passed": true
+    },
+    {
+      "name": "Canceling MIDI import leaves chart library untouched",
+      "passed": true
+    },
+    {
+      "name": "Native MIDI import restores all seven notes and three tempos",
+      "passed": true
+    },
+    {
+      "name": "Chart audit opens and remains non-destructive",
+      "passed": true
+    },
+    {
+      "name": "Tempo editor inserts event without retiming imported notes",
+      "passed": true
+    },
+    {
+      "name": "Changing first BPM preserves later tempo events",
+      "passed": true
+    },
+    {
+      "name": "Tempo changes participate in undo history",
+      "passed": true
+    },
+    {
+      "name": "Select-all displays seven selected notes",
+      "passed": true
+    },
+    {
+      "name": "Group paste creates seven notes with unique IDs",
+      "passed": true
+    },
+    {
+      "name": "Arc layout only modifies selected group",
+      "passed": true
+    },
+    {
+      "name": "Group layout and paste each undo atomically",
+      "passed": true
+    },
+    {
+      "name": "Invalid group shift is rejected without partial changes",
+      "passed": true
+    },
+    {
+      "name": "Target inspector edits angle and distance precisely",
+      "passed": true
+    },
+    {
+      "name": "Editing MIDI makes a derivative and preserves the native source",
+      "passed": true
+    },
+    {
+      "name": "MIDI export produces a standard binary file with exact native chart metadata",
+      "passed": true
+    },
+    {
+      "name": "Auto PV aligns cuts to variable-tempo measures and audio bounds",
+      "passed": true
+    },
+    {
+      "name": "PV camera blend and video offset stored per song",
+      "passed": true
+    },
+    {
+      "name": "Variable-tempo metronome schedules real Web Audio playback",
+      "passed": true
+    },
+    {
+      "name": "Reopening studio follows selected chart instead of stale derivative",
+      "passed": true
+    },
+    {
+      "name": "Concert stage includes audience and moving beam subtree",
+      "passed": true
+    },
+    {
+      "name": "Concert effects can be disabled",
+      "passed": true
+    },
+    {
+      "name": "Cast spacing changes rig placement without rebuilding chart",
+      "passed": true
+    },
+    {
+      "name": "Camera seeking is deterministic rather than frame-count dependent",
+      "passed": true
+    },
+    {
+      "name": "Imported animated GLB supports orientation and scale controls",
+      "passed": true
+    },
+    {
+      "name": "Output presentation clock is opt-in and reflected in settings",
+      "passed": true
+    },
+    {
+      "name": "Normal input handlers produce a replay and session history",
+      "passed": true
+    },
+    {
+      "name": "Offline replay simulation reproduces captured result",
+      "passed": true
+    },
+    {
+      "name": "Replay export contains inputs and native chart, not media",
+      "passed": true
+    },
+    {
+      "name": "Real-time replay including pause reproduces score and judgments",
+      "passed": true
+    },
+    {
+      "name": "Replay is visibly non-ranked and never writes a record",
+      "passed": true
+    },
+    {
+      "name": "Setlist saves actual song/chart references and preserves order",
+      "passed": true
+    },
+    {
+      "name": "Setlist launch selects requested chart and concert progress",
+      "passed": true
+    },
+    {
+      "name": "Next setlist track starts only after explicit result action",
+      "passed": true
+    },
+    {
+      "name": "Restore is explicit and preferences stay unchecked by default",
+      "passed": true
+    },
+    {
+      "name": "V3 restore duplicates songs and reattaches score IDs",
+      "passed": true
+    },
+    {
+      "name": "V3 restore remaps setlists to newly copied songs",
+      "passed": true
+    },
+    {
+      "name": "Temporary storage transactions reject all rows on error",
+      "passed": true
+    },
+    {
+      "name": "Invalid library rejected before data mutation",
+      "passed": true
+    },
+    {
+      "name": "Invalid replay reports error without opening a game",
+      "passed": true
+    },
+    {
+      "name": "V3 portrait library: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 portrait editor: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 portrait wardrobe: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 portrait settings: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 landscape library: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 landscape editor: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 landscape wardrobe: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "V3 landscape settings: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "All V3 workflows have no uncaught JS or rendering error",
+      "passed": true
+    }
+  ],
+  "passed": 50,
+  "failed": 0,
+  "errors": [],
+  "observations": {
+    "capturedKeyboardResult": {
+      "score": 7227,
+      "counts": {
+        "COOL": 7,
+        "FINE": 0,
+        "SAFE": 0,
+        "SAD": 0,
+        "MISS": 0,
+        "WRONG": 0
+      }
+    }
+  },
+  "scope": "Chromium / Xvfb / SwiftShader / set_content opaque origin; real media rendering; DOM keyboard simulations; download serialization only; no durable IndexedDB/device QA."
+}

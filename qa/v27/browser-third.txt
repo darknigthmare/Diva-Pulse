@@ -1,0 +1,28 @@
+PASS Delivered V27 HTML boots
+PASS Real software WebGL2 context
+PASS Previous demos and 15 charts retained
+PASS Import diagnostic describes physics before persistence
+PASS PMX physics data reaches renderer
+PASS Physics remains off after importing compatible model
+PASS Accessible explicit opt-in and per-model report
+PASS Preview describes approximations honestly
+PASS Actual preview advances fixed-step simulation
+PASS Dynamic joint changes real render bone rotation
+PASS Preview is silent and does not start song audio
+PASS Preview did not change saved scene or chart data
+PASS Pause stops physics time and holds rendered pose
+PASS Scrub resets instead of simulating unseen history
+PASS Reset returns preview to time zero
+PASS Gravity setting is passed into active simulation
+PASS Invalid preview setting visibly refused
+PASS Physics dialog stays within portrait viewport
+FAIL Physics controls have no horizontal overflow
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 56, in <module>
+    ok('Physics controls have no horizontal overflow',p.evaluate('document.getElementById("modalContent").scrollWidth<=document.getElementById("modalContent").clientWidth+1'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 13, in ok
+    if not value:raise AssertionError(name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Physics controls have no horizontal overflow
+

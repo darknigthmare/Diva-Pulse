@@ -1,0 +1,11 @@
+FAIL V23 title, version and diagnostic entry point
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_regression_v23_browser.py", line 22, in <module>
+    ok('V23 title, version and diagnostic entry point',p.evaluate('PulseCore.VERSION==="27.0.0"&&document.title.includes("Reconnaissance")&&!!document.getElementById("qualityPanel")'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_regression_v23_browser.py", line 12, in ok
+    if not v:raise AssertionError(n)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: V23 title, version and diagnostic entry point
+
+{"buildSha256": "6a33a46e31f06f26d555e99717113b12e39f698d530b921528d429ad350682d4", "passed": 0, "total": 1, "failure": "V23 title, version and diagnostic entry point", "errors": [], "storage": "temporary", "renderer": "Chromium WebGL2 SwiftShader"}

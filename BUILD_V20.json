@@ -1,0 +1,15 @@
+{
+  "version": "20.0.0",
+  "baseline": {
+    "filename": "DIVA_PULSE_V19_STUDIO_RELIABILITY_COMPLET.zip",
+    "sha256": "5a70e1a83943321690f5c16d0f334e83ca9e63c4cd0d48c8a2b78b62e983c4f5"
+  },
+  "standaloneSha256": "965bd7fdb4108355aa296af7f28386cdfdba8e088ff3d0dd19d728e3deff2c30",
+  "tests": {
+    "logic": 392,
+    "browser": 57,
+    "nativeMMD": 4,
+    "launcher": 10
+  },
+  "scope": "Chromium under Xvfb, WebGL2 via SwiftShader, document injection, temporary storage. No physical hardware, IndexedDB restart or Safari/iPhone validation."
+}

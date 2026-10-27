@@ -1,0 +1,302 @@
+{
+  "scope": "V4 UI + legacy runtime; opaque origin, memory storage, simulated inputs and captured Blob downloads; WebGL2 SwiftShader plus deliberate renderer failure fallback",
+  "checks": [
+    {
+      "name": "V4 integration is ready and existing WebGL scene renders",
+      "passed": true
+    },
+    {
+      "name": "Catalog adds selected demo without removing source charts",
+      "passed": true
+    },
+    {
+      "name": "Adding exact same song avoids duplicate catalog entries",
+      "passed": true
+    },
+    {
+      "name": "Catalog export includes notes but no audio asset or binary data",
+      "passed": true
+    },
+    {
+      "name": "Catalog import waits for explicit confirmation",
+      "passed": true
+    },
+    {
+      "name": "Canceled catalog import makes no changes",
+      "passed": true
+    },
+    {
+      "name": "Confirmed catalog import merges original note data",
+      "passed": true
+    },
+    {
+      "name": "Builtin demo identity is recognized without title guessing",
+      "passed": true
+    },
+    {
+      "name": "Catalog association keeps exact timing, position, offset and tempo",
+      "passed": true
+    },
+    {
+      "name": "Re-associating identical level leaves six charts, not seven",
+      "passed": true
+    },
+    {
+      "name": "Title-only candidate cannot be associated without checking confirmation",
+      "passed": true
+    },
+    {
+      "name": "Explicit unverified association keeps timing and records unverified provenance",
+      "passed": true
+    },
+    {
+      "name": "Audio analysis produces five previews without modifying the library",
+      "passed": true
+    },
+    {
+      "name": "Generator preview honors tap-only and no-chord controls",
+      "passed": true
+    },
+    {
+      "name": "Canceling generated preview adds no chart",
+      "passed": true
+    },
+    {
+      "name": "Confirm adds exactly the five previewed levels",
+      "passed": true
+    },
+    {
+      "name": "Generated notes are attached to measured attacks when quantization is off",
+      "passed": true
+    },
+    {
+      "name": "Generation records phrase metadata and candidate tempo confidence",
+      "passed": true
+    },
+    {
+      "name": "Strongest-channel analysis handles opposing stereo channels",
+      "passed": true
+    },
+    {
+      "name": "Aborted audio analysis rejects before changing any song",
+      "passed": true
+    },
+    {
+      "name": "Editor adds a named section without moving imported notes",
+      "passed": true
+    },
+    {
+      "name": "Invalid section is rejected atomically",
+      "passed": true
+    },
+    {
+      "name": "Section changes use ordinary undo history",
+      "passed": true
+    },
+    {
+      "name": "Draft is stored separately, leaving catalog source untouched",
+      "passed": true
+    },
+    {
+      "name": "Recovery restores editable draft without replacing source",
+      "passed": true
+    },
+    {
+      "name": "Saving recovered catalog work creates a derivative and clears its draft",
+      "passed": true
+    },
+    {
+      "name": "Failed song save retains dirty editor and recoverable draft",
+      "passed": true
+    },
+    {
+      "name": "Retrying after storage recovery succeeds and removes stale draft",
+      "passed": true
+    },
+    {
+      "name": "Draft with a deleted parent remains unsaved, not written over another chart",
+      "passed": true
+    },
+    {
+      "name": "Keyboard chord shortcut is opt-in and can be added in settings",
+      "passed": true
+    },
+    {
+      "name": "Chord configuration rejects a conflict with an existing single-symbol key",
+      "passed": true
+    },
+    {
+      "name": "Note size, background mask and reduced effects are reflected in settings",
+      "passed": true
+    },
+    {
+      "name": "Simulated Q key holds exactly the two configured lanes",
+      "passed": true
+    },
+    {
+      "name": "Releasing chord does not release a separately held unit key",
+      "passed": true
+    },
+    {
+      "name": "All keyboard sources release cleanly",
+      "passed": true
+    },
+    {
+      "name": "Simulated L2 presses the configured dual-symbol macro",
+      "passed": true
+    },
+    {
+      "name": "Simulated trigger release leaves no stuck lanes",
+      "passed": true
+    },
+    {
+      "name": "Listen preview starts actual Web Audio playback",
+      "passed": true
+    },
+    {
+      "name": "Leaving library automatically stops preview audio",
+      "passed": true
+    },
+    {
+      "name": "Offline installation fails gracefully in an opaque origin",
+      "passed": true
+    },
+    {
+      "name": "Temporary storage does not pretend to be durable",
+      "passed": true
+    },
+    {
+      "name": "Practice dialog lists named chart sections",
+      "passed": true
+    },
+    {
+      "name": "Choosing a named section fills its audio-time range",
+      "passed": true
+    },
+    {
+      "name": "Practice starts at chosen speed without normal records",
+      "passed": true
+    },
+    {
+      "name": "Perfect simulated loop advances speed by five percentage points",
+      "passed": true
+    },
+    {
+      "name": "Failed loop retains its speed and records missed notes",
+      "passed": true
+    },
+    {
+      "name": "Practice history uses separate state, not normal high scores",
+      "passed": true
+    },
+    {
+      "name": "Practice HUD displays current attempt and speed",
+      "passed": true
+    },
+    {
+      "name": "V4 backup includes original songs, global catalog and pending drafts",
+      "passed": true
+    },
+    {
+      "name": "Restore preferences are opt-in and imports wait for confirmation",
+      "passed": true
+    },
+    {
+      "name": "Canceling a backup restore changes no song rows",
+      "passed": true
+    },
+    {
+      "name": "Confirmed V4 restore creates song copies with no overwrites",
+      "passed": true
+    },
+    {
+      "name": "Restored catalog deduplicates rather than doubling entries",
+      "passed": true
+    },
+    {
+      "name": "Restored drafts are remapped to copied song IDs",
+      "passed": true
+    },
+    {
+      "name": "Malformed catalog in backup is rejected before writes",
+      "passed": true
+    },
+    {
+      "name": "Library sort uses song IDs even when two songs have the same title",
+      "passed": true
+    },
+    {
+      "name": "Canceling chart removal preserves all charts",
+      "passed": true
+    },
+    {
+      "name": "Deletion dialog permits JSON export before removing a level",
+      "passed": true
+    },
+    {
+      "name": "Confirmed removal deletes only the selected chart",
+      "passed": true
+    },
+    {
+      "name": "V4 library fits viewport 390x844 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "V4 settings fits viewport 390x844 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "V4 editor fits viewport 390x844 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "V4 library fits viewport 844x390 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "V4 settings fits viewport 844x390 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "V4 editor fits viewport 844x390 without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "Catalog dialog fits portrait viewport",
+      "passed": true
+    },
+    {
+      "name": "Final real WebGL2 render reports no GL error",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript exceptions during V4 new workflows",
+      "passed": true
+    },
+    {
+      "name": "Unavailable WebGL activates labeled 2D fallback, not an empty stage",
+      "passed": true
+    },
+    {
+      "name": "Fallback canvas paints visible pixel content",
+      "passed": true
+    },
+    {
+      "name": "Wardrobe labels fallback honestly and remains navigable",
+      "passed": true
+    },
+    {
+      "name": "Fallback produced no uncaught exceptions",
+      "passed": true
+    }
+  ],
+  "passed": 72,
+  "failed": 0,
+  "pageErrors": [],
+  "notValidated": [
+    "Physical gamepads",
+    "Safari or real iPhone",
+    "Persistent IndexedDB after closing browser",
+    "Service worker installation or offline reload"
+  ]
+}

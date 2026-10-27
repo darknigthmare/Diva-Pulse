@@ -1,0 +1,71 @@
+{
+  "base": "Attached DIVA_PULSE_V4_ENCORE_EDITION_COMPLET.zip",
+  "changes": [
+    {
+      "file": "src/academy.js",
+      "status": "added",
+      "sha256": "e9132a0303385fc3eda692881dc802ebce998937acb0ecfb895480f4d0714f98",
+      "bytes": 9822
+    },
+    {
+      "file": "src/app.js",
+      "status": "modified",
+      "sha256": "f769eb206d0ebb143bee2451abc888134fcde87ada5ccb67556976d8cbd0a126",
+      "bytes": 71445
+    },
+    {
+      "file": "src/core.js",
+      "status": "modified",
+      "sha256": "330b06de08fa9e75a19cf2604f9ecb125ea9269d5ae83d552205ba2b224ddf9d",
+      "bytes": 33054
+    },
+    {
+      "file": "src/creator.js",
+      "status": "modified",
+      "sha256": "651fdaee9bdc1e0f8f99e6817d4d908cdbdf7a74b3ead6e4872050b07dbb69e0",
+      "bytes": 19037
+    },
+    {
+      "file": "src/editor-v3.js",
+      "status": "modified",
+      "sha256": "c01251add18be65eaa18a5501bfb79a70db6179be2914e66f0572db1b89b10b6",
+      "bytes": 15822
+    },
+    {
+      "file": "src/editor.js",
+      "status": "modified",
+      "sha256": "35adaca4416556c8b58d9170a32490f82f13d8382a45ba41e5d908e43167770f",
+      "bytes": 22384
+    },
+    {
+      "file": "src/enhancements.js",
+      "status": "modified",
+      "sha256": "fd26110ae9dc61a4d3cc27337ecc5b8aa4a2ef6de7bd19ecbc6c3e728e1ed462",
+      "bytes": 30293
+    },
+    {
+      "file": "src/precision-app.js",
+      "status": "added",
+      "sha256": "edbe06c3a806b1d9eb0cea1be0dbbc9f18c62495305fa260ca1c90893a110d02",
+      "bytes": 25941
+    },
+    {
+      "file": "src/precision-core.js",
+      "status": "added",
+      "sha256": "ecd6102262174c9be9de008b28f9287325a0853b1d59ee37e89752ec1331c034",
+      "bytes": 11972
+    },
+    {
+      "file": "src/template.html",
+      "status": "modified",
+      "sha256": "e1fa5ffb10b86028f00df62054b0a5c74c35c29cb5f971aecab16343e3b82fea",
+      "bytes": 20678
+    },
+    {
+      "file": "src/v5.css",
+      "status": "added",
+      "sha256": "c3829894d1078f07933fba4c7e734fd54974c64ee7d6b4ef3a813e17c9631ba1",
+      "bytes": 3130
+    }
+  ]
+}

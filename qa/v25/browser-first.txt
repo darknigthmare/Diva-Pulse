@@ -1,0 +1,18 @@
+PASS Delivered V25 initializes
+PASS Actual WebGL2 context
+PASS All original demos and difficulties retained
+PASS Face automation remains opt-in
+PASS Original face PMX import accepted
+PASS Model actually loaded
+PASS Real audio guide decoded and analyzed in Worker
+PASS Analysis alone leaves saved scene untouched
+FAIL Live model mouth is animated by preview
+Traceback (most recent call last):
+  File "/mnt/data/v25_work/DIVA_PULSE_V25/tests/v25_browser_test.py", line 33, in <module>
+    ok('Live model mouth is animated by preview',p.evaluate('PulseApp.stage.director.models[0].faceDiagnostic.open>.25'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v25_work/DIVA_PULSE_V25/tests/v25_browser_test.py", line 10, in ok
+    if not value:raise AssertionError(name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Live model mouth is animated by preview
+

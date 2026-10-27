@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: V24 standard append ratio -2
+ok 1 - V24 standard append ratio -2
+  ---
+  duration_ms: 1.343696
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio -1
+ok 2 - V24 standard append ratio -1
+  ---
+  duration_ms: 0.176426
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio 0
+ok 3 - V24 standard append ratio 0
+  ---
+  duration_ms: 0.188524
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio 0.25
+ok 4 - V24 standard append ratio 0.25
+  ---
+  duration_ms: 0.168124
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio 0.5
+ok 5 - V24 standard append ratio 0.5
+  ---
+  duration_ms: 0.160002
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio 1
+ok 6 - V24 standard append ratio 1
+  ---
+  duration_ms: 0.08645
+  type: 'test'
+  ...
+# Subtest: V24 standard append ratio 2
+ok 7 - V24 standard append ratio 2
+  ---
+  duration_ms: 0.07254
+  type: 'test'
+  ...
+# Subtest: V24 chained grants resolve dependencies independently of index
+ok 8 - V24 chained grants resolve dependencies independently of index
+  ---
+  duration_ms: 0.231028
+  type: 'test'
+  ...
+# Subtest: V24 translation flag does not copy rotation
+ok 9 - V24 translation flag does not copy rotation
+  ---
+  duration_ms: 0.342416
+  type: 'test'
+  ...
+# Subtest: V24 rotation flag does not copy translation
+ok 10 - V24 rotation flag does not copy translation
+  ---
+  duration_ms: 0.32445
+  type: 'test'
+  ...
+# Subtest: V24 local/world append stays unapplied with explicit warning
+ok 11 - V24 local/world append stays unapplied with explicit warning
+  ---
+  duration_ms: 0.244309
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant parent -1
+ok 12 - V24 invalid grant parent -1
+  ---
+  duration_ms: 0.334004
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant parent 2
+ok 13 - V24 invalid grant parent 2
+  ---
+  duration_ms: 0.063146
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant parent 0.5
+ok 14 - V24 invalid grant parent 0.5
+  ---
+  duration_ms: 0.047431
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant parent 1
+ok 15 - V24 invalid grant parent 1
+  ---
+  duration_ms: 0.041963
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant ratio Infinity
+ok 16 - V24 invalid grant ratio Infinity
+  ---
+  duration_ms: 0.09923
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant ratio NaN
+ok 17 - V24 invalid grant ratio NaN
+  ---
+  duration_ms: 0.047712
+  type: 'test'
+  ...
+# Subtest: V24 invalid grant ratio 101
+ok 18 - V24 invalid grant ratio 101
+  ---
+  duration_ms: 0.042934
+  type: 'test'
+  ...
+# Subtest: V24 grant cycle is rejected before rendering
+ok 19 - V24 grant cycle is rejected before rendering
+  ---
+  duration_ms: 0.154353
+  type: 'test'
+  ...
+# Subtest: V24 XYZ conversion 0.2,0.4,0.5
+ok 20 - V24 XYZ conversion 0.2,0.4,0.5
+  ---
+  duration_ms: 0.158289
+  type: 'test'
+  ...
+# Subtest: V24 XYZ conversion -0.8,0.1,-1
+ok 21 - V24 XYZ conversion -0.8,0.1,-1
+  ---
+  duration_ms: 0.04677
+  type: 'test'
+  ...
+# Subtest: V24 XYZ conversion 0,0,0
+ok 22 - V24 XYZ conversion 0,0,0
+  ---
+  duration_ms: 0.039449
+  type: 'test'
+  ...
+# Subtest: V24 XYZ conversion 1,-0.4,0.8
+ok 23 - V24 XYZ conversion 1,-0.4,0.8
+  ---
+  duration_ms: 0.034902
+  type: 'test'
+  ...
+# Subtest: V24 quaternion sign cannot reverse append result
+ok 24 - V24 quaternion sign cannot reverse append result
+  ---
+  duration_ms: 0.074923
+  type: 'test'
+  ...
+# Subtest: V24 IK projection clamps all three axes
+ok 25 - V24 IK projection clamps all three axes
+  ---
+  duration_ms: 0.18507
+  type: 'test'
+  ...
+# Subtest: V24 mirrored PMX Euler limits keep lower/upper ordering
+ok 26 - V24 mirrored PMX Euler limits keep lower/upper ordering
+  ---
+  duration_ms: 1.075121
+  type: 'test'
+  ...
+# Subtest: V24 PMX parser uses correct reflected IK bounds
+ok 27 - V24 PMX parser uses correct reflected IK bounds
+  ---
+  duration_ms: 2.906343
+  type: 'test'
+  ...
+# Subtest: V24 original PMX carries functional append metadata
+ok 28 - V24 original PMX carries functional append metadata
+  ---
+  duration_ms: 0.529939
+  type: 'test'
+  ...
+# Subtest: V24 original PMX cyclic grant fails import validation
+ok 29 - V24 original PMX cyclic grant fails import validation
+  ---
+  duration_ms: 0.641046
+  type: 'test'
+  ...
+# Subtest: V24 detects pose cycle 0.5 seconds with alternatives
+ok 30 - V24 detects pose cycle 0.5 seconds with alternatives
+  ---
+  duration_ms: 10.342847
+  type: 'test'
+  ...
+# Subtest: V24 detects pose cycle 0.8 seconds with alternatives
+ok 31 - V24 detects pose cycle 0.8 seconds with alternatives
+  ---
+  duration_ms: 9.188936
+  type: 'test'
+  ...
+# Subtest: V24 detects pose cycle 1 seconds with alternatives
+ok 32 - V24 detects pose cycle 1 seconds with alternatives
+  ---
+  duration_ms: 9.328907
+  type: 'test'
+  ...
+# Subtest: V24 detects pose cycle 1.5 seconds with alternatives
+ok 33 - V24 detects pose cycle 1.5 seconds with alternatives
+  ---
+  duration_ms: 7.885322
+  type: 'test'
+  ...
+# Subtest: V24 detects pose cycle 2 seconds with alternatives
+ok 34 - V24 detects pose cycle 2 seconds with alternatives
+  ---
+  duration_ms: 10.936176
+  type: 'test'
+  ...
+# Subtest: V24 motion analysis is immutable even on frozen keys
+ok 35 - V24 motion analysis is immutable even on frozen keys
+  ---
+  duration_ms: 2.811705
+  type: 'test'
+  ...
+# Subtest: V24 sign-flipping quaternion keys preserve periodicity
+ok 36 - V24 sign-flipping quaternion keys preserve periodicity
+  ---
+  duration_ms: 2.448443
+  type: 'test'
+  ...
+# Subtest: V24 static pose yields no arbitrary BPM
+ok 37 - V24 static pose yields no arbitrary BPM
+  ---
+  duration_ms: 1.245548
+  type: 'test'
+  ...
+# Subtest: V24 too-short motion yields no tempo
+ok 38 - V24 too-short motion yields no tempo
+  ---
+  duration_ms: 0.122314
+  type: 'test'
+  ...
+# Subtest: V24 morph-only animation yields no dance tempo
+ok 39 - V24 morph-only animation yields no dance tempo
+  ---
+  duration_ms: 0.108443
+  type: 'test'
+  ...
+# Subtest: V24 changing cycles refuses a misleading fixed BPM
+ok 40 - V24 changing cycles refuses a misleading fixed BPM
+  ---
+  duration_ms: 1.997763
+  type: 'test'
+  ...
+# Subtest: V24 nonfinite motion leaves original untouched on error
+ok 41 - V24 nonfinite motion leaves original untouched on error
+  ---
+  duration_ms: 1.49888
+  type: 'test'
+  ...
+# Subtest: V24 analysis time bounded to ninety seconds
+ok 42 - V24 analysis time bounded to ninety seconds
+  ---
+  duration_ms: 8.546237
+  type: 'test'
+  ...
+# Subtest: V24 real VMD binary produces repeat proposal
+ok 43 - V24 real VMD binary produces repeat proposal
+  ---
+  duration_ms: 11.421934
+  type: 'test'
+  ...
+# Subtest: V24 read-only persistent store rejects put
+ok 44 - V24 read-only persistent store rejects put
+  ---
+  duration_ms: 1.001951
+  type: 'test'
+  ...
+# Subtest: V24 read-only persistent store rejects atomic
+ok 45 - V24 read-only persistent store rejects atomic
+  ---
+  duration_ms: 0.24536
+  type: 'test'
+  ...
+# Subtest: V24 read-only persistent store rejects del
+ok 46 - V24 read-only persistent store rejects del
+  ---
+  duration_ms: 0.374184
+  type: 'test'
+  ...
+# Subtest: V24 read-only store permits reads and export source access
+ok 47 - V24 read-only store permits reads and export source access
+  ---
+  duration_ms: 1.224677
+  type: 'test'
+  ...
+# Subtest: V24 suspended writer cannot resume stale write rights
+ok 48 - V24 suspended writer cannot resume stale write rights
+  ---
+  duration_ms: 0.329027
+  type: 'test'
+  ...
+# Subtest: V24 denied write reports failure for existing rollback observers
+ok 49 - V24 denied write reports failure for existing rollback observers
+  ---
+  duration_ms: 0.241754
+  type: 'test'
+  ...
+# Subtest: V24 lease grants one writer, keeps second read-only and releases on pagehide
+ok 50 - V24 lease grants one writer, keeps second read-only and releases on pagehide
+  ---
+  duration_ms: 4.288777
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 177.721634

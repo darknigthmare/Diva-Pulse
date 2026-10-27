@@ -1,0 +1,147 @@
+{
+  "version": "28.0.0",
+  "buildSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "passed": 34,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V28 final application initializes",
+      "passed": true
+    },
+    {
+      "name": "Native WebGL2 software context",
+      "passed": true
+    },
+    {
+      "name": "All original demos and difficulties retained",
+      "passed": true
+    },
+    {
+      "name": "No initial recovery is fabricated",
+      "passed": true
+    },
+    {
+      "name": "Draft is written separately from source song",
+      "passed": true
+    },
+    {
+      "name": "Draft contains validated settings and preview cursor",
+      "passed": true
+    },
+    {
+      "name": "Temporary durability is honestly stated",
+      "passed": true
+    },
+    {
+      "name": "Recovered settings affect real skeleton, not metadata only",
+      "passed": true
+    },
+    {
+      "name": "Closing restores source and does not publish draft",
+      "passed": true
+    },
+    {
+      "name": "Reopening offers explicit recovery without applying it",
+      "passed": true
+    },
+    {
+      "name": "Recovery loads settings and saved cursor",
+      "passed": true
+    },
+    {
+      "name": "Recovery still leaves committed song unchanged",
+      "passed": true
+    },
+    {
+      "name": "Physics recovery fits mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow in mobile recovery form",
+      "passed": true
+    },
+    {
+      "name": "Failed write preserves newest recovery in memory",
+      "passed": true
+    },
+    {
+      "name": "Failed write is visible to the user",
+      "passed": true
+    },
+    {
+      "name": "Failed publication preserves scene, charts and editable form",
+      "passed": true
+    },
+    {
+      "name": "Backup is produced even while all writes are rejected",
+      "passed": true
+    },
+    {
+      "name": "Newest failed-write recovery is exported",
+      "passed": true
+    },
+    {
+      "name": "Legacy JSON backup transports independent physics recovery",
+      "passed": true
+    },
+    {
+      "name": "Bundle restoration creates copies only",
+      "passed": true
+    },
+    {
+      "name": "Restored recovery is rebound to copied owner and model pack",
+      "passed": true
+    },
+    {
+      "name": "Restored source remains disabled until explicit save",
+      "passed": true
+    },
+    {
+      "name": "Restored model and recovery run in actual renderer",
+      "passed": true
+    },
+    {
+      "name": "Explicit publication saves source settings",
+      "passed": true
+    },
+    {
+      "name": "Recovery tombstone is committed with the scene",
+      "passed": true
+    },
+    {
+      "name": "Published draft is not resurrected",
+      "passed": true
+    },
+    {
+      "name": "Discarding recovery preserves saved settings and does not resurrect on reopen",
+      "passed": true
+    },
+    {
+      "name": "No discarded physics recovery appears in backup",
+      "passed": true
+    },
+    {
+      "name": "Invalid recovery owner is rejected before restore confirmation",
+      "passed": true
+    },
+    {
+      "name": "Source song and original notes survived entire round trip unchanged",
+      "passed": true
+    },
+    {
+      "name": "No GPU error",
+      "passed": true
+    },
+    {
+      "name": "No render-loop failure",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript error",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "scope": "Chromium + SwiftShader; original PMX/VMD fixtures; temporary injected document, no physical device or native durability claim."
+}

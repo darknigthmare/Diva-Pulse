@@ -1,0 +1,38 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const F=require('./v27-fixtures.cjs'),M=require('../src/mmd-core.js'),P=require('../src/secondary-physics.js'),D=require('../src/physics-drafts.js');
+const ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);
+function setup(){const m=M.parsePmx(ab(F.pmx()),{full:true});return {m,w:new P.World(m.physics,m.bones,{enabled:true}),pose:m.bones.map(b=>({p:b.parent>=0?b.pos.map((v,k)=>v-m.bones[b.parent].pos[k]):[...b.pos],q:[0,0,0,1]}))};}
+const near=(a,b,eps=1e-6)=>assert.ok(Math.abs(a-b)<eps,`${a} differs from ${b}`);
+function run(s,end,fps,moving=false){let out;for(let i=0;i<=end*fps;i++){const pose=structuredClone(s.pose);if(moving)pose[0].p[0]+=(i/fps)*.2;out=s.w.update(i/fps,pose);}return out;}
+const owner={id:'song-a',duration:60,scene:{mmd:{id:'pack-a'}}};
+const record=(more={})=>({songId:owner.id,packId:'pack-a',updated:100,cursor:2,baseSignature:D.signature(),settings:P.normalize({enabled:true,gravity:12}),...more});
+test('V28 five fps preserves momentum and matches sixty fps at a fixed target',()=>{const a=setup(),b=setup(),x=run(a,2,5),y=run(b,2,60);assert.equal(a.w.stats.resets,1);assert.equal(a.w.stats.steps,120);for(let k=0;k<4;k++)near(x[1].q[k],y[1].q[k]);});
+test('V28 sampled linear kinematic targets survive slow frames',()=>{const a=setup(),b=setup(),x=run(a,2,5,true),y=run(b,2,60,true);assert.equal(a.w.stats.resets,1);for(let k=0;k<4;k++)near(x[1].q[k],y[1].q[k]);});
+test('V28 half-second frame is bounded, not an implicit seek',()=>{const s=setup();s.w.update(0,s.pose);s.w.update(.5,s.pose);assert.equal(s.w.stats.resets,1);assert.equal(s.w.stats.stepsThisFrame,12);near(s.w.stats.backlogSeconds,.3);});
+test('V28 pause with debt freezes pose and step count',()=>{const s=setup();s.w.update(0,s.pose);const out=s.w.update(.5,s.pose);for(let i=0;i<20;i++)assert.deepEqual(s.w.update(.5,s.pose),out);assert.equal(s.w.stats.steps,12);near(s.w.stats.backlogSeconds,.3);});
+test('V28 retained targets allow debt to drain on later advancing timestamps',()=>{const s=setup();s.w.update(0,s.pose);s.w.update(.5,s.pose);for(let i=1;i<=30;i++)s.w.update(.5+i/60,s.pose);assert.equal(s.w.stats.steps,60);assert.equal(s.w.stats.resets,1);near(s.w.stats.backlogSeconds,0);assert.ok(s.w.frames.length<=3);});
+test('V28 catch-up is never more than twelve solver ticks per rendered timestamp',()=>{const s=setup();s.w.update(0,s.pose);for(let i=1;i<15;i++){s.w.update(i*.25,s.pose);assert.ok(s.w.stats.stepsThisFrame<=12);assert.ok(s.w.frames.length<=128);}});
+test('V28 sustained overload is visible and resets rather than unbounded catch-up',()=>{const s=setup();s.w.update(0,s.pose);s.w.update(.9,s.pose);s.w.update(1.8,s.pose);assert.equal(s.w.stats.overloadResets,1);assert.match(s.w.stats.reason,/surcharge/);assert.equal(s.w.stats.backlogSeconds,0);});
+test('V28 real jump remains a reset with no history recomputation',()=>{const s=setup();run(s,1,60);const n=s.w.stats.steps;s.w.update(8,s.pose);assert.equal(s.w.stats.steps,n);assert.match(s.w.stats.reason,/saut/);assert.equal(s.w.frames.length,1);});
+test('V28 backward jump clears pending targets',()=>{const s=setup();s.w.update(0,s.pose);s.w.update(.5,s.pose);s.w.update(.1,s.pose);assert.equal(s.w.frames.length,1);assert.equal(s.w.stats.backlogSeconds,0);assert.match(s.w.stats.reason,/retour/);});
+test('V28 target queue owns poses independently from caller arrays',()=>{const s=setup();s.w.update(0,s.pose);s.w.update(.5,s.pose);const before=JSON.stringify(s.w.frames);s.pose[0].p[0]=99;assert.equal(JSON.stringify(s.w.frames),before);});
+test('V28 independent worlds do not share debt or frame queues',()=>{const a=setup(),b=setup();a.w.update(0,a.pose);a.w.update(.5,a.pose);b.w.update(0,b.pose);assert.equal(b.w.stats.backlogSeconds,0);assert.notEqual(a.w.frames,b.w.frames);});
+test('V28 dispose frees buffered history as well as bodies and joints',()=>{const s=setup();run(s,1,4);s.w.dispose();assert.equal(s.w.frames.length,0);assert.equal(s.w.items.length,0);});
+test('V28 settings signatures are normalized and stable across key order',()=>{assert.equal(D.signature({enabled:true,gravity:9.8}),D.signature({gravity:9.8,enabled:true}));assert.notEqual(D.signature(),D.signature({enabled:true}));});
+test('V28 recovery serializes normalized settings and canonical ID',()=>{const d=D.validate(record({id:'untrusted'}));assert.equal(d.id,'physics-draft:song-a');assert.equal(d.settings.gravity,12);assert.equal(d.version,28);});
+test('V28 recovery does not mutate its source',()=>{const raw=record(),s=JSON.stringify(raw),d=D.validate(raw);d.settings.gravity=2;assert.equal(JSON.stringify(raw),s);});
+for(const [name,value]of [['null',null],['empty',{}],['invalid owner',record({songId:5})],['non-finite timestamp',record({updated:NaN})],['negative timestamp',record({updated:-1})],['infinite cursor',record({cursor:Infinity})],['negative cursor',record({cursor:-.1})],['out-of-range setting',record({settings:{gravity:101}})],['invalid pack',record({packId:{}})]])test('V28 reject '+name+' before a draft can be applied',()=>assert.throws(()=>D.validate(value)));
+test('V28 latest memory draft wins a stale saved copy',()=>{const d=D.merge([record()],[record({updated:101,settings:{gravity:3}})],[owner]);assert.equal(d[0].settings.gravity,3);});
+test('V28 latest tombstone prevents discarded draft resurrection',()=>{const tomb={songId:owner.id,updated:102,discarded:true};assert.deepEqual(D.merge([record()],[tomb],[owner]),[]);});
+test('V28 older tombstone does not erase a newer recovery',()=>{assert.equal(D.merge([{songId:owner.id,updated:99,discarded:true}],[record()],[owner]).length,1);});
+test('V28 stale memory cannot overwrite a newer persisted draft',()=>{assert.equal(D.merge([record({updated:103,settings:{gravity:7}})],[record()],[owner])[0].settings.gravity,7);});
+test('V28 export filters recoveries by selected owner',()=>{assert.deepEqual(D.merge([record()],[],[{...owner,id:'song-b'}]),[]);});
+test('V28 export rejects a cursor beyond song duration',()=>assert.throws(()=>D.merge([record({cursor:61})],[],[owner]),/durée/));
+test('V28 imported recoveries reject duplicate or absent owners',()=>{assert.throws(()=>D.validateCollection([record(),record()],[owner]),/dupliqué/);assert.throws(()=>D.validateCollection([record()],[]),/absent/);});
+test('V28 imported recoveries reject tombstones and oversized collection',()=>{assert.throws(()=>D.validateCollection([{songId:owner.id,updated:100,discarded:true}],[owner]));assert.throws(()=>D.validateCollection(Array.from({length:251},record),[owner]));});
+test('V28 backup remapping attaches recovery to restored song and pack',()=>{const next={...owner,id:'restored',scene:{mmd:{id:'new-pack'}}},d=D.remap([record()],new Map([[owner.id,next.id]]),[next])[0];assert.equal(d.songId,'restored');assert.equal(d.packId,'new-pack');assert.equal(d.id,'physics-draft:restored');assert.equal(d.settings.gravity,12);});
+test('V28 remapping without restored owner fails',()=>assert.throws(()=>D.remap([record()],new Map(),[])));
+test('V28 changes to saved settings or pack are separately diagnosed',()=>{assert.deepEqual(D.conflicts(record(),owner),{settings:false,pack:false});assert.deepEqual(D.conflicts(record(),{...owner,scene:{mmd:{id:'another'},secondaryPhysics27:{gravity:1}}}),{settings:true,pack:true});});
+test('V28 omitted settings must not silently recover defaults',()=>{assert.throws(()=>D.validate(record({settings:undefined})),/réglages/);assert.throws(()=>D.validate(record({settings:[]})),/réglages/);});
+test('V28 invalid collection types cannot bypass preflight',()=>{for(const v of [null,false,0,{},''])assert.throws(()=>D.validateCollection(v,[owner]),/Collection/);});

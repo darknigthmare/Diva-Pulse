@@ -1,0 +1,25 @@
+.face25-modal{max-width:1050px;width:calc(100vw - 24px)}
+.face25-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.face25-options label{min-width:0}.face25-options select{width:100%}
+#faceGraph25{display:block;width:100%;height:120px;border:1px solid #324951;border-radius:10px;margin-top:16px}
+#faceCursor25{width:100%}.face25-key{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0}
+#faceKeys25{max-height:220px;overflow:auto}#faceGuide25{max-width:100%}
+#v25Settings p,.face25-modal p{overflow-wrap:anywhere}#faceSource25{font-size:.8rem;color:#bccfd2}
+@media(max-width:600px){.face25-options{grid-template-columns:repeat(2,minmax(0,1fr))}.face25-modal .buttons>*{max-width:100%}.face25-modal h2{font-size:1.5rem}}
+@media(max-width:380px){.face25-options{grid-template-columns:1fr}}
+
+#faceStage25{display:block;width:100%;height:auto;max-height:280px;object-fit:contain;border-radius:10px;background:#071423;margin:12px 0}
+
+/* Use the contents selector too: a queued close event cannot invalidate layout. */
+dialog#modal:has(#faceGraph25){width:min(1050px,calc(100vw - 24px));max-width:calc(100vw - 24px)}
+#modal:has(#faceGraph25) #modalContent>.dialog{width:100%;max-width:none;box-sizing:border-box}
+#modal:has(#faceGraph25) .check{display:flex;align-items:center;gap:10px;margin:12px 0;line-height:1.45}
+#modal:has(#faceGraph25) .check input{flex:0 0 auto;width:18px;height:18px;margin:0}
+#modal:has(#faceGraph25) .buttons{flex-wrap:wrap}
+#modal:has(#faceGraph25) .buttons>*{max-width:100%;min-width:0}
+#modal:has(#faceGraph25) label{overflow-wrap:anywhere}
+#modal:has(#faceGraph25) select,#modal:has(#faceGraph25) input:not([type=checkbox]){max-width:100%}
+@media(max-width:600px){#modal:has(#faceGraph25) #modalContent>.dialog{padding:20px 14px}#faceStage25{max-height:210px}#modal:has(#faceGraph25) h2{font-size:1.5rem}}
+#modal:has(#faceGraph25) .buttons{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px}
+#modal:has(#faceGraph25) .buttons>*{flex:1 1 210px}
+@media(max-width:600px){#modal:has(#faceGraph25) .buttons{display:grid;grid-template-columns:1fr}#modal:has(#faceGraph25) .buttons>*{width:100%;box-sizing:border-box}}

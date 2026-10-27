@@ -1,0 +1,46 @@
+PASS V26 actual delivered HTML boots
+PASS Real WebGL2 context
+PASS Historical demos and five difficulties retained
+PASS WAV decodes and builds an acoustic descriptor in a Worker
+PASS WAV still receives five automatic difficulties
+PASS MP3 creates a distinct song, not a silent merge
+PASS Reencoded audio is proposed automatically after import
+PASS Acoustic candidate does not claim exact identity
+PASS Candidate did not replace or preempt generated charts
+PASS No chart preselected for copying
+PASS Explicit timing confirmation required
+PASS Candidate audition actually starts current audio
+PASS Audition stops and no clock remains running
+PASS Rejected copy preserves both charts collections
+PASS Rejected copy leaves retryable dialog
+PASS Confirmed copy appends rather than replaces
+PASS New chart retains source note data and honest provenance
+PASS Source and destination shows remain untouched by copies
+PASS Shifted recording proposes correct direction of half-second delay
+PASS Candidate modal remains inside mobile viewport
+PASS Different same-tempo composition not proposed
+PASS Guide analysis creates a separate facial recovery
+PASS Recovery commit has not changed saved scene
+PASS Actual renderer uses recovered facial preview
+PASS Closing and reopening offers recovery explicitly
+PASS Opening editor did not apply recovered face automatically
+PASS Explicit recovery restores guide and controls
+PASS Rejected autosave keeps current recovery and guide in memory
+PASS Rejected recovery write is visible, not a success badge
+PASS New refused guide is not incorrectly claimed as stored
+PASS Rejected save keeps original face and retryable controls
+PASS Binary rescue export succeeds while writes are refused
+PASS Rescue contains latest guide that never reached storage
+PASS Facial draft changes never modified rhythm notes
+PASS Backup restores songs in copies
+PASS Restoration remaps recovery owner and unsaved guide ID
+PASS Restored voice is available as actual bytes
+PASS Restored draft can be explicitly resumed
+PASS Confirmed facial save publishes the recovered scene
+PASS Saved scene and cleared recovery commit together
+PASS Saved recovery is not offered again
+PASS Discarding recovery does not touch saved face
+PASS Discarded recovery not offered after reopening
+PASS Unknown draft owner is refused before restoration dialog
+PASS No renderer frame error
+PASS No unhandled JavaScript exception

@@ -1,0 +1,16 @@
+{
+  "version": "28.0.0",
+  "buildSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "passed": 0,
+  "failed": 1,
+  "checks": [
+    {
+      "name": "V24 delivered HTML initializes",
+      "passed": false
+    }
+  ],
+  "failure": "V24 delivered HTML initializes",
+  "errors": [],
+  "warnings": [],
+  "scope": "Real Chromium + software WebGL; temporary storage and simulated read-only state. No durability claim."
+}

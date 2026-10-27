@@ -1,0 +1,257 @@
+{
+  "suite": "V5 precision UI",
+  "passed": 62,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V5 boot preserves the three originals and fifteen existing charts",
+      "passed": true
+    },
+    {
+      "name": "Actual WebGL2 stage renders the final V5 build",
+      "passed": true
+    },
+    {
+      "name": "3/4 can be applied from the studio without moving notes",
+      "passed": true
+    },
+    {
+      "name": "Original imported/demo partition stays unchanged before save",
+      "passed": true
+    },
+    {
+      "name": "7/8 change begins at measure 3 and keeps custom groups",
+      "passed": true
+    },
+    {
+      "name": "Mid-bar change is refused with the full prior chart intact",
+      "passed": true
+    },
+    {
+      "name": "Refusal is explained to the user",
+      "passed": true
+    },
+    {
+      "name": "Undo restores the previous signature map",
+      "passed": true
+    },
+    {
+      "name": "Redo restores 7/8 without retiming",
+      "passed": true
+    },
+    {
+      "name": "Saving a meter edit creates a derived chart instead of overwriting the demo",
+      "passed": true
+    },
+    {
+      "name": "Exported MIDI contains the complete native meter map",
+      "passed": true
+    },
+    {
+      "name": "PV button creates camera shots on mixed-meter boundaries",
+      "passed": true
+    },
+    {
+      "name": "Refused PV save leaves scene unchanged and shows an error without uncaught rejection",
+      "passed": true
+    },
+    {
+      "name": "Practice dialog starts real worker-processed 75% audio",
+      "passed": true
+    },
+    {
+      "name": "Original audio remains the game timeline buffer",
+      "passed": true
+    },
+    {
+      "name": "Prepared buffer length matches segment duration divided by rate",
+      "passed": true
+    },
+    {
+      "name": "Count-in oscillators are scheduled separately from song data",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes the original musical timeline",
+      "passed": true
+    },
+    {
+      "name": "Resume reuses the stretched buffer at physical playback rate 1",
+      "passed": true
+    },
+    {
+      "name": "Adaptive loop prepares 80% audio only after successful attempt",
+      "passed": true
+    },
+    {
+      "name": "Loop history records previous speed separately",
+      "passed": true
+    },
+    {
+      "name": "Loop preparation overlay closes when audio is ready",
+      "passed": true
+    },
+    {
+      "name": "Leaving practice drops the temporary pitch buffer",
+      "passed": true
+    },
+    {
+      "name": "Multichannel audio is refused instead of discarding channels during stretching",
+      "passed": true
+    },
+    {
+      "name": "Cancelled preparation cannot finish later and install an orphan buffer",
+      "passed": true
+    },
+    {
+      "name": "Classic practice remains available at 25% without stretching",
+      "passed": true
+    },
+    {
+      "name": "Input offset is converted from real milliseconds to slowed song time",
+      "passed": true
+    },
+    {
+      "name": "Opaque-origin MIDI connection refusal is handled without device request",
+      "passed": true
+    },
+    {
+      "name": "Simulated MIDI inputs appear without claiming physical device verification",
+      "passed": true
+    },
+    {
+      "name": "Learn button remaps a lane and exits learn mode",
+      "passed": true
+    },
+    {
+      "name": "Learning an already-used note swaps assignments instead of duplicating",
+      "passed": true
+    },
+    {
+      "name": "MIDI learning respects the selected port and channel",
+      "passed": true
+    },
+    {
+      "name": "Disconnected selected input is labelled honestly rather than displayed as all inputs",
+      "passed": true
+    },
+    {
+      "name": "Independent MIDI ports preserve a held lane until the last release",
+      "passed": true
+    },
+    {
+      "name": "MIDI input records a held note through the existing studio history",
+      "passed": true
+    },
+    {
+      "name": "Stopping recording releases router-owned input sources",
+      "passed": true
+    },
+    {
+      "name": "Hot-unplug event releases that port and refreshes the input list",
+      "passed": true
+    },
+    {
+      "name": "Disconnect removes handlers and leaves no held MIDI source",
+      "passed": true
+    },
+    {
+      "name": "Academy shows six lessons, all accessible",
+      "passed": true
+    },
+    {
+      "name": "Desktop academy uses its full dialog width for readable three-column cards",
+      "passed": true
+    },
+    {
+      "name": "First lesson installs one original audio and six charts",
+      "passed": true
+    },
+    {
+      "name": "Lesson uses practice mode without ranked scores",
+      "passed": true
+    },
+    {
+      "name": "A deterministic full-speed perfect lesson earns a separate medal",
+      "passed": true
+    },
+    {
+      "name": "Academy result is visible and no normal record is written",
+      "passed": true
+    },
+    {
+      "name": "Reopening another lesson does not duplicate the training song",
+      "passed": true
+    },
+    {
+      "name": "HOLD lesson refuses a medal when bonus requirement is not met",
+      "passed": true
+    },
+    {
+      "name": "V5 pack contains academy progress, audio and meter map",
+      "passed": true
+    },
+    {
+      "name": "Restoring a V5 pack keeps existing medals and adds copies",
+      "passed": true
+    },
+    {
+      "name": "Library diagnostic reports unused media without deleting it",
+      "passed": true
+    },
+    {
+      "name": "Diagnostic JSON is exportable",
+      "passed": true
+    },
+    {
+      "name": "Storage invalidation refuses reads, writes and deletes rather than switching to empty memory",
+      "passed": true
+    },
+    {
+      "name": "390x844 library has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390x844 editor has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390x844 settings has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390x844 academy dialog stays within viewport",
+      "passed": true
+    },
+    {
+      "name": "844x390 library has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "844x390 editor has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "844x390 settings has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "844x390 academy dialog stays within viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript exceptions in V5 scenarios",
+      "passed": true
+    },
+    {
+      "name": "A corrupt stored chart no longer blocks startup of the remaining library",
+      "passed": true
+    },
+    {
+      "name": "Corrupt raw record is still present and was not silently rewritten",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "environment": "Chromium / Xvfb / SwiftShader; opaque origin; MIDI and storage fault injections are simulated"
+}

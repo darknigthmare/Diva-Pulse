@@ -1,0 +1,99 @@
+{
+  "title": "Contrôle tempo 120 → 180 → 90",
+  "difficulty": "NORMAL",
+  "bpm": 120,
+  "tempoMap": [
+    {
+      "time": 0,
+      "bpm": 120
+    },
+    {
+      "time": 2,
+      "bpm": 180
+    },
+    {
+      "time": 4,
+      "bpm": 90
+    }
+  ],
+  "offset": 0,
+  "notes": [
+    {
+      "time": 1,
+      "lane": 0,
+      "type": "hold",
+      "duration": 0.75,
+      "x": 0.2,
+      "y": 0.4,
+      "angle": 40,
+      "distance": 0.6,
+      "id": "note-0",
+      "approach": 1.6
+    },
+    {
+      "time": 2,
+      "lane": 1,
+      "x": 0.4,
+      "y": 0.3,
+      "id": "note-1",
+      "type": "tap",
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "time": 2.333333333,
+      "lane": 2,
+      "x": 0.6,
+      "y": 0.4,
+      "id": "note-2",
+      "type": "tap",
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "time": 3,
+      "lane": 3,
+      "x": 0.8,
+      "y": 0.5,
+      "id": "note-3",
+      "type": "tap",
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "time": 4,
+      "lane": 4,
+      "type": "slide",
+      "x": 0.6,
+      "y": 0.3,
+      "id": "note-4",
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "time": 5.333333333,
+      "lane": 5,
+      "type": "chain",
+      "duration": 0.4,
+      "x": 0.4,
+      "y": 0.5,
+      "id": "note-5",
+      "approach": 1.6
+    },
+    {
+      "time": 6,
+      "lane": 2,
+      "x": 0.3,
+      "y": 0.4,
+      "id": "note-6",
+      "type": "tap",
+      "duration": 0,
+      "approach": 1.6
+    }
+  ],
+  "format": "DIVA-PULSE",
+  "version": 3,
+  "id": "9976817e-eda5-4721-b413-a73d788e5802",
+  "gridOffset": 0,
+  "source": "manual"
+}

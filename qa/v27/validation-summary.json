@@ -1,0 +1,212 @@
+{
+  "version": "27.0.0",
+  "htmlSha256": "8434e7cbb8b1aec1855bb73ff375cc8da5023abdbb536287021894fca68509f0",
+  "htmlBytes": 809742,
+  "unit": {
+    "passed": 745,
+    "failed": 0
+  },
+  "browserTotal": 346,
+  "browserSuites": [
+    {
+      "name": "features",
+      "passed": 38,
+      "path": "qa/v27/features/browser-final.json"
+    },
+    {
+      "name": "playback",
+      "passed": 14,
+      "path": "qa/v27/playback/browser-final.json"
+    },
+    {
+      "name": "regression-v20",
+      "passed": 57,
+      "path": "qa/v27/regression-v20/browser-final.json"
+    },
+    {
+      "name": "regression-v21",
+      "passed": 44,
+      "path": "qa/v27/regression-v21/browser-final.json"
+    },
+    {
+      "name": "regression-v22",
+      "passed": 28,
+      "path": "qa/v27/regression-v22/browser-final.json"
+    },
+    {
+      "name": "regression-v23",
+      "passed": 39,
+      "path": "qa/v27/regression-v23/browser-final.json"
+    },
+    {
+      "name": "regression-v24",
+      "passed": 35,
+      "path": "qa/v27/regression-v24/browser-final.json"
+    },
+    {
+      "name": "regression-v25",
+      "passed": 40,
+      "path": "qa/v27/regression-v25/browser-final.json"
+    },
+    {
+      "name": "regression-v26",
+      "passed": 51,
+      "path": "qa/v27/regression-v26/browser-final.json"
+    }
+  ],
+  "nativeMMD": 4,
+  "launcher": 10,
+  "commands": [
+    {
+      "name": "logic-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/automap.test.cjs",
+        "tests/core.test.cjs",
+        "tests/creator.test.cjs",
+        "tests/live.test.cjs",
+        "tests/mmd.test.cjs",
+        "tests/offline-shell.test.cjs",
+        "tests/precision.test.cjs",
+        "tests/v10-director.test.cjs",
+        "tests/v11-mmd-fidelity.test.cjs",
+        "tests/v12-structure.test.cjs",
+        "tests/v13-tempo-formations.test.cjs",
+        "tests/v16-all-systems.test.cjs",
+        "tests/v19.test.cjs",
+        "tests/v20-autoshow.test.cjs",
+        "tests/v21-import.test.cjs",
+        "tests/v22.test.cjs",
+        "tests/v23-automap.test.cjs",
+        "tests/v23.test.cjs",
+        "tests/v24.test.cjs",
+        "tests/v25.test.cjs",
+        "tests/v26.test.cjs",
+        "tests/v27.test.cjs",
+        "tests/v9-director.test.cjs"
+      ],
+      "returncode": 0,
+      "seconds": 3.709
+    },
+    {
+      "name": "launcher-final",
+      "command": [
+        "python",
+        "tests/launcher_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 3.292
+    },
+    {
+      "name": "native-final",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_native_mmd_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 3.701
+    },
+    {
+      "name": "features-final",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_browser_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 31.172
+    },
+    {
+      "name": "regression-v20",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v20_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 56.743
+    },
+    {
+      "name": "regression-v21",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v21_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 38.214
+    },
+    {
+      "name": "regression-v22",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v22_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 35.527
+    },
+    {
+      "name": "regression-v23",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v23_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 38.313
+    },
+    {
+      "name": "regression-v24",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v24_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 24.24
+    },
+    {
+      "name": "regression-v25",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v25_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 19.649
+    },
+    {
+      "name": "regression-v26",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v27_regression_v26_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 37.047
+    }
+  ],
+  "playback": {
+    "path": "tests/v27_playback_browser_test.py",
+    "returncode": 0,
+    "htmlSha256": "8434e7cbb8b1aec1855bb73ff375cc8da5023abdbb536287021894fca68509f0"
+  },
+  "limits": [
+    "Secondary PBD approximation, not Bullet",
+    "Synthetic models, SwiftShader, temporary document",
+    "Large software-rendered viewport triggered slow-frame resets",
+    "Native IndexedDB durability and real devices not certified"
+  ]
+}

@@ -1,0 +1,33 @@
+PASS Boot: three original songs and fifteen charts
+PASS Real WebGL2 context, shader and stage drawing
+PASS Modules: trio, per-slot costume and sakura stage
+PASS GLB: embedded skinned model and animation loaded
+PASS GLB: animation changes joint rotation
+PASS GLB: original cast restored after clearing import
+PASS Audio import: decoded eight-second WAV, empty chart library
+PASS No chart: play disabled rather than inventing a level
+PASS Native chart import: all fifteen notes unchanged
+PASS LRC: synchronized local lyrics imported
+PASS Pause: audio clock is frozen
+PASS Complete real-time Autoplay: 15/15 COOL and 100%
+PASS Autoplay never creates a record
+PASS Manual editor: click adds an independent note
+PASS Manual editor: target position changed precisely
+PASS Manual editor: undo
+PASS Manual editor: redo
+PASS Edited imports saved as new versions, source intact
+PASS PV director: timed camera, dance and stage event saved
+PASS JSON export action serializes chart, scene and lyrics
+PASS Actual audio worker creates five additional chart difficulties
+PASS Generation does not overwrite the original chart
+PASS Binary DSC import through UI preserves timing and chord mapping
+PASS Reimporting exact audio file reuses song and charts
+PASS Malformed import: friendly error, library unchanged
+PASS Library export contains all songs and original media
+PASS Library restore creates copies without overwriting originals
+PASS Tactile setting stored
+PASS Search filters the visible song library
+PASS Mobile portrait has no horizontal page overflow
+PASS Mobile landscape has no horizontal page overflow
+PASS No uncaught JS or rendering errors in all tested flows
+RESULT 32 passed / 0 failed. JS errors: []

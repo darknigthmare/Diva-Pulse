@@ -1,0 +1,13 @@
+PASS Delivered V27 HTML boots
+PASS Real software WebGL2 context
+PASS Previous demos and 15 charts retained
+FAIL Import diagnostic describes physics before persistence
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 31, in <module>
+    ok('Import diagnostic describes physics before persistence','secondaire' in p.locator('#modal').inner_text().lower() or 'physiqu' in p.locator('#modal').inner_text().lower())
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 13, in ok
+    if not value:raise AssertionError(name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Import diagnostic describes physics before persistence
+

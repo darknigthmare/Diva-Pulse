@@ -1,0 +1,149 @@
+{
+  "environment": "Chromium 144 Linux / Playwright / Xvfb + SwiftShader / set_content (opaque origin)",
+  "checks": [
+    {
+      "name": "Boot: three original songs and fifteen charts",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 context, shader and stage drawing",
+      "passed": true
+    },
+    {
+      "name": "Modules: trio, per-slot costume and sakura stage",
+      "passed": true
+    },
+    {
+      "name": "GLB: embedded skinned model and animation loaded",
+      "passed": true
+    },
+    {
+      "name": "GLB: animation changes joint rotation",
+      "passed": true
+    },
+    {
+      "name": "GLB: original cast restored after clearing import",
+      "passed": true
+    },
+    {
+      "name": "Audio import: decoded eight-second WAV, empty chart library",
+      "passed": true
+    },
+    {
+      "name": "No chart: play disabled rather than inventing a level",
+      "passed": true
+    },
+    {
+      "name": "Native chart import: all fifteen notes unchanged",
+      "passed": true
+    },
+    {
+      "name": "LRC: synchronized local lyrics imported",
+      "passed": true
+    },
+    {
+      "name": "Pause: audio clock is frozen",
+      "passed": true
+    },
+    {
+      "name": "Complete real-time Autoplay: 15/15 COOL and 100%",
+      "passed": true
+    },
+    {
+      "name": "Autoplay never creates a record",
+      "passed": true
+    },
+    {
+      "name": "Manual editor: click adds an independent note",
+      "passed": true
+    },
+    {
+      "name": "Manual editor: target position changed precisely",
+      "passed": true
+    },
+    {
+      "name": "Manual editor: undo",
+      "passed": true
+    },
+    {
+      "name": "Manual editor: redo",
+      "passed": true
+    },
+    {
+      "name": "Edited imports saved as new versions, source intact",
+      "passed": true
+    },
+    {
+      "name": "PV director: timed camera, dance and stage event saved",
+      "passed": true
+    },
+    {
+      "name": "JSON export action serializes chart, scene and lyrics",
+      "passed": true
+    },
+    {
+      "name": "Actual audio worker creates five additional chart difficulties",
+      "passed": true
+    },
+    {
+      "name": "Generation does not overwrite the original chart",
+      "passed": true
+    },
+    {
+      "name": "Binary DSC import through UI preserves timing and chord mapping",
+      "passed": true
+    },
+    {
+      "name": "Reimporting exact audio file reuses song and charts",
+      "passed": true
+    },
+    {
+      "name": "Malformed import: friendly error, library unchanged",
+      "passed": true
+    },
+    {
+      "name": "Library export contains all songs and original media",
+      "passed": true
+    },
+    {
+      "name": "Library restore creates copies without overwriting originals",
+      "passed": true
+    },
+    {
+      "name": "Tactile setting stored",
+      "passed": true
+    },
+    {
+      "name": "Search filters the visible song library",
+      "passed": true
+    },
+    {
+      "name": "Mobile portrait has no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "Mobile landscape has no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JS or rendering errors in all tested flows",
+      "passed": true
+    }
+  ],
+  "passed": 32,
+  "failed": 0,
+  "uncaughtErrors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[DIVA PULSE] Error: Note 1 : temps invalide\n    at Object.validateChart (<anonymous>:49:19)\n    at App.importChart (<anonymous>:297:19)\n    at async <anonymous>:92:40\n    at async App.run (<anonymous>:146:20)"
+    }
+  ],
+  "notValidated": [
+    "HTTP or file navigation blocked by host browser policy",
+    "Persistent IndexedDB across reloads (opaque test origin)",
+    "Actual file download completion (serialization captured)",
+    "Physical gamepads, touch devices and Bluetooth latency",
+    "Safari, Firefox and Android browsers"
+  ]
+}

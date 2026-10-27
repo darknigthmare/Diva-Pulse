@@ -1,0 +1,59 @@
+PASS V5 boot preserves the three originals and fifteen existing charts
+PASS Actual WebGL2 stage renders the final V5 build
+PASS 3/4 can be applied from the studio without moving notes
+PASS Original imported/demo partition stays unchanged before save
+PASS 7/8 change begins at measure 3 and keeps custom groups
+PASS Mid-bar change is refused with the full prior chart intact
+PASS Refusal is explained to the user
+PASS Undo restores the previous signature map
+PASS Redo restores 7/8 without retiming
+PASS Saving a meter edit creates a derived chart instead of overwriting the demo
+PASS Exported MIDI contains the complete native meter map
+PASS PV button creates camera shots on mixed-meter boundaries
+PASS Practice dialog starts real worker-processed 75% audio
+PASS Original audio remains the game timeline buffer
+PASS Prepared buffer length matches segment duration divided by rate
+PASS Count-in oscillators are scheduled separately from song data
+PASS Pause freezes the original musical timeline
+PASS Resume reuses the stretched buffer at physical playback rate 1
+PASS Adaptive loop prepares 80% audio only after successful attempt
+PASS Loop history records previous speed separately
+PASS Loop preparation overlay closes when audio is ready
+PASS Leaving practice drops the temporary pitch buffer
+PASS Cancelled preparation cannot finish later and install an orphan buffer
+PASS Classic practice remains available at 25% without stretching
+PASS Input offset is converted from real milliseconds to slowed song time
+PASS Opaque-origin MIDI connection refusal is handled without device request
+PASS Simulated MIDI inputs appear without claiming physical device verification
+PASS Learn button remaps a lane and exits learn mode
+PASS Learning an already-used note swaps assignments instead of duplicating
+PASS Independent MIDI ports preserve a held lane until the last release
+PASS MIDI input records a held note through the existing studio history
+PASS Stopping recording releases router-owned input sources
+PASS Hot-unplug event releases that port and refreshes the input list
+PASS Disconnect removes handlers and leaves no held MIDI source
+PASS Academy shows six lessons, all accessible
+PASS First lesson installs one original audio and six charts
+PASS Lesson uses practice mode without ranked scores
+PASS A deterministic full-speed perfect lesson earns a separate medal
+PASS Academy result is visible and no normal record is written
+PASS Reopening another lesson does not duplicate the training song
+PASS HOLD lesson refuses a medal when bonus requirement is not met
+PASS V5 pack contains academy progress, audio and meter map
+PASS Restoring a V5 pack keeps existing medals and adds copies
+PASS Library diagnostic reports unused media without deleting it
+PASS Diagnostic JSON is exportable
+PASS Storage invalidation refuses reads, writes and deletes rather than switching to empty memory
+PASS 390x844 library has no horizontal overflow
+PASS 390x844 editor has no horizontal overflow
+PASS 390x844 settings has no horizontal overflow
+PASS 390x844 academy dialog stays within viewport
+PASS 844x390 library has no horizontal overflow
+PASS 844x390 editor has no horizontal overflow
+PASS 844x390 settings has no horizontal overflow
+PASS 844x390 academy dialog stays within viewport
+PASS No uncaught JavaScript exceptions in V5 scenarios
+DOWNLOAD_META [{'name': None, 'kind': 'object'}, {'name': 'NEON PROMISE.mid', 'kind': 'object'}, {'name': 'DIVA_PULSE_BIBLIOTHEQUE_V5.pulsepack', 'kind': 'string'}, {'name': 'DIVA_PULSE_DIAGNOSTIC_V5.json', 'kind': 'string'}]
+PASS A corrupt stored chart no longer blocks startup of the remaining library
+PASS Corrupt raw record is still present and was not silently rewritten
+RESULT 57 passed / 0 failed; errors: []

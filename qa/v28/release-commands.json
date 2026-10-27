@@ -1,0 +1,144 @@
+{
+  "htmlSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "commands": [
+    {
+      "name": "logic",
+      "command": [
+        "node",
+        "--test",
+        "tests/automap.test.cjs",
+        "tests/core.test.cjs",
+        "tests/creator.test.cjs",
+        "tests/live.test.cjs",
+        "tests/mmd.test.cjs",
+        "tests/offline-shell.test.cjs",
+        "tests/precision.test.cjs",
+        "tests/v10-director.test.cjs",
+        "tests/v11-mmd-fidelity.test.cjs",
+        "tests/v12-structure.test.cjs",
+        "tests/v13-tempo-formations.test.cjs",
+        "tests/v16-all-systems.test.cjs",
+        "tests/v19.test.cjs",
+        "tests/v20-autoshow.test.cjs",
+        "tests/v21-import.test.cjs",
+        "tests/v22.test.cjs",
+        "tests/v23-automap.test.cjs",
+        "tests/v23.test.cjs",
+        "tests/v24.test.cjs",
+        "tests/v25.test.cjs",
+        "tests/v26.test.cjs",
+        "tests/v27.test.cjs",
+        "tests/v28.test.cjs",
+        "tests/v9-director.test.cjs"
+      ],
+      "returncode": 0,
+      "seconds": 9.94
+    },
+    {
+      "name": "launcher",
+      "command": [
+        "python",
+        "tests/launcher_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 4.488
+    },
+    {
+      "name": "timing",
+      "command": [
+        "node",
+        "tests/v28_timing_benchmark.cjs"
+      ],
+      "returncode": 0,
+      "seconds": 0.266
+    },
+    {
+      "name": "native",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_native_mmd_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 5.407
+    },
+    {
+      "name": "features",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_browser_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 25.341
+    },
+    {
+      "name": "playback",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_playback_browser_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 31.803
+    },
+    {
+      "name": "regression-v20",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v20_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 68.323
+    },
+    {
+      "name": "regression-v24",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v24_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 37.7
+    },
+    {
+      "name": "regression-v25",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v25_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 23.441
+    },
+    {
+      "name": "regression-v26",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v26_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 38.506
+    },
+    {
+      "name": "regression-v27",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v27_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 28.2
+    }
+  ]
+}

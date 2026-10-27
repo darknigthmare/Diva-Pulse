@@ -1,0 +1,166 @@
+{
+  "version": "28.0.0",
+  "buildSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "passed": 38,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Delivered V27 HTML boots",
+      "passed": true
+    },
+    {
+      "name": "Real software WebGL2 context",
+      "passed": true
+    },
+    {
+      "name": "Previous demos and 15 charts retained",
+      "passed": true
+    },
+    {
+      "name": "Import diagnostic describes physics before persistence",
+      "passed": true
+    },
+    {
+      "name": "PMX physics data reaches renderer",
+      "passed": true
+    },
+    {
+      "name": "Physics remains off after importing compatible model",
+      "passed": true
+    },
+    {
+      "name": "Accessible explicit opt-in and per-model report",
+      "passed": true
+    },
+    {
+      "name": "Preview describes approximations honestly",
+      "passed": true
+    },
+    {
+      "name": "Actual preview advances fixed-step simulation",
+      "passed": true
+    },
+    {
+      "name": "Dynamic joint changes real render bone rotation",
+      "passed": true
+    },
+    {
+      "name": "Preview is silent and does not start song audio",
+      "passed": true
+    },
+    {
+      "name": "Preview did not change saved scene or chart data",
+      "passed": true
+    },
+    {
+      "name": "Pause stops physics time and holds rendered pose",
+      "passed": true
+    },
+    {
+      "name": "Scrub resets instead of simulating unseen history",
+      "passed": true
+    },
+    {
+      "name": "Reset returns preview to time zero",
+      "passed": true
+    },
+    {
+      "name": "Gravity setting is passed into active simulation",
+      "passed": true
+    },
+    {
+      "name": "Invalid preview setting visibly refused",
+      "passed": true
+    },
+    {
+      "name": "Physics dialog stays within portrait viewport",
+      "passed": true
+    },
+    {
+      "name": "Physics controls have no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Cancel disposes preview world and restores disabled source",
+      "passed": true
+    },
+    {
+      "name": "Refused save leaves scene and charts untouched",
+      "passed": true
+    },
+    {
+      "name": "Refused save keeps retryable settings dialog",
+      "passed": true
+    },
+    {
+      "name": "Confirmed save retains opt-in per song",
+      "passed": true
+    },
+    {
+      "name": "Other demo songs were not enabled silently",
+      "passed": true
+    },
+    {
+      "name": "Diagnostic export contains counts, settings and explicit scope",
+      "passed": true
+    },
+    {
+      "name": "Binary backup exports actual MMD project with physics",
+      "passed": true
+    },
+    {
+      "name": "Restoration creates copies rather than replacing original",
+      "passed": true
+    },
+    {
+      "name": "Restored copy retains physics options",
+      "passed": true
+    },
+    {
+      "name": "Restored actual PMX again supplies bodies and joints",
+      "passed": true
+    },
+    {
+      "name": "Restored chart content unchanged",
+      "passed": true
+    },
+    {
+      "name": "Restored character is actually simulated in renderer",
+      "passed": true
+    },
+    {
+      "name": "Unchecking immediately returns renderer to animation-only",
+      "passed": true
+    },
+    {
+      "name": "Explicit disable is stored without deleting model",
+      "passed": true
+    },
+    {
+      "name": "No-model song opens explanatory non-crashing panel",
+      "passed": true
+    },
+    {
+      "name": "Renderer finite and no dynamics fault",
+      "passed": true
+    },
+    {
+      "name": "WebGL error state stays clear",
+      "passed": true
+    },
+    {
+      "name": "No application frame error",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "warnings": [
+    "[DIVA PULSE] Error: QA27 refused dynamics save\n    at PulseApp.store.atomic (eval at evaluate (:290:30), <anonymous>:1:82)\n    at app.saveSecondarySettings (<anonymous>:39:20)\n    at async <anonymous>:60:73\n    at async App.run (<anonymous>:156:20)\n    at async <anonymous>:34:46"
+  ],
+  "scope": "Chromium + SwiftShader; document injection and temporary storage. Original small PMX fixture; not real-world MMD compatibility certification."
+}

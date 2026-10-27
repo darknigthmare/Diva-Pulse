@@ -1,0 +1,234 @@
+{
+  "buildSha256": "2d22a7ab40274ebe001cc9cbadea2343e9cd1d90a105b96c9d795606f5b46779",
+  "completed": true,
+  "passed": 44,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V21 boot, automatic show and import tools are ready",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Real WebGL2 context is available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New MMD bone palette has 1024 slots",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Temporary storage is disclosed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ZIP preflight lists both real PMD models",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Relative parent textures resolved before commit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Nothing is stored during preflight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Compatible VMD bone names are reported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preflight uses the desktop dialog width instead of a half-width panel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disposable pre-import preview actually renders the selected PMD",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preview leaves active scene and song data unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancelling preview keeps the original scene and media",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Missing texture prevents an unacknowledged import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit acknowledgement enables degraded import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Invalid model appears as blocked",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Validated ZIP creates a two-model MMD AutoShow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Both models actually load their parent-folder TGA texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Material VAOs share a single position buffer per model",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MMD bone animation changes with the song clock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rendered troupe is error-free in WebGL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A frame rendered during texture decoding cannot corrupt the bone palette",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Import did not change the rhythm charts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default troupe is saved explicitly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "One audio import creates 5 charts and inherits the selected cast",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Inherited cast references the same stored assets without copying files",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Inherited MMD troupe is animated by the new song AutoShow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Previously existing songs are not overwritten by a default troupe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed import keeps previous scene and retry controls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed import inserts no new media",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed import reports write failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "300-bone PMD is accepted by the preflight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual renderer loads and draws a 300-bone PMD",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Backup contains all four MMD data files",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Full library restores as copies",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default troupe preference is remapped to the restored source song",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Restored troupe reloads with real textures and new asset IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Automatic reuse can be turned off without deleting the model",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preflight dialog fits a portrait viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preflight button labels do not overflow on mobile",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No unhandled JavaScript errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No renderer frame failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No-WebGL environment explicitly disables 3D preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pack can be stored in fallback mode without pretending to render it",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Fallback import has no unhandled exception",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "uncaughtErrors": [],
+  "consoleWarnings": [
+    "[DIVA PULSE] Error: V21 QA write denied\n    at PulseApp.store.atomic (eval at evaluate (:290:30), <anonymous>:1:216)\n    at app.commitMMDImport (<anonymous>:51:20)\n    at <anonymous>:63:57\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46"
+  ],
+  "scope": "Chromium, real WebGL2 via software SwiftShader, document injection, temporary storage. No browser-restart persistence or physical peripherals test."
+}

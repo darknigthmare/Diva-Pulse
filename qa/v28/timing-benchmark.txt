@@ -1,0 +1,71 @@
+{
+  "scope": "Synthetic two-body original fixture, two seconds, constant target. Runtime CPU only; not measured display FPS.",
+  "v27": [
+    {
+      "fps": 5,
+      "steps": 0,
+      "resets": 11,
+      "rotationZ": 0,
+      "backlog": 0,
+      "milliseconds": 1.415001999999987
+    },
+    {
+      "fps": 10,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 0,
+      "milliseconds": 60.365892
+    },
+    {
+      "fps": 30,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 0,
+      "milliseconds": 40.651917999999995
+    },
+    {
+      "fps": 60,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 0,
+      "milliseconds": 40.53851800000001
+    }
+  ],
+  "v28": [
+    {
+      "fps": 5,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 2.220446049250313e-15,
+      "milliseconds": 20.533010999999988
+    },
+    {
+      "fps": 10,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 2.220446049250313e-15,
+      "milliseconds": 16.15233599999999
+    },
+    {
+      "fps": 30,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 2.220446049250313e-15,
+      "milliseconds": 13.339830000000006
+    },
+    {
+      "fps": 60,
+      "steps": 120,
+      "resets": 1,
+      "rotationZ": -0.45067821285643894,
+      "backlog": 2.220446049250313e-15,
+      "milliseconds": 14.53543000000002
+    }
+  ]
+}

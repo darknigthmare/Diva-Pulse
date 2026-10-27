@@ -1,0 +1,10 @@
+{
+  "version": "24.0.0",
+  "baseArchive": "DIVA_PULSE_V23_AUDIT_COMPATIBILITE_COMPLET.zip",
+  "htmlSha256": "d3435fc9cdc9136f252bd088b5566b403f724ada48b7817eff34c1416ace17d3",
+  "logic": 603,
+  "browser": 203,
+  "nativeMMD": 4,
+  "launcher": 10,
+  "deliveredAs": "Standalone HTML plus complete sources and test evidence. Google Drive receipt recorded externally after actual upload."
+}

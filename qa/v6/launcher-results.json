@@ -1,0 +1,47 @@
+{
+  "passed": 10,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Loopback health identifies exact V6 build",
+      "passed": true
+    },
+    {
+      "name": "Launcher serves standalone game bytes exactly",
+      "passed": true
+    },
+    {
+      "name": "Launcher adds no-cache, nosniff and no-referrer headers",
+      "passed": true
+    },
+    {
+      "name": "Same running build is reused on the same explicit port",
+      "passed": true
+    },
+    {
+      "name": "Manifest is served with manifest JSON MIME and correct icons",
+      "passed": true
+    },
+    {
+      "name": "Offline shell file is locally available: sw.js",
+      "passed": true
+    },
+    {
+      "name": "Offline shell file is locally available: icons/icon-192.png",
+      "passed": true
+    },
+    {
+      "name": "Offline shell file is locally available: icons/icon-512.png",
+      "passed": true
+    },
+    {
+      "name": "Foreign application collision fails instead of silently changing port",
+      "passed": true
+    },
+    {
+      "name": "Invalid non-user port is rejected",
+      "passed": true
+    }
+  ],
+  "scope": "Python loopback HTTP only; browser installation and persistence not tested"
+}

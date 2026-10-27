@@ -1,0 +1,127 @@
+{
+  "buildSha256": "8434e7cbb8b1aec1855bb73ff375cc8da5023abdbb536287021894fca68509f0",
+  "passed": 28,
+  "total": 28,
+  "failure": null,
+  "checks": [
+    {
+      "name": "V22 build and new UI ready",
+      "passed": true
+    },
+    {
+      "name": "Real software WebGL2 context",
+      "passed": true
+    },
+    {
+      "name": "Morph-only VMD has compatible morph names",
+      "passed": true
+    },
+    {
+      "name": "Independent preview renders the morph-only animation",
+      "passed": true
+    },
+    {
+      "name": "AutoShow selects the morph-only VMD",
+      "passed": true
+    },
+    {
+      "name": "Import keeps chart data intact",
+      "passed": true
+    },
+    {
+      "name": "Two materials share one UV buffer",
+      "passed": true
+    },
+    {
+      "name": "Material morph reaches zero opacity",
+      "passed": true
+    },
+    {
+      "name": "Material morph changes real framebuffer pixels",
+      "passed": true
+    },
+    {
+      "name": "Zero weight restores opacity without altering source",
+      "passed": true
+    },
+    {
+      "name": "UV morph reaches actual GPU buffer",
+      "passed": true
+    },
+    {
+      "name": "Seek resets UV GPU buffer",
+      "passed": true
+    },
+    {
+      "name": "Groups combine UV and opacity",
+      "passed": true
+    },
+    {
+      "name": "Surface renderer has no WebGL error",
+      "passed": true
+    },
+    {
+      "name": "Calibration has all three user fields",
+      "passed": true
+    },
+    {
+      "name": "BPM calibration is saved in motion metadata",
+      "passed": true
+    },
+    {
+      "name": "Source clock is present in actual AutoShow renderer clips",
+      "passed": true
+    },
+    {
+      "name": "Calibration never rewrites rhythm charts",
+      "passed": true
+    },
+    {
+      "name": "Renderer consumes music-beat source time",
+      "passed": true
+    },
+    {
+      "name": "Invalid BPM preserves scene and shows error",
+      "passed": true
+    },
+    {
+      "name": "Refused save preserves scene and retry dialog",
+      "passed": true
+    },
+    {
+      "name": "Manual montage preserved after source profile update",
+      "passed": true
+    },
+    {
+      "name": "Backup restores calibration and remaps asset IDs",
+      "passed": true
+    },
+    {
+      "name": "Restored manual montage keeps original clip clock",
+      "passed": true
+    },
+    {
+      "name": "Dialog fits portrait viewport",
+      "passed": true
+    },
+    {
+      "name": "Inputs stay in portrait viewport",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    },
+    {
+      "name": "No frame renderer failure",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "consoleWarnings": [
+    "[DIVA PULSE] Error: Tempo source hors plage.\n    at value (<anonymous>:44:94)\n    at Object.normalize (<anonymous>:47:12)\n    at app.saveMotionSync (<anonymous>:10:84)\n    at <anonymous>:20:18\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: V22 write denied\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:123)\n    at app.saveMotionSync (<anonymous>:11:20)\n    at <anonymous>:20:18\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46"
+  ],
+  "storage": "temporary",
+  "renderer": "Chromium WebGL2 SwiftShader"
+}

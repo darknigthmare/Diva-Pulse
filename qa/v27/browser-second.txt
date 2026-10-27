@@ -1,0 +1,26 @@
+PASS Delivered V27 HTML boots
+PASS Real software WebGL2 context
+PASS Previous demos and 15 charts retained
+PASS Import diagnostic describes physics before persistence
+PASS PMX physics data reaches renderer
+PASS Physics remains off after importing compatible model
+PASS Accessible explicit opt-in and per-model report
+PASS Preview describes approximations honestly
+PASS Actual preview advances fixed-step simulation
+PASS Dynamic joint changes real render bone rotation
+PASS Preview is silent and does not start song audio
+PASS Preview did not change saved scene or chart data
+PASS Pause stops physics time and holds rendered pose
+PASS Scrub resets instead of simulating unseen history
+PASS Reset returns preview to time zero
+PASS Gravity setting is passed into active simulation
+FAIL Invalid preview setting visibly refused
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 53, in <module>
+    field('physicsGravity27',200);ok('Invalid preview setting visibly refused','invalide' in p.locator('#physicsMessage27').inner_text().lower() or '100' in p.locator('#physicsMessage27').inner_text())
+                                  ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_browser_test.py", line 13, in ok
+    if not value:raise AssertionError(name)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Invalid preview setting visibly refused
+

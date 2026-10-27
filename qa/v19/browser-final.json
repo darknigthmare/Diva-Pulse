@@ -1,0 +1,448 @@
+{
+  "passed": 57,
+  "failed": 0,
+  "completed": true,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Standalone document build V19 loads the library",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Header identifies V19 rather than an old build",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Real WebGL2 context available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Opaque test document honestly shows temporary storage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Accessible profile selected via settings",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Settings expose actual Accessible timing windows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Precision choice is written to the active local store",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Records separate nonstandard profiles",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual file-input imports two PMDs, two VMDs and RLE TGA",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A PMD renders with four bones and its remapped facial morph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "RLE TGA is decoded and uploaded as a real GPU texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PMD draw has no WebGL errors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All imported files are persisted atomically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Director UI builds two independent tracks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Auto-PV edits do not modify the saved song before confirmation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preview loads both different PMD model instances",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Preview cannot overwrite stored Director state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Timeline cursor drives the preview clock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Independent VMDs actually move the two root bones differently",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual camera and light tracks are sampled by the renderer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Director light is sent to the WebGL shader",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PMD geometry really contributes pixels to the WebGL frame",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "VMD blending reaches the weighted bone pose at 50%",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Clip rate can be edited in the actual Director",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Director undo restores the prior clip rate",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "name": "Director redo restores the edit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Overlapping clips are rejected rather than partially accepted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rejected clip edit did not change the valid draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Dragging a timeline block changes its audio start in a free interval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Undo restores both the dragged clip and the removed neighbor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual camera key is loaded from the editable draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A zero-intensity light key remains zero in the real shader",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed Director save preserves the draft and leaves the song unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Failed save is visible to the player",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Director saves both models, clips, formation and camera/light tracks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Editing a complete spectacle leaves every chart unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Production pulsepack export contains every MMD asset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual restoration creates a copy without replacing the source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Restored Director references newly created asset IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Restored PMD troupe really reloads in the renderer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Restore with missing MMD media cannot insert a partial song",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Director remains within the simulated mobile viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile Director button labels fit inside their controls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Escape really cleans up the Director",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Real WAV decoding/worker analysis creates all five difficulties",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Generated charts preserve exact inherited timing, lane and positions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mapping does not invent notes in the silent start/end",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Every generated chart shares the same tempo map",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Gameplay uses the selected Precision judgment profile",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Complete real-audio autoplay finishes at 100 percent",
+      "passed": true,
+      "detail": {
+        "judgmentProfile": "precision",
+        "counts": {
+          "COOL": 15,
+          "FINE": 0,
+          "SAFE": 0,
+          "SAD": 0,
+          "MISS": 0,
+          "WRONG": 0
+        },
+        "total": 15,
+        "processed": 15,
+        "score": 15000,
+        "baseScore": 15000,
+        "holdBonus": 0,
+        "maxCombo": 15,
+        "accuracy": 100,
+        "life": 157,
+        "failed": false,
+        "cleared": true,
+        "fullCombo": true,
+        "rank": "S+",
+        "log": [
+          {
+            "noteId": "attack-0",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 0.499037
+          },
+          {
+            "noteId": "attack-3",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 0.999062
+          },
+          {
+            "noteId": "attack-6",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 1.499087
+          },
+          {
+            "noteId": "attack-9",
+            "lane": 1,
+            "rating": "COOL",
+            "error": 0,
+            "time": 1.999112
+          },
+          {
+            "noteId": "attack-12",
+            "lane": 1,
+            "rating": "COOL",
+            "error": 0,
+            "time": 2.499137
+          },
+          {
+            "noteId": "attack-15",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 2.999162
+          },
+          {
+            "noteId": "attack-18",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 3.499187
+          },
+          {
+            "noteId": "attack-21",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 3.999212
+          },
+          {
+            "noteId": "attack-24",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 4.499237
+          },
+          {
+            "noteId": "attack-27",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 4.999262
+          },
+          {
+            "noteId": "attack-30",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 5.499287
+          },
+          {
+            "noteId": "attack-33",
+            "lane": 2,
+            "rating": "COOL",
+            "error": 0,
+            "time": 5.999312
+          },
+          {
+            "noteId": "attack-36",
+            "lane": 2,
+            "rating": "COOL",
+            "error": 0,
+            "time": 6.499337
+          },
+          {
+            "noteId": "attack-39",
+            "lane": 0,
+            "rating": "COOL",
+            "error": 0,
+            "time": 6.999362
+          },
+          {
+            "noteId": "attack-41",
+            "lane": 1,
+            "rating": "COOL",
+            "error": 0,
+            "time": 7.332712
+          }
+        ],
+        "errors": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meanError": 0
+      }
+    },
+    {
+      "name": "Autoplay cannot write a normal player record",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reloading saved song data retains MMD blobs and Director associations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught JavaScript errors across all integrated flows",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No external runtime dependency or network request",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Fallback library boots when WebGL is disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No-WebGL Director remains editable and reports preview unavailable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No-WebGL setup can still save an MMD Director for later playback",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "uncaught": [],
+  "consoleWarnings": [
+    "[DIVA PULSE] Error: QA sauvegarde refusée\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:112)\n    at <anonymous>:124:175\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: Média MMD absent du pack : pmux7sa8z339vzmol7zt\n    at lookup (<anonymous>:117:92)\n    at Array.map (<anonymous>)\n    at Object.remapScene (<anonymous>:119:89)\n    at <anonymous>:117:590\n    at Array.map (<anonymous>)\n    at <anonymous>:117:29\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: WebGL2 indisponible : l’édition reste possible sans aperçu 3D.\n    at <anonymous>:123:77\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46"
+  ],
+  "externalRequests": [],
+  "scope": "Chromium desktop document injected by Playwright, SwiftShader WebGL2, explicit in-memory storage fallback, original PMD/VMD/TGA/WAV fixtures, responsive viewport and no-WebGL fallback. HTTP/file navigation blocked by browser policy: IndexedDB browser restart NOT validated. No physical MIDI/gamepad/Safari test."
+}

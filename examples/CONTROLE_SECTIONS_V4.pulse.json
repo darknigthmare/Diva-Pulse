@@ -1,0 +1,185 @@
+{
+  "id": "v4-controle-v4-sections-et-accords",
+  "title": "Controle V4 - sections et accords",
+  "difficulty": "NORMAL",
+  "bpm": 120,
+  "source": "manual",
+  "offset": 0,
+  "notes": [
+    {
+      "id": "v4-note-0",
+      "x": 0.2,
+      "y": 0.36,
+      "type": "tap",
+      "time": 1,
+      "lane": 0,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-1",
+      "x": 0.32,
+      "y": 0.54,
+      "type": "tap",
+      "time": 1.5,
+      "lane": 1,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-2",
+      "x": 0.44,
+      "y": 0.36,
+      "type": "tap",
+      "time": 2,
+      "lane": 2,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-3",
+      "x": 0.56,
+      "y": 0.54,
+      "type": "tap",
+      "time": 2.5,
+      "lane": 3,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-4",
+      "x": 0.6799999999999999,
+      "y": 0.36,
+      "type": "tap",
+      "time": 3,
+      "lane": 0,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-5",
+      "x": 0.8,
+      "y": 0.54,
+      "type": "tap",
+      "time": 3,
+      "lane": 1,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-6",
+      "x": 0.2,
+      "y": 0.36,
+      "type": "tap",
+      "time": 4,
+      "lane": 2,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-7",
+      "x": 0.32,
+      "y": 0.54,
+      "type": "tap",
+      "time": 4,
+      "lane": 3,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-8",
+      "x": 0.44,
+      "y": 0.36,
+      "type": "slide",
+      "time": 5,
+      "lane": 4,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-9",
+      "x": 0.56,
+      "y": 0.54,
+      "type": "slide",
+      "time": 5.5,
+      "lane": 5,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-10",
+      "x": 0.6799999999999999,
+      "y": 0.36,
+      "type": "chain",
+      "time": 6,
+      "lane": 5,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-11",
+      "x": 0.8,
+      "y": 0.54,
+      "type": "chain",
+      "time": 6.25,
+      "lane": 5,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-12",
+      "x": 0.2,
+      "y": 0.36,
+      "type": "chain",
+      "time": 6.5,
+      "lane": 5,
+      "duration": 0,
+      "approach": 1.6
+    },
+    {
+      "id": "v4-note-13",
+      "x": 0.32,
+      "y": 0.54,
+      "type": "hold",
+      "time": 7,
+      "lane": 0,
+      "duration": 0.75,
+      "approach": 1.6
+    }
+  ],
+  "sections": [
+    {
+      "id": "unit",
+      "label": "Symboles simples",
+      "from": 0.5,
+      "to": 2.9
+    },
+    {
+      "id": "chord",
+      "label": "Accords doubles",
+      "from": 2.9,
+      "to": 4.5
+    },
+    {
+      "id": "slide",
+      "label": "Slides et chaine",
+      "from": 4.5,
+      "to": 7
+    },
+    {
+      "id": "hold",
+      "label": "Maintien",
+      "from": 7,
+      "to": 8
+    }
+  ],
+  "format": "DIVA-PULSE",
+  "version": 4,
+  "gridOffset": 0,
+  "tempoMap": [
+    {
+      "time": 0,
+      "bpm": 120
+    }
+  ]
+}

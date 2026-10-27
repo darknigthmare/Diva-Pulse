@@ -1,0 +1,175 @@
+{
+  "version": "27.0.0",
+  "buildSha256": "6a33a46e31f06f26d555e99717113b12e39f698d530b921528d429ad350682d4",
+  "passed": 40,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Delivered V25 initializes",
+      "passed": true
+    },
+    {
+      "name": "Actual WebGL2 context",
+      "passed": true
+    },
+    {
+      "name": "All original demos and difficulties retained",
+      "passed": true
+    },
+    {
+      "name": "Face automation remains opt-in",
+      "passed": true
+    },
+    {
+      "name": "Original face PMX import accepted",
+      "passed": true
+    },
+    {
+      "name": "Model actually loaded",
+      "passed": true
+    },
+    {
+      "name": "Real audio guide decoded and analyzed in Worker",
+      "passed": true
+    },
+    {
+      "name": "Analysis alone leaves saved scene untouched",
+      "passed": true
+    },
+    {
+      "name": "Live model mouth is animated by preview",
+      "passed": true
+    },
+    {
+      "name": "Base source vertex array remains immutable",
+      "passed": true
+    },
+    {
+      "name": "Desktop dialog uses available width without empty gutter",
+      "passed": true
+    },
+    {
+      "name": "Rejected save preserves stored face source",
+      "passed": true
+    },
+    {
+      "name": "Rejected save preserves editor for retry",
+      "passed": true
+    },
+    {
+      "name": "Confirmed save commits facial plan and guide media",
+      "passed": true
+    },
+    {
+      "name": "Facial editing never rewrites charts",
+      "passed": true
+    },
+    {
+      "name": "Manual keys inserted through UI",
+      "passed": true
+    },
+    {
+      "name": "Manual track stored separately",
+      "passed": true
+    },
+    {
+      "name": "Facial displacement reaches actual GPU vertices",
+      "passed": true
+    },
+    {
+      "name": "Morph scratch memory is reused instead of a full allocation each frame",
+      "passed": true
+    },
+    {
+      "name": "GPU vertex returns to source at zero weight",
+      "passed": true
+    },
+    {
+      "name": "Facial buffer update has no GL error",
+      "passed": true
+    },
+    {
+      "name": "Actual renderer respects VMD group explicit zero",
+      "passed": true
+    },
+    {
+      "name": "Mobile analysis button remains readable at full row width",
+      "passed": true
+    },
+    {
+      "name": "Facial editor fits mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "Exported facial track restores into draft",
+      "passed": true
+    },
+    {
+      "name": "Cancel clears preview clock",
+      "passed": true
+    },
+    {
+      "name": "New audio import automatically prepares face when enabled",
+      "passed": true
+    },
+    {
+      "name": "New audio keeps five generated difficulties",
+      "passed": true
+    },
+    {
+      "name": "Auto face source has exact audio fingerprint",
+      "passed": true
+    },
+    {
+      "name": "Existing manual facial track is not replaced",
+      "passed": true
+    },
+    {
+      "name": "Binary backup has expected magic",
+      "passed": true
+    },
+    {
+      "name": "Binary export includes shared face guide",
+      "passed": true
+    },
+    {
+      "name": "Binary restoration creates copies",
+      "passed": true
+    },
+    {
+      "name": "Face guide media reference remapped on copy",
+      "passed": true
+    },
+    {
+      "name": "Restored character and manual face reload into renderer",
+      "passed": true
+    },
+    {
+      "name": "Altered media is refused before restore confirmation",
+      "passed": true
+    },
+    {
+      "name": "Corrupt archive reports integrity error",
+      "passed": true
+    },
+    {
+      "name": "Binary rescue export succeeds with every write forbidden",
+      "passed": true
+    },
+    {
+      "name": "No renderer frame failure",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "warnings": [
+    "[DIVA PULSE] Error: QA25 write denied\n    at PulseApp.store.atomic (eval at evaluate (:290:30), <anonymous>:1:80)\n    at app.saveFaceTrack (<anonymous>:20:319)\n    at async <anonymous>:51:76\n    at async App.run (<anonymous>:156:20)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: Média altéré : VOIX_SYNTHETIQUE_TEST.wav\n    at Object.unpack (<anonymous>:24:209)\n    at async <anonymous>:59:182\n    at async App.run (<anonymous>:156:20)\n    at async <anonymous>:34:46"
+  ],
+  "scope": "Real Chromium + software WebGL in opaque document. Temporary storage; no durability claim."
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "v25_browser_test.py",
+    "exit": 0,
+    "seconds": 21.35,
+    "log": "qa/v25/final-v25_browser_test.py.log"
+  },
+  {
+    "name": "v25_regression_v24_browser.py",
+    "exit": 0,
+    "seconds": 26.75,
+    "log": "qa/v25/final-v25_regression_v24_browser.py.log"
+  },
+  {
+    "name": "v25_regression_v23_browser.py",
+    "exit": 0,
+    "seconds": 39.51,
+    "log": "qa/v25/final-v25_regression_v23_browser.py.log"
+  },
+  {
+    "name": "v25_regression_v22_browser.py",
+    "exit": 0,
+    "seconds": 38.78,
+    "log": "qa/v25/final-v25_regression_v22_browser.py.log"
+  },
+  {
+    "name": "v25_regression_v21_browser.py",
+    "exit": 0,
+    "seconds": 48.03,
+    "log": "qa/v25/final-v25_regression_v21_browser.py.log"
+  },
+  {
+    "name": "v25_regression_v20_browser.py",
+    "exit": 0,
+    "seconds": 63.29,
+    "log": "qa/v25/final-v25_regression_v20_browser.py.log"
+  },
+  {
+    "name": "v25_native_mmd_browser.py",
+    "exit": 0,
+    "seconds": 3.7,
+    "log": "qa/v25/final-v25_native_mmd_browser.py.log"
+  },
+  {
+    "name": "launcher_test.py",
+    "exit": 0,
+    "seconds": 3.39,
+    "log": "qa/v25/final-launcher_test.py.log"
+  }
+]

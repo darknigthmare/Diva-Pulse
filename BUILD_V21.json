@@ -1,0 +1,25 @@
+{
+  "version": "21.0.0",
+  "base": "DIVA_PULSE_V20_AUTO_SHOW_COMPLET.zip",
+  "htmlSha256": "efd786930efc9a1661a740939f72338985a6eef46832d4cfbd25c919d5ca423f",
+  "logic": 433,
+  "browserNew": 44,
+  "browserRegression": 57,
+  "webglDiagnostic": 4,
+  "launcher": 10,
+  "claims": {
+    "universalMmdCompatibility": false,
+    "hardwareGpu": false,
+    "restartPersistence": false,
+    "deployed": false
+  },
+  "sources": [
+    "src/mmd-package.js",
+    "src/mmd-audit.js",
+    "src/mmd-import-app.js",
+    "src/mmd-import.css",
+    "src/mmd-core.js",
+    "src/mmd-compat.js",
+    "src/stage.js"
+  ]
+}

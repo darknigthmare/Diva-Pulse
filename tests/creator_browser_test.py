@@ -1,0 +1,113 @@
+"""V3 DOM workflows; Xvfb/SwiftShader, opaque origin. No browser policy changes.
+Downloads are captured as serialized Blobs; simulated inputs are not physical QA.
+"""
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+import json, traceback, os
+R=Path(__file__).resolve().parents[1];Q=R/'qa';checks=[];errors=[];observations={}
+def ok(name,value=True):
+ assert value,name
+ checks.append({'name':name,'passed':True});print('PASS',name,flush=True)
+def idle(p):p.wait_for_function('window.PulseApp&&!PulseApp.busy',timeout=20000)
+def nav(p,v):p.locator(f'nav [data-view="{v}"]').click();p.wait_for_function('(v)=>PulseApp.view===v',arg=v)
+def close(p):p.locator('#closeModal').click()
+with sync_playwright() as pw:
+ b=pw.chromium.launch(executable_path=os.environ.get('CHROMIUM','/usr/bin/chromium'),headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+ p=b.new_page(viewport={'width':1440,'height':1000});p.set_default_timeout(10000);p.on('pageerror',lambda e:errors.append(str(e)))
+ try:
+  p.set_content((R/'DIVA_PULSE_JOUER.html').read_text());p.wait_for_function('document.documentElement.dataset.v4Ready==="true"');p.mouse.click(20,190)
+  p.evaluate('window.downloads=[];PulseServices.download=(data,name,type)=>downloads.push({data,name,type});')
+  ok('V3 initialization completes and WebGL2 draws',p.evaluate('PulseCore.VERSION==="5.0.0"&&PulseApp.stage.available&&PulseApp.stage.gl.getError()===0'))
+  p.locator('#helpButton').click();ok('Help includes new workflows',p.locator('#modal').inner_text().find('V3 : MIDI')>=0);close(p)
+  p.locator('#audioInput').set_input_files(str(R/'examples/CONTROLE_120_BPM.wav'));idle(p)
+  p.locator('#chartInput').set_input_files(str(R/'examples/CONTROLE_TEMPO_VARIABLE_V3.mid'));idle(p)
+  ok('MIDI import opens a preview and never commits before confirmation',p.evaluate('PulseApp.song.charts.length===0') and p.locator('#midiNative').is_checked())
+  close(p);ok('Canceling MIDI import leaves chart library untouched',p.evaluate('PulseApp.song.charts.length===0'))
+  p.locator('#chartInput').set_input_files(str(R/'examples/CONTROLE_TEMPO_VARIABLE_V3.mid'));idle(p);p.locator('#confirmMIDI').click();idle(p)
+  ok('Native MIDI import restores all seven notes and three tempos',p.evaluate('PulseApp.chart.notes.length===7&&PulseApp.chart.tempoMap.length===3&&PulseApp.chart.source==="midi-native"&&PulseApp.chart.notes[0].angle===40'))
+  p.evaluate('window.originalChart=structuredClone(PulseApp.chart)')
+  p.locator('#libraryAudit').click();ok('Chart audit opens and remains non-destructive',p.locator('#auditList').count()==1 and p.evaluate('PulseCore.chartSignature(PulseApp.chart)===PulseCore.chartSignature(originalChart)'));close(p)
+  nav(p,'editor');p.locator('.tempo-panel summary').click();p.locator('#tempoTime').fill('3');p.locator('#tempoBpm').fill('150');p.locator('#tempoAdd').click()
+  ok('Tempo editor inserts event without retiming imported notes',p.evaluate('PulseApp.editor.chart.tempoMap.length===4&&PulseCore.chartSignature(PulseApp.editor.chart)===PulseCore.chartSignature(originalChart)'))
+  p.locator('#editorBpm').fill('130');p.locator('#editorBpm').press('Tab')
+  ok('Changing first BPM preserves later tempo events',p.evaluate('PulseApp.editor.chart.tempoMap.length===4&&PulseApp.editor.chart.tempoMap[0].bpm===130'))
+  p.locator('#undoButton').click();ok('Tempo changes participate in undo history',p.evaluate('PulseApp.editor.chart.tempoMap[0].bpm===120'))
+  p.locator('#selectAll').click();ok('Select-all displays seven selected notes',p.locator('#selectionCount').inner_text().startswith('7'))
+  p.locator('#copyNotes').click();p.evaluate('PulseApp.editor.cursor=8');p.locator('#pasteNotes').click()
+  ok('Group paste creates seven notes with unique IDs',p.evaluate('PulseApp.editor.chart.notes.length===14&&new Set(PulseApp.editor.chart.notes.map(n=>n.id)).size===14&&PulseApp.editor.selection.size===7'))
+  p.locator('#layoutPattern').select_option('arc');p.locator('#applyLayout').click();ok('Arc layout only modifies selected group',p.evaluate('PulseApp.editor.selectedNotes.every(n=>n.x>=.14&&n.x<=.86)&&PulseApp.editor.chart.notes[0].x===originalChart.notes[0].x'))
+  p.locator('#undoButton').click();p.locator('#undoButton').click();ok('Group layout and paste each undo atomically',p.evaluate('PulseApp.editor.chart.notes.length===7'))
+  p.locator('#selectAll').click();p.locator('#groupShift').fill('-20');p.locator('#shiftNotes').click();ok('Invalid group shift is rejected without partial changes',p.evaluate('PulseApp.editor.chart.notes.length===7&&PulseApp.editor.chart.notes[0].time===1'))
+  p.locator('#selectNone').click();p.evaluate('PulseApp.editor.select([PulseApp.editor.chart.notes[0]])');p.locator('#noteAngle').fill('-50');p.locator('#noteAngle').press('Tab');p.locator('#noteDistance').fill('.82');p.locator('#noteDistance').press('Tab')
+  ok('Target inspector edits angle and distance precisely',p.evaluate('PulseApp.editor.note.angle===-50&&PulseApp.editor.note.distance===.82'))
+  p.locator('#editorSave').click();idle(p)
+  ok('Editing MIDI makes a derivative and preserves the native source',p.evaluate('PulseApp.song.charts.length===2&&PulseApp.chart.source==="manual-derived"&&PulseCore.chartSignature(PulseApp.song.charts.find(c=>c.id===originalChart.id))===PulseCore.chartSignature(originalChart)'))
+  p.locator('#editorMIDI').click()
+  ok('MIDI export produces a standard binary file with exact native chart metadata',p.evaluate('''async()=>{const d=downloads.at(-1),m=PulseCore.parseMIDI(await d.data.arrayBuffer());return d.name.endsWith('.mid')&&m.format===1&&PulseCore.chartSignature(m.nativeChart)===PulseCore.chartSignature(PulseApp.editor.chart);}'''))
+  p.locator('#autoPV').click();p.locator('#confirmAutoPV').click();p.wait_for_function('!document.getElementById("modal").open')
+  ok('Auto PV aligns cuts to variable-tempo measures and audio bounds',p.evaluate('PulseApp.song.scene.events.length>0&&PulseApp.song.scene.events.every(e=>e.time>=0&&e.time<PulseApp.song.duration&&Math.abs(PulseCore.timeToBeat(PulseApp.editor.chart,e.time)/16-Math.round(PulseCore.timeToBeat(PulseApp.editor.chart,e.time)/16))<1e-6)'))
+  p.locator('#pvBlend').fill('.8');p.locator('#pvBlend').press('Tab');p.locator('#videoOffset').fill('.15');p.locator('#videoOffset').press('Tab')
+  ok('PV camera blend and video offset stored per song',p.evaluate('PulseApp.song.scene.blend===.8&&PulseApp.song.videoOffset===.15'))
+  p.locator('#editorMetronome').check();p.evaluate('PulseApp.editor.cursor=0');p.locator('#editorPlay').click();idle(p);p.wait_for_timeout(350);p.locator('#editorStop').click()
+  ok('Variable-tempo metronome schedules real Web Audio playback',p.evaluate('PulseApp.editor.metronome&&PulseApp.audio.ctx.state==="running"'))
+  p.evaluate('document.getElementById("toast").hidden=true');p.screenshot(path=str(Q/'v3-studio.png'),full_page=True)
+  nav(p,'library');p.evaluate('PulseApp.selectedChartId=originalChart.id');nav(p,'editor')
+  ok('Reopening studio follows selected chart instead of stale derivative',p.evaluate('PulseApp.editor.chart.id===originalChart.id'))
+  nav(p,'wardrobe');p.locator('#stageGrid button').first.click();p.wait_for_timeout(100)
+  ok('Concert stage includes audience and moving beam subtree',p.evaluate('PulseApp.stage.concertFX.children.length>60'))
+  p.locator('#stageLights').uncheck();p.wait_for_function('PulseApp.stage.concertFX.hidden===true');ok('Concert effects can be disabled',p.evaluate('PulseApp.stage.concertFX.hidden===true'))
+  p.locator('#castSlot').select_option('1');p.locator('#avatarGrid button').nth(1).click();idle(p)
+  p.locator('#castSpacing').fill('1.3');p.locator('#castSpacing').press('Tab');p.wait_for_function('PulseApp.stage.spacing===1.3&&PulseApp.stage.rigs.some(r=>Math.abs(r.p[0]-r.baseX*1.3)<.0001)')
+  ok('Cast spacing changes rig placement without rebuilding chart',p.evaluate('PulseApp.stage.spacing===1.3&&PulseApp.stage.rigs.some(r=>Math.abs(r.p[0]-r.baseX*1.3)<.0001)'))
+  ok('Camera seeking is deterministic rather than frame-count dependent',p.evaluate('''()=>{const s=PulseApp.stage;s.events=[{time:0,camera:'front',stage:'arena',dance:'idol'},{time:2,camera:'close',stage:'arena',dance:'idol'}];s.render(2.4,120);const a=JSON.stringify(s.eye);s.render(4,120);s.render(2.4,120);return a===JSON.stringify(s.eye)&&s.gl.getError()===0;}'''))
+  p.locator('#wardrobe summary').click();p.locator('#modelInput').set_input_files(str(R/'examples/MANNEQUIN_QA_ANIME.glb'));idle(p)
+  p.locator('#modelRotation').fill('90');p.locator('#modelRotation').press('Tab');p.locator('#modelScale').fill('1.5');p.locator('#modelScale').press('Tab');p.wait_for_function('PulseApp.stage.modelRotation===90&&PulseApp.stage.modelScale===1.5')
+  ok('Imported animated GLB supports orientation and scale controls',p.evaluate('PulseApp.stage.custom&&PulseApp.stage.modelRotation===90&&PulseApp.stage.modelScale===1.5&&PulseApp.stage.gl.getError()===0'))
+  p.locator('#clearModel').click();p.wait_for_function('!PulseApp.stage.custom');p.locator('#stageLights').check();p.wait_for_timeout(100);p.screenshot(path=str(Q/'v3-concert.png'),full_page=True)
+  nav(p,'settings');p.locator('#outputClock').check();ok('Output presentation clock is opt-in and reflected in settings',p.evaluate('PulseApp.settings.outputClock&&document.getElementById("clockInfo").textContent.includes("active")'))
+  p.locator('#outputClock').uncheck();p.locator('#graphicsQuality').select_option('0');p.locator('#noFail').check();nav(p,'library')
+  # Exercise actual keyboard handlers against an audio clock; hardware is not emulated.
+  p.locator('#playButton').click();idle(p)
+  p.evaluate('''()=>{const a=PulseApp,keys=['KeyD','KeyF','KeyJ','KeyK','KeyS','KeyL'],events=[];for(const n of a.gameChart.notes){events.push({t:n.time,code:keys[n.lane],down:true},{t:n.time+(n.duration||.08),code:keys[n.lane],down:false});}events.sort((a,b)=>a.t-b.t);let i=0;function tick(){if(a.view!=='game')return;while(i<events.length&&a.audio.time>=events[i].t){const e=events[i++];document.dispatchEvent(new KeyboardEvent(e.down?'keydown':'keyup',{code:e.code,bubbles:true,cancelable:true}));}requestAnimationFrame(tick);}requestAnimationFrame(tick);}''')
+  p.wait_for_function('PulseApp.view==="results"',timeout=15000);p.wait_for_function('PulseApp.lastReplay?.inputs.length>0')
+  ok('Normal input handlers produce a replay and session history',p.evaluate('PulseApp.lastReplay.inputs.length>=14&&PulseApp.v3State.sessions.length===1'))
+  original=p.evaluate('({score:PulseApp.lastResult.score,counts:PulseApp.lastResult.counts})');observations['capturedKeyboardResult']=original
+  ok('Offline replay simulation reproduces captured result',p.evaluate('(r)=>{const s=PulseCore.simulateReplay(PulseApp.lastReplay);return s.score===r.score&&JSON.stringify(s.counts)===JSON.stringify(r.counts);}',original))
+  p.locator('#exportReplay').click();ok('Replay export contains inputs and native chart, not media',p.evaluate('(()=>{const r=JSON.parse(downloads.at(-1).data);return r.format==="DIVA-PULSE-REPLAY"&&r.chart.notes.length===7&&r.inputs.length>=14&&!r.assets;})()'))
+  p.locator('#watchReplay').click();idle(p);p.wait_for_function('PulseApp.audio.time>1.1');p.locator('#pauseButton').click();p.wait_for_timeout(120);p.locator('#resumeGame').click();p.wait_for_function('PulseApp.view==="results"',timeout=15000)
+  ok('Real-time replay including pause reproduces score and judgments',p.evaluate('(r)=>PulseApp.lastResult.score===r.score&&JSON.stringify(PulseApp.lastResult.counts)===JSON.stringify(r.counts)',original))
+  ok('Replay is visibly non-ranked and never writes a record',p.evaluate('PulseApp.scores.length===0&&document.getElementById("resultMode").textContent.includes("REPLAY")'))
+  p.screenshot(path=str(Q/'v3-replay.png'),full_page=True)
+  p.locator('#resultBack').click();p.locator('#setlistsButton').click();p.locator('#setlistTitle').fill('Concert de contrôle');p.locator('#queueAdd').click();p.locator('#queueAdd').click();p.locator('#queueSave').click();p.wait_for_timeout(100)
+  ok('Setlist saves actual song/chart references and preserves order',p.evaluate('PulseApp.v3State.setlists.length===1&&PulseApp.v3State.setlists[0].entries.length===2&&PulseApp.v3State.setlists[0].entries.every(e=>e.chartId===originalChart.id)'))
+  p.locator('#queueLaunch').click();idle(p);ok('Setlist launch selects requested chart and concert progress',p.evaluate('PulseApp.gameChart.id===originalChart.id&&document.getElementById("gameModeLabel").textContent.includes("1/2")'))
+  # The setlist transition is a controlled engine completion, not a performed clear.
+  p.evaluate('async()=>{PulseApp.engine.update(9,true);await PulseApp.finish();}');p.locator('#setlistNext').click();idle(p)
+  ok('Next setlist track starts only after explicit result action',p.evaluate('PulseApp.activeSetlist.index===1&&document.getElementById("gameModeLabel").textContent.includes("2/2")'))
+  p.locator('#pauseButton').click();p.locator('#leaveGame').click()
+  # Verify imported score references on copies; a synthetic record is explicitly QA data.
+  p.evaluate('''async()=>{let a=PulseApp,c=a.chart,r={id:a.scoreKey(c),songId:a.song.id,chartId:c.id,score:4321,accuracy:90,counts:{COOL:7}};a.scores.push(r);await a.store.put('scores',r);}''')
+  nav(p,'settings');p.locator('#exportLibrary').click();idle(p);pack=p.evaluate('downloads.at(-1).data');p.evaluate('window.beforeRestore={songs:PulseApp.songs.length,scores:PulseApp.scores.length,setlists:PulseApp.v3State.setlists.length};')
+  p.locator('#backupInput').set_input_files({'name':'restore-v3.pulsepack','mimeType':'application/json','buffer':pack.encode()});idle(p)
+  ok('Restore is explicit and preferences stay unchecked by default',not p.locator('#restorePreferences').is_checked() and p.evaluate('PulseApp.songs.length===beforeRestore.songs'))
+  p.locator('#confirmRestore').click();idle(p)
+  ok('V3 restore duplicates songs and reattaches score IDs',p.evaluate('PulseApp.songs.length===beforeRestore.songs*2&&PulseApp.scores.length===beforeRestore.scores*2&&PulseApp.scores.every(r=>PulseApp.songs.some(s=>s.id===r.songId))'))
+  ok('V3 restore remaps setlists to newly copied songs',p.evaluate('PulseApp.v3State.setlists.length===beforeRestore.setlists*2&&PulseApp.v3State.setlists.at(-1).entries[0].songId!==PulseApp.v3State.setlists[0].entries[0].songId'))
+  ok('Temporary storage transactions reject all rows on error',p.evaluate('''async()=>{const s=new PulseServices.Store;try{await s.atomic([['songs',{id:'must-not-survive'}],['unknown',{id:'bad'}]]);}catch{}return (await s.all('songs')).length===0;}'''))
+  invalid={'format':'DIVA-PULSE-LIBRARY','songs':[{'id':'bad','charts':[{'notes':[{'time':-1,'lane':0}]}]}],'assets':[]}
+  p.locator('#backupInput').set_input_files({'name':'invalid.pulsepack','mimeType':'application/json','buffer':json.dumps(invalid).encode()});idle(p)
+  ok('Invalid library rejected before data mutation',p.evaluate('PulseApp.songs.length===beforeRestore.songs*2&&document.getElementById("toast").classList.contains("error")'))
+  p.locator('#replayInput').set_input_files({'name':'invalid.pulsereplay','mimeType':'application/json','buffer':b'{"format":"DIVA-PULSE-REPLAY","inputs":[],"chart":{}}'});idle(p)
+  ok('Invalid replay reports error without opening a game',p.evaluate('PulseApp.view==="settings"&&document.getElementById("toast").classList.contains("error")'))
+  for width,height,name in [(390,844,'portrait'),(844,390,'landscape')]:
+   p.set_viewport_size({'width':width,'height':height})
+   for view in ['library','editor','wardrobe','settings']:
+    nav(p,view);p.wait_for_timeout(80)
+    ok(f'V3 {name} {view}: no horizontal document overflow',p.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+   nav(p,'editor');p.evaluate('document.getElementById("toast").hidden=true');p.screenshot(path=str(Q/f'v3-{name}-editor.png'),full_page=True)
+  ok('All V3 workflows have no uncaught JS or rendering error',not errors and p.evaluate('!PulseApp.frameError'))
+ except Exception as e:
+  print(traceback.format_exc());checks.append({'name':'Interrupted V3 workflow','passed':False,'error':str(e)});p.screenshot(path=str(Q/'v3-failure.png'),full_page=True)
+ finally:
+  result={'checks':checks,'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'errors':errors,'observations':observations,'scope':'Chromium / Xvfb / SwiftShader / set_content opaque origin; real media rendering; DOM keyboard simulations; download serialization only; no durable IndexedDB/device QA.'}
+  (Q/'creator-browser-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));print('RESULT',result['passed'],'passed /',result['failed'],'failed',flush=True);b.close()

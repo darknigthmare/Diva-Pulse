@@ -1,0 +1,208 @@
+TAP version 13
+# Subtest: default meter remains 4/4
+ok 1 - default meter remains 4/4
+  ---
+  duration_ms: 3.57306
+  type: 'test'
+  ...
+# Subtest: 3/4 measures are three quarter notes
+ok 2 - 3/4 measures are three quarter notes
+  ---
+  duration_ms: 1.503164
+  type: 'test'
+  ...
+# Subtest: 7/8 grouping defaults to 2+2+3
+ok 3 - 7/8 grouping defaults to 2+2+3
+  ---
+  duration_ms: 0.229386
+  type: 'test'
+  ...
+# Subtest: changing meter preserves note timestamps
+ok 4 - changing meter preserves note timestamps
+  ---
+  duration_ms: 0.2057
+  type: 'test'
+  ...
+# Subtest: mid-measure signature changes are rejected atomically
+ok 5 - mid-measure signature changes are rejected atomically
+  ---
+  duration_ms: 0.347974
+  type: 'test'
+  ...
+# Subtest: invalid group sum is rejected
+ok 6 - invalid group sum is rejected
+  ---
+  duration_ms: 0.31904
+  type: 'test'
+  ...
+# Subtest: empty meter map is rejected
+ok 7 - empty meter map is rejected
+  ---
+  duration_ms: 0.200181
+  type: 'test'
+  ...
+# Subtest: duplicate meter positions rejected
+ok 8 - duplicate meter positions rejected
+  ---
+  duration_ms: 0.218479
+  type: 'test'
+  ...
+# Subtest: grid phase and variable BPM remain exact
+ok 9 - grid phase and variable BPM remain exact
+  ---
+  duration_ms: 0.642257
+  type: 'test'
+  ...
+# Subtest: bar lines remain on 7/8 when quarter grid selected
+ok 10 - bar lines remain on 7/8 when quarter grid selected
+  ---
+  duration_ms: 0.602548
+  type: 'test'
+  ...
+# Subtest: 6/8 metronome accents groups with unique boundaries
+ok 11 - 6/8 metronome accents groups with unique boundaries
+  ---
+  duration_ms: 0.415155
+  type: 'test'
+  ...
+# Subtest: PV follows four bars in 3/4, not sixteen quarters
+ok 12 - PV follows four bars in 3/4, not sixteen quarters
+  ---
+  duration_ms: 0.63736
+  type: 'test'
+  ...
+# Subtest: meter roundtrip in native MIDI retains map
+ok 13 - meter roundtrip in native MIDI retains map
+  ---
+  duration_ms: 1.382391
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.25x preserves a 440 Hz tone and requested duration
+ok 14 - WSOLA 0.25x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 29.294254
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.5x preserves a 440 Hz tone and requested duration
+ok 15 - WSOLA 0.5x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 16.228168
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.75x preserves a 440 Hz tone and requested duration
+ok 16 - WSOLA 0.75x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 6.216341
+  type: 'test'
+  ...
+# Subtest: WSOLA 1x preserves a 440 Hz tone and requested duration
+ok 17 - WSOLA 1x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 1.919441
+  type: 'test'
+  ...
+# Subtest: WSOLA 1.25x preserves a 440 Hz tone and requested duration
+ok 18 - WSOLA 1.25x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 4.757895
+  type: 'test'
+  ...
+# Subtest: WSOLA 1.5x preserves a 440 Hz tone and requested duration
+ok 19 - WSOLA 1.5x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 3.455444
+  type: 'test'
+  ...
+# Subtest: unity rate copies samples without aliasing
+ok 20 - unity rate copies samples without aliasing
+  ---
+  duration_ms: 1.313649
+  type: 'test'
+  ...
+# Subtest: stereo opposite phase does not become silence
+ok 21 - stereo opposite phase does not become silence
+  ---
+  duration_ms: 7.387565
+  type: 'test'
+  ...
+# Subtest: silent audio stays silent
+ok 22 - silent audio stays silent
+  ---
+  duration_ms: 1.914613
+  type: 'test'
+  ...
+# Subtest: short audio does not loop indefinitely
+ok 23 - short audio does not loop indefinitely
+  ---
+  duration_ms: 0.125279
+  type: 'test'
+  ...
+# Subtest: invalid stretch rate and mismatched channels rejected
+ok 24 - invalid stretch rate and mismatched channels rejected
+  ---
+  duration_ms: 5.324268
+  type: 'test'
+  ...
+# Subtest: MIDI note on/off timestamps forwarded
+ok 25 - MIDI note on/off timestamps forwarded
+  ---
+  duration_ms: 0.373903
+  type: 'test'
+  ...
+# Subtest: MIDI velocity zero is note off
+ok 26 - MIDI velocity zero is note off
+  ---
+  duration_ms: 0.101512
+  type: 'test'
+  ...
+# Subtest: MIDI repeat is not a second strike
+ok 27 - MIDI repeat is not a second strike
+  ---
+  duration_ms: 0.104287
+  type: 'test'
+  ...
+# Subtest: MIDI channels and ports release independently
+ok 28 - MIDI channels and ports release independently
+  ---
+  duration_ms: 0.203786
+  type: 'test'
+  ...
+# Subtest: MIDI input rejected during modal cannot latch a key
+ok 29 - MIDI input rejected during modal cannot latch a key
+  ---
+  duration_ms: 0.075254
+  type: 'test'
+  ...
+# Subtest: mapping rejects duplicates and out-of-range notes
+ok 30 - mapping rejects duplicates and out-of-range notes
+  ---
+  duration_ms: 0.095885
+  type: 'test'
+  ...
+# Subtest: MIDI reconfigure releases held sources
+ok 31 - MIDI reconfigure releases held sources
+  ---
+  duration_ms: 0.166841
+  type: 'test'
+  ...
+# Subtest: system exclusive and malformed MIDI ignored
+ok 32 - system exclusive and malformed MIDI ignored
+  ---
+  duration_ms: 0.082564
+  type: 'test'
+  ...
+# Subtest: storage audit is read-only and reports missing and unused assets
+ok 33 - storage audit is read-only and reports missing and unused assets
+  ---
+  duration_ms: 0.610529
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 33
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 154.018216

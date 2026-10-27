@@ -1,0 +1,394 @@
+DIVA//PULSE
+STUDIO & RELIABILITY 19.0
+JOUER
+MODULES
+STUDIO
+RÉGLAGES
+⛶
+TEMPORAIRE
+02 / MODULE SELECT
+COMPOSE
+TON LIVE.
+
+Silhouettes procédurales inspirées des personnages. Elles ne remplacent pas les modèles détaillés de Project DIVA.
+
+Emplacement du personnage
+1 · Soliste / centre
+2 · Partenaire gauche
+3 · Partenaire droite
+MIKU
+Hatsune Miku
+RIN
+Kagamine Rin
+LEN
+Kagamine Len
+LUKA
+Megurine Luka
+KAITO
+KAITO
+MEIKO
+MEIKO
+MODULE / TENUE
+CLASSIQUE
+Étude de silhouette
+NEON CIRCUIT
+Accents lumineux
+SNOW SIGNAL
+Blanc, col et jupe
+NOCTURNE
+Tenue sombre & chapeau
+ENVIRONNEMENT
+NEON ARENA
+Scène de concert
+MIDNIGHT CITY
+Toits de la ville
+SAKURA GARDEN
+Jardin suspendu
+GLASS ORBIT
+Observatoire orbital
+Lumières de concert & public
+Écart des partenaires
+Caméra
+Montage automatique
+Face
+Portrait
+Plan large
+Travelling orbital
+Plongée
+Chorégraphie
+Idol pulse
+Step groove
+Wave
+Clap
+Reach
+Spin
+Pose
+Importer ton modèle 3D GLB
+MMD Stage · PMX/PMD + VMD/VPD
+
+Importe tes propres modèles et motions MikuMikuDance. Les fichiers restent locaux. Les droits des modèles, textures et motions restent ceux de leurs auteurs.
+
+＋ Importer un pack MMD
+Retirer le pack
+model · PULSE_BOT_A.pmdmodel · PULSE_BOT_B.pmdmotion · MOTION_A.vmdmotion · MOTION_B.vmdtexture · DIAG.tga
+Offset motion (ms)
+Vitesse motion
+Utiliser la caméra VMD si disponible
+IK MMD (solveur CCD)
+Boucler la motion si elle est plus courte que le morceau
+Physique Bullet / rigid bodies — à venir
+
+Physique Bullet et soft bodies non intégrés ; toon simplifié.
+
+＋ Importer un dossierDIRECTOR · TIMELINE & PLANS
+Importer un Director JSON
+VALIDER & RETOURNER AUX MORCEAUX
+APERÇU 3D TEMPS RÉEL
+Capturer la scène
+DIRECTOR / ÉDITION NON DESTRUCTIVE
+MONTE TON SPECTACLE.
+
+Temps exprimés en secondes de la chanson. Les changements restent un brouillon jusqu’à Enregistrer. L’aperçu est silencieux.
+
+Activer
+Danseurs
+Espacement
+Caméra VMD
+Annuler
+Rétablir
+Auto-PV · remplacer le brouillon
+Exporter le Director JSON
+D1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+D2
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+Curseur
+1.00 s
+Charger l’aperçu du brouillon
+ENREGISTRER LE SPECTACLE
+
+Le glisser sur une bande déplace son clip ; les champs permettent le réglage précis. Les chevauchements sont refusés. Transition : fondu depuis la dernière pose du clip précédent, uniquement s’il est adjacent.
+
+DANSEUR 1
+Modèle
+Modèle par défaut
+PULSE_BOT_A.pmd
+PULSE_BOT_B.pmd
+Motion de base
+Motion par défaut
+MOTION_A.vmd
+MOTION_B.vmd
+Rotation °
+Taille
+17 clips · réglages détaillés
+＋ Clip au curseur
+1
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+2
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+3
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+4
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+5
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+6
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+7
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+8
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+9
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+10
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+11
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+12
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+13
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+14
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+15
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+16
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+17
+VMD
+Pose VPD / repos
+MOTION_A.vmd
+MOTION_B.vmd
+Début s
+Fin s
+Vitesse
+Départ VMD s
+Fondu s
+Boucle
+Caméra VMD
+×
+DANSEUR 2
+Modèle
+Modèle par défaut
+PULSE_BOT_A.pmd
+PULSE_BOT_B.pmd
+Motion de base
+Motion par défaut
+MOTION_A.vmd
+MOTION_B.vmd
+Rotation °
+Taille
+17 clips · réglages détaillés
+Caméra & éclairage · clés manuelles
+
+Brouillon — 34 clips · 17 clés caméra · 17 clés lumière.
+
+×

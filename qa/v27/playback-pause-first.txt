@@ -1,0 +1,12 @@
+PASS Actual PV starts audio and the physics world
+PASS PV mesh receives a nonzero simulated bone rotation in an observed frame
+FAIL Game pause holds audio time and physical steps
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_playback_browser_test.py", line 22, in <module>
+    ok('Game pause holds audio time and physical steps',p.evaluate('PulseApp.paused&&PulseApp.audio.time===t27&&PulseApp.stage.director.models[0].secondaryWorld.stats.steps===stepsPV27'))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_playback_browser_test.py", line 9, in ok
+    if not v:raise AssertionError(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Game pause holds audio time and physical steps
+

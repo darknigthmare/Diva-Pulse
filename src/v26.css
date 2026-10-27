@@ -1,0 +1,10 @@
+.match26-card{border:1px solid #344954;background:#0c1724;padding:18px;margin:14px 0;border-radius:12px}.match26-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:16px 0}#audioMatch26 .buttons{flex-wrap:wrap}#faceRecovery26{padding:14px;border:1px solid #58aa97;border-radius:12px;margin:12px 0;background:#102a31}#faceRecovery26 .buttons{flex-wrap:wrap}#faceDraftStatus26{padding:10px;border-left:3px solid #69d4bb;background:#0a1720}#audioMatch26 input[type=checkbox]{flex-shrink:0}#audioMatch26 label.check{align-items:flex-start}#audioMatches26 label{min-width:0}#audioMatches26 input[type=number]{width:100%}@media(max-width:600px){.match26-card{padding:12px}.match26-charts{grid-template-columns:1fr}#audioMatches26 .buttons{display:grid;grid-template-columns:1fr}#faceRecovery26 button{flex:1;min-width:180px}}
+/* Bound the entire dialog, not just its cards: long action labels must wrap. */
+#modal:has(#audioMatches26){width:min(980px,calc(100vw - 24px));max-width:calc(100vw - 24px)}
+#modal:has(#audioMatches26) #modalContent>.dialog{width:100%;max-width:none;box-sizing:border-box}
+#modal:has(#audioMatches26) button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+#modal:has(#audioMatches26) .check{display:flex;gap:10px;align-items:flex-start;line-height:1.5;margin:12px 0}
+#modal:has(#audioMatches26) .check input{flex:0 0 18px;width:18px;height:18px;margin:0}
+#modal:has(#audioMatches26) h3,#modal:has(#audioMatches26) p{overflow-wrap:anywhere}
+#audioMatch26 button{white-space:normal;min-width:0;max-width:100%;overflow-wrap:anywhere}
+@media(max-width:600px){#modal:has(#audioMatches26) #modalContent>.dialog{padding:24px 16px}#modal:has(#audioMatches26) h2{font-size:26px}}

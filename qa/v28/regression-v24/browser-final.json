@@ -1,0 +1,156 @@
+{
+  "version": "28.0.0",
+  "buildSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "passed": 35,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V24 delivered HTML initializes",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 context exists",
+      "passed": true
+    },
+    {
+      "name": "Three demo songs and five difficulties retained",
+      "passed": true
+    },
+    {
+      "name": "Opaque origin storage accurately marked temporary",
+      "passed": true
+    },
+    {
+      "name": "No false persistent-storage promise in temporary mode",
+      "passed": true
+    },
+    {
+      "name": "Append PMX validates for import",
+      "passed": true
+    },
+    {
+      "name": "Append model renders in independent preview",
+      "passed": true
+    },
+    {
+      "name": "Imported MMD keeps rhythm charts unchanged",
+      "passed": true
+    },
+    {
+      "name": "Append translation reaches actual model pose",
+      "passed": true
+    },
+    {
+      "name": "Append rotation reaches actual model pose",
+      "passed": true
+    },
+    {
+      "name": "Backward seek resets append without accumulation",
+      "passed": true
+    },
+    {
+      "name": "Same time produces same appended pose",
+      "passed": true
+    },
+    {
+      "name": "Runtime IK limit is applied to actual bone quaternion",
+      "passed": true
+    },
+    {
+      "name": "Append and IK rendered without GL errors",
+      "passed": true
+    },
+    {
+      "name": "VMD analysis uses actual imported binary",
+      "passed": true
+    },
+    {
+      "name": "Period analysis offers half/double alternatives",
+      "passed": true
+    },
+    {
+      "name": "Analysis alone changes neither scene nor notes",
+      "passed": true
+    },
+    {
+      "name": "Proposal only fills source BPM field",
+      "passed": true
+    },
+    {
+      "name": "Cancel proposal leaves saved show intact",
+      "passed": true
+    },
+    {
+      "name": "Explicit save commits chosen clock",
+      "passed": true
+    },
+    {
+      "name": "Automatic renderer gets calibrated source BPM",
+      "passed": true
+    },
+    {
+      "name": "Changing source BPM preserves manual montage",
+      "passed": true
+    },
+    {
+      "name": "Read-only write reports conflict with retryable dialog",
+      "passed": true
+    },
+    {
+      "name": "Read-only write keeps original scene",
+      "passed": true
+    },
+    {
+      "name": "Read-only checkbox rolls back value and UI",
+      "passed": true
+    },
+    {
+      "name": "Read-only key remapping rolls back without unhandled promise",
+      "passed": true
+    },
+    {
+      "name": "Denied diagnostic APIs do not break the game",
+      "passed": true
+    },
+    {
+      "name": "Read-only state still exports complete library",
+      "passed": true
+    },
+    {
+      "name": "Restored copy retains source clock",
+      "passed": true
+    },
+    {
+      "name": "Restored manual montage reloads MMD with its original clock",
+      "passed": true
+    },
+    {
+      "name": "Motion suggestion dialog fits mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "Suggestion buttons fit mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "Storage panel fits mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "No renderer frame failure",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "warnings": [
+    "[DIVA PULSE] Error: Protection indisponible ici : utilise le lanceur local ou HTTPS.\n    at <anonymous>:77:120\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: Lecture seule : une autre fenêtre utilise cette bibliothèque, ou cette page a été suspendue. Exporter les brouillons, fermer les autres fenêtres puis recharger.\n    at Store.assertWritable (<anonymous>:48:25)\n    at Store.atomic (<anonymous>:57:22)\n    at app.store.<computed> (<anonymous>:145:244)\n    at app.store.atomic (<anonymous>:15:107)\n    at app.store.atomic (<anonymous>:85:191)",
+    "[DIVA PULSE] Error: Lecture seule : une autre fenêtre utilise cette bibliothèque, ou cette page a été suspendue. Exporter les brouillons, fermer les autres fenêtres puis recharger.\n    at Store.assertWritable (<anonymous>:48:25)\n    at Store.atomic (<anonymous>:57:22)\n    at app.store.<computed> (<anonymous>:145:244)\n    at app.store.atomic (<anonymous>:15:107)\n    at app.store.atomic (<anonymous>:85:191)\n    at Store.put (<anonymous>:51:44)\n    at app.store.<computed> (<anonymous>:145:244)\n    at app.store.put (<anonymous>:14:68)\n    at app.store.put (<anonymous>:84:58)\n    at <anonymous>:24:167"
+  ],
+  "scope": "Real Chromium + software WebGL; temporary storage and simulated read-only state. No durability claim."
+}

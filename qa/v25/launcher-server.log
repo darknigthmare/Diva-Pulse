@@ -1,0 +1,13 @@
+
+DIVA PULSE — SQUELETTES & SAUVEGARDES 25.0.0
+http://127.0.0.1:46023/
+Gardez cette fenêtre ouverte. Ctrl+C pour arrêter.
+Le serveur écoute uniquement cet ordinateur. Aucun média n’est téléversé.
+
+127.0.0.1 - - [07/Oct/2026 13:27:31] "GET /pulse-health HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:31] "GET /pulse-health HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:32] "GET /manifest.webmanifest HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:32] "GET /sw.js HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:32] "GET /icons/icon-192.png HTTP/1.1" 200 -
+127.0.0.1 - - [07/Oct/2026 13:27:32] "GET /icons/icon-512.png HTTP/1.1" 200 -

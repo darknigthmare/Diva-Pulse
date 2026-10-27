@@ -1,0 +1,160 @@
+"""V5 UI, DSP and input verification on the actual standalone build.
+Chromium + Xvfb / SwiftShader. set_content uses an opaque origin.
+MIDI devices, connection events and deliberate storage failures are test doubles.
+No browser policy, permission, endpoint or device configuration is changed.
+"""
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+import json,traceback
+R=Path(__file__).resolve().parents[1];Q=R/'qa/v5';Q.mkdir(exist_ok=True)
+checks=[];errors=[]
+def ok(name,value=True):
+ assert value,name
+ checks.append({'name':name,'passed':True});print('PASS',name,flush=True)
+def idle(p):p.wait_for_function('window.PulseApp&&!PulseApp.busy',timeout=60000)
+def close(p):
+ if p.locator('#modal').evaluate('(e)=>e.open'):p.locator('#closeModal').click()
+def nav(p,v):
+ if p.evaluate('PulseApp.view==="game"'):
+  p.evaluate('()=>{PulseApp.closeModal();PulseApp.paused=false;PulseApp.pause();}')
+  p.locator('#leaveGame').click();idle(p)
+ close(p);p.evaluate('(v)=>PulseApp.showView(v)',v);p.wait_for_function('(v)=>PulseApp.view===v',arg=v)
+def group(name,fn):
+ try:fn()
+ except Exception as e:
+  checks.append({'name':name,'passed':False,'error':str(e)});print('FAIL',name,str(e),flush=True);traceback.print_exc()
+  try:p.screenshot(path=str(Q/('error-'+name+'.png')),full_page=True);p.evaluate('PulseApp.audio.stop();PulseApp.paused=true;');close(p)
+  except Exception:pass
+with sync_playwright() as pw:
+ b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+ p=b.new_page(viewport={'width':1440,'height':1000});p.set_default_timeout(14000);p.on('pageerror',lambda e:(errors.append(str(e)),print("JS_ERROR",str(e),flush=True)))
+ p.set_content((R/'DIVA_PULSE_JOUER.html').read_text());p.wait_for_function('document.documentElement.dataset.academyReady==="true"');p.mouse.click(30,190)
+ p.evaluate('()=>{window.downloads=[];PulseServices.download=(data,name,type)=>downloads.push({data,name,type});}')
+ ok('V5 boot preserves the three originals and fifteen existing charts',p.evaluate('PulseCore.VERSION==="6.0.0"&&PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)'))
+ ok('Actual WebGL2 stage renders the final V5 build',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl.getError()===0'))
+ p.screenshot(path=str(Q/'01-library.png'))
+ def meters():
+  nav(p,'editor');p.evaluate('window.originalNotes=JSON.stringify(PulseApp.editor.chart.notes);window.originalChart=structuredClone(PulseApp.chart);')
+  p.locator('#meterNumerator').fill('3');p.locator('#meterDenominator').select_option('4');p.locator('#meterGroups').fill('');p.locator('#meterApply').click()
+  ok('3/4 can be applied from the studio without moving notes',p.evaluate('PulseApp.editor.chart.meterMap[0].numerator===3&&JSON.stringify(PulseApp.editor.chart.notes)===originalNotes'))
+  ok('Original imported/demo partition stays unchanged before save',p.evaluate('JSON.stringify(PulseApp.song.charts.find(c=>c.id===originalChart.id))===JSON.stringify(originalChart)'))
+  p.locator('#meterBeat').fill('6');p.locator('#meterNumerator').fill('7');p.locator('#meterDenominator').select_option('8');p.locator('#meterGroups').fill('2+2+3');p.locator('#meterApply').click()
+  ok('7/8 change begins at measure 3 and keeps custom groups',p.evaluate('PulseCore.meterMap(PulseApp.editor.chart)[1].bar===3&&PulseApp.editor.chart.meterMap[1].groups.join("+")==="2+2+3"'))
+  p.evaluate('window.beforeBadMeter=JSON.stringify(PulseApp.editor.chart)');p.locator('#meterBeat').fill('7');p.locator('#meterApply').click()
+  ok('Mid-bar change is refused with the full prior chart intact',p.evaluate('JSON.stringify(PulseApp.editor.chart)===beforeBadMeter'))
+  ok('Refusal is explained to the user',p.locator('#toast').inner_text().find('nouvelle mesure')>=0)
+  p.evaluate('PulseApp.editor.undo()');ok('Undo restores the previous signature map',p.evaluate('PulseApp.editor.chart.meterMap.length===1'))
+  p.evaluate('PulseApp.editor.redo()');ok('Redo restores 7/8 without retiming',p.evaluate('PulseApp.editor.chart.meterMap.length===2&&JSON.stringify(PulseApp.editor.chart.notes)===originalNotes'))
+  p.locator('#editorSave').click();idle(p)
+  ok('Saving a meter edit creates a derived chart instead of overwriting the demo',p.evaluate('PulseApp.chart.source==="manual-derived"&&PulseApp.song.charts.some(c=>c.id===originalChart.id&&JSON.stringify(c.notes)===originalNotes)'))
+  p.locator('#editorMIDI').click()
+  ok('Exported MIDI contains the complete native meter map',p.evaluate('async()=>{const d=downloads.at(-1),m=PulseCore.parseMIDI(await d.data.arrayBuffer());return m.nativeChart.meterMap.length===2;}'))
+  p.locator('#autoPV').click();p.locator('#confirmAutoPV').click();idle(p)
+  ok('PV button creates camera shots on mixed-meter boundaries',p.evaluate('()=>{const c=PulseApp.editor.chart,events=PulseApp.song.scene.events;return events.length>2&&events.every(e=>{const beat=PulseCore.timeToBeat(c,e.time-c.offset)-PulseCore.timeToBeat(c,c.gridOffset||0);return PulseCore.metricAt(c,beat).downbeat;});}'))
+  p.evaluate('()=>{window.savedPV=JSON.stringify(PulseApp.song.scene.events);window.oldStorePut=PulseApp.store.put;PulseApp.store.put=()=>Promise.reject(Error("QA PV write refused"));}');p.locator('#autoPV').click();p.locator('#confirmAutoPV').click();idle(p)
+  ok('Refused PV save leaves scene unchanged and shows an error without uncaught rejection',p.evaluate('JSON.stringify(PulseApp.song.scene.events)===savedPV') and 'QA PV write refused' in p.locator('#toast').inner_text())
+  p.evaluate('()=>{PulseApp.store.put=oldStorePut;}');close(p)
+  p.evaluate('document.getElementById("toast").hidden=true');p.screenshot(path=str(Q/'02-meter-studio.png'),full_page=True)
+ group('meter-studio',meters)
+ def pitch():
+  nav(p,'library');p.evaluate('PulseApp.practiceDialog()');p.locator('#practicePitch').check();p.locator('#practiceClicks').check();p.locator('#practiceRate').select_option('.75');p.locator('#practiceFrom').fill('2');p.locator('#practiceTo').fill('8');p.locator('#practiceAdaptive').check();p.locator('#practiceStart').click();idle(p)
+  ok('Practice dialog starts real worker-processed 75% audio',p.evaluate('PulseApp.view==="game"&&PulseApp.audio.stretched&&PulseApp.audio.rate===.75&&PulseApp.audio.source.playbackRate.value===1'))
+  ok('Original audio remains the game timeline buffer',p.evaluate('PulseApp.audio.buffer===PulseApp.buffer&&PulseApp.audio.stretched.original===PulseApp.buffer'))
+  ok('Prepared buffer length matches segment duration divided by rate',p.evaluate('()=>{const s=PulseApp.audio.stretched;return Math.abs(s.buffer.duration-(s.to-s.from)/s.rate)<.002;}'))
+  ok('Count-in oscillators are scheduled separately from song data',p.evaluate('PulseApp.audio.countClicks.length>0'))
+  p.evaluate('PulseApp.pause()');ok('Pause freezes the original musical timeline',p.evaluate('!PulseApp.audio.playing&&PulseApp.paused'))
+  p.locator('#resumeGame').click();p.wait_for_function('!PulseApp.paused')
+  ok('Resume reuses the stretched buffer at physical playback rate 1',p.evaluate('PulseApp.audio.source.buffer===PulseApp.audio.stretched.buffer&&PulseApp.audio.source.playbackRate.value===1'))
+  # Synchronously finish a deterministic attempt; actual next buffer uses the worker.
+  p.evaluate('async()=>{const a=PulseApp;a.engine.reset(a.practice.from,a.practice.to);a.engine.update(a.practice.to,true);a.audio.pause();a.audio.pausedAt=a.practice.to;a.paused=false;await a.restartPracticeLoop();}')
+  ok('Adaptive loop prepares 80% audio only after successful attempt',p.evaluate('PulseApp.practice.rate===.8&&PulseApp.audio.stretched.rate===.8&&!PulseApp.paused'))
+  ok('Loop history records previous speed separately',p.evaluate('PulseApp.practiceTakes.at(-1).rate===.75&&PulseApp.practiceTakes.at(-1).accuracy===100'))
+  ok('Loop preparation overlay closes when audio is ready',p.locator('#pitchWait').is_hidden())
+  p.screenshot(path=str(Q/'03-pitch-practice.png'))
+  nav(p,'library');ok('Leaving practice drops the temporary pitch buffer',p.evaluate('PulseApp.audio.stretched===null'))
+  ok('Multichannel audio is refused instead of discarding channels during stretching',p.evaluate('async()=>{const a=PulseApp,old=a.prepareAudio,buffer=a.buffer;try{a.prepareAudio=async()=>{a.buffer={numberOfChannels:6};};try{await a.preparePitch({from:0,to:5,rate:.75,preservePitch:true});return false;}catch(e){return e.message.includes("mono ou stéréo");}}finally{a.prepareAudio=old;a.buffer=buffer;}}'))
+  ok('Cancelled preparation cannot finish later and install an orphan buffer',p.evaluate('async()=>{const a=PulseApp;a.bufferId=null;const job=a.preparePitch({from:2,to:8,rate:.7,preservePitch:true});a.cancelPitch();try{await job;return false;}catch(e){return e.message.includes("annulée")&&a.audio.stretched===null;}}'))
+  p.evaluate('PulseApp.practiceDialog()');p.locator('#practicePitch').uncheck();p.locator('#practiceRate').select_option('.25');p.locator('#practiceStart').click();idle(p)
+  ok('Classic practice remains available at 25% without stretching',p.evaluate('PulseApp.audio.rate===.25&&PulseApp.audio.source.playbackRate.value===.25&&!PulseApp.audio.stretched'))
+  nav(p,'library')
+ group('pitch-practice',pitch)
+ def input_latency():
+  ok('Input offset is converted from real milliseconds to slowed song time',p.evaluate('()=>{const a=PulseApp,old={view:a.view,mode:a.mode,paused:a.paused,rate:a.audio.rate,timeAt:a.audio.timeAt,offset:a.settings.inputOffset,engine:a.engine};try{a.view="game";a.mode="practice";a.paused=false;a.audio.rate=.5;a.audio.timeAt=()=>2.1;a.settings.inputOffset=100;a.engine=new PulseCore.JudgeEngine({bpm:120,notes:[{time:2.05,lane:0}]},{noFail:true});a.pressSource("qa-half-rate",0,performance.now());a.releaseSource("qa-half-rate");return a.engine.counts.COOL===1;}finally{a.clearSources();a.view=old.view;a.mode=old.mode;a.paused=old.paused;a.audio.rate=old.rate;a.audio.timeAt=old.timeAt;a.settings.inputOffset=old.offset;a.engine=old.engine;}}'))
+ group('input-latency',input_latency)
+ def midi():
+  nav(p,'settings')
+  ok('Opaque-origin MIDI connection refusal is handled without device request',p.evaluate('async()=>{try{await PulseApp.connectMIDI();return false;}catch(e){return e.message.includes("indisponible");}}'))
+  p.evaluate('''()=>{const a=PulseApp;window.portA={id:'qa-midi-a',name:'QA MIDI A',state:'connected'},window.portB={id:'qa-midi-b',name:'QA MIDI B',state:'connected'};a.midiAccess={inputs:new Map([[portA.id,portA],[portB.id,portB]])};a.midiEnabled=true;a.settings.midiMapping=[60,62,64,65,67,69];a.settings.midiPort='all';a.midiRouter.configure(a.settings.midiMapping,0);a.wireMIDIPorts();}''')
+  ok('Simulated MIDI inputs appear without claiming physical device verification',p.locator('#midiPort option').count()==3)
+  p.locator('#midiMapRows button').first.click();p.evaluate('portA.onmidimessage({data:new Uint8Array([144,61,90]),timeStamp:performance.now()})');p.wait_for_function('PulseApp.settings.midiMapping[0]===61')
+  ok('Learn button remaps a lane and exits learn mode',p.evaluate('PulseApp.midiLearn===null&&PulseApp.settings.midiMapping[0]===61'))
+  p.locator('#midiMapRows button').nth(1).click();p.evaluate('portA.onmidimessage({data:new Uint8Array([144,61,90]),timeStamp:performance.now()})');p.wait_for_function('PulseApp.settings.midiMapping[1]===61')
+  ok('Learning an already-used note swaps assignments instead of duplicating',p.evaluate('new Set(PulseApp.settings.midiMapping).size===6&&PulseApp.settings.midiMapping[0]===62'))
+  p.evaluate('PulseApp.settings.midiPort=portB.id;PulseApp.settings.midiChannel=2;PulseApp.midiRouter.configure(PulseApp.settings.midiMapping,2);PulseApp.renderMIDI();');p.locator('#midiMapRows button').first.click();p.evaluate('portA.onmidimessage({data:new Uint8Array([145,66,90]),timeStamp:performance.now()});portB.onmidimessage({data:new Uint8Array([144,66,90]),timeStamp:performance.now()});')
+  ok('MIDI learning respects the selected port and channel',p.evaluate('PulseApp.midiLearn===0&&PulseApp.settings.midiMapping[0]===62'))
+  p.locator('#cancelMIDILearn').click();p.evaluate('portB.state="disconnected";PulseApp.handleMIDIStateChange({port:portB})')
+  ok('Disconnected selected input is labelled honestly rather than displayed as all inputs',p.evaluate('document.getElementById("midiPort").value===portB.id') and 'déconnectée' in p.locator('#midiLiveStatus').inner_text())
+  p.evaluate('portB.state="connected";PulseApp.settings.midiPort="all";PulseApp.settings.midiChannel=0;PulseApp.midiRouter.configure(PulseApp.settings.midiMapping,0);PulseApp.handleMIDIStateChange({port:portB})')
+  p.screenshot(path=str(Q/'04-midi-settings.png'),full_page=True)
+  # Synthetic MIDI packets through the actual UI adapter and game engine.
+  ok('Independent MIDI ports preserve a held lane until the last release',p.evaluate('()=>{const a=PulseApp,old={view:a.view,paused:a.paused,mode:a.mode,timeAt:a.audio.timeAt,engine:a.engine};try{a.view="game";a.mode="practice";a.paused=false;a.settings.inputOffset=0;a.audio.timeAt=()=>1;a.engine=new PulseCore.JudgeEngine({notes:[{time:1,lane:0,type:"hold",duration:1}]},{noFail:true});const note=a.settings.midiMapping[0];portA.onmidimessage({data:new Uint8Array([144,note,100]),timeStamp:performance.now()});portB.onmidimessage({data:new Uint8Array([144,note,100]),timeStamp:performance.now()});portA.onmidimessage({data:new Uint8Array([144,note,0]),timeStamp:performance.now()});const kept=a.engine.held.has(0)&&a.engine.counts.COOL===1;portB.onmidimessage({data:new Uint8Array([128,note,0]),timeStamp:performance.now()});return kept&&!a.engine.held.has(0);}finally{a.midiRouter.clear();a.view=old.view;a.paused=old.paused;a.mode=old.mode;a.audio.timeAt=old.timeAt;a.engine=old.engine;}}'))
+  nav(p,'editor');p.evaluate('PulseApp.editor.cursor=1;PulseApp.editor.grid=0;');p.locator('#editorRecord').click();idle(p);p.wait_for_function('PulseApp.editor.recording')
+  before=p.evaluate('PulseApp.editor.chart.notes.length')
+  p.evaluate('portA.onmidimessage({data:new Uint8Array([144,PulseApp.settings.midiMapping[3],90]),timeStamp:performance.now()})');p.wait_for_timeout(430);p.evaluate('portA.onmidimessage({data:new Uint8Array([128,PulseApp.settings.midiMapping[3],0]),timeStamp:performance.now()})');p.locator('#editorStop').click() if p.locator('#editorStop').count() else p.evaluate('PulseApp.editor.stop()')
+  ok('MIDI input records a held note through the existing studio history',p.evaluate('(n)=>PulseApp.editor.chart.notes.length===n+1&&PulseApp.editor.chart.notes.some(c=>c.lane===3&&c.type==="hold"&&c.time<2)',before))
+  ok('Stopping recording releases router-owned input sources',p.evaluate('PulseApp.midiRouter.active.size===0'))
+  nav(p,'settings');p.evaluate('PulseApp.midiRouter.receive(portA.id,[144,PulseApp.settings.midiMapping[0],90],0,true);portA.state="disconnected";PulseApp.handleMIDIStateChange({port:portA})')
+  ok('Hot-unplug event releases that port and refreshes the input list',p.evaluate('PulseApp.midiRouter.active.size===0') and p.locator('#midiPort option').count()==2)
+  p.locator('#disconnectMIDI').click();ok('Disconnect removes handlers and leaves no held MIDI source',p.evaluate('!PulseApp.midiEnabled&&PulseApp.midiRouter.active.size===0&&portB.onmidimessage===null'))
+ group('live-midi',midi)
+ def academy():
+  nav(p,'library');p.locator('#academyButton').click();ok('Academy shows six lessons, all accessible',p.locator('[data-lesson]').count()==6)
+  ok('Desktop academy uses its full dialog width for readable three-column cards',p.evaluate('document.querySelector(".lesson-card").getBoundingClientRect().width>280&&Math.abs(document.querySelector("#modal .dialog").getBoundingClientRect().width-document.querySelector("#modalContent").getBoundingClientRect().width)<2'))
+  count=p.evaluate('PulseApp.songs.length');p.locator('[data-lesson="pulse"]').click();idle(p)
+  ok('First lesson installs one original audio and six charts',p.evaluate('(n)=>PulseApp.songs.length===n+1&&PulseApp.song.academyVersion===1&&PulseApp.song.charts.length===6',count))
+  ok('Lesson uses practice mode without ranked scores',p.evaluate('PulseApp.mode==="practice"&&PulseApp.practice.academy==="pulse"'))
+  p.evaluate('async()=>{PulseApp.engine.update(PulseApp.practice.to,true);PulseApp.audio.pause();PulseApp.audio.pausedAt=PulseApp.practice.to;await PulseApp.finish();}')
+  ok('A deterministic full-speed perfect lesson earns a separate medal',p.evaluate('PulseApp.v5State.academy.pulse.completed===true&&PulseApp.v5State.academy.pulse.attempts===1'))
+  ok('Academy result is visible and no normal record is written',p.locator('.academy-result').count()==1 and p.evaluate('!PulseApp.scores.some(s=>s.songId===PulseApp.song.id)'))
+  p.screenshot(path=str(Q/'05-academy-result.png'))
+  p.locator('#backAcademy').click();p.wait_for_function('PulseApp.view==="library"');p.screenshot(path=str(Q/'06-academy.png'))
+  p.locator('[data-lesson="holds"]').click();idle(p)
+  ok('Reopening another lesson does not duplicate the training song',p.evaluate('(n)=>PulseApp.songs.length===n+1',count))
+  p.evaluate('async()=>{PulseApp.engine.update(PulseApp.practice.to,true);PulseApp.engine.holdBonus=0;PulseApp.audio.pause();PulseApp.audio.pausedAt=PulseApp.practice.to;await PulseApp.finish();}')
+  ok('HOLD lesson refuses a medal when bonus requirement is not met',p.evaluate('PulseApp.v5State.academy.holds.completed===false'))
+  nav(p,'library');p.evaluate('PulseApp.exportBackup()');p.wait_for_function('downloads.some(d=>typeof d.name==="string"&&d.name.endsWith(".pulsepack"))')
+  p.evaluate('window.v5Backup=JSON.parse(downloads.filter(d=>typeof d.name==="string"&&d.name.endsWith(".pulsepack")).at(-1).data)')
+  ok('V5 pack contains academy progress, audio and meter map',p.evaluate('v5Backup.version===5&&v5Backup.v5State.academy.pulse.completed&&v5Backup.songs.some(s=>s.academyVersion===1)&&v5Backup.assets.some(a=>a.name==="ATELIER_DU_RYTHME_120BPM.wav")'))
+  p.evaluate('PulseApp.restoreBackup(new File([JSON.stringify(v5Backup)],"copy.pulsepack"))');p.locator('#confirmRestore').click();idle(p)
+  ok('Restoring a V5 pack keeps existing medals and adds copies',p.evaluate('PulseApp.v5State.academy.pulse.completed&&PulseApp.songs.filter(s=>s.academyVersion===1).length===2'))
+ group('academy-and-backup',academy)
+ def diagnostics():
+  nav(p,'settings');p.evaluate('PulseApp.store.put("assets",{id:"qa-unused",kind:"audio",blob:new Blob(["unused"])});');p.locator('#libraryHealth').click();idle(p)
+  ok('Library diagnostic reports unused media without deleting it',p.evaluate('PulseApp.lastStorageAudit.unused.includes("qa-unused")'))
+  p.locator('#exportHealth').click();ok('Diagnostic JSON is exportable',p.evaluate('downloads.at(-1).name==="DIVA_PULSE_DIAGNOSTIC_V5.json"'))
+  close(p);ok('Storage invalidation refuses reads, writes and deletes rather than switching to empty memory',p.evaluate('async()=>{const s=PulseApp.store;s.invalidated=true;let failures=0;for(const fn of [()=>s.get("songs","x"),()=>s.all("songs"),()=>s.put("songs",{id:"x"}),()=>s.del("songs","x"),()=>s.atomic([["songs",{id:"x"}]])])try{await fn();}catch{failures++;}s.invalidated=false;return failures===5;}'))
+  for width,height in [(390,844),(844,390)]:
+   p.set_viewport_size({'width':width,'height':height})
+   for view in ['library','editor','settings']:
+    nav(p,view);ok(f'{width}x{height} {view} has no horizontal overflow',p.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+   nav(p,'library');p.locator('#academyButton').click();ok(f'{width}x{height} academy dialog stays within viewport',p.locator('#modal').evaluate('(e)=>e.getBoundingClientRect().width<=innerWidth'))
+   p.screenshot(path=str(Q/f'07-academy-{width}.png'));close(p)
+  p.set_viewport_size({'width':1440,'height':1000})
+ group('diagnostics-responsive',diagnostics)
+ group('uncaught-exceptions',lambda:ok('No uncaught JavaScript exceptions in V5 scenarios',not errors))
+ p.close()
+ # Corrupt-record fixture: test-only memory store, not an IndexedDB persistence claim.
+ def quarantine():
+  page=b.new_page(viewport={'width':1280,'height':900});page.on('pageerror',lambda e:errors.append(str(e)))
+  html=(R/'DIVA_PULSE_JOUER.html').read_text().replace('const app = new App();','''const app = new App(); app.store.open=async function(){this.memory.songs.set('qa-corrupt',{id:'qa-corrupt',title:'Bad stored chart',charts:[{notes:[{time:-10,lane:0}]}]});return this;};''')
+  page.set_content(html);page.wait_for_function('document.documentElement.dataset.academyReady==="true"')
+  ok('A corrupt stored chart no longer blocks startup of the remaining library',page.evaluate('PulseApp.quarantinedSongs.length===1&&PulseApp.songs.length===3'))
+  ok('Corrupt raw record is still present and was not silently rewritten',page.evaluate('async()=>{const s=await PulseApp.store.get("songs","qa-corrupt");return s.charts[0].notes[0].time===-10;}'))
+  page.close()
+ try:quarantine()
+ except Exception as e:checks.append({'name':'quarantine','passed':False,'error':str(e)})
+ b.close()
+result={'suite':'V5 precision UI','passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks,'pageErrors':errors,'environment':'Chromium / Xvfb / SwiftShader; opaque origin; MIDI and storage fault injections are simulated'}
+(Q/'precision-browser.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
+print('RESULT',result['passed'],'passed /',result['failed'],'failed; errors:',errors,flush=True)
+raise SystemExit(1 if result['failed'] or errors else 0)

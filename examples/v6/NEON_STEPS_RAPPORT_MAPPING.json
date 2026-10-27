@@ -1,0 +1,117 @@
+{
+  "format": "DIVA-PULSE-MAPPING-QA",
+  "version": 6,
+  "report": {
+    "version": 6,
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "rows": [
+      {
+        "difficulty": "EASY",
+        "notes": 41,
+        "events": 41,
+        "peakNps": 3,
+        "nps": 1.14,
+        "holds": 0,
+        "slides": 0,
+        "chords": 0,
+        "minGap": 0.4669,
+        "maxShiftMs": 0,
+        "stars": 3.5,
+        "signature": "b0175415"
+      },
+      {
+        "difficulty": "NORMAL",
+        "notes": 61,
+        "events": 61,
+        "peakNps": 3,
+        "nps": 1.69,
+        "holds": 0,
+        "slides": 0,
+        "chords": 0,
+        "minGap": 0.4669,
+        "maxShiftMs": 0,
+        "stars": 3.5,
+        "signature": "f64b083f"
+      },
+      {
+        "difficulty": "HARD",
+        "notes": 97,
+        "events": 91,
+        "peakNps": 7,
+        "nps": 2.69,
+        "holds": 0,
+        "slides": 6,
+        "chords": 6,
+        "minGap": 0.2075,
+        "maxShiftMs": 0,
+        "stars": 7,
+        "signature": "7cb4e27e"
+      },
+      {
+        "difficulty": "EXTREME",
+        "notes": 139,
+        "events": 114,
+        "peakNps": 9,
+        "nps": 3.86,
+        "holds": 0,
+        "slides": 9,
+        "chords": 25,
+        "minGap": 0.2055,
+        "maxShiftMs": 0,
+        "stars": 9,
+        "signature": "99bd46ea"
+      },
+      {
+        "difficulty": "EX EXTREME",
+        "notes": 179,
+        "events": 128,
+        "peakNps": 10,
+        "nps": 4.97,
+        "holds": 0,
+        "slides": 12,
+        "chords": 48,
+        "minGap": 0.1936,
+        "maxShiftMs": 0,
+        "stars": 10,
+        "signature": "b775d4c9"
+      }
+    ],
+    "confidence": 0.562,
+    "sharedAnchors": true,
+    "scope": "Contrôle structurel et heuristique ; pas une validation artistique ni une certification de mapping officiel."
+  },
+  "tempo": {
+    "bpm": 127.999,
+    "confidence": 0.562,
+    "candidates": [
+      128,
+      64,
+      85,
+      134,
+      122
+    ],
+    "windows": [
+      {
+        "from": 0,
+        "to": 16,
+        "bpm": 128,
+        "correlation": 0.598
+      },
+      {
+        "from": 12,
+        "to": 28,
+        "bpm": 128,
+        "correlation": 0.709
+      },
+      {
+        "from": 24,
+        "to": 36,
+        "bpm": 128,
+        "correlation": 0.746
+      }
+    ]
+  },
+  "familyId": "family6-59deeff7"
+}

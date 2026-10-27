@@ -1,0 +1,334 @@
+TAP version 13
+# Subtest: V19 judgment boundaries standard
+ok 1 - V19 judgment boundaries standard
+  ---
+  duration_ms: 1.568997
+  type: 'test'
+  ...
+# Subtest: V19 engine uses hit AND miss window standard
+ok 2 - V19 engine uses hit AND miss window standard
+  ---
+  duration_ms: 4.862201
+  type: 'test'
+  ...
+# Subtest: V19 replay preserves standard
+ok 3 - V19 replay preserves standard
+  ---
+  duration_ms: 1.10678
+  type: 'test'
+  ...
+# Subtest: V19 judgment boundaries accessible
+ok 4 - V19 judgment boundaries accessible
+  ---
+  duration_ms: 0.098077
+  type: 'test'
+  ...
+# Subtest: V19 engine uses hit AND miss window accessible
+ok 5 - V19 engine uses hit AND miss window accessible
+  ---
+  duration_ms: 0.334328
+  type: 'test'
+  ...
+# Subtest: V19 replay preserves accessible
+ok 6 - V19 replay preserves accessible
+  ---
+  duration_ms: 1.270573
+  type: 'test'
+  ...
+# Subtest: V19 judgment boundaries precision
+ok 7 - V19 judgment boundaries precision
+  ---
+  duration_ms: 0.162273
+  type: 'test'
+  ...
+# Subtest: V19 engine uses hit AND miss window precision
+ok 8 - V19 engine uses hit AND miss window precision
+  ---
+  duration_ms: 0.221923
+  type: 'test'
+  ...
+# Subtest: V19 replay preserves precision
+ok 9 - V19 replay preserves precision
+  ---
+  duration_ms: 0.483257
+  type: 'test'
+  ...
+# Subtest: V19 old replay defaults to Standard
+ok 10 - V19 old replay defaults to Standard
+  ---
+  duration_ms: 0.787589
+  type: 'test'
+  ...
+# Subtest: V19 unknown profile is rejected
+ok 11 - V19 unknown profile is rejected
+  ---
+  duration_ms: 0.8173
+  type: 'test'
+  ...
+# Subtest: V19 Director preserves model/clip/camera/light/formation
+ok 12 - V19 Director preserves model/clip/camera/light/formation
+  ---
+  duration_ms: 0.695508
+  type: 'test'
+  ...
+# Subtest: V19 Director rejects overlap
+ok 13 - V19 Director rejects overlap
+  ---
+  duration_ms: 0.127972
+  type: 'test'
+  ...
+# Subtest: V19 Director rejects nonfinite
+ok 14 - V19 Director rejects nonfinite
+  ---
+  duration_ms: 0.056637
+  type: 'test'
+  ...
+# Subtest: V19 Director rejects reverse
+ok 15 - V19 Director rejects reverse
+  ---
+  duration_ms: 0.043281
+  type: 'test'
+  ...
+# Subtest: V19 Director rejects out of range
+ok 16 - V19 Director rejects out of range
+  ---
+  duration_ms: 0.276906
+  type: 'test'
+  ...
+# Subtest: V19 Director rejects duplicate key
+ok 17 - V19 Director rejects duplicate key
+  ---
+  duration_ms: 0.214241
+  type: 'test'
+  ...
+# Subtest: V19 clip offset is not multiplied by rate
+ok 18 - V19 clip offset is not multiplied by rate
+  ---
+  duration_ms: 0.189754
+  type: 'test'
+  ...
+# Subtest: V19 blend at boundary / midpoint / after window
+ok 19 - V19 blend at boundary / midpoint / after window
+  ---
+  duration_ms: 0.119621
+  type: 'test'
+  ...
+# Subtest: V19 gaps have no blend and no active clip
+ok 20 - V19 gaps have no blend and no active clip
+  ---
+  duration_ms: 0.119795
+  type: 'test'
+  ...
+# Subtest: V19 morph-only motion duration is counted
+ok 21 - V19 morph-only motion duration is counted
+  ---
+  duration_ms: 0.142728
+  type: 'test'
+  ...
+# Subtest: V19 camera shortest yaw and positive distance
+ok 22 - V19 camera shortest yaw and positive distance
+  ---
+  duration_ms: 0.625151
+  type: 'test'
+  ...
+# Subtest: V19 step light does not interpolate before next key
+ok 23 - V19 step light does not interpolate before next key
+  ---
+  duration_ms: 0.435333
+  type: 'test'
+  ...
+# Subtest: V19 AutoPV cuts follow changing tempo
+ok 24 - V19 AutoPV cuts follow changing tempo
+  ---
+  duration_ms: 1.185502
+  type: 'test'
+  ...
+# Subtest: V19 AutoPV cuts follow 3/4 signatures
+ok 25 - V19 AutoPV cuts follow 3/4 signatures
+  ---
+  duration_ms: 0.219458
+  type: 'test'
+  ...
+# Subtest: V19 AutoPV keeps notes unchanged
+ok 26 - V19 AutoPV keeps notes unchanged
+  ---
+  duration_ms: 2.674257
+  type: 'test'
+  ...
+# Subtest: V19 complete scene asset remapping
+ok 27 - V19 complete scene asset remapping
+  ---
+  duration_ms: 1.998089
+  type: 'test'
+  ...
+# Subtest: V19 missing MMD asset refuses restoration
+ok 28 - V19 missing MMD asset refuses restoration
+  ---
+  duration_ms: 0.400584
+  type: 'test'
+  ...
+# Subtest: V19 TGA raw 0
+ok 29 - V19 TGA raw 0
+  ---
+  duration_ms: 0.949548
+  type: 'test'
+  ...
+# Subtest: V19 TGA raw 16
+ok 30 - V19 TGA raw 16
+  ---
+  duration_ms: 0.326975
+  type: 'test'
+  ...
+# Subtest: V19 TGA raw 32
+ok 31 - V19 TGA raw 32
+  ---
+  duration_ms: 0.227485
+  type: 'test'
+  ...
+# Subtest: V19 TGA raw 48
+ok 32 - V19 TGA raw 48
+  ---
+  duration_ms: 0.24796
+  type: 'test'
+  ...
+# Subtest: V19 TGA RLE 0
+ok 33 - V19 TGA RLE 0
+  ---
+  duration_ms: 0.263761
+  type: 'test'
+  ...
+# Subtest: V19 TGA RLE 16
+ok 34 - V19 TGA RLE 16
+  ---
+  duration_ms: 0.539408
+  type: 'test'
+  ...
+# Subtest: V19 TGA RLE 32
+ok 35 - V19 TGA RLE 32
+  ---
+  duration_ms: 0.750909
+  type: 'test'
+  ...
+# Subtest: V19 TGA RLE 48
+ok 36 - V19 TGA RLE 48
+  ---
+  duration_ms: 0.172192
+  type: 'test'
+  ...
+# Subtest: V19 TGA grayscale RLE decoded
+ok 37 - V19 TGA grayscale RLE decoded
+  ---
+  duration_ms: 0.194017
+  type: 'test'
+  ...
+# Subtest: V19 TGA truncated raw rejected
+ok 38 - V19 TGA truncated raw rejected
+  ---
+  duration_ms: 0.158209
+  type: 'test'
+  ...
+# Subtest: V19 TGA overflowing RLE rejected
+ok 39 - V19 TGA overflowing RLE rejected
+  ---
+  duration_ms: 0.220723
+  type: 'test'
+  ...
+# Subtest: V19 TGA huge dimensions rejected before allocation
+ok 40 - V19 TGA huge dimensions rejected before allocation
+  ---
+  duration_ms: 0.165648
+  type: 'test'
+  ...
+# Subtest: V19 TGA right-to-left order respected
+ok 41 - V19 TGA right-to-left order respected
+  ---
+  duration_ms: 1.101871
+  type: 'test'
+  ...
+# Subtest: V19 texture folder disambiguates same basename
+ok 42 - V19 texture folder disambiguates same basename
+  ---
+  duration_ms: 0.798347
+  type: 'test'
+  ...
+# Subtest: V19 ambiguous texture not randomly selected
+ok 43 - V19 ambiguous texture not randomly selected
+  ---
+  duration_ms: 0.431329
+  type: 'test'
+  ...
+# Subtest: V19 no external texture request
+ok 44 - V19 no external texture request
+  ---
+  duration_ms: 0.144374
+  type: 'test'
+  ...
+# Subtest: V19 PMD morph uses base vertex map
+ok 45 - V19 PMD morph uses base vertex map
+  ---
+  duration_ms: 2.451838
+  type: 'test'
+  ...
+# Subtest: V19 valid PMD validates rig and material ranges
+ok 46 - V19 valid PMD validates rig and material ranges
+  ---
+  duration_ms: 2.547328
+  type: 'test'
+  ...
+# Subtest: V19 cyclic rig rejected
+ok 47 - V19 cyclic rig rejected
+  ---
+  duration_ms: 1.308437
+  type: 'test'
+  ...
+# Subtest: V19 invalid triangle rejected
+ok 48 - V19 invalid triangle rejected
+  ---
+  duration_ms: 1.388605
+  type: 'test'
+  ...
+# Subtest: V19 NaN model rejected
+ok 49 - V19 NaN model rejected
+  ---
+  duration_ms: 2.124348
+  type: 'test'
+  ...
+# Subtest: V19 ternary evidence from repeated thirds
+ok 50 - V19 ternary evidence from repeated thirds
+  ---
+  duration_ms: 0.964129
+  type: 'test'
+  ...
+# Subtest: V19 isolated syncopation does not force ternary
+ok 51 - V19 isolated syncopation does not force ternary
+  ---
+  duration_ms: 0.163129
+  type: 'test'
+  ...
+# Subtest: V19 all five tiers keep ternary anchors and bounded shifts
+ok 52 - V19 all five tiers keep ternary anchors and bounded shifts
+  ---
+  duration_ms: 19.107913
+  type: 'test'
+  ...
+# Subtest: V19 unquantized family never shifts detected attacks
+ok 53 - V19 unquantized family never shifts detected attacks
+  ---
+  duration_ms: 7.867897
+  type: 'test'
+  ...
+# Subtest: V19 variable tempo map starts at zero
+ok 54 - V19 variable tempo map starts at zero
+  ---
+  duration_ms: 0.204068
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 269.798413

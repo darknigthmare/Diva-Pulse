@@ -1,0 +1,54 @@
+{
+  "version": "26.0.0",
+  "scope": "Instrumental original de contrôle; pas de mesure sur un corpus commercial.",
+  "method": "WAV PCM16 -> ffmpeg libmp3lame 48kbps -> PCM mono 11025; comparaison locale",
+  "sourceDuration": 19,
+  "mp3": {
+    "candidate": true,
+    "score": 0.9999529145758294,
+    "rhythm": 0.9999882704116407,
+    "shape": 0.9998872537378939,
+    "overlap": 1,
+    "offset": 0,
+    "segments": [
+      0.9999925454356144,
+      0.9999783057678432,
+      0.9999866480109891,
+      0.9999892569114106
+    ],
+    "identityVerified": false,
+    "reason": "Ressemblance forte ; vérifier la version, les frappes et le décalage avant copie."
+  },
+  "shift500ms": {
+    "candidate": true,
+    "score": 0.9999940294733504,
+    "rhythm": 0.9999920665084079,
+    "shape": 0.999997674979672,
+    "overlap": 1,
+    "offset": 0.5,
+    "segments": [
+      0.9999950589993752,
+      0.9999919048731721,
+      0.9999880964433907,
+      0.9999902619467199
+    ],
+    "identityVerified": false,
+    "reason": "Ressemblance forte ; vérifier la version, les frappes et le décalage avant copie."
+  },
+  "sameTempoDifferentComposition": {
+    "candidate": false,
+    "score": 0.8429240933695299,
+    "rhythm": 0.9840673458244109,
+    "shape": 0.5808009102390367,
+    "overlap": 1,
+    "offset": 0,
+    "segments": [
+      0.985378521823188,
+      0.9728615385059421,
+      0.9849211793769832,
+      0.9936837821015354
+    ],
+    "identityVerified": false,
+    "reason": "Ressemblance insuffisante pour proposer les partitions."
+  }
+}

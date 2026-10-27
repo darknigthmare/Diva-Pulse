@@ -1,0 +1,183 @@
+{
+  "format": "DIVA-PULSE-CHART-CATALOG",
+  "version": 1,
+  "title": "Exemple : préserver HARD puis compléter 4 niveaux",
+  "entries": [
+    {
+      "id": "62efe8cc-5d4b-4331-9858-0bb634241728",
+      "title": "Source 100 BPM",
+      "artist": "",
+      "author": "Exercice manuel original",
+      "edition": "Test de priorité sans redistribution tierce",
+      "sourceUrl": "",
+      "duration": 8,
+      "audioHash": "sha256:c9502b30a2bff7554769e8ef757df9950843c556e17a9f90834a4b7910c8321a",
+      "demoId": null,
+      "charts": [
+        {
+          "title": "Source conservée · exercice 100 BPM",
+          "id": "source-v6-hard-example",
+          "difficulty": "HARD",
+          "source": "manual",
+          "bpm": 100,
+          "gridOffset": 0.7,
+          "notes": [
+            {
+              "time": 0.7,
+              "lane": 0,
+              "type": "tap",
+              "x": 0.25,
+              "y": 0.5,
+              "angle": -90,
+              "distance": 0.56,
+              "id": "note-0",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 1.3,
+              "lane": 1,
+              "type": "tap",
+              "x": 0.41000000000000003,
+              "y": 0.5757323886327107,
+              "angle": -75,
+              "distance": 0.56,
+              "id": "note-1",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 1.9,
+              "lane": 2,
+              "type": "tap",
+              "x": 0.5700000000000001,
+              "y": 0.5818367684143113,
+              "angle": -60,
+              "distance": 0.56,
+              "id": "note-2",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 2.5,
+              "lane": 3,
+              "type": "tap",
+              "x": 0.73,
+              "y": 0.512700800725388,
+              "angle": -45,
+              "distance": 0.56,
+              "id": "note-3",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 3.1,
+              "lane": 0,
+              "type": "tap",
+              "x": 0.25,
+              "y": 0.43188777542228646,
+              "angle": -30,
+              "distance": 0.56,
+              "id": "note-4",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 3.7,
+              "lane": 1,
+              "type": "tap",
+              "x": 0.41000000000000003,
+              "y": 0.41369681528031754,
+              "angle": -15,
+              "distance": 0.56,
+              "id": "note-5",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 4.3,
+              "lane": 2,
+              "type": "tap",
+              "x": 0.5700000000000001,
+              "y": 0.47485260516209665,
+              "angle": 0,
+              "distance": 0.56,
+              "id": "note-6",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 4.9,
+              "lane": 3,
+              "type": "tap",
+              "x": 0.73,
+              "y": 0.559128793884691,
+              "angle": 15,
+              "distance": 0.56,
+              "id": "note-7",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 5.5,
+              "lane": 0,
+              "type": "tap",
+              "x": 0.25,
+              "y": 0.5890422421961043,
+              "angle": 30,
+              "distance": 0.56,
+              "id": "note-8",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 6.1,
+              "lane": 1,
+              "type": "tap",
+              "x": 0.41000000000000003,
+              "y": 0.5370906636717581,
+              "angle": 45,
+              "distance": 0.56,
+              "id": "note-9",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 6.7,
+              "lane": 2,
+              "type": "tap",
+              "x": 0.5700000000000001,
+              "y": 0.4510381000199567,
+              "angle": 60,
+              "distance": 0.56,
+              "id": "note-10",
+              "duration": 0,
+              "approach": 1.6
+            },
+            {
+              "time": 7.3,
+              "lane": 3,
+              "type": "tap",
+              "x": 0.73,
+              "y": 0.41000088141043667,
+              "angle": 75,
+              "distance": 0.56,
+              "id": "note-11",
+              "duration": 0,
+              "approach": 1.6
+            }
+          ],
+          "format": "DIVA-PULSE",
+          "version": 4,
+          "offset": 0,
+          "tempoMap": [
+            {
+              "time": 0,
+              "bpm": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

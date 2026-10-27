@@ -1,0 +1,214 @@
+TAP version 13
+# Subtest: V27 full PMX physics: names, body modes, masks, joint frames
+ok 1 - V27 full PMX physics: names, body modes, masks, joint frames
+  ---
+  duration_ms: 3.261828
+  type: 'test'
+  ...
+# Subtest: V27 PMD physics positions are relative to their bone
+ok 2 - V27 PMD physics positions are relative to their bone
+  ---
+  duration_ms: 5.466784
+  type: 'test'
+  ...
+# Subtest: V27 right handed position and angular limits reflection
+ok 3 - V27 right handed position and angular limits reflection
+  ---
+  duration_ms: 0.590352
+  type: 'test'
+  ...
+# Subtest: V27 a truncated rigid body is rejected before rendering
+ok 4 - V27 a truncated rigid body is rejected before rendering
+  ---
+  duration_ms: 1.02241
+  type: 'test'
+  ...
+# Subtest: V27 non finite mass rejected
+ok 5 - V27 non finite mass rejected
+  ---
+  duration_ms: 0.87296
+  type: 'test'
+  ...
+# Subtest: V27 negative dimensions rejected
+ok 6 - V27 negative dimensions rejected
+  ---
+  duration_ms: 0.686313
+  type: 'test'
+  ...
+# Subtest: V27 zero mass stays fixed and is diagnosed
+ok 7 - V27 zero mass stays fixed and is diagnosed
+  ---
+  duration_ms: 0.800572
+  type: 'test'
+  ...
+# Subtest: V27 invalid body bone, group, shape and mode rejected
+ok 8 - V27 invalid body bone, group, shape and mode rejected
+  ---
+  duration_ms: 1.985983
+  type: 'test'
+  ...
+# Subtest: V27 damping and restitution limits are checked
+ok 9 - V27 damping and restitution limits are checked
+  ---
+  duration_ms: 1.411064
+  type: 'test'
+  ...
+# Subtest: V27 missing joint body rejected
+ok 10 - V27 missing joint body rejected
+  ---
+  duration_ms: 0.662238
+  type: 'test'
+  ...
+# Subtest: V27 inverted joint bounds rejected
+ok 11 - V27 inverted joint bounds rejected
+  ---
+  duration_ms: 0.470625
+  type: 'test'
+  ...
+# Subtest: V27 unsupported joint type diagnosed, never executed
+ok 12 - V27 unsupported joint type diagnosed, never executed
+  ---
+  duration_ms: 0.848884
+  type: 'test'
+  ...
+# Subtest: V27 dynamic simulation caps do not truncate silently
+ok 13 - V27 dynamic simulation caps do not truncate silently
+  ---
+  duration_ms: 0.627917
+  type: 'test'
+  ...
+# Subtest: V27 secondary dynamics are opt-in and settings are bounded
+ok 14 - V27 secondary dynamics are opt-in and settings are bounded
+  ---
+  duration_ms: 0.283749
+  type: 'test'
+  ...
+# Subtest: V27 pendulum rotates under gravity and retains the anchor
+ok 15 - V27 pendulum rotates under gravity and retains the anchor
+  ---
+  duration_ms: 12.604788
+  type: 'test'
+  ...
+# Subtest: V27 zero gravity remains at the bind pose
+ok 16 - V27 zero gravity remains at the bind pose
+  ---
+  duration_ms: 14.810516
+  type: 'test'
+  ...
+# Subtest: V27 repeated timestamps freeze the simulation exactly
+ok 17 - V27 repeated timestamps freeze the simulation exactly
+  ---
+  duration_ms: 6.49294
+  type: 'test'
+  ...
+# Subtest: V27 returning backwards resets safely
+ok 18 - V27 returning backwards resets safely
+  ---
+  duration_ms: 6.373514
+  type: 'test'
+  ...
+# Subtest: V27 large seek is bounded and does not calculate unseen history
+ok 19 - V27 large seek is bounded and does not calculate unseen history
+  ---
+  duration_ms: 8.150288
+  type: 'test'
+  ...
+# Subtest: V27 discontinuous VMD pose resets instead of adding enormous velocity
+ok 20 - V27 discontinuous VMD pose resets instead of adding enormous velocity
+  ---
+  duration_ms: 5.581163
+  type: 'test'
+  ...
+# Subtest: V27 30, 60 and 120 render frames use the same 60Hz physics
+ok 21 - V27 30, 60 and 120 render frames use the same 60Hz physics
+  ---
+  duration_ms: 49.189304
+  type: 'test'
+  ...
+# Subtest: V27 influence zero preserves source animation exactly
+ok 22 - V27 influence zero preserves source animation exactly
+  ---
+  duration_ms: 7.641206
+  type: 'test'
+  ...
+# Subtest: V27 bone alignment mode only applies physical rotation
+ok 23 - V27 bone alignment mode only applies physical rotation
+  ---
+  duration_ms: 5.972722
+  type: 'test'
+  ...
+# Subtest: V27 simulation does not mutate source mesh, bones or physics records
+ok 24 - V27 simulation does not mutate source mesh, bones or physics records
+  ---
+  duration_ms: 14.450815
+  type: 'test'
+  ...
+# Subtest: V27 independent dancers have independent states
+ok 25 - V27 independent dancers have independent states
+  ---
+  duration_ms: 8.010251
+  type: 'test'
+  ...
+# Subtest: V27 dispose releases arrays and stops evaluation
+ok 26 - V27 dispose releases arrays and stops evaluation
+  ---
+  duration_ms: 7.695386
+  type: 'test'
+  ...
+# Subtest: V27 masks require agreement in both directions
+ok 27 - V27 masks require agreement in both directions
+  ---
+  duration_ms: 0.136501
+  type: 'test'
+  ...
+# Subtest: V27 kinematic sphere contact projects outward
+ok 28 - V27 kinematic sphere contact projects outward
+  ---
+  duration_ms: 0.299132
+  type: 'test'
+  ...
+# Subtest: V27 rotated kinematic box collision is model oriented
+ok 29 - V27 rotated kinematic box collision is model oriented
+  ---
+  duration_ms: 0.164893
+  type: 'test'
+  ...
+# Subtest: V27 kinematic capsule end cap is accounted for
+ok 30 - V27 kinematic capsule end cap is accounted for
+  ---
+  duration_ms: 0.19627
+  type: 'test'
+  ...
+# Subtest: V27 ground collision is optional and stable
+ok 31 - V27 ground collision is optional and stable
+  ---
+  duration_ms: 6.292264
+  type: 'test'
+  ...
+# Subtest: V27 angular constraint restricts the pendulum
+ok 32 - V27 angular constraint restricts the pendulum
+  ---
+  duration_ms: 17.722327
+  type: 'test'
+  ...
+# Subtest: V27 numeric clock errors are explicit
+ok 33 - V27 numeric clock errors are explicit
+  ---
+  duration_ms: 0.774914
+  type: 'test'
+  ...
+# Subtest: V27 unbound physics body is allowed without a mesh bone
+ok 34 - V27 unbound physics body is allowed without a mesh bone
+  ---
+  duration_ms: 0.790778
+  type: 'test'
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 251.270006

@@ -1,0 +1,10 @@
+PASS Automatic import remains enabled in the actual headless 2D fallback
+PASS Dropping an actual audio File starts the automatic five-level import
+PASS Library completion identifies the incomplete restored copy
+PASS Completion targets the incomplete copy despite a complete song with the same hash
+PASS Completing a restored duplicate leaves the earlier song unchanged
+PASS Explicit target rejects a different audio file without replacing the song
+PASS Completion of a deleted target fails rather than creating an unrelated song
+PASS Cancel control is disabled during atomic commit and restored after commit
+PASS Focused completion and 2D scenarios have no uncaught exception
+RESULT 9 passed / 0 failed

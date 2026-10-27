@@ -1,0 +1,41 @@
+{
+  "version": 28,
+  "settings": {
+    "version": 27,
+    "enabled": true,
+    "gravity": 9.8,
+    "damping": 0.08,
+    "iterations": 6,
+    "ground": false,
+    "collisions": true,
+    "strength": 1
+  },
+  "reports": [
+    {
+      "slot": 1,
+      "name": "PENDULE.pmx",
+      "bodies": 2,
+      "dynamic": 1,
+      "kinematic": 1,
+      "joints": 1,
+      "supportedJoints": 1,
+      "softBodies": 0,
+      "canSimulate": true,
+      "warnings": [],
+      "state": "active",
+      "error": null,
+      "stats": {
+        "steps": 0,
+        "resets": 1,
+        "reason": "initial",
+        "contacts": 0,
+        "stepsThisFrame": 0,
+        "backlogSeconds": 0,
+        "maxBacklogSeconds": 0,
+        "catchUpFrames": 0,
+        "overloadResets": 0
+      }
+    }
+  ],
+  "limits": "PBD secondary approximation, not Bullet"
+}

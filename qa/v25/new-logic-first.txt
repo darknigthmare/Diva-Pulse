@@ -1,0 +1,352 @@
+TAP version 13
+# Subtest: V25 facial track sample -1
+ok 1 - V25 facial track sample -1
+  ---
+  duration_ms: 1.325185
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 0
+ok 2 - V25 facial track sample 0
+  ---
+  duration_ms: 0.155781
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 0.5
+ok 3 - V25 facial track sample 0.5
+  ---
+  duration_ms: 0.735561
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 1
+ok 4 - V25 facial track sample 1
+  ---
+  duration_ms: 0.153778
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 1.5
+ok 5 - V25 facial track sample 1.5
+  ---
+  duration_ms: 0.091145
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 2
+ok 6 - V25 facial track sample 2
+  ---
+  duration_ms: 0.068551
+  type: 'test'
+  ...
+# Subtest: V25 facial track sample 4
+ok 7 - V25 facial track sample 4
+  ---
+  duration_ms: 0.144864
+  type: 'test'
+  ...
+# Subtest: V25 offset delays rather than advances mouth
+ok 8 - V25 offset delays rather than advances mouth
+  ---
+  duration_ms: 0.214989
+  type: 'test'
+  ...
+# Subtest: V25 gain and maximum independently bounded
+ok 9 - V25 gain and maximum independently bounded
+  ---
+  duration_ms: 0.31675
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face gain -1
+ok 10 - V25 refuses invalid face gain -1
+  ---
+  duration_ms: 0.826906
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face gain 4
+ok 11 - V25 refuses invalid face gain 4
+  ---
+  duration_ms: 0.125856
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face floor 0.9
+ok 12 - V25 refuses invalid face floor 0.9
+  ---
+  duration_ms: 0.065818
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face offset Infinity
+ok 13 - V25 refuses invalid face offset Infinity
+  ---
+  duration_ms: 0.048892
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face slot 0.5
+ok 14 - V25 refuses invalid face slot 0.5
+  ---
+  duration_ms: 0.073108
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face duration 7201
+ok 15 - V25 refuses invalid face duration 7201
+  ---
+  duration_ms: 0.187117
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face blink 1
+ok 16 - V25 refuses invalid face blink 1
+  ---
+  duration_ms: 0.102893
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face respectVmd yes
+ok 17 - V25 refuses invalid face respectVmd yes
+  ---
+  duration_ms: 0.05402
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face mouth [object Object]
+ok 18 - V25 refuses invalid face mouth [object Object]
+  ---
+  duration_ms: 0.057926
+  type: 'test'
+  ...
+# Subtest: V25 refuses invalid face sourceHash xxx
+ok 19 - V25 refuses invalid face sourceHash xxx
+  ---
+  duration_ms: 0.092067
+  type: 'test'
+  ...
+# Subtest: V25 prefixed audio fingerprint is preserved
+ok 20 - V25 prefixed audio fingerprint is preserved
+  ---
+  duration_ms: 0.145195
+  type: 'test'
+  ...
+# Subtest: V25 manual duplicates rejected
+ok 21 - V25 manual duplicates rejected
+  ---
+  duration_ms: 0.109232
+  type: 'test'
+  ...
+# Subtest: V25 manual incomplete keys rejected
+ok 22 - V25 manual incomplete keys rejected
+  ---
+  duration_ms: 0.089372
+  type: 'test'
+  ...
+# Subtest: V25 manual beyond song rejected
+ok 23 - V25 manual beyond song rejected
+  ---
+  duration_ms: 0.116243
+  type: 'test'
+  ...
+# Subtest: V25 validation never mutates its source
+ok 24 - V25 validation never mutates its source
+  ---
+  duration_ms: 0.111715
+  type: 'test'
+  ...
+# Subtest: V25 audio without analysis refused
+ok 25 - V25 audio without analysis refused
+  ---
+  duration_ms: 0.145015
+  type: 'test'
+  ...
+# Subtest: V25 silent audio never invents speech
+ok 26 - V25 silent audio never invents speech
+  ---
+  duration_ms: 1.152258
+  type: 'test'
+  ...
+# Subtest: V25 DC offset is not mouth activity
+ok 27 - V25 DC offset is not mouth activity
+  ---
+  duration_ms: 0.349128
+  type: 'test'
+  ...
+# Subtest: V25 audio envelope keeps pause and detects active region
+ok 28 - V25 audio envelope keeps pause and detects active region
+  ---
+  duration_ms: 3.539598
+  type: 'test'
+  ...
+# Subtest: V25 stereo phase inversion cannot cancel energy
+ok 29 - V25 stereo phase inversion cannot cancel energy
+  ---
+  duration_ms: 6.857667
+  type: 'test'
+  ...
+# Subtest: V25 mono signal unchanged by analysis
+ok 30 - V25 mono signal unchanged by analysis
+  ---
+  duration_ms: 2.33358
+  type: 'test'
+  ...
+# Subtest: V25 invalid audio values refused
+ok 31 - V25 invalid audio values refused
+  ---
+  duration_ms: 1.706591
+  type: 'test'
+  ...
+# Subtest: V25 duration ceiling enforced before scan
+ok 32 - V25 duration ceiling enforced before scan
+  ---
+  duration_ms: 0.106398
+  type: 'test'
+  ...
+# Subtest: V25 unequal stereo refused
+ok 33 - V25 unequal stereo refused
+  ---
+  duration_ms: 1.28112
+  type: 'test'
+  ...
+# Subtest: V25 corrupt envelope count refused
+ok 34 - V25 corrupt envelope count refused
+  ---
+  duration_ms: 0.126477
+  type: 'test'
+  ...
+# Subtest: V25 out of range envelope refused
+ok 35 - V25 out of range envelope refused
+  ---
+  duration_ms: 1.431552
+  type: 'test'
+  ...
+# Subtest: V25 procedural face reaches selected model pose
+ok 36 - V25 procedural face reaches selected model pose
+  ---
+  duration_ms: 0.581262
+  type: 'test'
+  ...
+# Subtest: V25 VMD explicit zero retains ownership
+ok 37 - V25 VMD explicit zero retains ownership
+  ---
+  duration_ms: 0.280496
+  type: 'test'
+  ...
+# Subtest: V25 VMD group protects mouth leaf
+ok 38 - V25 VMD group protects mouth leaf
+  ---
+  duration_ms: 0.133188
+  type: 'test'
+  ...
+# Subtest: V25 outgoing blend also retains facial ownership
+ok 39 - V25 outgoing blend also retains facial ownership
+  ---
+  duration_ms: 0.12793
+  type: 'test'
+  ...
+# Subtest: V25 explicit unprotect lets user replace VMD mouth
+ok 40 - V25 explicit unprotect lets user replace VMD mouth
+  ---
+  duration_ms: 0.111685
+  type: 'test'
+  ...
+# Subtest: V25 follows lead without animating silent partner
+ok 41 - V25 follows lead without animating silent partner
+  ---
+  duration_ms: 0.115271
+  type: 'test'
+  ...
+# Subtest: V25 unknown morph produces diagnostic not arbitrary substitute
+ok 42 - V25 unknown morph produces diagnostic not arbitrary substitute
+  ---
+  duration_ms: 0.105527
+  type: 'test'
+  ...
+# Subtest: V25 blink is seek-deterministic
+ok 43 - V25 blink is seek-deterministic
+  ---
+  duration_ms: 0.091416
+  type: 'test'
+  ...
+# Subtest: V25 VMD blink zero remains unmodified
+ok 44 - V25 VMD blink zero remains unmodified
+  ---
+  duration_ms: 0.278032
+  type: 'test'
+  ...
+# Subtest: V25 binary backup roundtrip exact bytes and metadata
+ok 45 - V25 binary backup roundtrip exact bytes and metadata
+  ---
+  duration_ms: 25.634187
+  type: 'test'
+  ...
+# Subtest: V25 binary overhead does not scale by base64 expansion
+ok 46 - V25 binary overhead does not scale by base64 expansion
+  ---
+  duration_ms: 24.303815
+  type: 'test'
+  ...
+# Subtest: V25 trailing data rejected
+ok 47 - V25 trailing data rejected
+  ---
+  duration_ms: 2.408191
+  type: 'test'
+  ...
+# Subtest: V25 truncated body rejected
+ok 48 - V25 truncated body rejected
+  ---
+  duration_ms: 1.94934
+  type: 'test'
+  ...
+# Subtest: V25 altered manifest rejected
+ok 49 - V25 altered manifest rejected
+  ---
+  duration_ms: 1.894809
+  type: 'test'
+  ...
+# Subtest: V25 altered media rejected before restoration
+ok 50 - V25 altered media rejected before restoration
+  ---
+  duration_ms: 3.286984
+  type: 'test'
+  ...
+# Subtest: V25 duplicate media ids rejected
+ok 51 - V25 duplicate media ids rejected
+  ---
+  duration_ms: 2.851628
+  type: 'test'
+  ...
+# Subtest: V25 empty media survives verified backup
+ok 52 - V25 empty media survives verified backup
+  ---
+  duration_ms: 0.810732
+  type: 'test'
+  ...
+# Subtest: V25 export cancellation leaves data untouched
+ok 53 - V25 export cancellation leaves data untouched
+  ---
+  duration_ms: 0.413913
+  type: 'test'
+  ...
+# Subtest: V25 restore cancellation can stop between chunks
+ok 54 - V25 restore cancellation can stop between chunks
+  ---
+  duration_ms: 9.117999
+  type: 'test'
+  ...
+# Subtest: V25 malformed magic rejected
+ok 55 - V25 malformed magic rejected
+  ---
+  duration_ms: 0.219535
+  type: 'test'
+  ...
+# Subtest: V25 absurd metadata size rejected before allocation
+ok 56 - V25 absurd metadata size rejected before allocation
+  ---
+  duration_ms: 0.153298
+  type: 'test'
+  ...
+# Subtest: V25 async digest matches independent Node SHA
+ok 57 - V25 async digest matches independent Node SHA
+  ---
+  duration_ms: 2.406968
+  type: 'test'
+  ...
+1..57
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 153.853906

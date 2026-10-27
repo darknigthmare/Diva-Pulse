@@ -1,0 +1,9 @@
+{"name": "v26_browser_test.py", "returncode": 0, "durationSeconds": 53.13}
+{"name": "v26_regression_v25_browser.py", "returncode": 0, "durationSeconds": 29.47}
+{"name": "v26_regression_v24_browser.py", "returncode": 0, "durationSeconds": 34.23}
+{"name": "v26_regression_v23_browser.py", "returncode": 0, "durationSeconds": 54.35}
+{"name": "v26_regression_v22_browser.py", "returncode": 0, "durationSeconds": 59.34}
+{"name": "v26_regression_v21_browser.py", "returncode": 0, "durationSeconds": 66.51}
+{"name": "v26_regression_v20_browser.py", "returncode": 0, "durationSeconds": 69.88}
+{"name": "v26_native_mmd_browser.py", "returncode": 0, "durationSeconds": 5.66}
+{"name": "launcher_test.py", "returncode": 0, "durationSeconds": 5.64}

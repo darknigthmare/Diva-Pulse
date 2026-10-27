@@ -1,0 +1,14 @@
+{
+  "scope": "Synthetic 600-second analyzed signal, generation only; same process, not a hardware guarantee",
+  "onsets": 7475,
+  "notes": [
+    896,
+    1403,
+    2228,
+    3301,
+    4483
+  ],
+  "baselineMs": 2119.586984,
+  "optimizedMs": 227.50885100000005,
+  "equalNotes": true
+}

@@ -1,0 +1,2 @@
+automap=0
+precision=0

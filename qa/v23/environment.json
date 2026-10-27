@@ -1,0 +1,7 @@
+{
+  "python": "Python 3.13.5",
+  "node": "v22.16.0",
+  "chromium": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)",
+  "version": "23.0.0",
+  "buildSha256": "0c88113152e6ac4299d35611b44abbd6964e81ec23baa1861a5b9005ed6b7cf0"
+}

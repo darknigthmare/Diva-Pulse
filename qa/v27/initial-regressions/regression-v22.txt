@@ -1,0 +1,29 @@
+PASS V22 build and new UI ready
+PASS Real software WebGL2 context
+PASS Morph-only VMD has compatible morph names
+PASS Independent preview renders the morph-only animation
+PASS AutoShow selects the morph-only VMD
+PASS Import keeps chart data intact
+PASS Two materials share one UV buffer
+PASS Material morph reaches zero opacity
+PASS Material morph changes real framebuffer pixels
+PASS Zero weight restores opacity without altering source
+PASS UV morph reaches actual GPU buffer
+PASS Seek resets UV GPU buffer
+PASS Groups combine UV and opacity
+PASS Surface renderer has no WebGL error
+PASS Calibration has all three user fields
+PASS BPM calibration is saved in motion metadata
+PASS Source clock is present in actual AutoShow renderer clips
+PASS Calibration never rewrites rhythm charts
+FAIL Renderer consumes music-beat source time
+Traceback (most recent call last):
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_regression_v22_browser.py", line 55, in <module>
+    ok('Renderer consumes music-beat source time',p.evaluate('''()=>{const s=PulseApp.stage,old=s.animateMMD,seen=[];s.animateMMD=function(m,t,x){seen.push(x.current.local);return old.call(this,m,t,x);};s.animateDirector(1);s.animateMMD=old;const c=s.director.models[0].directorClips[0],target=PulseMotionSync.sourceTime(c,1,s.director.config.rhythm).local;return seen.length===2&&Math.abs(seen[0]-target)<1e-8;}'''))
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v27_work/DIVA_PULSE_V27/tests/v27_regression_v22_browser.py", line 12, in ok
+    if not v:raise AssertionError(n)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Renderer consumes music-beat source time
+
+{"buildSha256": "cf27b468e7ae6d89e118e0b25fade1c9ef05350305ee4d606c914fd6123427ca", "passed": 18, "total": 19, "failure": "Renderer consumes music-beat source time", "errors": [], "storage": "temporary", "renderer": "Chromium WebGL2 SwiftShader"}

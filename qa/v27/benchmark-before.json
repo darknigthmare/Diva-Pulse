@@ -1,0 +1,45 @@
+{
+  "version": "27.0.0",
+  "runtime": "v22.16.0",
+  "scope": "One synthetic run in Node, warmed by first steps. Not browser throughput or real character corpus.",
+  "samples": [
+    {
+      "bodies": 2,
+      "joints": 1,
+      "steps": 60,
+      "medianMs": 0.144562999999998,
+      "p95Ms": 2.0683849999999993,
+      "maxMs": 7.772038000000002
+    },
+    {
+      "bodies": 16,
+      "joints": 8,
+      "steps": 60,
+      "medianMs": 0.7472939999999966,
+      "p95Ms": 5.5963449999999995,
+      "maxMs": 12.116514999999993
+    },
+    {
+      "bodies": 64,
+      "joints": 32,
+      "steps": 60,
+      "medianMs": 3.90046099999995,
+      "p95Ms": 17.21190999999999,
+      "maxMs": 18.774057000000028
+    },
+    {
+      "bodies": 128,
+      "joints": 64,
+      "steps": 60,
+      "medianMs": 11.936709000000064,
+      "p95Ms": 36.909672,
+      "maxMs": 46.05582400000003
+    }
+  ],
+  "longPendulum": {
+    "seconds": 60,
+    "steps": 3600,
+    "pivotError": 0,
+    "finite": true
+  }
+}

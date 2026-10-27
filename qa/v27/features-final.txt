@@ -1,0 +1,38 @@
+PASS Delivered V27 HTML boots
+PASS Real software WebGL2 context
+PASS Previous demos and 15 charts retained
+PASS Import diagnostic describes physics before persistence
+PASS PMX physics data reaches renderer
+PASS Physics remains off after importing compatible model
+PASS Accessible explicit opt-in and per-model report
+PASS Preview describes approximations honestly
+PASS Actual preview advances fixed-step simulation
+PASS Dynamic joint changes real render bone rotation
+PASS Preview is silent and does not start song audio
+PASS Preview did not change saved scene or chart data
+PASS Pause stops physics time and holds rendered pose
+PASS Scrub resets instead of simulating unseen history
+PASS Reset returns preview to time zero
+PASS Gravity setting is passed into active simulation
+PASS Invalid preview setting visibly refused
+PASS Physics dialog stays within portrait viewport
+PASS Physics controls have no horizontal overflow
+PASS Cancel disposes preview world and restores disabled source
+PASS Refused save leaves scene and charts untouched
+PASS Refused save keeps retryable settings dialog
+PASS Confirmed save retains opt-in per song
+PASS Other demo songs were not enabled silently
+PASS Diagnostic export contains counts, settings and explicit scope
+PASS Binary backup exports actual MMD project with physics
+PASS Restoration creates copies rather than replacing original
+PASS Restored copy retains physics options
+PASS Restored actual PMX again supplies bodies and joints
+PASS Restored chart content unchanged
+PASS Restored character is actually simulated in renderer
+PASS Unchecking immediately returns renderer to animation-only
+PASS Explicit disable is stored without deleting model
+PASS No-model song opens explanatory non-crashing panel
+PASS Renderer finite and no dynamics fault
+PASS WebGL error state stays clear
+PASS No application frame error
+PASS No unhandled JavaScript exception

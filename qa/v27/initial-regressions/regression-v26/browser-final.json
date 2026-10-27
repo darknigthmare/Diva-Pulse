@@ -1,0 +1,221 @@
+{
+  "version": "27.0.0",
+  "buildSha256": "6a33a46e31f06f26d555e99717113b12e39f698d530b921528d429ad350682d4",
+  "passed": 51,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V26 actual delivered HTML boots",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 context",
+      "passed": true
+    },
+    {
+      "name": "Historical demos and five difficulties retained",
+      "passed": true
+    },
+    {
+      "name": "WAV decodes and builds an acoustic descriptor in a Worker",
+      "passed": true
+    },
+    {
+      "name": "WAV still receives five automatic difficulties",
+      "passed": true
+    },
+    {
+      "name": "MP3 creates a distinct song, not a silent merge",
+      "passed": true
+    },
+    {
+      "name": "Reencoded audio is proposed automatically after import",
+      "passed": true
+    },
+    {
+      "name": "Acoustic candidate does not claim exact identity",
+      "passed": true
+    },
+    {
+      "name": "Candidate did not replace or preempt generated charts",
+      "passed": true
+    },
+    {
+      "name": "No chart preselected for copying",
+      "passed": true
+    },
+    {
+      "name": "Explicit timing confirmation required",
+      "passed": true
+    },
+    {
+      "name": "Candidate audition actually starts current audio",
+      "passed": true
+    },
+    {
+      "name": "Audition stops and no clock remains running",
+      "passed": true
+    },
+    {
+      "name": "Rejected copy preserves both charts collections",
+      "passed": true
+    },
+    {
+      "name": "Rejected copy leaves retryable dialog",
+      "passed": true
+    },
+    {
+      "name": "Confirmed copy appends rather than replaces",
+      "passed": true
+    },
+    {
+      "name": "New chart retains source note data and honest provenance",
+      "passed": true
+    },
+    {
+      "name": "Source and destination shows remain untouched by copies",
+      "passed": true
+    },
+    {
+      "name": "Shifted recording proposes correct direction of half-second delay",
+      "passed": true
+    },
+    {
+      "name": "Acoustic comparison fits the portrait dialog without horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Candidate modal remains inside mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "Different same-tempo composition not proposed",
+      "passed": true
+    },
+    {
+      "name": "Rejected acoustic opt-out restores visible checkbox",
+      "passed": true
+    },
+    {
+      "name": "Opt-out creates song without acoustic descriptor",
+      "passed": true
+    },
+    {
+      "name": "Existing unindexed song can be explicitly compared",
+      "passed": true
+    },
+    {
+      "name": "Explicit indexing preserves old notes",
+      "passed": true
+    },
+    {
+      "name": "Guide analysis creates a separate facial recovery",
+      "passed": true
+    },
+    {
+      "name": "Recovery commit has not changed saved scene",
+      "passed": true
+    },
+    {
+      "name": "Actual renderer uses recovered facial preview",
+      "passed": true
+    },
+    {
+      "name": "Closing and reopening offers recovery explicitly",
+      "passed": true
+    },
+    {
+      "name": "Opening editor did not apply recovered face automatically",
+      "passed": true
+    },
+    {
+      "name": "Explicit recovery restores guide and controls",
+      "passed": true
+    },
+    {
+      "name": "Rejected autosave keeps current recovery and guide in memory",
+      "passed": true
+    },
+    {
+      "name": "Rejected recovery write is visible, not a success badge",
+      "passed": true
+    },
+    {
+      "name": "New refused guide is not incorrectly claimed as stored",
+      "passed": true
+    },
+    {
+      "name": "Rejected save keeps original face and retryable controls",
+      "passed": true
+    },
+    {
+      "name": "Binary rescue export succeeds while writes are refused",
+      "passed": true
+    },
+    {
+      "name": "Rescue contains latest guide that never reached storage",
+      "passed": true
+    },
+    {
+      "name": "Facial draft changes never modified rhythm notes",
+      "passed": true
+    },
+    {
+      "name": "Backup restores songs in copies",
+      "passed": true
+    },
+    {
+      "name": "Restoration remaps recovery owner and unsaved guide ID",
+      "passed": true
+    },
+    {
+      "name": "Restored voice is available as actual bytes",
+      "passed": true
+    },
+    {
+      "name": "Restored draft can be explicitly resumed",
+      "passed": true
+    },
+    {
+      "name": "Confirmed facial save publishes the recovered scene",
+      "passed": true
+    },
+    {
+      "name": "Saved scene and cleared recovery commit together",
+      "passed": true
+    },
+    {
+      "name": "Saved recovery is not offered again",
+      "passed": true
+    },
+    {
+      "name": "Discarding recovery does not touch saved face",
+      "passed": true
+    },
+    {
+      "name": "Discarded recovery not offered after reopening",
+      "passed": true
+    },
+    {
+      "name": "Unknown draft owner is refused before restoration dialog",
+      "passed": true
+    },
+    {
+      "name": "No renderer frame error",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "warnings": [
+    "[DIVA PULSE] Error: Confirmer la vérification du timing avant de copier.\n    at <anonymous>:63:134\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: QA26 denied copy\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:68)\n    at app.acceptAcousticCharts (<anonymous>:57:228)\n    at <anonymous>:63:352\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: QA26 preference denied\n    at PulseApp.store.put (eval at evaluate (:290:30), <anonymous>:1:165)\n    at <anonymous>:25:160\n    at App.run (<anonymous>:156:26)\n    at async <anonymous>:34:46",
+    "[DIVA PULSE] Error: QA26 face write denied\n    at PulseApp.store.atomic (eval at evaluate (:290:30), <anonymous>:1:77)\n    at app.saveFaceTrack (<anonymous>:20:319)\n    at async <anonymous>:51:76\n    at async App.run (<anonymous>:156:20)\n    at async <anonymous>:34:46"
+  ],
+  "scope": "Chromium + SwiftShader; opaque document temporary storage; no native durability claim."
+}

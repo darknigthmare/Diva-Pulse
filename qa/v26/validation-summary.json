@@ -1,0 +1,99 @@
+{
+  "version": "26.0.0",
+  "htmlSha256": "7f294962a0315d173927608f8b7663b6be94898baf170c4d3d84b66d5d380825",
+  "htmlBytes": 778398,
+  "unit": {
+    "passed": 711,
+    "failed": 0,
+    "baseline": 664,
+    "new": 47
+  },
+  "browserTotal": 294,
+  "browser": [
+    {
+      "suite": "features",
+      "passed": 51,
+      "file": "qa/v26/features/browser-final.json"
+    },
+    {
+      "suite": "regression-v25",
+      "passed": 40,
+      "file": "qa/v26/regression-v25/browser-final.json"
+    },
+    {
+      "suite": "regression-v24",
+      "passed": 35,
+      "file": "qa/v26/regression-v24/browser-final.json"
+    },
+    {
+      "suite": "regression-v23",
+      "passed": 39,
+      "file": "qa/v26/regression-v23/browser-final.json"
+    },
+    {
+      "suite": "regression-v22",
+      "passed": 28,
+      "file": "qa/v26/regression-v22/browser-final.json"
+    },
+    {
+      "suite": "regression-v21",
+      "passed": 44,
+      "file": "qa/v26/regression-v21/browser-final.json"
+    },
+    {
+      "suite": "regression-v20",
+      "passed": 57,
+      "file": "qa/v26/regression-v20/browser-final.json"
+    }
+  ],
+  "nativeMMD": 4,
+  "launcher": 10,
+  "environment": "Chromium/Xvfb/SwiftShader; exact HTML in temporary opaque document; HTTP launcher checked separately",
+  "commands": [
+    {
+      "name": "v26_browser_test.py",
+      "returncode": 0,
+      "durationSeconds": 53.13
+    },
+    {
+      "name": "v26_regression_v25_browser.py",
+      "returncode": 0,
+      "durationSeconds": 29.47
+    },
+    {
+      "name": "v26_regression_v24_browser.py",
+      "returncode": 0,
+      "durationSeconds": 34.23
+    },
+    {
+      "name": "v26_regression_v23_browser.py",
+      "returncode": 0,
+      "durationSeconds": 54.35
+    },
+    {
+      "name": "v26_regression_v22_browser.py",
+      "returncode": 0,
+      "durationSeconds": 59.34
+    },
+    {
+      "name": "v26_regression_v21_browser.py",
+      "returncode": 0,
+      "durationSeconds": 66.51
+    },
+    {
+      "name": "v26_regression_v20_browser.py",
+      "returncode": 0,
+      "durationSeconds": 69.88
+    },
+    {
+      "name": "v26_native_mmd_browser.py",
+      "returncode": 0,
+      "durationSeconds": 5.66
+    },
+    {
+      "name": "launcher_test.py",
+      "returncode": 0,
+      "durationSeconds": 5.64
+    }
+  ]
+}

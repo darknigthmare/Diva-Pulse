@@ -1,0 +1,19 @@
+{
+  "version": "22.0.0",
+  "htmlSha256": "2d22a7ab40274ebe001cc9cbadea2343e9cd1d90a105b96c9d795606f5b46779",
+  "logic": 474,
+  "browser": {
+    "integration": 28,
+    "regression-v21": 44,
+    "regression-v20": 57
+  },
+  "native": 4,
+  "launcher": 10,
+  "allExecutedChecksPassed": true,
+  "limits": [
+    "software GPU",
+    "temporary store",
+    "no Safari/peripherals",
+    "exact HTML injection; local HTTP separately tested"
+  ]
+}

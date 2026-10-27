@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: V23 optimized chord density produces identical family at seed 1
+ok 1 - V23 optimized chord density produces identical family at seed 1
+  ---
+  duration_ms: 42.825811
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 2
+ok 2 - V23 optimized chord density produces identical family at seed 2
+  ---
+  duration_ms: 20.945658
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 3
+ok 3 - V23 optimized chord density produces identical family at seed 3
+  ---
+  duration_ms: 20.148107
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 4
+ok 4 - V23 optimized chord density produces identical family at seed 4
+  ---
+  duration_ms: 37.535441
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 5
+ok 5 - V23 optimized chord density produces identical family at seed 5
+  ---
+  duration_ms: 23.628702
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 8
+ok 6 - V23 optimized chord density produces identical family at seed 8
+  ---
+  duration_ms: 28.444469
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 16
+ok 7 - V23 optimized chord density produces identical family at seed 16
+  ---
+  duration_ms: 26.507939
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 32
+ok 8 - V23 optimized chord density produces identical family at seed 32
+  ---
+  duration_ms: 33.636678
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 55
+ok 9 - V23 optimized chord density produces identical family at seed 55
+  ---
+  duration_ms: 19.1376
+  type: 'test'
+  ...
+# Subtest: V23 optimized chord density produces identical family at seed 89
+ok 10 - V23 optimized chord density produces identical family at seed 89
+  ---
+  duration_ms: 22.984091
+  type: 'test'
+  ...
+# Subtest: V23 ten-minute family matches previous notes with benchmark recorded
+ok 11 - V23 ten-minute family matches previous notes with benchmark recorded
+  ---
+  duration_ms: 1990.98295
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2325.982038

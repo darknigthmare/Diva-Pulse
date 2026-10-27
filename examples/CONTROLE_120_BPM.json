@@ -1,0 +1,169 @@
+{
+  "format": "DIVA-PULSE",
+  "version": 2,
+  "id": "original-qa-chart",
+  "title": "Contrôle original · 120 BPM",
+  "difficulty": "NORMAL",
+  "bpm": 120,
+  "offset": 0,
+  "notes": [
+    {
+      "time": 1,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.2,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 1.5,
+      "lane": 3,
+      "type": "hold",
+      "x": 0.315,
+      "y": 0.51,
+      "duration": 1,
+      "approach": 1.4
+    },
+    {
+      "time": 2,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.43000000000000005,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 2,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.545,
+      "y": 0.51,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 2.5,
+      "lane": 4,
+      "type": "slide",
+      "x": 0.66,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 3,
+      "lane": 5,
+      "type": "chain",
+      "x": 0.7750000000000001,
+      "y": 0.51,
+      "duration": 0.35,
+      "approach": 1.4
+    },
+    {
+      "time": 3.25,
+      "lane": 5,
+      "type": "chain",
+      "x": 0.2,
+      "y": 0.36,
+      "duration": 0.35,
+      "approach": 1.4
+    },
+    {
+      "time": 3.5,
+      "lane": 5,
+      "type": "chain",
+      "x": 0.315,
+      "y": 0.51,
+      "duration": 0.35,
+      "approach": 1.4
+    },
+    {
+      "time": 4,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.43000000000000005,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 4.5,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.545,
+      "y": 0.51,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.66,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 5.5,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.7750000000000001,
+      "y": 0.51,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 6,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.2,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 6.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.315,
+      "y": 0.51,
+      "duration": 0,
+      "approach": 1.4
+    },
+    {
+      "time": 7,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.43000000000000005,
+      "y": 0.36,
+      "duration": 0,
+      "approach": 1.4
+    }
+  ],
+  "scene": {
+    "stage": "arena",
+    "cast": [
+      "miku"
+    ],
+    "costumes": [
+      "classic"
+    ],
+    "events": [
+      {
+        "time": 0,
+        "camera": "front",
+        "dance": "idol",
+        "stage": "arena"
+      },
+      {
+        "time": 3,
+        "camera": "wide",
+        "dance": "wave",
+        "stage": "sakura"
+      }
+    ]
+  }
+}

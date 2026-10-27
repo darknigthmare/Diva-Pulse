@@ -1,0 +1,212 @@
+{
+  "version": "28.0.0",
+  "htmlSha256": "bb12344ec8884095d2909000c9cd522c80e18050e94fe53793b2d102af7e7fc4",
+  "base": {
+    "baseArchive": "DIVA_PULSE_V27_DYNAMIQUE_SECONDAIRE_COMPLET.zip",
+    "sha256": "3c5e4c68d05c985c3ec496e59d714b3e0fa6b506458bb0fe5bd4185e9d5bb371",
+    "zipMembers": 1016,
+    "verifiedHashes": 1015,
+    "crcValid": true
+  },
+  "unit": {
+    "passed": 782,
+    "failed": 0,
+    "new": 37
+  },
+  "browserTotal": 269,
+  "browserSuites": [
+    {
+      "name": "features",
+      "passed": 34,
+      "path": "qa/v28/features/browser-final.json"
+    },
+    {
+      "name": "playback",
+      "passed": 14,
+      "path": "qa/v28/playback/browser-final.json"
+    },
+    {
+      "name": "regression-v20",
+      "passed": 57,
+      "path": "qa/v28/regression-v20/browser-final.json"
+    },
+    {
+      "name": "regression-v24",
+      "passed": 35,
+      "path": "qa/v28/regression-v24/browser-final.json"
+    },
+    {
+      "name": "regression-v25",
+      "passed": 40,
+      "path": "qa/v28/regression-v25/browser-final.json"
+    },
+    {
+      "name": "regression-v26",
+      "passed": 51,
+      "path": "qa/v28/regression-v26/browser-final.json"
+    },
+    {
+      "name": "regression-v27",
+      "passed": 38,
+      "path": "qa/v28/regression-v27/browser-final.json"
+    }
+  ],
+  "nativeMMD": 4,
+  "launcher": 10,
+  "commands": [
+    {
+      "name": "logic",
+      "command": [
+        "node",
+        "--test",
+        "tests/automap.test.cjs",
+        "tests/core.test.cjs",
+        "tests/creator.test.cjs",
+        "tests/live.test.cjs",
+        "tests/mmd.test.cjs",
+        "tests/offline-shell.test.cjs",
+        "tests/precision.test.cjs",
+        "tests/v10-director.test.cjs",
+        "tests/v11-mmd-fidelity.test.cjs",
+        "tests/v12-structure.test.cjs",
+        "tests/v13-tempo-formations.test.cjs",
+        "tests/v16-all-systems.test.cjs",
+        "tests/v19.test.cjs",
+        "tests/v20-autoshow.test.cjs",
+        "tests/v21-import.test.cjs",
+        "tests/v22.test.cjs",
+        "tests/v23-automap.test.cjs",
+        "tests/v23.test.cjs",
+        "tests/v24.test.cjs",
+        "tests/v25.test.cjs",
+        "tests/v26.test.cjs",
+        "tests/v27.test.cjs",
+        "tests/v28.test.cjs",
+        "tests/v9-director.test.cjs"
+      ],
+      "returncode": 0,
+      "seconds": 9.94
+    },
+    {
+      "name": "launcher",
+      "command": [
+        "python",
+        "tests/launcher_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 4.488
+    },
+    {
+      "name": "timing",
+      "command": [
+        "node",
+        "tests/v28_timing_benchmark.cjs"
+      ],
+      "returncode": 0,
+      "seconds": 0.266
+    },
+    {
+      "name": "native",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_native_mmd_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 5.407
+    },
+    {
+      "name": "features",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_browser_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 25.341
+    },
+    {
+      "name": "playback",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_playback_browser_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 31.803
+    },
+    {
+      "name": "regression-v20",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v20_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 68.323
+    },
+    {
+      "name": "regression-v24",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v24_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 37.7
+    },
+    {
+      "name": "regression-v25",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v25_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 23.441
+    },
+    {
+      "name": "regression-v26",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v26_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 38.506
+    },
+    {
+      "name": "regression-v27",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "python",
+        "tests/v28_regression_v27_browser.py"
+      ],
+      "returncode": 0,
+      "seconds": 28.2
+    }
+  ],
+  "environment": {
+    "node": "v22.16.0",
+    "chromium": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)",
+    "playwright": "1.57.0",
+    "renderer": "SwiftShader software WebGL2",
+    "storage": "temporary, injected document"
+  },
+  "notValidated": [
+    "Native IndexedDB after full browser shutdown",
+    "Native multi-tab persistence and locks",
+    "Physical GPU, MIDI or gamepad",
+    "Safari/iPhone",
+    "Full offline installation",
+    "Universal MMD/Bullet/soft bodies"
+  ]
+}

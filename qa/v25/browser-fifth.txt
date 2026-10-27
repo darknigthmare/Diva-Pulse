@@ -1,0 +1,37 @@
+PASS Delivered V25 initializes
+PASS Actual WebGL2 context
+PASS All original demos and difficulties retained
+PASS Face automation remains opt-in
+PASS Original face PMX import accepted
+PASS Model actually loaded
+PASS Real audio guide decoded and analyzed in Worker
+PASS Analysis alone leaves saved scene untouched
+PASS Live model mouth is animated by preview
+PASS Base source vertex array remains immutable
+PASS Rejected save preserves stored face source
+PASS Rejected save preserves editor for retry
+PASS Confirmed save commits facial plan and guide media
+PASS Facial editing never rewrites charts
+PASS Manual keys inserted through UI
+PASS Manual track stored separately
+PASS Facial displacement reaches actual GPU vertices
+PASS GPU vertex returns to source at zero weight
+PASS Facial buffer update has no GL error
+PASS Actual renderer respects VMD group explicit zero
+PASS Facial editor fits mobile viewport
+PASS Exported facial track restores into draft
+PASS Cancel clears preview clock
+PASS New audio import automatically prepares face when enabled
+PASS New audio keeps five generated difficulties
+PASS Auto face source has exact audio fingerprint
+PASS Existing manual facial track is not replaced
+PASS Binary backup has expected magic
+PASS Binary export includes shared face guide
+PASS Binary restoration creates copies
+PASS Face guide media reference remapped on copy
+PASS Restored character and manual face reload into renderer
+PASS Altered media is refused before restore confirmation
+PASS Corrupt archive reports integrity error
+PASS Binary rescue export succeeds with every write forbidden
+PASS No renderer frame failure
+PASS No unhandled JavaScript exception

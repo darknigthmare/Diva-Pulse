@@ -1,0 +1,346 @@
+TAP version 13
+# Subtest: V23 type 0 identity preserves point and normal
+ok 1 - V23 type 0 identity preserves point and normal
+  ---
+  duration_ms: 1.343045
+  type: 'test'
+  ...
+# Subtest: V23 type 1 identity preserves point and normal
+ok 2 - V23 type 1 identity preserves point and normal
+  ---
+  duration_ms: 0.155842
+  type: 'test'
+  ...
+# Subtest: V23 type 2 identity preserves point and normal
+ok 3 - V23 type 2 identity preserves point and normal
+  ---
+  duration_ms: 0.165257
+  type: 'test'
+  ...
+# Subtest: V23 type 3 identity preserves point and normal
+ok 4 - V23 type 3 identity preserves point and normal
+  ---
+  duration_ms: 0.310463
+  type: 'test'
+  ...
+# Subtest: V23 type 4 identity preserves point and normal
+ok 5 - V23 type 4 identity preserves point and normal
+  ---
+  duration_ms: 0.265556
+  type: 'test'
+  ...
+# Subtest: V23 type 3 common rigid transform matches analytic result
+ok 6 - V23 type 3 common rigid transform matches analytic result
+  ---
+  duration_ms: 0.249452
+  type: 'test'
+  ...
+# Subtest: V23 type 3 retains volume at opposite bends
+ok 7 - V23 type 3 retains volume at opposite bends
+  ---
+  duration_ms: 0.249492
+  type: 'test'
+  ...
+# Subtest: V23 type 3 zero second weight uses first bone
+ok 8 - V23 type 3 zero second weight uses first bone
+  ---
+  duration_ms: 0.257685
+  type: 'test'
+  ...
+# Subtest: V23 type 3 shortest quaternion path crosses 180 degrees
+ok 9 - V23 type 3 shortest quaternion path crosses 180 degrees
+  ---
+  duration_ms: 0.361349
+  type: 'test'
+  ...
+# Subtest: V23 type 3 deterministic under reverse evaluation order
+ok 10 - V23 type 3 deterministic under reverse evaluation order
+  ---
+  duration_ms: 0.826624
+  type: 'test'
+  ...
+# Subtest: V23 type 4 common rigid transform matches analytic result
+ok 11 - V23 type 4 common rigid transform matches analytic result
+  ---
+  duration_ms: 0.219538
+  type: 'test'
+  ...
+# Subtest: V23 type 4 retains volume at opposite bends
+ok 12 - V23 type 4 retains volume at opposite bends
+  ---
+  duration_ms: 0.096163
+  type: 'test'
+  ...
+# Subtest: V23 type 4 zero second weight uses first bone
+ok 13 - V23 type 4 zero second weight uses first bone
+  ---
+  duration_ms: 0.063805
+  type: 'test'
+  ...
+# Subtest: V23 type 4 shortest quaternion path crosses 180 degrees
+ok 14 - V23 type 4 shortest quaternion path crosses 180 degrees
+  ---
+  duration_ms: 0.054982
+  type: 'test'
+  ...
+# Subtest: V23 type 4 deterministic under reverse evaluation order
+ok 15 - V23 type 4 deterministic under reverse evaluation order
+  ---
+  duration_ms: 0.125728
+  type: 'test'
+  ...
+# Subtest: V23 SDEF center correction matches independent expanded PMX formula
+ok 16 - V23 SDEF center correction matches independent expanded PMX formula
+  ---
+  duration_ms: 0.249042
+  type: 'test'
+  ...
+# Subtest: V23 QDEF translation-only equals weighted translation
+ok 17 - V23 QDEF translation-only equals weighted translation
+  ---
+  duration_ms: 0.098056
+  type: 'test'
+  ...
+# Subtest: V23 QDEF zero palette weights are finite fallback
+ok 18 - V23 QDEF zero palette weights are finite fallback
+  ---
+  duration_ms: 0.06721
+  type: 'test'
+  ...
+# Subtest: V23 QDEF accepts four distinct weighted rigid transforms
+ok 19 - V23 QDEF accepts four distinct weighted rigid transforms
+  ---
+  duration_ms: 0.136133
+  type: 'test'
+  ...
+# Subtest: V23 original PMX type 3 parses and validates
+ok 20 - V23 original PMX type 3 parses and validates
+  ---
+  duration_ms: 2.107135
+  type: 'test'
+  ...
+# Subtest: V23 original PMX type 4 parses and validates
+ok 21 - V23 original PMX type 4 parses and validates
+  ---
+  duration_ms: 0.593376
+  type: 'test'
+  ...
+# Subtest: V23 SDEF C/R0/R1 are retained with handedness conversion
+ok 22 - V23 SDEF C/R0/R1 are retained with handedness conversion
+  ---
+  duration_ms: 0.794706
+  type: 'test'
+  ...
+# Subtest: V23 SDEF missing centers refused before renderer
+ok 23 - V23 SDEF missing centers refused before renderer
+  ---
+  duration_ms: 0.693114
+  type: 'test'
+  ...
+# Subtest: V23 SDEF nonfinite payload refused
+ok 24 - V23 SDEF nonfinite payload refused
+  ---
+  duration_ms: 0.458925
+  type: 'test'
+  ...
+# Subtest: V23 VMD fixture actually moves two bone tracks
+ok 25 - V23 VMD fixture actually moves two bone tracks
+  ---
+  duration_ms: 0.746595
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference musicVolume recovered or explicitly refused
+ok 26 - V23 corrupted preference musicVolume recovered or explicitly refused
+  ---
+  duration_ms: 0.311935
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference inputOffset recovered or explicitly refused
+ok 27 - V23 corrupted preference inputOffset recovered or explicitly refused
+  ---
+  duration_ms: 0.197955
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference noteScale recovered or explicitly refused
+ok 28 - V23 corrupted preference noteScale recovered or explicitly refused
+  ---
+  duration_ms: 0.094881
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference midiChannel recovered or explicitly refused
+ok 29 - V23 corrupted preference midiChannel recovered or explicitly refused
+  ---
+  duration_ms: 0.081812
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference judgmentProfile recovered or explicitly refused
+ok 30 - V23 corrupted preference judgmentProfile recovered or explicitly refused
+  ---
+  duration_ms: 0.146789
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference reduceMotion recovered or explicitly refused
+ok 31 - V23 corrupted preference reduceMotion recovered or explicitly refused
+  ---
+  duration_ms: 0.553866
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference keys recovered or explicitly refused
+ok 32 - V23 corrupted preference keys recovered or explicitly refused
+  ---
+  duration_ms: 0.115342
+  type: 'test'
+  ...
+# Subtest: V23 corrupted preference midiMapping recovered or explicitly refused
+ok 33 - V23 corrupted preference midiMapping recovered or explicitly refused
+  ---
+  duration_ms: 0.078778
+  type: 'test'
+  ...
+# Subtest: V23 valid settings copied without changing original
+ok 34 - V23 valid settings copied without changing original
+  ---
+  duration_ms: 0.305747
+  type: 'test'
+  ...
+# Subtest: V23 atomic validation cannot leave partial memory writes
+ok 35 - V23 atomic validation cannot leave partial memory writes
+  ---
+  duration_ms: 0.483141
+  type: 'test'
+  ...
+# Subtest: V23 clone failure cannot leave partial memory writes
+ok 36 - V23 clone failure cannot leave partial memory writes
+  ---
+  duration_ms: 0.159648
+  type: 'test'
+  ...
+# Subtest: V23 atomic snapshot is independent of subsequent caller edits
+ok 37 - V23 atomic snapshot is independent of subsequent caller edits
+  ---
+  duration_ms: 0.259137
+  type: 'test'
+  ...
+# Subtest: V23 empty atomic is a no-op
+ok 38 - V23 empty atomic is a no-op
+  ---
+  duration_ms: 0.088192
+  type: 'test'
+  ...
+# Subtest: V23 invalidated store refuses get rather than empty memory
+ok 39 - V23 invalidated store refuses get rather than empty memory
+  ---
+  duration_ms: 0.178707
+  type: 'test'
+  ...
+# Subtest: V23 invalidated store refuses all rather than empty memory
+ok 40 - V23 invalidated store refuses all rather than empty memory
+  ---
+  duration_ms: 0.105027
+  type: 'test'
+  ...
+# Subtest: V23 invalidated store refuses put rather than empty memory
+ok 41 - V23 invalidated store refuses put rather than empty memory
+  ---
+  duration_ms: 0.172277
+  type: 'test'
+  ...
+# Subtest: V23 invalidated store refuses atomic rather than empty memory
+ok 42 - V23 invalidated store refuses atomic rather than empty memory
+  ---
+  duration_ms: 0.17423
+  type: 'test'
+  ...
+# Subtest: V23 invalidated store refuses del rather than empty memory
+ok 43 - V23 invalidated store refuses del rather than empty memory
+  ---
+  duration_ms: 0.19434
+  type: 'test'
+  ...
+# Subtest: V23 invalidation emitted once and closes connection
+ok 44 - V23 invalidation emitted once and closes connection
+  ---
+  duration_ms: 0.123745
+  type: 'test'
+  ...
+# Subtest: V23 observer failure cannot reject committed data
+ok 45 - V23 observer failure cannot reject committed data
+  ---
+  duration_ms: 0.141071
+  type: 'test'
+  ...
+# Subtest: V23 committed snapshot is independent and deletion removes it
+ok 46 - V23 committed snapshot is independent and deletion removes it
+  ---
+  duration_ms: 0.149242
+  type: 'test'
+  ...
+# Subtest: V23 aborted database write preserves last committed data and reports failure
+ok 47 - V23 aborted database write preserves last committed data and reports failure
+  ---
+  duration_ms: 0.359026
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects slots object
+ok 48 - V23 Director rejects slots object
+  ---
+  duration_ms: 0.245306
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects clips object
+ok 49 - V23 Director rejects clips object
+  ---
+  duration_ms: 0.15407
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects too many slots
+ok 50 - V23 Director rejects too many slots
+  ---
+  duration_ms: 0.045769
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects invalid camera
+ok 51 - V23 Director rejects invalid camera
+  ---
+  duration_ms: 0.11381
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects duplicate formations
+ok 52 - V23 Director rejects duplicate formations
+  ---
+  duration_ms: 0.219948
+  type: 'test'
+  ...
+# Subtest: V23 Director rejects cut past end
+ok 53 - V23 Director rejects cut past end
+  ---
+  duration_ms: 0.057686
+  type: 'test'
+  ...
+# Subtest: V23 clean Director preserves formations and tracks on roundtrip
+ok 54 - V23 clean Director preserves formations and tracks on roundtrip
+  ---
+  duration_ms: 0.503051
+  type: 'test'
+  ...
+# Subtest: V23 library audit finds missing resources without modifying chart
+ok 55 - V23 library audit finds missing resources without modifying chart
+  ---
+  duration_ms: 2.153524
+  type: 'test'
+  ...
+# Subtest: V23 library audit reports every absent difficulty
+ok 56 - V23 library audit reports every absent difficulty
+  ---
+  duration_ms: 0.138066
+  type: 'test'
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 92.138474

@@ -1,0 +1,304 @@
+TAP version 13
+# Subtest: V20 auto generation preserves every source field and every chart
+ok 1 - V20 auto generation preserves every source field and every chart
+  ---
+  duration_ms: 7.365185
+  type: 'test'
+  ...
+# Subtest: V20 repeated ensure is byte-for-byte idempotent
+ok 2 - V20 repeated ensure is byte-for-byte idempotent
+  ---
+  duration_ms: 2.307119
+  type: 'test'
+  ...
+# Subtest: V20 same seed and audio produce deterministic show
+ok 3 - V20 same seed and audio produce deterministic show
+  ---
+  duration_ms: 1.201361
+  type: 'test'
+  ...
+# Subtest: V20 changing seed changes choreography or scenery
+ok 4 - V20 changing seed changes choreography or scenery
+  ---
+  duration_ms: 1.577278
+  type: 'test'
+  ...
+# Subtest: V20 disabled import leaves a new song alone
+ok 5 - V20 disabled import leaves a new song alone
+  ---
+  duration_ms: 0.555197
+  type: 'test'
+  ...
+# Subtest: V20 mode off is not silently reenabled
+ok 6 - V20 mode off is not silently reenabled
+  ---
+  duration_ms: 1.146879
+  type: 'test'
+  ...
+# Subtest: V20 frozen proposal is preserved during audio metadata changes
+ok 7 - V20 frozen proposal is preserved during audio metadata changes
+  ---
+  duration_ms: 1.944973
+  type: 'test'
+  ...
+# Subtest: V20 legacy manual stage is detected
+ok 8 - V20 legacy manual stage is detected
+  ---
+  duration_ms: 0.644081
+  type: 'test'
+  ...
+# Subtest: V20 legacy manual choreography is detected
+ok 9 - V20 legacy manual choreography is detected
+  ---
+  duration_ms: 0.662198
+  type: 'test'
+  ...
+# Subtest: V20 legacy manual formations is detected
+ok 10 - V20 legacy manual formations is detected
+  ---
+  duration_ms: 1.246058
+  type: 'test'
+  ...
+# Subtest: V20 legacy manual camera is detected
+ok 11 - V20 legacy manual camera is detected
+  ---
+  duration_ms: 0.757863
+  type: 'test'
+  ...
+# Subtest: V20 legacy manual lighting is detected
+ok 12 - V20 legacy manual lighting is detected
+  ---
+  duration_ms: 0.498963
+  type: 'test'
+  ...
+# Subtest: V20 edited camera locks camera only, not choreography
+ok 13 - V20 edited camera locks camera only, not choreography
+  ---
+  duration_ms: 0.74331
+  type: 'test'
+  ...
+# Subtest: V20 existing timed scene events are never changed
+ok 14 - V20 existing timed scene events are never changed
+  ---
+  duration_ms: 0.744092
+  type: 'test'
+  ...
+# Subtest: V20 explicit unlock permits an auto override without deleting manual data
+ok 15 - V20 explicit unlock permits an auto override without deleting manual data
+  ---
+  duration_ms: 1.502395
+  type: 'test'
+  ...
+# Subtest: V20 regenerating keeps frozen track values
+ok 16 - V20 regenerating keeps frozen track values
+  ---
+  duration_ms: 1.01442
+  type: 'test'
+  ...
+# Subtest: V20 manual Director config retains original clip identity and times
+ok 17 - V20 manual Director config retains original clip identity and times
+  ---
+  duration_ms: 2.08225
+  type: 'test'
+  ...
+# Subtest: V20 adding a pack to an auto song does not mistake defaults for manual edits
+ok 18 - V20 adding a pack to an auto song does not mistake defaults for manual edits
+  ---
+  duration_ms: 1.549336
+  type: 'test'
+  ...
+# Subtest: V20 clear pack removes auto Director on regeneration
+ok 19 - V20 clear pack removes auto Director on regeneration
+  ---
+  duration_ms: 1.293761
+  type: 'test'
+  ...
+# Subtest: V20 all phrases cover full audio exactly
+ok 20 - V20 all phrases cover full audio exactly
+  ---
+  duration_ms: 0.641577
+  type: 'test'
+  ...
+# Subtest: V20 whole silence has neutral movement and restrained illumination
+ok 21 - V20 whole silence has neutral movement and restrained illumination
+  ---
+  duration_ms: 0.80963
+  type: 'test'
+  ...
+# Subtest: V20 measured silent phrase is not assigned an active dance
+ok 22 - V20 measured silent phrase is not assigned an active dance
+  ---
+  duration_ms: 1.314972
+  type: 'test'
+  ...
+# Subtest: V20 tempo map is continuous and used for performance beats
+ok 23 - V20 tempo map is continuous and used for performance beats
+  ---
+  duration_ms: 0.698994
+  type: 'test'
+  ...
+# Subtest: V20 compound time controls musical phrase lengths
+ok 24 - V20 compound time controls musical phrase lengths
+  ---
+  duration_ms: 1.157466
+  type: 'test'
+  ...
+# Subtest: V20 selected difficulty is irrelevant to show generation
+ok 25 - V20 selected difficulty is irrelevant to show generation
+  ---
+  duration_ms: 1.533653
+  type: 'test'
+  ...
+# Subtest: V20 rhythmic source is deterministic among five generated levels
+ok 26 - V20 rhythmic source is deterministic among five generated levels
+  ---
+  duration_ms: 0.632464
+  type: 'test'
+  ...
+# Subtest: V20 solo formation remains centered
+ok 27 - V20 solo formation remains centered
+  ---
+  duration_ms: 0.31849
+  type: 'test'
+  ...
+# Subtest: V20 formation coordinates stay bounded and show at least one performer
+ok 28 - V20 formation coordinates stay bounded and show at least one performer
+  ---
+  duration_ms: 0.560064
+  type: 'test'
+  ...
+# Subtest: V20 portrait camera increases distance to fit the group
+ok 29 - V20 portrait camera increases distance to fit the group
+  ---
+  duration_ms: 0.816021
+  type: 'test'
+  ...
+# Subtest: V20 reduced motion keeps camera and light constant
+ok 30 - V20 reduced motion keeps camera and light constant
+  ---
+  duration_ms: 1.084215
+  type: 'test'
+  ...
+# Subtest: V20 seeking backwards is stateless and deterministic
+ok 31 - V20 seeking backwards is stateless and deterministic
+  ---
+  duration_ms: 0.805114
+  type: 'test'
+  ...
+# Subtest: V20 incoming VMD selection uses measured energy and model bones
+ok 32 - V20 incoming VMD selection uses measured energy and model bones
+  ---
+  duration_ms: 0.852185
+  type: 'test'
+  ...
+# Subtest: V20 no VMD produces explicit procedural MMD clips
+ok 33 - V20 no VMD produces explicit procedural MMD clips
+  ---
+  duration_ms: 1.105958
+  type: 'test'
+  ...
+# Subtest: V20 unmatched VMD falls back to procedural without retargeting blindly
+ok 34 - V20 unmatched VMD falls back to procedural without retargeting blindly
+  ---
+  duration_ms: 0.478842
+  type: 'test'
+  ...
+# Subtest: V20 procedural animation recognizes Japanese and English bone aliases
+ok 35 - V20 procedural animation recognizes Japanese and English bone aliases
+  ---
+  duration_ms: 0.925947
+  type: 'test'
+  ...
+# Subtest: V20 unknown procedural rig stays in rest with explicit zero matching
+ok 36 - V20 unknown procedural rig stays in rest with explicit zero matching
+  ---
+  duration_ms: 0.086771
+  type: 'test'
+  ...
+# Subtest: V20 synthesized quaternion tracks remain finite unit rotations
+ok 37 - V20 synthesized quaternion tracks remain finite unit rotations
+  ---
+  duration_ms: 0.162846
+  type: 'test'
+  ...
+# Subtest: V20 procedural loop closes exactly
+ok 38 - V20 procedural loop closes exactly
+  ---
+  duration_ms: 0.125089
+  type: 'test'
+  ...
+# Subtest: V20 measured VMD descriptors use angular change rather than filename guesses
+ok 39 - V20 measured VMD descriptors use angular change rather than filename guesses
+  ---
+  duration_ms: 0.266662
+  type: 'test'
+  ...
+# Subtest: V20 cached plan retains metadata after JSON roundtrip
+ok 40 - V20 cached plan retains metadata after JSON roundtrip
+  ---
+  duration_ms: 0.815971
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses infinite duration
+ok 41 - V20 invalid plan refuses infinite duration
+  ---
+  duration_ms: 0.738534
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses invalid seed
+ok 42 - V20 invalid plan refuses invalid seed
+  ---
+  duration_ms: 0.447465
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses missing coverage
+ok 43 - V20 invalid plan refuses missing coverage
+  ---
+  duration_ms: 0.538202
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses unknown stage
+ok 44 - V20 invalid plan refuses unknown stage
+  ---
+  duration_ms: 0.423398
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses bad camera
+ok 45 - V20 invalid plan refuses bad camera
+  ---
+  duration_ms: 0.641297
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses bad dance
+ok 46 - V20 invalid plan refuses bad dance
+  ---
+  duration_ms: 0.54397
+  type: 'test'
+  ...
+# Subtest: V20 invalid plan refuses overlong track
+ok 47 - V20 invalid plan refuses overlong track
+  ---
+  duration_ms: 0.501085
+  type: 'test'
+  ...
+# Subtest: V20 automatic model and motion refs remap for a restored copy
+ok 48 - V20 automatic model and motion refs remap for a restored copy
+  ---
+  duration_ms: 1.103233
+  type: 'test'
+  ...
+# Subtest: V20 missing automatic motion aborts restore
+ok 49 - V20 missing automatic motion aborts restore
+  ---
+  duration_ms: 0.679124
+  type: 'test'
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 138.84352

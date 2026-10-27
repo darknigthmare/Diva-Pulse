@@ -1,0 +1,16 @@
+{
+  "version": "3.0.0",
+  "coreTests": 99,
+  "browserChecks": 101,
+  "uncaughtErrors": 0,
+  "reproducibleBuild": true,
+  "inlineHTMLBytes": 298976,
+  "htmlSHA256": "4022f2efa20a6fe284e99b8566f2890800ddbc6c170974233cdbefb0997e37dd",
+  "notDeployed": true,
+  "baseArchive": "DIVA_PULSE_V2_STAGE_EDITION_COMPLET.zip",
+  "browserSuites": {
+    "regression": 32,
+    "advanced": 19,
+    "creator": 50
+  }
+}

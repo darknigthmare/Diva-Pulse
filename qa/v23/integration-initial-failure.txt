@@ -1,0 +1,13 @@
+PASS V23 title, version and diagnostic entry point
+PASS Real WebGL2 renderer initialized
+FAIL 36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002
+Traceback (most recent call last):
+  File "/mnt/data/v23_work/DIVA_PULSE_V23/tests/v23_browser_test.py", line 25, in <module>
+    ok('36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002',probe['maxError']<2e-5)
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v23_work/DIVA_PULSE_V23/tests/v23_browser_test.py", line 12, in ok
+    if not v:raise AssertionError(n)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002
+
+{"buildSha256": "4fe6b5d9c263f216ed12ce32c8a46a74dfac19e46acaa65bd3ff709fcf698b1c", "passed": 2, "total": 3, "failure": "36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002", "errors": [], "storage": "temporary", "renderer": "Chromium WebGL2 SwiftShader"}

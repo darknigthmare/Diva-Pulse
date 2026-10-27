@@ -1,0 +1,538 @@
+{
+  "id": "v5-mesures-mixtes",
+  "title": "ATELIER DES MESURES",
+  "source": "manual",
+  "difficulty": "NORMAL",
+  "bpm": 120,
+  "offset": 2,
+  "meterMap": [
+    {
+      "beat": 0,
+      "numerator": 3,
+      "denominator": 4,
+      "groups": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "beat": 12,
+      "numerator": 7,
+      "denominator": 8,
+      "groups": [
+        2,
+        2,
+        3
+      ]
+    },
+    {
+      "beat": 26,
+      "numerator": 6,
+      "denominator": 8,
+      "groups": [
+        3,
+        3
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "id": "mix-0",
+      "time": 0,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.19,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-1",
+      "time": 0.5,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-2",
+      "time": 1,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.42000000000000004,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-3",
+      "time": 1.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.535,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-4",
+      "time": 2,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-5",
+      "time": 2.5,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.7650000000000001,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-6",
+      "time": 3,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.19,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-7",
+      "time": 3.5,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-8",
+      "time": 4,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.42000000000000004,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-9",
+      "time": 4.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.535,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-10",
+      "time": 5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-11",
+      "time": 5.5,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.7650000000000001,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-12",
+      "time": 6,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.19,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-14",
+      "time": 6.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.42000000000000004,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-16",
+      "time": 7,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-19",
+      "time": 7.75,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-21",
+      "time": 8.25,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.535,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-23",
+      "time": 8.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.7650000000000001,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-26",
+      "time": 9.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.42000000000000004,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-28",
+      "time": 10,
+      "lane": 0,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-30",
+      "time": 10.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.19,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-33",
+      "time": 11.25,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.535,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-35",
+      "time": 11.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.7650000000000001,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-37",
+      "time": 12.25,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-40",
+      "time": 13,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-43",
+      "time": 13.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-46",
+      "time": 14.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-49",
+      "time": 15.25,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-52",
+      "time": 16,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-55",
+      "time": 16.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-58",
+      "time": 17.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-61",
+      "time": 18.25,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-64",
+      "time": 19,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-67",
+      "time": 19.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-70",
+      "time": 20.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-73",
+      "time": 21.25,
+      "lane": 1,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-76",
+      "time": 22,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-79",
+      "time": 22.75,
+      "lane": 3,
+      "type": "tap",
+      "x": 0.305,
+      "y": 0.61,
+      "approach": 1.7,
+      "angle": 45,
+      "distance": 0.8,
+      "duration": 0
+    },
+    {
+      "id": "mix-82",
+      "time": 23.5,
+      "lane": 2,
+      "type": "tap",
+      "x": 0.65,
+      "y": 0.37,
+      "approach": 1.7,
+      "angle": -45,
+      "distance": 0.8,
+      "duration": 0
+    }
+  ],
+  "sections": [
+    {
+      "id": "3-4",
+      "label": "3/4",
+      "from": 2,
+      "to": 8
+    },
+    {
+      "id": "7-8",
+      "label": "7/8 · 2+2+3",
+      "from": 8,
+      "to": 15
+    },
+    {
+      "id": "6-8",
+      "label": "6/8 · 3+3",
+      "from": 15,
+      "to": 26
+    }
+  ],
+  "format": "DIVA-PULSE",
+  "version": 4,
+  "gridOffset": 0,
+  "tempoMap": [
+    {
+      "time": 0,
+      "bpm": 120
+    }
+  ]
+}

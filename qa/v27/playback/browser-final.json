@@ -1,0 +1,67 @@
+{
+  "version": "27.0.0",
+  "buildSha256": "8434e7cbb8b1aec1855bb73ff375cc8da5023abdbb536287021894fca68509f0",
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Actual PV starts audio and the physics world",
+      "passed": true
+    },
+    {
+      "name": "PV mesh receives a nonzero simulated bone rotation in an observed frame",
+      "passed": true
+    },
+    {
+      "name": "Game pause holds audio time and physical steps",
+      "passed": true
+    },
+    {
+      "name": "Paused PV skeleton remains unchanged",
+      "passed": true
+    },
+    {
+      "name": "Resume advances same song transport",
+      "passed": true
+    },
+    {
+      "name": "Full PV reaches song end without a score",
+      "passed": true
+    },
+    {
+      "name": "PV leaves charts byte-identical",
+      "passed": true
+    },
+    {
+      "name": "Complete Autoplay with dynamics reaches 100 percent",
+      "passed": true
+    },
+    {
+      "name": "Autoplay does not change charts or turn physics off",
+      "passed": true
+    },
+    {
+      "name": "Physics fault is isolated and latched instead of retrying each frame",
+      "passed": true
+    },
+    {
+      "name": "Physics fault is visible in diagnostic panel",
+      "passed": true
+    },
+    {
+      "name": "Explicit reset recovers without reimporting the model",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    },
+    {
+      "name": "No application frame failure",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "errors": [],
+  "scope": "Opaque temporary document; SwiftShader; actual decoded original 8-second audio and original PMX. Playback window 800x520: larger software-rendered viewport previously triggered conservative slow-frame resets."
+}

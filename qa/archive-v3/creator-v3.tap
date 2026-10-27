@@ -1,0 +1,316 @@
+TAP version 13
+# Subtest: V3 tempo: integral over three tempo segments
+ok 1 - V3 tempo: integral over three tempo segments
+  ---
+  duration_ms: 3.403295
+  type: 'test'
+  ...
+# Subtest: V3 tempo: inverse for 1,000 times, including negative preroll
+ok 2 - V3 tempo: inverse for 1,000 times, including negative preroll
+  ---
+  duration_ms: 4.189884
+  type: 'test'
+  ...
+# Subtest: V3 tempo: non-zero initial event receives chart initial BPM
+ok 3 - V3 tempo: non-zero initial event receives chart initial BPM
+  ---
+  duration_ms: 0.637189
+  type: 'test'
+  ...
+# Subtest: V3 tempo: duplicate, negative, NaN and extreme tempo rejected
+ok 4 - V3 tempo: duplicate, negative, NaN and extreme tempo rejected
+  ---
+  duration_ms: 0.406619
+  type: 'test'
+  ...
+# Subtest: V3 tempo: edit does not mutate note times
+ok 5 - V3 tempo: edit does not mutate note times
+  ---
+  duration_ms: 0.597891
+  type: 'test'
+  ...
+# Subtest: V3 grid: subdivisions follow tempo instead of global BPM
+ok 6 - V3 grid: subdivisions follow tempo instead of global BPM
+  ---
+  duration_ms: 0.241266
+  type: 'test'
+  ...
+# Subtest: V3 grid: phase offset and triplets supported
+ok 7 - V3 grid: phase offset and triplets supported
+  ---
+  duration_ms: 0.20321
+  type: 'test'
+  ...
+# Subtest: V3 grid: free timing preserves original precision
+ok 8 - V3 grid: free timing preserves original precision
+  ---
+  duration_ms: 0.132756
+  type: 'test'
+  ...
+# Subtest: V3 grid: returned bar and quarter markers are consistent
+ok 9 - V3 grid: returned bar and quarter markers are consistent
+  ---
+  duration_ms: 0.339701
+  type: 'test'
+  ...
+# Subtest: V3 selection: mirror modifies only selected notes and source stays intact
+ok 10 - V3 selection: mirror modifies only selected notes and source stays intact
+  ---
+  duration_ms: 0.666573
+  type: 'test'
+  ...
+# Subtest: V3 selection: chord lane mirror is bijective
+ok 11 - V3 selection: chord lane mirror is bijective
+  ---
+  duration_ms: 0.306301
+  type: 'test'
+  ...
+# Subtest: V3 selection: quantization collision rejects whole edit
+ok 12 - V3 selection: quantization collision rejects whole edit
+  ---
+  duration_ms: 0.308925
+  type: 'test'
+  ...
+# Subtest: V3 selection: negative shift rejects transaction
+ok 13 - V3 selection: negative shift rejects transaction
+  ---
+  duration_ms: 0.152474
+  type: 'test'
+  ...
+# Subtest: V3 selection: copy and paste preserves intervals and gives unique IDs
+ok 14 - V3 selection: copy and paste preserves intervals and gives unique IDs
+  ---
+  duration_ms: 0.421241
+  type: 'test'
+  ...
+# Subtest: V3 selection: duplicate paste fails without touching source
+ok 15 - V3 selection: duplicate paste fails without touching source
+  ---
+  duration_ms: 0.381131
+  type: 'test'
+  ...
+# Subtest: V3 layout: all four patterns stay in playfield
+ok 16 - V3 layout: all four patterns stay in playfield
+  ---
+  duration_ms: 0.666502
+  type: 'test'
+  ...
+# Subtest: V3 selection: deleting group preserves unselected notes
+ok 17 - V3 selection: deleting group preserves unselected notes
+  ---
+  duration_ms: 0.128279
+  type: 'test'
+  ...
+# Subtest: V3 audit: unsafe coordinates, short approach, rapid repetition and audio bounds flagged
+ok 18 - V3 audit: unsafe coordinates, short approach, rapid repetition and audio bounds flagged
+  ---
+  duration_ms: 0.748713
+  type: 'test'
+  ...
+# Subtest: V3 audit: overlaps and oversized chords reported
+ok 19 - V3 audit: overlaps and oversized chords reported
+  ---
+  duration_ms: 0.286623
+  type: 'test'
+  ...
+# Subtest: V3 audit: informational only, never modifies source
+ok 20 - V3 audit: informational only, never modifies source
+  ---
+  duration_ms: 0.229448
+  type: 'test'
+  ...
+# Subtest: V3 stats: median, deviation, early/late counts and suggestions
+ok 21 - V3 stats: median, deviation, early/late counts and suggestions
+  ---
+  duration_ms: 0.25802
+  type: 'test'
+  ...
+# Subtest: V3 stats: inconsistent hits never propose unreliable calibration
+ok 22 - V3 stats: inconsistent hits never propose unreliable calibration
+  ---
+  duration_ms: 0.134388
+  type: 'test'
+  ...
+# Subtest: V3 practice: difficult segments prioritize misses
+ok 23 - V3 practice: difficult segments prioritize misses
+  ---
+  duration_ms: 0.219413
+  type: 'test'
+  ...
+# Subtest: V3 practice: right endpoint excluded from denominator
+ok 24 - V3 practice: right endpoint excluded from denominator
+  ---
+  duration_ms: 0.562338
+  type: 'test'
+  ...
+# Subtest: V3 practice: tail bonus capped at practice end
+ok 25 - V3 practice: tail bonus capped at practice end
+  ---
+  duration_ms: 0.277028
+  type: 'test'
+  ...
+# Subtest: V3 hold: release accrues through precise release timestamp
+ok 26 - V3 hold: release accrues through precise release timestamp
+  ---
+  duration_ms: 0.138314
+  type: 'test'
+  ...
+# Subtest: V3 hold: large and small frames produce identical Autoplay bonuses
+ok 27 - V3 hold: large and small frames produce identical Autoplay bonuses
+  ---
+  duration_ms: 0.529791
+  type: 'test'
+  ...
+# Subtest: V3 chain: continuously held input survives slow rendering and exact replay
+ok 28 - V3 chain: continuously held input survives slow rendering and exact replay
+  ---
+  duration_ms: 0.369224
+  type: 'test'
+  ...
+# Subtest: V3 chain: a late keydown cannot retroactively consume an old chain
+ok 29 - V3 chain: a late keydown cannot retroactively consume an old chain
+  ---
+  duration_ms: 0.143181
+  type: 'test'
+  ...
+# Subtest: V3 replay: input recording reproduces judgments and holds
+ok 30 - V3 replay: input recording reproduces judgments and holds
+  ---
+  duration_ms: 0.362485
+  type: 'test'
+  ...
+# Subtest: V3 replay: unordered events, invalid lanes and missing format rejected
+ok 31 - V3 replay: unordered events, invalid lanes and missing format rejected
+  ---
+  duration_ms: 0.249317
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: type 0, running status and tempo changes decoded
+ok 32 - V3 MIDI: type 0, running status and tempo changes decoded
+  ---
+  duration_ms: 0.715624
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: SysEx safely skipped, zero velocity treated as release
+ok 33 - V3 MIDI: SysEx safely skipped, zero velocity treated as release
+  ---
+  duration_ms: 0.371527
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: SMPTE timeline ignores musical tempo for tick conversion
+ok 34 - V3 MIDI: SMPTE timeline ignores musical tempo for tick conversion
+  ---
+  duration_ms: 0.221807
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: drop-frame 29.97 conversion
+ok 35 - V3 MIDI: drop-frame 29.97 conversion
+  ---
+  duration_ms: 0.141959
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: format 2 explicitly refused
+ok 36 - V3 MIDI: format 2 explicitly refused
+  ---
+  duration_ms: 0.273563
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: invalid signatures, zero division and malformed statuses refused
+ok 37 - V3 MIDI: invalid signatures, zero division and malformed statuses refused
+  ---
+  duration_ms: 0.334333
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: truncated file rejected at every byte boundary
+ok 38 - V3 MIDI: truncated file rejected at every byte boundary
+  ---
+  duration_ms: 0.770746
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: omitted note-off gives an explicit warning
+ok 39 - V3 MIDI: omitted note-off gives an explicit warning
+  ---
+  duration_ms: 0.164983
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: automatic import preserves times and supports HOLD toggle
+ok 40 - V3 MIDI: automatic import preserves times and supports HOLD toggle
+  ---
+  duration_ms: 0.484263
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: external polyphony reports dropped and remapped pitches
+ok 41 - V3 MIDI: external polyphony reports dropped and remapped pitches
+  ---
+  duration_ms: 0.316025
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: canonical six-lane mapping supports slide and chain
+ok 42 - V3 MIDI: canonical six-lane mapping supports slide and chain
+  ---
+  duration_ms: 0.180636
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: drum-only selection rejected when drums excluded
+ok 43 - V3 MIDI: drum-only selection rejected when drums excluded
+  ---
+  duration_ms: 0.181377
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: native roundtrip preserves note precision, position and tempo exactly
+ok 44 - V3 MIDI: native roundtrip preserves note precision, position and tempo exactly
+  ---
+  duration_ms: 1.485489
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: standard exported events match audible times within tick rounding
+ok 45 - V3 MIDI: standard exported events match audible times within tick rounding
+  ---
+  duration_ms: 0.471134
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: exported timing supports negative chart offset when notes remain audible
+ok 46 - V3 MIDI: exported timing supports negative chart offset when notes remain audible
+  ---
+  duration_ms: 0.317458
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: note before audible time zero cannot export silently
+ok 47 - V3 MIDI: note before audible time zero cannot export silently
+  ---
+  duration_ms: 0.23009
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: tempo outside engine range is explicit, not clamped
+ok 48 - V3 MIDI: tempo outside engine range is explicit, not clamped
+  ---
+  duration_ms: 0.14939
+  type: 'test'
+  ...
+# Subtest: V3 large chart: 5,000-note native export/import keeps exact signature
+ok 49 - V3 large chart: 5,000-note native export/import keeps exact signature
+  ---
+  duration_ms: 106.364662
+  type: 'test'
+  ...
+# Subtest: V3 duplicated ID normalization always produces unique IDs
+ok 50 - V3 duplicated ID normalization always produces unique IDs
+  ---
+  duration_ms: 0.270609
+  type: 'test'
+  ...
+# Subtest: V3 strict imports: unsupported approach, duration or offset rejected instead of silently clamped
+ok 51 - V3 strict imports: unsupported approach, duration or offset rejected instead of silently clamped
+  ---
+  duration_ms: 0.240845
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 202.890742

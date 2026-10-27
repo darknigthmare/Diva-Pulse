@@ -1,0 +1,20 @@
+PASS Menu preview is not overridden by a time-zero PV event
+PASS Module preview uses chosen camera and animated dance
+PASS Two keyboard aliases: releasing one preserves the other HOLD
+PASS Releasing last alias clears held input
+PASS Gamepad adapter maps R1 to right slide (simulated)
+PASS Gamepad release clears input (simulated)
+PASS Normal mode receives timed keyboard events and clears the song (fixed-stage mode)
+PASS Normal eligible clear writes one local record
+PASS Practice actually loops the chosen audio segment
+PASS Live manual recording captures taps and held durations
+PASS Recorded chart is independently saved
+PASS Keyboard remapping updates the active binding
+PASS Bindings can be restored
+PASS No-fail session does not create or replace normal records
+PASS Local MP4 decodes and is associated to the song
+PASS PV viewer plays actual MP4 without rhythm notes
+PASS PV pause also pauses its video
+PASS Invalid GLB reports an error while preserving the built-in stage
+PASS No uncaught errors in advanced scenarios
+RESULT 19 passed / 0 failed

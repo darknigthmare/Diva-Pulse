@@ -1,0 +1,29 @@
+PASS V22 build and new UI ready
+PASS Real software WebGL2 context
+PASS Morph-only VMD has compatible morph names
+PASS Independent preview renders the morph-only animation
+PASS AutoShow selects the morph-only VMD
+PASS Import keeps chart data intact
+PASS Two materials share one UV buffer
+PASS Material morph reaches zero opacity
+PASS Material morph changes real framebuffer pixels
+PASS Zero weight restores opacity without altering source
+PASS UV morph reaches actual GPU buffer
+PASS Seek resets UV GPU buffer
+PASS Groups combine UV and opacity
+PASS Surface renderer has no WebGL error
+PASS Calibration has all three user fields
+PASS BPM calibration is saved in motion metadata
+PASS Source clock is present in actual AutoShow renderer clips
+PASS Calibration never rewrites rhythm charts
+PASS Renderer consumes music-beat source time
+PASS Invalid BPM preserves scene and shows error
+PASS Refused save preserves scene and retry dialog
+PASS Manual montage preserved after source profile update
+PASS Backup restores calibration and remaps asset IDs
+PASS Restored manual montage keeps original clip clock
+PASS Dialog fits portrait viewport
+PASS Inputs stay in portrait viewport
+PASS No unhandled JavaScript exception
+PASS No frame renderer failure
+{"buildSha256": "0c88113152e6ac4299d35611b44abbd6964e81ec23baa1861a5b9005ed6b7cf0", "passed": 28, "total": 28, "failure": null, "errors": [], "storage": "temporary", "renderer": "Chromium WebGL2 SwiftShader"}

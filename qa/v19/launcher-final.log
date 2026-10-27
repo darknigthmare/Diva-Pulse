@@ -1,0 +1,11 @@
+PASS Loopback health identifies exact V19 build
+PASS Launcher serves standalone game bytes exactly
+PASS Launcher adds no-cache, nosniff and no-referrer headers
+PASS Same running build is reused on the same explicit port
+PASS Manifest is served with manifest JSON MIME and correct icons
+PASS Offline shell file is locally available: sw.js
+PASS Offline shell file is locally available: icons/icon-192.png
+PASS Offline shell file is locally available: icons/icon-512.png
+PASS Foreign application collision fails instead of silently changing port
+PASS Invalid non-user port is rejected
+TOTAL 10 PASS

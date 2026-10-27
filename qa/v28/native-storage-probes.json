@@ -1,0 +1,14 @@
+{
+  "validated": false,
+  "attempts": [
+    {
+      "target": "loopback HTTP owned test server",
+      "result": "ERR_BLOCKED_BY_ADMINISTRATOR before document navigation"
+    },
+    {
+      "target": "locally fulfilled synthetic HTTPS test origin",
+      "result": "ERR_BLOCKED_BY_ADMINISTRATOR before document navigation"
+    }
+  ],
+  "conclusion": "Browser navigation was blocked; UI tests use set_content and cannot demonstrate native IndexedDB durability. The HTTP launcher is tested separately using the Python client."
+}

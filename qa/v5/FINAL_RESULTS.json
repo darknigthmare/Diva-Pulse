@@ -1,0 +1,44 @@
+{
+  "version": "5.0.0",
+  "builtHTMLSHA256": "d4e516bdce70492be12e89790f91bfc29a85a5f33bfd6869e8cae5d5bc17c6ef",
+  "unit": {
+    "passed": 198,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 235,
+    "failed": 0,
+    "suites": [
+      {
+        "file": "regression-v3.json",
+        "passed": 32,
+        "failed": 0
+      },
+      {
+        "file": "advanced-results.json",
+        "passed": 19,
+        "failed": 0
+      },
+      {
+        "file": "creator-browser-results.json",
+        "passed": 50,
+        "failed": 0
+      },
+      {
+        "file": "v4-browser-results.json",
+        "passed": 72,
+        "failed": 0
+      },
+      {
+        "file": "v5/precision-browser.json",
+        "passed": 62,
+        "failed": 0
+      }
+    ]
+  },
+  "launcher": {
+    "passed": 10,
+    "failed": 0
+  },
+  "conditions": "Chromium + Xvfb + SwiftShader; standalone HTML set_content on opaque origin; no physical input devices; no IndexedDB restart or installed PWA validation"
+}

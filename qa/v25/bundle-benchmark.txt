@@ -1,0 +1,13 @@
+{
+  "node": "v22.16.0",
+  "mediaBytes": 268435456,
+  "archiveBytes": 268452904,
+  "overheadBytes": 17448,
+  "exportMs": 993,
+  "verifyMs": 907,
+  "exportChunks": 256,
+  "readChunks": 256,
+  "maxRssKiB": 331888,
+  "passed": true,
+  "scope": "Native Node + synthetic Blob, not a browser IndexedDB restore and not evidence of the 1 GiB ceiling on all devices."
+}

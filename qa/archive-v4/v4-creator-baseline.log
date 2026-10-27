@@ -1,0 +1,51 @@
+PASS V3 initialization completes and WebGL2 draws
+PASS Help includes new workflows
+PASS MIDI import opens a preview and never commits before confirmation
+PASS Canceling MIDI import leaves chart library untouched
+PASS Native MIDI import restores all seven notes and three tempos
+PASS Chart audit opens and remains non-destructive
+PASS Tempo editor inserts event without retiming imported notes
+PASS Changing first BPM preserves later tempo events
+PASS Tempo changes participate in undo history
+PASS Select-all displays seven selected notes
+PASS Group paste creates seven notes with unique IDs
+PASS Arc layout only modifies selected group
+PASS Group layout and paste each undo atomically
+PASS Invalid group shift is rejected without partial changes
+PASS Target inspector edits angle and distance precisely
+PASS Editing MIDI makes a derivative and preserves the native source
+PASS MIDI export produces a standard binary file with exact native chart metadata
+PASS Auto PV aligns cuts to variable-tempo measures and audio bounds
+PASS PV camera blend and video offset stored per song
+PASS Variable-tempo metronome schedules real Web Audio playback
+PASS Reopening studio follows selected chart instead of stale derivative
+PASS Concert stage includes audience and moving beam subtree
+PASS Concert effects can be disabled
+PASS Cast spacing changes rig placement without rebuilding chart
+PASS Camera seeking is deterministic rather than frame-count dependent
+PASS Imported animated GLB supports orientation and scale controls
+PASS Output presentation clock is opt-in and reflected in settings
+PASS Normal input handlers produce a replay and session history
+PASS Offline replay simulation reproduces captured result
+PASS Replay export contains inputs and native chart, not media
+PASS Real-time replay including pause reproduces score and judgments
+PASS Replay is visibly non-ranked and never writes a record
+PASS Setlist saves actual song/chart references and preserves order
+PASS Setlist launch selects requested chart and concert progress
+PASS Next setlist track starts only after explicit result action
+PASS Restore is explicit and preferences stay unchecked by default
+PASS V3 restore duplicates songs and reattaches score IDs
+PASS V3 restore remaps setlists to newly copied songs
+PASS Temporary storage transactions reject all rows on error
+PASS Invalid library rejected before data mutation
+PASS Invalid replay reports error without opening a game
+PASS V3 portrait library: no horizontal document overflow
+PASS V3 portrait editor: no horizontal document overflow
+PASS V3 portrait wardrobe: no horizontal document overflow
+PASS V3 portrait settings: no horizontal document overflow
+PASS V3 landscape library: no horizontal document overflow
+PASS V3 landscape editor: no horizontal document overflow
+PASS V3 landscape wardrobe: no horizontal document overflow
+PASS V3 landscape settings: no horizontal document overflow
+PASS All V3 workflows have no uncaught JS or rendering error
+RESULT 50 passed / 0 failed

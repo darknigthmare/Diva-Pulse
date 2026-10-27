@@ -1,0 +1,8 @@
+{
+  "browser": "Chromium, Xvfb :99, headless=false, ANGLE SwiftShader WebGL2",
+  "document": "Exact built HTML passed to set_content, opaque temporary origin",
+  "blocked_navigation_observed": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8926/",
+  "response": "No bypass attempted; test HTTP serving separately with launcher tests; use permitted in-memory document for UI tests.",
+  "not_validated": ["IndexedDB after browser restart", "Native multi-tab writer locking", "Safari/iPhone", "Physical gamepads or MIDI", "Complete PWA installation"],
+  "physics": "Bullet dependency was not retrieved; no Bullet implementation or binary included in V26."
+}

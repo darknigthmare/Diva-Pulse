@@ -1,0 +1,233 @@
+{
+  "checks": [
+    {
+      "name": "Menu preview is not overridden by a time-zero PV event",
+      "passed": true
+    },
+    {
+      "name": "Module preview uses chosen camera and animated dance",
+      "passed": true
+    },
+    {
+      "name": "Two keyboard aliases: releasing one preserves the other HOLD",
+      "passed": true
+    },
+    {
+      "name": "Releasing last alias clears held input",
+      "passed": true
+    },
+    {
+      "name": "Gamepad adapter maps R1 to right slide (simulated)",
+      "passed": true
+    },
+    {
+      "name": "Gamepad release clears input (simulated)",
+      "passed": true
+    },
+    {
+      "name": "Normal mode receives timed keyboard events and clears the song (fixed-stage mode)",
+      "passed": true
+    },
+    {
+      "name": "Normal eligible clear writes one local record",
+      "passed": true
+    },
+    {
+      "name": "Practice actually loops the chosen audio segment",
+      "passed": true
+    },
+    {
+      "name": "Live manual recording captures taps and held durations",
+      "passed": true
+    },
+    {
+      "name": "Recorded chart is independently saved",
+      "passed": true
+    },
+    {
+      "name": "Keyboard remapping updates the active binding",
+      "passed": true
+    },
+    {
+      "name": "Bindings can be restored",
+      "passed": true
+    },
+    {
+      "name": "No-fail session does not create or replace normal records",
+      "passed": true
+    },
+    {
+      "name": "Local MP4 decodes and is associated to the song",
+      "passed": true
+    },
+    {
+      "name": "PV viewer plays actual MP4 without rhythm notes",
+      "passed": true
+    },
+    {
+      "name": "PV pause also pauses its video",
+      "passed": true
+    },
+    {
+      "name": "Invalid GLB reports an error while preserving the built-in stage",
+      "passed": true
+    },
+    {
+      "name": "No uncaught errors in advanced scenarios",
+      "passed": true
+    }
+  ],
+  "passed": 19,
+  "failed": 0,
+  "errors": [],
+  "observations": {
+    "simulatedKeyboardResult": {
+      "counts": {
+        "COOL": 15,
+        "FINE": 0,
+        "SAFE": 0,
+        "SAD": 0,
+        "MISS": 0,
+        "WRONG": 0
+      },
+      "total": 15,
+      "processed": 15,
+      "score": 15208,
+      "baseScore": 15000,
+      "holdBonus": 208,
+      "maxCombo": 15,
+      "accuracy": 100,
+      "life": 157,
+      "failed": false,
+      "cleared": true,
+      "fullCombo": true,
+      "rank": "S+",
+      "log": [
+        {
+          "noteId": "note-0",
+          "lane": 0,
+          "rating": "COOL",
+          "error": 19.437188208662803,
+          "time": 1.0194371882086628
+        },
+        {
+          "noteId": "note-1",
+          "lane": 3,
+          "rating": "COOL",
+          "error": 27.473696145031923,
+          "time": 1.527473696145032
+        },
+        {
+          "noteId": "note-3",
+          "lane": 1,
+          "rating": "COOL",
+          "error": 9.387755102041595,
+          "time": 2.0093877551020416
+        },
+        {
+          "noteId": "note-2",
+          "lane": 2,
+          "rating": "COOL",
+          "error": 9.287755101947681,
+          "time": 2.0092877551019477
+        },
+        {
+          "noteId": "note-4",
+          "lane": 4,
+          "rating": "COOL",
+          "error": 20.026757369661752,
+          "time": 2.5200267573696618
+        },
+        {
+          "noteId": "note-5",
+          "lane": 5,
+          "rating": "COOL",
+          "error": 7.845804988662053,
+          "time": 3.007845804988662
+        },
+        {
+          "noteId": "note-6",
+          "lane": 5,
+          "rating": "COOL",
+          "error": 7.260317460364263,
+          "time": 3.2572603174603643
+        },
+        {
+          "noteId": "note-7",
+          "lane": 5,
+          "rating": "COOL",
+          "error": 18.68480725623556,
+          "time": 3.5186848072562356
+        },
+        {
+          "noteId": "note-8",
+          "lane": 0,
+          "rating": "COOL",
+          "error": 17.81383219945276,
+          "time": 4.017813832199453
+        },
+        {
+          "noteId": "note-9",
+          "lane": 1,
+          "rating": "COOL",
+          "error": 8.335374149565311,
+          "time": 4.508335374149565
+        },
+        {
+          "noteId": "note-10",
+          "lane": 2,
+          "rating": "COOL",
+          "error": 19.174376417140593,
+          "time": 5.019174376417141
+        },
+        {
+          "noteId": "note-11",
+          "lane": 3,
+          "rating": "COOL",
+          "error": 18.503401360543847,
+          "time": 5.518503401360544
+        },
+        {
+          "noteId": "note-12",
+          "lane": 0,
+          "rating": "COOL",
+          "error": 8.92494331056426,
+          "time": 6.008924943310564
+        },
+        {
+          "noteId": "note-13",
+          "lane": 2,
+          "rating": "COOL",
+          "error": 19.86394557823168,
+          "time": 6.519863945578232
+        },
+        {
+          "noteId": "note-14",
+          "lane": 1,
+          "rating": "COOL",
+          "error": 7.382993197184717,
+          "time": 7.007382993197185
+        }
+      ],
+      "errors": [
+        19.437188208662803,
+        27.473696145031923,
+        9.387755102041595,
+        9.287755101947681,
+        20.026757369661752,
+        7.845804988662053,
+        7.260317460364263,
+        18.68480725623556,
+        17.81383219945276,
+        8.335374149565311,
+        19.174376417140593,
+        18.503401360543847,
+        8.92494331056426,
+        19.86394557823168,
+        7.382993197184717
+      ],
+      "meanError": 14.626863189686052
+    }
+  },
+  "scope": "Opaque local-content browser test, software GPU. Keyboard DOM and Gamepad adapter inputs are simulations, not physical peripherals."
+}

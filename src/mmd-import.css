@@ -1,0 +1,13 @@
+.mmd-import-guide{margin-top:20px;padding:18px;border:1px solid #7eaac64d;border-radius:12px;background:#0b1729}.mmd-import-guide label{display:grid;gap:6px}.mmd-import-modal{width:min(1100px,94vw);max-width:1100px}.mmd-model-audits{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}.mmd-model-audit{padding:16px;border:1px solid #7da4c466;border-radius:12px;background:#102136;min-width:0}.mmd-model-audit.blocked{border-color:#e7888877}.mmd-model-audit strong,.mmd-model-audit p{overflow-wrap:anywhere}.mmd-model-audit details{margin-top:10px}.mmd-model-audit details p{font-size:.85rem;line-height:1.5}.mmd-alert{color:#ffbd9b}.mmd-report{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;max-height:55vh;overflow:auto}#miCanvas{width:100%;height:auto;aspect-ratio:16/9;border:1px solid #518198;border-radius:12px;margin-top:16px}#miCanvas[hidden]{display:none}#miCount{font-weight:700;color:#a7f7e0}.mmd-import-modal .buttons{flex-wrap:wrap;gap:8px}.mmd-import-modal .check{align-items:flex-start}#miMessage{min-height:1.5em}@media(max-width:600px){.mmd-import-modal{padding:18px}.mmd-model-audits{grid-template-columns:1fr}.mmd-import-modal h2{font-size:1.6rem}.mmd-import-guide .buttons{display:grid;grid-template-columns:1fr}}
+/* Match the actual dialog content, not only its transparent outer shell. */
+dialog#modal.mmd-import-modal{width:min(1100px,94vw);padding:0}
+.mmd-import-modal #modalContent{width:100%;max-width:none;padding:30px}
+.mmd-import-modal .mmd-model-audit .check{display:flex;gap:12px;align-items:flex-start}
+.mmd-import-modal .mmd-model-audit .check input{flex:none;margin-top:2px}
+.mmd-import-modal .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.mmd-import-modal .buttons button{min-width:0;white-space:normal;overflow-wrap:anywhere;min-height:44px;line-height:1.45}
+@media(max-width:600px){.mmd-import-modal #modalContent{padding:22px 18px}.mmd-import-modal .buttons{grid-template-columns:1fr}}
+.mmd-import-modal #modalContent{padding:0}
+.mmd-import-modal #modalContent>.dialog{width:100%;max-width:none;padding:30px}
+@media(max-width:600px){.mmd-import-modal #modalContent>.dialog{padding:24px 18px}}
+.motion-sync-modal{width:min(920px,96vw);max-height:90vh}.motion-sync-modal #modalContent>.dialog{width:100%;max-width:none}.sync-row{min-width:0;margin:14px 0;border:1px solid #405568;border-radius:10px;padding:14px}.sync-row legend{overflow-wrap:anywhere;max-width:100%;font-weight:700}.sync-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.sync-fields input{width:100%;min-width:0}.sync-fields label{min-width:0}#motionSyncError{color:#ffadb8}@media(max-width:600px){.sync-fields{grid-template-columns:1fr}.sync-row{padding:10px}}

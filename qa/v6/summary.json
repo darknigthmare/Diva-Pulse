@@ -1,0 +1,30 @@
+{
+  "version": "6.0.0",
+  "checkedAtUTC": "2026-10-06T11:27:22.224242+00:00",
+  "standaloneSha256": "ac49b9fb2cbe41cc39d9584fce6bfa077c59b1b20caab64508171ef2257f3593",
+  "standaloneBytes": 481710,
+  "unit": {
+    "passed": 253,
+    "failed": 0,
+    "previous": 198,
+    "new": 55
+  },
+  "browser": {
+    "passed": 138,
+    "failed": 0,
+    "automap": 67,
+    "precisionRegression": 62,
+    "completionAnd2D": 9
+  },
+  "launcher": {
+    "passed": 10,
+    "failed": 0
+  },
+  "limitations": [
+    "Temporary in-memory storage under opaque browser origin; no IndexedDB persistence after closure test.",
+    "No actual PWA install/offline restart.",
+    "No physical controller, MIDI device, Safari/iPhone or Bluetooth latency test.",
+    "Automatic chart musical correctness is not certified on all songs.",
+    "No exhaustive 1:1 SEGA scoring, official media, models or online chart discovery."
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "suite": "V6 automatic import and coherent chart families",
+  "passed": 67,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V6 boots with all three original demos and fifteen charts",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 stage renders with no GL error",
+      "passed": true
+    },
+    {
+      "name": "Automatic five-difficulty import is enabled by default",
+      "passed": true
+    },
+    {
+      "name": "File picker accepts multiple audio files",
+      "passed": true
+    },
+    {
+      "name": "Visible edition matches the running V6 engine",
+      "passed": true
+    },
+    {
+      "name": "Real file import automatically produces all five difficulties",
+      "passed": true
+    },
+    {
+      "name": "No manual generation dialog is needed after importing music",
+      "passed": true
+    },
+    {
+      "name": "Browser-generated exact SHA-256 equals the fixture reference",
+      "passed": true
+    },
+    {
+      "name": "Imported stereo audio is analyzed per channel with spectral V6 worker",
+      "passed": true
+    },
+    {
+      "name": "Audio asset and complete chart family are both present in store",
+      "passed": true
+    },
+    {
+      "name": "Generated charts pass the independent family control",
+      "passed": true
+    },
+    {
+      "name": "Every easy anchor keeps timing, key, position and note type in all harder levels",
+      "passed": true
+    },
+    {
+      "name": "Difficulty density increases without fabricating notes in the measured break",
+      "passed": true
+    },
+    {
+      "name": "Mapping report displays five playable audition rows",
+      "passed": true
+    },
+    {
+      "name": "Report distinguishes pulse confidence and internal stars from official correctness",
+      "passed": true
+    },
+    {
+      "name": "Mapping diagnostic is exported with five chart signatures",
+      "passed": true
+    },
+    {
+      "name": "Audition uses original audio with generated hit overlay, not a score session",
+      "passed": true
+    },
+    {
+      "name": "Stop audition releases its audio and oscillators",
+      "passed": true
+    },
+    {
+      "name": "Closing the report also stops audition",
+      "passed": true
+    },
+    {
+      "name": "Identical file reuses its song without chart regeneration",
+      "passed": true
+    },
+    {
+      "name": "Legacy weak hash is migrated only after hashing the stored audio bytes",
+      "passed": true
+    },
+    {
+      "name": "Verified catalog chart is attached before filling the four absent difficulties",
+      "passed": true
+    },
+    {
+      "name": "Source timing, offset, positions and trajectories are not regenerated",
+      "passed": true
+    },
+    {
+      "name": "Catalog and auto-generated levels retain distinct provenance",
+      "passed": true
+    },
+    {
+      "name": "Reimport fills only the missing difficulty and preserves all retained charts",
+      "passed": true
+    },
+    {
+      "name": "Existing exact source chart remains byte-identical after completion",
+      "passed": true
+    },
+    {
+      "name": "Quick manual toggle updates the import preference",
+      "passed": true
+    },
+    {
+      "name": "Explicit manual mode imports audio without inventing charts",
+      "passed": true
+    },
+    {
+      "name": "Title-only catalog candidate is never auto-associated",
+      "passed": true
+    },
+    {
+      "name": "Returning to automatic import completes the same manual song",
+      "passed": true
+    },
+    {
+      "name": "Silent file retains its audio and explicit needs-review status",
+      "passed": true
+    },
+    {
+      "name": "Silence is not labelled as ready mapping",
+      "passed": true
+    },
+    {
+      "name": "Unsupported audio reports an error without creating an orphan song",
+      "passed": true
+    },
+    {
+      "name": "Batch import continues after an invalid file and reports all outcomes",
+      "passed": true
+    },
+    {
+      "name": "Mixed batch summary does not pretend every file succeeded",
+      "passed": true
+    },
+    {
+      "name": "Batch result JSON is exportable",
+      "passed": true
+    },
+    {
+      "name": "Failed transactional completion preserves original song and charts",
+      "passed": true
+    },
+    {
+      "name": "Failed new-song transaction leaves no audio asset or song orphan",
+      "passed": true
+    },
+    {
+      "name": "Real analysis worker can be cancelled from its progress callback",
+      "passed": true
+    },
+    {
+      "name": "Cancelling import before commit publishes no partial chart family",
+      "passed": true
+    },
+    {
+      "name": "Simulated batch cancellation distinguishes completed, cancelled and untouched files",
+      "passed": true
+    },
+    {
+      "name": "Failed preference save restores the visible automatic-import checkbox",
+      "passed": true
+    },
+    {
+      "name": "Advanced generation builds five preview charts without changing library",
+      "passed": true
+    },
+    {
+      "name": "Cancelling preview drops pending charts and leaves originals intact",
+      "passed": true
+    },
+    {
+      "name": "Failed preview commit remains retryable without mutating stored charts",
+      "passed": true
+    },
+    {
+      "name": "Successful retry adds variants without replacing the first family",
+      "passed": true
+    },
+    {
+      "name": "All newly committed variants retain their generation settings",
+      "passed": true
+    },
+    {
+      "name": "Navigating away stops a mapping audition",
+      "passed": true
+    },
+    {
+      "name": "Editing a generated level creates a manual derivative",
+      "passed": true
+    },
+    {
+      "name": "Manual correction preserves the original generated level",
+      "passed": true
+    },
+    {
+      "name": "Manual derivative is not falsely presented as validated AutoMap output",
+      "passed": true
+    },
+    {
+      "name": "Historical family report excludes the manually modified derivative",
+      "passed": true
+    },
+    {
+      "name": "A full real-time autoplay reaches results with no missed generated notes",
+      "passed": true
+    },
+    {
+      "name": "Autoplay does not write a ranked record",
+      "passed": true
+    },
+    {
+      "name": "Backup keeps compatible pack schema and V6 chart metadata",
+      "passed": true
+    },
+    {
+      "name": "Backup includes auto-import preferences and exact audio identity",
+      "passed": true
+    },
+    {
+      "name": "Restoring V6 data creates song copies without losing originals",
+      "passed": true
+    },
+    {
+      "name": "Restored copies retain V6 analysis and generation-family metadata",
+      "passed": true
+    },
+    {
+      "name": "390x844 library remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "390x844 settings remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "390x844 editor remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "390x844 report has five rows and no dialog overflow",
+      "passed": true
+    },
+    {
+      "name": "844x390 library remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "844x390 settings remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "844x390 editor remains within horizontal viewport",
+      "passed": true
+    },
+    {
+      "name": "844x390 report has five rows and no dialog overflow",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript exception in AutoMap scenarios",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "environment": "Chromium / Xvfb / SwiftShader, opaque about:blank origin. Audio decode, workers and shader rendering real. Storage is memory fallback; storage faults and one batch cancel test simulated. No physical controller, browser persistence or PWA installation claim."
+}

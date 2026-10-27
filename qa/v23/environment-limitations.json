@@ -1,0 +1,18 @@
+{
+  "version": "23.0.0",
+  "buildSha256": "0c88113152e6ac4299d35611b44abbd6964e81ec23baa1861a5b9005ed6b7cf0",
+  "browser": "Chromium / Xvfb",
+  "renderer": "WebGL2 / SwiftShader software",
+  "documentOrigin": "opaque set_content",
+  "storage": "temporary",
+  "navigationFailure": "net::ERR_BLOCKED_BY_ADMINISTRATOR",
+  "notExecuted": [
+    "IndexedDB after full browser shutdown",
+    "PWA full installation and offline update",
+    "same-version multi-window conflicts",
+    "Safari/iPhone",
+    "physical GPU",
+    "physical MIDI and gamepad"
+  ],
+  "driveUpload": "Not performed; current connector actions are read-only"
+}

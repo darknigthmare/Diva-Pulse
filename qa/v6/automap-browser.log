@@ -1,0 +1,68 @@
+PASS V6 boots with all three original demos and fifteen charts
+PASS Real WebGL2 stage renders with no GL error
+PASS Automatic five-difficulty import is enabled by default
+PASS File picker accepts multiple audio files
+PASS Visible edition matches the running V6 engine
+PASS Real file import automatically produces all five difficulties
+PASS No manual generation dialog is needed after importing music
+PASS Browser-generated exact SHA-256 equals the fixture reference
+PASS Imported stereo audio is analyzed per channel with spectral V6 worker
+PASS Audio asset and complete chart family are both present in store
+PASS Generated charts pass the independent family control
+PASS Every easy anchor keeps timing, key, position and note type in all harder levels
+PASS Difficulty density increases without fabricating notes in the measured break
+PASS Mapping report displays five playable audition rows
+PASS Report distinguishes pulse confidence and internal stars from official correctness
+PASS Mapping diagnostic is exported with five chart signatures
+PASS Audition uses original audio with generated hit overlay, not a score session
+PASS Stop audition releases its audio and oscillators
+PASS Closing the report also stops audition
+PASS Identical file reuses its song without chart regeneration
+PASS Legacy weak hash is migrated only after hashing the stored audio bytes
+PASS Verified catalog chart is attached before filling the four absent difficulties
+PASS Source timing, offset, positions and trajectories are not regenerated
+PASS Catalog and auto-generated levels retain distinct provenance
+PASS Reimport fills only the missing difficulty and preserves all retained charts
+PASS Existing exact source chart remains byte-identical after completion
+PASS Quick manual toggle updates the import preference
+PASS Explicit manual mode imports audio without inventing charts
+PASS Title-only catalog candidate is never auto-associated
+PASS Returning to automatic import completes the same manual song
+PASS Silent file retains its audio and explicit needs-review status
+PASS Silence is not labelled as ready mapping
+PASS Unsupported audio reports an error without creating an orphan song
+PASS Batch import continues after an invalid file and reports all outcomes
+PASS Mixed batch summary does not pretend every file succeeded
+PASS Batch result JSON is exportable
+PASS Failed transactional completion preserves original song and charts
+PASS Failed new-song transaction leaves no audio asset or song orphan
+PASS Real analysis worker can be cancelled from its progress callback
+PASS Cancelling import before commit publishes no partial chart family
+PASS Simulated batch cancellation distinguishes completed, cancelled and untouched files
+PASS Failed preference save restores the visible automatic-import checkbox
+PASS Advanced generation builds five preview charts without changing library
+PASS Cancelling preview drops pending charts and leaves originals intact
+PASS Failed preview commit remains retryable without mutating stored charts
+PASS Successful retry adds variants without replacing the first family
+PASS All newly committed variants retain their generation settings
+PASS Navigating away stops a mapping audition
+PASS Editing a generated level creates a manual derivative
+PASS Manual correction preserves the original generated level
+PASS Manual derivative is not falsely presented as validated AutoMap output
+PASS Historical family report excludes the manually modified derivative
+PASS A full real-time autoplay reaches results with no missed generated notes
+PASS Autoplay does not write a ranked record
+PASS Backup keeps compatible pack schema and V6 chart metadata
+PASS Backup includes auto-import preferences and exact audio identity
+PASS Restoring V6 data creates song copies without losing originals
+PASS Restored copies retain V6 analysis and generation-family metadata
+PASS 390x844 library remains within horizontal viewport
+PASS 390x844 settings remains within horizontal viewport
+PASS 390x844 editor remains within horizontal viewport
+PASS 390x844 report has five rows and no dialog overflow
+PASS 844x390 library remains within horizontal viewport
+PASS 844x390 settings remains within horizontal viewport
+PASS 844x390 editor remains within horizontal viewport
+PASS 844x390 report has five rows and no dialog overflow
+PASS No uncaught JavaScript exception in AutoMap scenarios
+RESULT 67 passed / 0 failed

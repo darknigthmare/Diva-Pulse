@@ -1,0 +1,33 @@
+PASS V23 title, version and diagnostic entry point
+PASS Real WebGL2 renderer initialized
+PASS 36 GPU SDEF/QDEF/LBS transforms agree with CPU reference under 0.00002
+PASS GPU feedback has no GL error
+PASS SDEF PMX retains all three center buffers and weights at the renderer
+PASS Two materials share one bone palette and one GPU palette upload
+PASS Palette memory is reused across frames
+PASS SDEF Z reflection reaches actual GPU attributes
+PASS QDEF PMX uses the QDEF shader path
+PASS Aborted preference write restores in-memory settings
+PASS Failed favorite edit restores song and UI
+PASS Failed UI edit reports error without unhandled rejection
+PASS Export performs no write and preserves unsaved chart separately
+PASS Director mutation is saved as separate draft
+PASS Closing and reopening offers explicit draft recovery
+PASS Recovered draft remains undoable
+PASS Refused draft write is visibly reported and retained in memory
+PASS Memory recovery retains latest failed draft
+PASS Portable backup contains Director recovery state
+PASS Restored draft has new owner, pack and asset references
+PASS Restored portable draft can be recovered from UI
+PASS Director recovery controls fit mobile dialog
+PASS Explicit save applies recovered draft and removes recovery marker
+PASS Draft work and restore preserve rhythm chart contents
+PASS Context loss is detected without changing saved content
+PASS Context restoration rebuilds and reloads both MMD models
+PASS Restored renderer has valid GL state
+PASS Integrated library audit leaves songs unchanged
+PASS Audit export contains explicit capability limitations
+PASS Invalid preference restore is atomic and leaves copies uninserted
+PASS No unhandled exception in all V23 user journeys
+PASS No persistent frame error
+{"buildSha256": "b3d795b1225f88744ae927b79862bc4a625a29e09a367f581e0dff6aeb1863b8", "passed": 32, "total": 32, "failure": null, "errors": [], "storage": "temporary", "renderer": "Chromium WebGL2 SwiftShader"}

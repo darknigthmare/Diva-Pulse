@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/mnt/data/v24_work/DIVA_PULSE_V24/tests/launcher_test.py", line 21, in <module>
+    ok('Loopback health identifies current build',health=={'app':'DIVA-PULSE-MMD-DIRECTOR','version':(R/'VERSION.txt').read_text().strip(),'build':hashlib.sha256((R/'index.html').read_bytes()).hexdigest()})
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/v24_work/DIVA_PULSE_V24/tests/launcher_test.py", line 8, in ok
+    assert value,name
+           ^^^^^
+AssertionError: Loopback health identifies current build

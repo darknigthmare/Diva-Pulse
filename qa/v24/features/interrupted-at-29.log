@@ -1,0 +1,29 @@
+PASS V24 delivered HTML initializes
+PASS Real WebGL2 context exists
+PASS Three demo songs and five difficulties retained
+PASS Opaque origin storage accurately marked temporary
+PASS No false persistent-storage promise in temporary mode
+PASS Append PMX validates for import
+PASS Append model renders in independent preview
+PASS Imported MMD keeps rhythm charts unchanged
+PASS Append translation reaches actual model pose
+PASS Append rotation reaches actual model pose
+PASS Backward seek resets append without accumulation
+PASS Same time produces same appended pose
+PASS Runtime IK limit is applied to actual bone quaternion
+PASS Append and IK rendered without GL errors
+PASS VMD analysis uses actual imported binary
+PASS Period analysis offers half/double alternatives
+PASS Analysis alone changes neither scene nor notes
+PASS Proposal only fills source BPM field
+PASS Cancel proposal leaves saved show intact
+PASS Explicit save commits chosen clock
+PASS Automatic renderer gets calibrated source BPM
+PASS Changing source BPM preserves manual montage
+PASS Read-only write reports conflict with retryable dialog
+PASS Read-only write keeps original scene
+PASS Read-only state still exports complete library
+PASS Restored copy retains source clock
+PASS Restored manual montage reloads MMD with its original clock
+PASS Motion suggestion dialog fits mobile viewport
+PASS Suggestion buttons fit mobile viewport

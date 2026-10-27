@@ -1,0 +1,21 @@
+/* AutoMap uses the existing stage edition design language. */
+.automap-toggle{margin:0;gap:8px;font-size:12px;color:var(--muted,#a9becd)}.automap-settings{margin:24px 0;padding:26px;border:1px solid #294354;background:#0a1823;border-radius:18px}.automap-summary{font-size:12px;line-height:1.6;color:#8bead9;padding:8px 0}.mapping-facts{display:flex;flex-wrap:wrap;gap:14px;margin:20px 0}.mapping-facts>span{flex:1;min-width:120px;background:#122432;padding:14px;border:1px solid #284354;border-radius:12px;font-size:11px;color:#aebfcc}.mapping-facts strong{font-size:26px;display:block;color:#8ceadb}.mapping-good{border-left:3px solid #79e7da;padding:10px 14px;background:#102b2c;color:#b7f3e6}.mapping-warning{border-left:3px solid #ddbe81;background:#302a22;padding:10px 14px;color:#f0d5a3}.automap-row{grid-template-columns:1.2fr 1fr 1fr auto!important;gap:12px!important}.automap-row small{display:block;font-size:11px;color:#a4b9c8;margin-top:4px}.automap-row canvas{grid-column:1/-1;width:100%}.automap-row button{padding:9px 12px}.mapping-preview-controls{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin:18px 0}.mapping-preview-controls label{max-width:180px}.mapping-preview-controls span{font-size:12px;flex:1;min-width:180px}.tempo-window-list{display:flex;gap:8px;flex-wrap:wrap;max-height:150px;overflow:auto}.tempo-window-list span{padding:5px 8px;border:1px solid #304354;font-size:12px}.import-results{display:flex;flex-direction:column;gap:10px;max-height:55vh;overflow:auto}.import-result{display:flex;gap:14px;align-items:center;padding:14px;background:#13222f;border:1px solid #284253;border-radius:12px}.import-result>div{flex:1;min-width:0}.import-result strong{overflow-wrap:anywhere}.import-result small{display:block;color:#acbdc8;margin-top:6px;line-height:1.5}.import-result .tag{font-size:9px;white-space:normal;max-width:120px}.import-result button{padding:9px}#mappingProgress{width:100%;height:10px;accent-color:#79e7da;margin:14px 0}#autoMapReport{margin:0 0 10px}#mapExportReport{white-space:normal}#autoMapDensityValue{color:#83e9db}
+@media(max-width:680px){.automap-row{grid-template-columns:1fr 1fr!important;gap:9px!important}.automap-row canvas{grid-column:1/-1}.automap-toggle{font-size:11px}.mapping-facts>span{min-width:90px;padding:10px}.mapping-facts strong{font-size:22px}.import-result{flex-wrap:wrap}.import-result>div{flex-basis:100%}.mapping-preview-controls label{max-width:140px}.automap-settings{padding:18px 12px}}
+
+.automap-importbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0;color:#8199ac;font-size:10px}.automap-importbar label{display:flex;flex-direction:row;align-items:center}.automap-importbar input{width:16px;height:16px;margin:0}@media(max-width:500px){.automap-importbar>span{display:none}}
+/* Wider mapping panel on desktop; retain the compact layout on phones. */
+#modal:has(#generationRows){width:min(1060px,calc(100vw - 36px));max-width:calc(100vw - 36px)}
+#modal:has(#generationRows) #modalContent>.dialog{width:100%;max-width:none}
+.automap-row>span:last-of-type{grid-column:auto}
+@media(min-width:681px){.automap-row{grid-template-columns:1.1fr 1fr 1.25fr auto!important;padding:10px 14px}.automap-row canvas{height:22px}.automap-row>button{align-self:center}}
+/* Audio filenames are user-controlled and may contain no breakable space. */
+#selectedTitle,#selectedArtist,.song-card strong{overflow-wrap:anywhere;min-width:0}
+.sub-actions{flex-wrap:wrap}.sub-actions button{white-space:normal}
+/* Keep new chart diagnostics in document flow: the fixed help footer must not
+   cover the generation/practice buttons when the selected chart grows. */
+@media(min-width:801px){
+ #library.active{display:grid;grid-template-columns:40% 45%;column-gap:11%;align-items:start;padding-right:4vw}
+ #library .library-left{width:auto;padding-bottom:90px}
+ #library .song-detail{position:relative;top:auto!important;right:auto;width:auto;max-width:none;margin-top:clamp(220px,36vh,480px);margin-bottom:90px}
+}
+@media(min-width:801px) and (max-height:600px){#library .song-detail{margin-top:20px}}

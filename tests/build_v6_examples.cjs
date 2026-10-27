@@ -1,0 +1,15 @@
+/* Build original demo charts from the same analyzer used in the application. */
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),C=require('../src/automap-core.js');
+const dir=path.resolve(__dirname,'../examples/v6');
+function wavPCM(name){const bytes=fs.readFileSync(path.join(dir,name));if(bytes.toString('ascii',0,4)!=='RIFF')throw Error('RIFF expected');let pos=12,fmt,data;while(pos+8<=bytes.length){const id=bytes.toString('ascii',pos,pos+4),size=bytes.readUInt32LE(pos+4);if(id==='fmt ')fmt={type:bytes.readUInt16LE(pos+8),channels:bytes.readUInt16LE(pos+10),sr:bytes.readUInt32LE(pos+12),bits:bytes.readUInt16LE(pos+22)};if(id==='data')data=bytes.subarray(pos+8,pos+8+size);pos+=8+size+(size%2);}if(fmt.type!==1||fmt.bits!==16||!data)throw Error('PCM16 expected');const n=data.length/2/fmt.channels,channels=Array.from({length:fmt.channels},()=>new Float32Array(n));for(let i=0;i<n;i++)for(let c=0;c<fmt.channels;c++)channels[c][i]=data.readInt16LE((i*fmt.channels+c)*2)/32768;return {bytes,channels,sr:fmt.sr};}
+function write(name,obj){fs.writeFileSync(path.join(dir,name),JSON.stringify(obj,null,2));}
+const name='NEON_STEPS_128_ORIGINAL.wav',audio=wavPCM(name),analysis=C.analyzeMusicPCM(audio.channels,audio.sr),family=C.generateChartFamily(analysis,{title:'Neon Steps · instrumental original',seed:1});
+const entry=C.cleanCatalogEntry({title:'Neon Steps · instrumental original',artist:'DIVA PULSE · démo synthétisée',author:'DIVA PULSE AutoMap V6',edition:'Contrôle de génération, non officiel',audioHash:'sha256:'+crypto.createHash('sha256').update(audio.bytes).digest('hex'),duration:analysis.duration,charts:family.charts});
+write('NEON_STEPS_128_AUTOMAP.pulsecharts',{format:'DIVA-PULSE-CHART-CATALOG',version:1,title:'Exemple de cinq niveaux AutoMap V6',entries:[entry]});
+for(const chart of family.charts)write('NEON_STEPS_'+chart.difficulty.replaceAll(' ','_')+'.json',chart);
+write('NEON_STEPS_RAPPORT_MAPPING.json',{format:'DIVA-PULSE-MAPPING-QA',version:6,report:family.report,tempo:{bpm:analysis.bpm,confidence:analysis.confidence,candidates:analysis.candidates,windows:analysis.tempoWindows},familyId:family.familyId});
+const original=wavPCM('SOURCE_EXACTE_100.wav');const chart=C.validateChart({title:'Source conservée · exercice 100 BPM',id:'source-v6-hard-example',difficulty:'HARD',source:'manual',bpm:100,gridOffset:.7,notes:Array.from({length:12},(_,i)=>({time:+(.7+i*.6).toFixed(5),lane:i%4,type:'tap',x:.25+(i%4)*.16,y:.5+Math.sin(i)*.09,angle:-90+i*15,distance:.56}))});
+write('SOURCE_EXACTE_100_HARD.pulsecharts',{format:'DIVA-PULSE-CHART-CATALOG',version:1,title:'Exemple : préserver HARD puis compléter 4 niveaux',entries:[C.cleanCatalogEntry({title:'Source 100 BPM',author:'Exercice manuel original',edition:'Test de priorité sans redistribution tierce',audioHash:'sha256:'+crypto.createHash('sha256').update(original.bytes).digest('hex'),duration:8,charts:[chart]})]});
+console.log('Original 128 BPM demo:',family.report.rows.map(x=>x.difficulty+': '+x.notes+' notes').join(' | '));
+console.log('Report valid:',family.report.ok, 'detected BPM:',analysis.bpm);

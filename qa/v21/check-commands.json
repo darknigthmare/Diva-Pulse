@@ -1,0 +1,48 @@
+[
+  {
+    "name": "logic-all",
+    "command": [
+      "bash",
+      "-lc",
+      "node --test tests/*.test.cjs"
+    ],
+    "returncode": 0,
+    "seconds": 4.1
+  },
+  {
+    "name": "launcher",
+    "command": [
+      "python",
+      "tests/launcher_test.py"
+    ],
+    "returncode": 0,
+    "seconds": 3.49
+  },
+  {
+    "name": "browser",
+    "command": [
+      "python",
+      "tests/v21_browser_test.py"
+    ],
+    "returncode": 0,
+    "seconds": 37.94
+  },
+  {
+    "name": "regression-v20",
+    "command": [
+      "python",
+      "tests/v21_regression_v20_browser.py"
+    ],
+    "returncode": 0,
+    "seconds": 52.85
+  },
+  {
+    "name": "native-mmd",
+    "command": [
+      "python",
+      "tests/v21_native_mmd_browser.py"
+    ],
+    "returncode": 0,
+    "seconds": 3.44
+  }
+]

@@ -1,0 +1,1697 @@
+TAP version 13
+# Subtest: SHA-256 fallback matches Node crypto at 0 bytes
+ok 1 - SHA-256 fallback matches Node crypto at 0 bytes
+  ---
+  duration_ms: 5.245388
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1 bytes
+ok 2 - SHA-256 fallback matches Node crypto at 1 bytes
+  ---
+  duration_ms: 0.48227
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 3 bytes
+ok 3 - SHA-256 fallback matches Node crypto at 3 bytes
+  ---
+  duration_ms: 0.476199
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 55 bytes
+ok 4 - SHA-256 fallback matches Node crypto at 55 bytes
+  ---
+  duration_ms: 0.280057
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 56 bytes
+ok 5 - SHA-256 fallback matches Node crypto at 56 bytes
+  ---
+  duration_ms: 0.961787
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 63 bytes
+ok 6 - SHA-256 fallback matches Node crypto at 63 bytes
+  ---
+  duration_ms: 1.450161
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 64 bytes
+ok 7 - SHA-256 fallback matches Node crypto at 64 bytes
+  ---
+  duration_ms: 1.987988
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 65 bytes
+ok 8 - SHA-256 fallback matches Node crypto at 65 bytes
+  ---
+  duration_ms: 0.319566
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 127 bytes
+ok 9 - SHA-256 fallback matches Node crypto at 127 bytes
+  ---
+  duration_ms: 2.479381
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 128 bytes
+ok 10 - SHA-256 fallback matches Node crypto at 128 bytes
+  ---
+  duration_ms: 2.940658
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1025 bytes
+ok 11 - SHA-256 fallback matches Node crypto at 1025 bytes
+  ---
+  duration_ms: 2.440579
+  type: 'test'
+  ...
+# Subtest: SHA-256 fallback matches Node crypto at 1000000 bytes
+ok 12 - SHA-256 fallback matches Node crypto at 1000000 bytes
+  ---
+  duration_ms: 102.748447
+  type: 'test'
+  ...
+# Subtest: SHA-256 handles a nonzero byteOffset typed view
+ok 13 - SHA-256 handles a nonzero byteOffset typed view
+  ---
+  duration_ms: 0.355955
+  type: 'test'
+  ...
+# Subtest: Silence creates no artificial attacks or family
+ok 14 - Silence creates no artificial attacks or family
+  ---
+  duration_ms: 35.579994
+  type: 'test'
+  ...
+# Subtest: Invalid PCM formats, lengths and nonfinite audio are refused
+ok 15 - Invalid PCM formats, lengths and nonfinite audio are refused
+  ---
+  duration_ms: 5.606176
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 72 BPM pulses
+ok 16 - Attack timing and tempo on synthetic 72 BPM pulses
+  ---
+  duration_ms: 474.554204
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 100 BPM pulses
+ok 17 - Attack timing and tempo on synthetic 100 BPM pulses
+  ---
+  duration_ms: 650.931386
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 120 BPM pulses
+ok 18 - Attack timing and tempo on synthetic 120 BPM pulses
+  ---
+  duration_ms: 308.048373
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 156 BPM pulses
+ok 19 - Attack timing and tempo on synthetic 156 BPM pulses
+  ---
+  duration_ms: 254.685313
+  type: 'test'
+  ...
+# Subtest: Attack timing and tempo on synthetic 180 BPM pulses
+ok 20 - Attack timing and tempo on synthetic 180 BPM pulses
+  ---
+  duration_ms: 304.613412
+  type: 'test'
+  ...
+# Subtest: Opposite-phase stereo does not cancel during spectral analysis
+ok 21 - Opposite-phase stereo does not cancel during spectral analysis
+  ---
+  duration_ms: 307.691978
+  type: 'test'
+  ...
+# Subtest: Both stereo channels contribute when transients alternate L/R
+ok 22 - Both stereo channels contribute when transients alternate L/R
+  ---
+  duration_ms: 224.199741
+  type: 'test'
+  ...
+# Subtest: Very quiet musical audio retains attack positions
+ok 23 - Very quiet musical audio retains attack positions
+  ---
+  duration_ms: 76.455442
+  type: 'test'
+  ...
+# Subtest: Long musical break remains empty in every generated difficulty
+ok 24 - Long musical break remains empty in every generated difficulty
+  ---
+  duration_ms: 272.914728
+  type: 'test'
+  ...
+# Subtest: Local tempo windows warn on a substantial tempo change
+ok 25 - Local tempo windows warn on a substantial tempo change
+  ---
+  duration_ms: 536.143763
+  type: 'test'
+  ...
+# Subtest: Repeated analysis of the same PCM is deterministic
+ok 26 - Repeated analysis of the same PCM is deterministic
+  ---
+  duration_ms: 175.626901
+  type: 'test'
+  ...
+# Subtest: Worker-serializable analyzer is self contained
+ok 27 - Worker-serializable analyzer is self contained
+  ---
+  duration_ms: 160.605962
+  type: 'test'
+  ...
+# Subtest: Analysis progress is monotonic and terminates
+ok 28 - Analysis progress is monotonic and terminates
+  ---
+  duration_ms: 138.866925
+  type: 'test'
+  ...
+# Subtest: Family contains exactly the five supported difficulties
+ok 29 - Family contains exactly the five supported difficulties
+  ---
+  duration_ms: 10.329306
+  type: 'test'
+  ...
+# Subtest: Family timings, symbols, positions, types and holds are nested
+ok 30 - Family timings, symbols, positions, types and holds are nested
+  ---
+  duration_ms: 8.930477
+  type: 'test'
+  ...
+# Subtest: Difficulty counts increase without independently randomized patterns
+ok 31 - Difficulty counts increase without independently randomized patterns
+  ---
+  duration_ms: 64.505541
+  type: 'test'
+  ...
+# Subtest: Easy is two face symbols, no chord, hold or slide
+ok 32 - Easy is two face symbols, no chord, hold or slide
+  ---
+  duration_ms: 5.875509
+  type: 'test'
+  ...
+# Subtest: Advanced tiers add face-button chords and slides
+ok 33 - Advanced tiers add face-button chords and slides
+  ---
+  duration_ms: 40.977431
+  type: 'test'
+  ...
+# Subtest: Feature switches remove holds, slides and chords
+ok 34 - Feature switches remove holds, slides and chords
+  ---
+  duration_ms: 6.324998
+  type: 'test'
+  ...
+# Subtest: Generation leaves the supplied analysis untouched
+ok 35 - Generation leaves the supplied analysis untouched
+  ---
+  duration_ms: 8.679585
+  type: 'test'
+  ...
+# Subtest: Same options and seed produce the same signatures
+ok 36 - Same options and seed produce the same signatures
+  ---
+  duration_ms: 12.498995
+  type: 'test'
+  ...
+# Subtest: A different seed changes patterns, not the event time hierarchy
+ok 37 - A different seed changes patterns, not the event time hierarchy
+  ---
+  duration_ms: 6.969497
+  type: 'test'
+  ...
+# Subtest: Quantization never displaces an attack by more than 25 ms
+ok 38 - Quantization never displaces an attack by more than 25 ms
+  ---
+  duration_ms: 5.203808
+  type: 'test'
+  ...
+# Subtest: Low-confidence grid never forcibly quantizes an event
+ok 39 - Low-confidence grid never forcibly quantizes an event
+  ---
+  duration_ms: 5.572053
+  type: 'test'
+  ...
+# Subtest: Variable tempo can quantize against a trusted tempo map or manual BPM
+ok 40 - Variable tempo can quantize against a trusted tempo map or manual BPM
+  ---
+  duration_ms: 5.875679
+  type: 'test'
+  ...
+# Subtest: Manual BPM override changes grid, never entire audio or imported notes
+ok 41 - Manual BPM override changes grid, never entire audio or imported notes
+  ---
+  duration_ms: 11.152256
+  type: 'test'
+  ...
+# Subtest: Sparse songs can have equal tiers without invented notes
+ok 42 - Sparse songs can have equal tiers without invented notes
+  ---
+  duration_ms: 1.773368
+  type: 'test'
+  ...
+# Subtest: Generator cannot pad a known silent region with notes
+ok 43 - Generator cannot pad a known silent region with notes
+  ---
+  duration_ms: 9.909292
+  type: 'test'
+  ...
+# Subtest: All layouts stay inside safe bounds and do not overlap chord targets
+ok 44 - All layouts stay inside safe bounds and do not overlap chord targets
+  ---
+  duration_ms: 106.501161
+  type: 'test'
+  ...
+# Subtest: Family report rejects out-of-audio notes, duplicates and moved anchors
+ok 45 - Family report rejects out-of-audio notes, duplicates and moved anchors
+  ---
+  duration_ms: 11.702873
+  type: 'test'
+  ...
+# Subtest: Malformed options and insufficient attacks are refused
+ok 46 - Malformed options and insufficient attacks are refused
+  ---
+  duration_ms: 1.097901
+  type: 'test'
+  ...
+# Subtest: Empty existing chart does not prevent filling that difficulty
+ok 47 - Empty existing chart does not prevent filling that difficulty
+  ---
+  duration_ms: 0.225727
+  type: 'test'
+  ...
+# Subtest: Exact catalog source is chosen before generated missing levels
+ok 48 - Exact catalog source is chosen before generated missing levels
+  ---
+  duration_ms: 1.529937
+  type: 'test'
+  ...
+# Subtest: Title similarity and weak hashes never auto-attach a source chart
+ok 49 - Title similarity and weak hashes never auto-attach a source chart
+  ---
+  duration_ms: 1.118206
+  type: 'test'
+  ...
+# Subtest: Existing manual difficulty is never replaced by exact catalog
+ok 50 - Existing manual difficulty is never replaced by exact catalog
+  ---
+  duration_ms: 0.211038
+  type: 'test'
+  ...
+# Subtest: Generation and native MIDI roundtrip keep mapping timings and positions
+ok 51 - Generation and native MIDI roundtrip keep mapping timings and positions
+  ---
+  duration_ms: 20.101364
+  type: 'test'
+  ...
+# Subtest: Generated families can actually be autoplayed by the rhythm engine
+ok 52 - Generated families can actually be autoplayed by the rhythm engine
+  ---
+  duration_ms: 33.609743
+  type: 'test'
+  ...
+# Subtest: 60 seeded rhythm/tempo/density combinations satisfy every safety invariant
+ok 53 - 60 seeded rhythm/tempo/density combinations satisfy every safety invariant
+  ---
+  duration_ms: 431.603958
+  type: 'test'
+  ...
+# Subtest: 10-minute chart-family construction remains bounded
+ok 54 - 10-minute chart-family construction remains bounded
+  ---
+  duration_ms: 822.535978
+  type: 'test'
+  ...
+# Subtest: Sustained audible gaps create HOLDs without conflicting with harder anchors
+ok 55 - Sustained audible gaps create HOLDs without conflicting with harder anchors
+  ---
+  duration_ms: 4.344957
+  type: 'test'
+  ...
+# Subtest: Validation: canonical timing and coordinates retained exactly
+ok 56 - Validation: canonical timing and coordinates retained exactly
+  ---
+  duration_ms: 4.747989
+  type: 'test'
+  ...
+# Subtest: Validation: no input mutation
+ok 57 - Validation: no input mutation
+  ---
+  duration_ms: 0.350676
+  type: 'test'
+  ...
+# Subtest: Validation: notes sorted deterministically
+ok 58 - Validation: notes sorted deterministically
+  ---
+  duration_ms: 1.038304
+  type: 'test'
+  ...
+# Subtest: Validation: simultaneous duplicate lane rejected
+ok 59 - Validation: simultaneous duplicate lane rejected
+  ---
+  duration_ms: 0.64883
+  type: 'test'
+  ...
+# Subtest: Validation: negative or nonfinite time rejected
+ok 60 - Validation: negative or nonfinite time rejected
+  ---
+  duration_ms: 0.302022
+  type: 'test'
+  ...
+# Subtest: Validation: invalid lanes and positions rejected
+ok 61 - Validation: invalid lanes and positions rejected
+  ---
+  duration_ms: 0.54572
+  type: 'test'
+  ...
+# Subtest: Validation: malformed data rejected
+ok 62 - Validation: malformed data rejected
+  ---
+  duration_ms: 0.304637
+  type: 'test'
+  ...
+# Subtest: Validation: empty chart allowed only when requested
+ok 63 - Validation: empty chart allowed only when requested
+  ---
+  duration_ms: 0.393108
+  type: 'test'
+  ...
+# Subtest: Validation: note and BPM limits enforced
+ok 64 - Validation: note and BPM limits enforced
+  ---
+  duration_ms: 0.905287
+  type: 'test'
+  ...
+# Subtest: Signature changes after timing, offset or layout changes
+ok 65 - Signature changes after timing, offset or layout changes
+  ---
+  duration_ms: 0.793217
+  type: 'test'
+  ...
+# Subtest: Stats: chords, holds and slides counted separately
+ok 66 - Stats: chords, holds and slides counted separately
+  ---
+  duration_ms: 0.506399
+  type: 'test'
+  ...
+# Subtest: Judgment windows symmetric and bounded
+ok 67 - Judgment windows symmetric and bounded
+  ---
+  duration_ms: 0.167672
+  type: 'test'
+  ...
+# Subtest: Engine: perfect tap scores once only
+ok 68 - Engine: perfect tap scores once only
+  ---
+  duration_ms: 0.941451
+  type: 'test'
+  ...
+# Subtest: Engine: simultaneous chord needs both buttons
+ok 69 - Engine: simultaneous chord needs both buttons
+  ---
+  duration_ms: 0.304208
+  type: 'test'
+  ...
+# Subtest: Engine: wrong button does not consume correct note
+ok 70 - Engine: wrong button does not consume correct note
+  ---
+  duration_ms: 0.164809
+  type: 'test'
+  ...
+# Subtest: Engine: idle extra input is harmless
+ok 71 - Engine: idle extra input is harmless
+  ---
+  duration_ms: 0.086735
+  type: 'test'
+  ...
+# Subtest: Engine: expired notes miss and break combo
+ok 72 - Engine: expired notes miss and break combo
+  ---
+  duration_ms: 0.31041
+  type: 'test'
+  ...
+# Subtest: Engine: HOLD earns capped bonus and release stops it
+ok 73 - Engine: HOLD earns capped bonus and release stops it
+  ---
+  duration_ms: 0.182302
+  type: 'test'
+  ...
+# Subtest: Engine: HOLD cap remains five seconds
+ok 74 - Engine: HOLD cap remains five seconds
+  ---
+  duration_ms: 0.574396
+  type: 'test'
+  ...
+# Subtest: Engine: held slide chain continues without repressing
+ok 75 - Engine: held slide chain continues without repressing
+  ---
+  duration_ms: 0.440593
+  type: 'test'
+  ...
+# Subtest: Engine: releasing a chain causes later notes to miss
+ok 76 - Engine: releasing a chain causes later notes to miss
+  ---
+  duration_ms: 0.150424
+  type: 'test'
+  ...
+# Subtest: Engine: clearing paused inputs removes active holds
+ok 77 - Engine: clearing paused inputs removes active holds
+  ---
+  duration_ms: 0.547142
+  type: 'test'
+  ...
+# Subtest: Engine: chart offset is applied to judgments
+ok 78 - Engine: chart offset is applied to judgments
+  ---
+  duration_ms: 0.59588
+  type: 'test'
+  ...
+# Subtest: Engine: practice reset skips earlier notes
+ok 79 - Engine: practice reset skips earlier notes
+  ---
+  duration_ms: 0.282193
+  type: 'test'
+  ...
+# Subtest: Engine: fail and no-fail modes differ
+ok 80 - Engine: fail and no-fail modes differ
+  ---
+  duration_ms: 0.297179
+  type: 'test'
+  ...
+# Subtest: Engine: all 15 original demo charts finish at 100% autoplay
+ok 81 - Engine: all 15 original demo charts finish at 100% autoplay
+  ---
+  duration_ms: 86.860584
+  type: 'test'
+  ...
+# Subtest: DSC: complete synthetic fixture preserves mapped timing and positions
+ok 82 - DSC: complete synthetic fixture preserves mapped timing and positions
+  ---
+  duration_ms: 1.490498
+  type: 'test'
+  ...
+# Subtest: DSC: fly time and audio start accounted for
+ok 83 - DSC: fly time and audio start accounted for
+  ---
+  duration_ms: 0.666244
+  type: 'test'
+  ...
+# Subtest: DSC: BAR_TIME_SET formula supported
+ok 84 - DSC: BAR_TIME_SET formula supported
+  ---
+  duration_ms: 0.227799
+  type: 'test'
+  ...
+# Subtest: DSC: full symbol and HOLD mapping
+ok 85 - DSC: full symbol and HOLD mapping
+  ---
+  duration_ms: 0.63577
+  type: 'test'
+  ...
+# Subtest: DSC: missing MUSIC_PLAY emits explicit warning
+ok 86 - DSC: missing MUSIC_PLAY emits explicit warning
+  ---
+  duration_ms: 0.20885
+  type: 'test'
+  ...
+# Subtest: DSC: unknown opcode fails instead of approximating
+ok 87 - DSC: unknown opcode fails instead of approximating
+  ---
+  duration_ms: 0.152903
+  type: 'test'
+  ...
+# Subtest: DSC: unknown target type fails
+ok 88 - DSC: unknown target type fails
+  ---
+  duration_ms: 0.157567
+  type: 'test'
+  ...
+# Subtest: DSC: branch targets refused
+ok 89 - DSC: branch targets refused
+  ---
+  duration_ms: 0.442703
+  type: 'test'
+  ...
+# Subtest: DSC: truncated or missing end rejected
+ok 90 - DSC: truncated or missing end rejected
+  ---
+  duration_ms: 0.226773
+  type: 'test'
+  ...
+# Subtest: DSC: unsupported flying time never silently clamped
+ok 91 - DSC: unsupported flying time never silently clamped
+  ---
+  duration_ms: 0.160748
+  type: 'test'
+  ...
+# Subtest: CSV: notes survive a basic roundtrip
+ok 92 - CSV: notes survive a basic roundtrip
+  ---
+  duration_ms: 0.693627
+  type: 'test'
+  ...
+# Subtest: CSV: omitted optional positions default to center
+ok 93 - CSV: omitted optional positions default to center
+  ---
+  duration_ms: 0.173551
+  type: 'test'
+  ...
+# Subtest: History: undo/redo, branching and cap
+ok 94 - History: undo/redo, branching and cap
+  ---
+  duration_ms: 0.42708
+  type: 'test'
+  ...
+# Subtest: Snap grid and variable tempo lookup
+ok 95 - Snap grid and variable tempo lookup
+  ---
+  duration_ms: 0.150963
+  type: 'test'
+  ...
+# Subtest: Audio analysis: silence is not populated with fabricated beats
+ok 96 - Audio analysis: silence is not populated with fabricated beats
+  ---
+  duration_ms: 55.773773
+  type: 'test'
+  ...
+# Subtest: Audio analysis: attacks and 120 BPM detected on original pulses
+ok 97 - Audio analysis: attacks and 120 BPM detected on original pulses
+  ---
+  duration_ms: 135.845578
+  type: 'test'
+  ...
+# Subtest: Generator: deterministic, varied difficulties and no leading silence notes
+ok 98 - Generator: deterministic, varied difficulties and no leading silence notes
+  ---
+  duration_ms: 3.434
+  type: 'test'
+  ...
+# Subtest: Generator: no quantization preserves exact detected attack times
+ok 99 - Generator: no quantization preserves exact detected attack times
+  ---
+  duration_ms: 0.254225
+  type: 'test'
+  ...
+# Subtest: Demo synthesis: deterministic finite audio, bounded and nonempty
+ok 100 - Demo synthesis: deterministic finite audio, bounded and nonempty
+  ---
+  duration_ms: 166.203093
+  type: 'test'
+  ...
+# Subtest: 3D matrix: translation, scaling and inversion compose correctly
+ok 101 - 3D matrix: translation, scaling and inversion compose correctly
+  ---
+  duration_ms: 0.898413
+  type: 'test'
+  ...
+# Subtest: 3D quaternion: interpolation remains normalized
+ok 102 - 3D quaternion: interpolation remains normalized
+  ---
+  duration_ms: 0.19153
+  type: 'test'
+  ...
+# Subtest: 3D meshes: indices and normals valid for all primitive types
+ok 103 - 3D meshes: indices and normals valid for all primitive types
+  ---
+  duration_ms: 2.107564
+  type: 'test'
+  ...
+# Subtest: V3 tempo: integral over three tempo segments
+ok 104 - V3 tempo: integral over three tempo segments
+  ---
+  duration_ms: 10.374532
+  type: 'test'
+  ...
+# Subtest: V3 tempo: inverse for 1,000 times, including negative preroll
+ok 105 - V3 tempo: inverse for 1,000 times, including negative preroll
+  ---
+  duration_ms: 16.757009
+  type: 'test'
+  ...
+# Subtest: V3 tempo: non-zero initial event receives chart initial BPM
+ok 106 - V3 tempo: non-zero initial event receives chart initial BPM
+  ---
+  duration_ms: 1.373009
+  type: 'test'
+  ...
+# Subtest: V3 tempo: duplicate, negative, NaN and extreme tempo rejected
+ok 107 - V3 tempo: duplicate, negative, NaN and extreme tempo rejected
+  ---
+  duration_ms: 0.712619
+  type: 'test'
+  ...
+# Subtest: V3 tempo: edit does not mutate note times
+ok 108 - V3 tempo: edit does not mutate note times
+  ---
+  duration_ms: 1.253675
+  type: 'test'
+  ...
+# Subtest: V3 grid: subdivisions follow tempo instead of global BPM
+ok 109 - V3 grid: subdivisions follow tempo instead of global BPM
+  ---
+  duration_ms: 0.345484
+  type: 'test'
+  ...
+# Subtest: V3 grid: phase offset and triplets supported
+ok 110 - V3 grid: phase offset and triplets supported
+  ---
+  duration_ms: 0.386935
+  type: 'test'
+  ...
+# Subtest: V3 grid: free timing preserves original precision
+ok 111 - V3 grid: free timing preserves original precision
+  ---
+  duration_ms: 0.394024
+  type: 'test'
+  ...
+# Subtest: V3 grid: returned bar and quarter markers are consistent
+ok 112 - V3 grid: returned bar and quarter markers are consistent
+  ---
+  duration_ms: 0.959821
+  type: 'test'
+  ...
+# Subtest: V3 selection: mirror modifies only selected notes and source stays intact
+ok 113 - V3 selection: mirror modifies only selected notes and source stays intact
+  ---
+  duration_ms: 1.56342
+  type: 'test'
+  ...
+# Subtest: V3 selection: chord lane mirror is bijective
+ok 114 - V3 selection: chord lane mirror is bijective
+  ---
+  duration_ms: 0.533445
+  type: 'test'
+  ...
+# Subtest: V3 selection: quantization collision rejects whole edit
+ok 115 - V3 selection: quantization collision rejects whole edit
+  ---
+  duration_ms: 0.694446
+  type: 'test'
+  ...
+# Subtest: V3 selection: negative shift rejects transaction
+ok 116 - V3 selection: negative shift rejects transaction
+  ---
+  duration_ms: 0.217627
+  type: 'test'
+  ...
+# Subtest: V3 selection: copy and paste preserves intervals and gives unique IDs
+ok 117 - V3 selection: copy and paste preserves intervals and gives unique IDs
+  ---
+  duration_ms: 0.533056
+  type: 'test'
+  ...
+# Subtest: V3 selection: duplicate paste fails without touching source
+ok 118 - V3 selection: duplicate paste fails without touching source
+  ---
+  duration_ms: 0.192425
+  type: 'test'
+  ...
+# Subtest: V3 layout: all four patterns stay in playfield
+ok 119 - V3 layout: all four patterns stay in playfield
+  ---
+  duration_ms: 1.439014
+  type: 'test'
+  ...
+# Subtest: V3 selection: deleting group preserves unselected notes
+ok 120 - V3 selection: deleting group preserves unselected notes
+  ---
+  duration_ms: 0.176127
+  type: 'test'
+  ...
+# Subtest: V3 audit: unsafe coordinates, short approach, rapid repetition and audio bounds flagged
+ok 121 - V3 audit: unsafe coordinates, short approach, rapid repetition and audio bounds flagged
+  ---
+  duration_ms: 0.736722
+  type: 'test'
+  ...
+# Subtest: V3 audit: overlaps and oversized chords reported
+ok 122 - V3 audit: overlaps and oversized chords reported
+  ---
+  duration_ms: 0.336919
+  type: 'test'
+  ...
+# Subtest: V3 audit: informational only, never modifies source
+ok 123 - V3 audit: informational only, never modifies source
+  ---
+  duration_ms: 0.462269
+  type: 'test'
+  ...
+# Subtest: V3 stats: median, deviation, early/late counts and suggestions
+ok 124 - V3 stats: median, deviation, early/late counts and suggestions
+  ---
+  duration_ms: 0.370957
+  type: 'test'
+  ...
+# Subtest: V3 stats: inconsistent hits never propose unreliable calibration
+ok 125 - V3 stats: inconsistent hits never propose unreliable calibration
+  ---
+  duration_ms: 0.100296
+  type: 'test'
+  ...
+# Subtest: V3 practice: difficult segments prioritize misses
+ok 126 - V3 practice: difficult segments prioritize misses
+  ---
+  duration_ms: 0.228077
+  type: 'test'
+  ...
+# Subtest: V3 practice: right endpoint excluded from denominator
+ok 127 - V3 practice: right endpoint excluded from denominator
+  ---
+  duration_ms: 0.931556
+  type: 'test'
+  ...
+# Subtest: V3 practice: tail bonus capped at practice end
+ok 128 - V3 practice: tail bonus capped at practice end
+  ---
+  duration_ms: 0.255702
+  type: 'test'
+  ...
+# Subtest: V3 hold: release accrues through precise release timestamp
+ok 129 - V3 hold: release accrues through precise release timestamp
+  ---
+  duration_ms: 0.203725
+  type: 'test'
+  ...
+# Subtest: V3 hold: large and small frames produce identical Autoplay bonuses
+ok 130 - V3 hold: large and small frames produce identical Autoplay bonuses
+  ---
+  duration_ms: 0.995814
+  type: 'test'
+  ...
+# Subtest: V3 chain: continuously held input survives slow rendering and exact replay
+ok 131 - V3 chain: continuously held input survives slow rendering and exact replay
+  ---
+  duration_ms: 0.571437
+  type: 'test'
+  ...
+# Subtest: V3 chain: a late keydown cannot retroactively consume an old chain
+ok 132 - V3 chain: a late keydown cannot retroactively consume an old chain
+  ---
+  duration_ms: 0.347237
+  type: 'test'
+  ...
+# Subtest: V3 replay: input recording reproduces judgments and holds
+ok 133 - V3 replay: input recording reproduces judgments and holds
+  ---
+  duration_ms: 0.904537
+  type: 'test'
+  ...
+# Subtest: V3 replay: unordered events, invalid lanes and missing format rejected
+ok 134 - V3 replay: unordered events, invalid lanes and missing format rejected
+  ---
+  duration_ms: 2.5999
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: type 0, running status and tempo changes decoded
+ok 135 - V3 MIDI: type 0, running status and tempo changes decoded
+  ---
+  duration_ms: 1.857031
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: SysEx safely skipped, zero velocity treated as release
+ok 136 - V3 MIDI: SysEx safely skipped, zero velocity treated as release
+  ---
+  duration_ms: 0.789815
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: SMPTE timeline ignores musical tempo for tick conversion
+ok 137 - V3 MIDI: SMPTE timeline ignores musical tempo for tick conversion
+  ---
+  duration_ms: 0.591087
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: drop-frame 29.97 conversion
+ok 138 - V3 MIDI: drop-frame 29.97 conversion
+  ---
+  duration_ms: 0.263857
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: format 2 explicitly refused
+ok 139 - V3 MIDI: format 2 explicitly refused
+  ---
+  duration_ms: 0.554927
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: invalid signatures, zero division and malformed statuses refused
+ok 140 - V3 MIDI: invalid signatures, zero division and malformed statuses refused
+  ---
+  duration_ms: 0.575402
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: truncated file rejected at every byte boundary
+ok 141 - V3 MIDI: truncated file rejected at every byte boundary
+  ---
+  duration_ms: 1.185828
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: omitted note-off gives an explicit warning
+ok 142 - V3 MIDI: omitted note-off gives an explicit warning
+  ---
+  duration_ms: 0.419736
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: automatic import preserves times and supports HOLD toggle
+ok 143 - V3 MIDI: automatic import preserves times and supports HOLD toggle
+  ---
+  duration_ms: 1.003218
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: external polyphony reports dropped and remapped pitches
+ok 144 - V3 MIDI: external polyphony reports dropped and remapped pitches
+  ---
+  duration_ms: 0.43384
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: canonical six-lane mapping supports slide and chain
+ok 145 - V3 MIDI: canonical six-lane mapping supports slide and chain
+  ---
+  duration_ms: 0.341761
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: drum-only selection rejected when drums excluded
+ok 146 - V3 MIDI: drum-only selection rejected when drums excluded
+  ---
+  duration_ms: 0.253296
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: native roundtrip preserves note precision, position and tempo exactly
+ok 147 - V3 MIDI: native roundtrip preserves note precision, position and tempo exactly
+  ---
+  duration_ms: 3.282616
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: standard exported events match audible times within tick rounding
+ok 148 - V3 MIDI: standard exported events match audible times within tick rounding
+  ---
+  duration_ms: 1.489192
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: exported timing supports negative chart offset when notes remain audible
+ok 149 - V3 MIDI: exported timing supports negative chart offset when notes remain audible
+  ---
+  duration_ms: 0.945334
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: note before audible time zero cannot export silently
+ok 150 - V3 MIDI: note before audible time zero cannot export silently
+  ---
+  duration_ms: 0.48003
+  type: 'test'
+  ...
+# Subtest: V3 MIDI: tempo outside engine range is explicit, not clamped
+ok 151 - V3 MIDI: tempo outside engine range is explicit, not clamped
+  ---
+  duration_ms: 0.277277
+  type: 'test'
+  ...
+# Subtest: V3 large chart: 5,000-note native export/import keeps exact signature
+ok 152 - V3 large chart: 5,000-note native export/import keeps exact signature
+  ---
+  duration_ms: 276.035855
+  type: 'test'
+  ...
+# Subtest: V3 duplicated ID normalization always produces unique IDs
+ok 153 - V3 duplicated ID normalization always produces unique IDs
+  ---
+  duration_ms: 0.272878
+  type: 'test'
+  ...
+# Subtest: V3 strict imports: unsupported approach, duration or offset rejected instead of silently clamped
+ok 154 - V3 strict imports: unsupported approach, duration or offset rejected instead of silently clamped
+  ---
+  duration_ms: 0.439831
+  type: 'test'
+  ...
+# Subtest: V4 chain exploit: holding before the head cannot auto-hit the chain
+ok 155 - V4 chain exploit: holding before the head cannot auto-hit the chain
+  ---
+  duration_ms: 8.334702
+  type: 'test'
+  ...
+# Subtest: V4 chains require a valid head, but retain valid held continuation
+ok 156 - V4 chains require a valid head, but retain valid held continuation
+  ---
+  duration_ms: 0.539152
+  type: 'test'
+  ...
+# Subtest: V4 releasing or clearing the head disarms the chain
+ok 157 - V4 releasing or clearing the head disarms the chain
+  ---
+  duration_ms: 0.943419
+  type: 'test'
+  ...
+# Subtest: V3 replay explicitly retains the historical chain interpretation
+ok 158 - V3 replay explicitly retains the historical chain interpretation
+  ---
+  duration_ms: 1.755355
+  type: 'test'
+  ...
+# Subtest: Binary lower bound handles empty lists and exact edges
+ok 159 - Binary lower bound handles empty lists and exact edges
+  ---
+  duration_ms: 0.678565
+  type: 'test'
+  ...
+# Subtest: Viewport handles 50,000 notes without scanning the full chart
+ok 160 - Viewport handles 50,000 notes without scanning the full chart
+  ---
+  duration_ms: 57.429175
+  type: 'test'
+  ...
+# Subtest: Viewport is conservative for all valid custom approach times and speeds
+ok 161 - Viewport is conservative for all valid custom approach times and speeds
+  ---
+  duration_ms: 46.229644
+  type: 'test'
+  ...
+# Subtest: Viewport returns no notes on non-finite clock
+ok 162 - Viewport returns no notes on non-finite clock
+  ---
+  duration_ms: 1.630442
+  type: 'test'
+  ...
+# Subtest: Catalog validates entries without mutating input
+ok 163 - Catalog validates entries without mutating input
+  ---
+  duration_ms: 1.927818
+  type: 'test'
+  ...
+# Subtest: Catalog does not trust a truncated SHA-256 or weak hash
+ok 164 - Catalog does not trust a truncated SHA-256 or weak hash
+  ---
+  duration_ms: 0.808715
+  type: 'test'
+  ...
+# Subtest: Catalog validates schema, versions, entry and note limits
+ok 165 - Catalog validates schema, versions, entry and note limits
+  ---
+  duration_ms: 0.31167
+  type: 'test'
+  ...
+# Subtest: Catalog only allows HTTP(S) attribution URLs
+ok 166 - Catalog only allows HTTP(S) attribution URLs
+  ---
+  duration_ms: 0.359576
+  type: 'test'
+  ...
+# Subtest: Catalog unknown demo identity is refused
+ok 167 - Catalog unknown demo identity is refused
+  ---
+  duration_ms: 1.347864
+  type: 'test'
+  ...
+# Subtest: Catalog SHA-256 match is exact, title match alone is not
+ok 168 - Catalog SHA-256 match is exact, title match alone is not
+  ---
+  duration_ms: 1.46968
+  type: 'test'
+  ...
+# Subtest: Catalog weak identical fingerprints never become verified identity
+ok 169 - Catalog weak identical fingerprints never become verified identity
+  ---
+  duration_ms: 0.145428
+  type: 'test'
+  ...
+# Subtest: Catalog official-demo matching requires a builtin song flag
+ok 170 - Catalog official-demo matching requires a builtin song flag
+  ---
+  duration_ms: 0.254221
+  type: 'test'
+  ...
+# Subtest: Catalog Unicode titles normalize without deleting Japanese characters
+ok 171 - Catalog Unicode titles normalize without deleting Japanese characters
+  ---
+  duration_ms: 0.7296
+  type: 'test'
+  ...
+# Subtest: Catalog merge deduplicates exact content, not just names
+ok 172 - Catalog merge deduplicates exact content, not just names
+  ---
+  duration_ms: 0.744971
+  type: 'test'
+  ...
+# Subtest: Catalog attachment preserves all native timing and trajectory fields
+ok 173 - Catalog attachment preserves all native timing and trajectory fields
+  ---
+  duration_ms: 0.903104
+  type: 'test'
+  ...
+# Subtest: Catalog unverified association must be explicitly authorized
+ok 174 - Catalog unverified association must be explicitly authorized
+  ---
+  duration_ms: 0.626554
+  type: 'test'
+  ...
+# Subtest: Catalog attaching twice adds no duplicate level
+ok 175 - Catalog attaching twice adds no duplicate level
+  ---
+  duration_ms: 0.273609
+  type: 'test'
+  ...
+# Subtest: Catalog exceeding per-song capacity rejects the entire operation
+ok 176 - Catalog exceeding per-song capacity rejects the entire operation
+  ---
+  duration_ms: 0.912151
+  type: 'test'
+  ...
+# Subtest: Catalog optional difficulty selection never remaps difficulty
+ok 177 - Catalog optional difficulty selection never remaps difficulty
+  ---
+  duration_ms: 0.374545
+  type: 'test'
+  ...
+# Subtest: Section validation sorts, retains precision and does not retime notes
+ok 178 - Section validation sorts, retains precision and does not retime notes
+  ---
+  duration_ms: 0.295619
+  type: 'test'
+  ...
+# Subtest: Invalid or zero-duration sections are rejected
+ok 179 - Invalid or zero-duration sections are rejected
+  ---
+  duration_ms: 0.514994
+  type: 'test'
+  ...
+# Subtest: Chart validator rejects malformed section metadata at import
+ok 180 - Chart validator rejects malformed section metadata at import
+  ---
+  duration_ms: 0.286656
+  type: 'test'
+  ...
+# Subtest: Practice validates nonfinite and out-of-song ranges
+ok 181 - Practice validates nonfinite and out-of-song ranges
+  ---
+  duration_ms: 0.409918
+  type: 'test'
+  ...
+# Subtest: Practice supports short loops, slow rates and explicit adaptive mode
+ok 182 - Practice supports short loops, slow rates and explicit adaptive mode
+  ---
+  duration_ms: 0.089836
+  type: 'test'
+  ...
+# Subtest: Adaptive practice increases only after the target with no misses
+ok 183 - Adaptive practice increases only after the target with no misses
+  ---
+  duration_ms: 0.11244
+  type: 'test'
+  ...
+# Subtest: Adaptive practice caps at normal tempo and ignores empty attempts
+ok 184 - Adaptive practice caps at normal tempo and ignores empty attempts
+  ---
+  duration_ms: 0.064052
+  type: 'test'
+  ...
+# Subtest: Density strip respects chart offset and audio duration
+ok 185 - Density strip respects chart offset and audio duration
+  ---
+  duration_ms: 0.238974
+  type: 'test'
+  ...
+# Subtest: Musical generator is reproducible for all five difficulty levels
+ok 186 - Musical generator is reproducible for all five difficulty levels
+  ---
+  duration_ms: 5.608659
+  type: 'test'
+  ...
+# Subtest: Musical generator preserves detected attack times when quantization is off
+ok 187 - Musical generator preserves detected attack times when quantization is off
+  ---
+  duration_ms: 0.845398
+  type: 'test'
+  ...
+# Subtest: Musical generator does not populate leading or trailing silence
+ok 188 - Musical generator does not populate leading or trailing silence
+  ---
+  duration_ms: 0.857204
+  type: 'test'
+  ...
+# Subtest: Musical generator silence and invalid settings fail explicitly
+ok 189 - Musical generator silence and invalid settings fail explicitly
+  ---
+  duration_ms: 0.97008
+  type: 'test'
+  ...
+# Subtest: Musical generator different layouts stay inside the safe target region
+ok 190 - Musical generator different layouts stay inside the safe target region
+  ---
+  duration_ms: 1.396412
+  type: 'test'
+  ...
+# Subtest: Musical generator supports disabling hold, slides and chords
+ok 191 - Musical generator supports disabling hold, slides and chords
+  ---
+  duration_ms: 0.613584
+  type: 'test'
+  ...
+# Subtest: Musical generator higher density retains more attacks on pulse fixture
+ok 192 - Musical generator higher density retains more attacks on pulse fixture
+  ---
+  duration_ms: 0.869728
+  type: 'test'
+  ...
+# Subtest: Musical generator reuses lane motifs for two identical phrases
+ok 193 - Musical generator reuses lane motifs for two identical phrases
+  ---
+  duration_ms: 0.845495
+  type: 'test'
+  ...
+# Subtest: Musical generator never sustains a hold into a measured silent region
+ok 194 - Musical generator never sustains a hold into a measured silent region
+  ---
+  duration_ms: 0.343684
+  type: 'test'
+  ...
+# Subtest: Chord bindings need distinct standard symbols and valid keys
+ok 195 - Chord bindings need distinct standard symbols and valid keys
+  ---
+  duration_ms: 0.552267
+  type: 'test'
+  ...
+# Subtest: Memory atomic store clones values and does not leak partial writes
+ok 196 - Memory atomic store clones values and does not leak partial writes
+  ---
+  duration_ms: 0.663743
+  type: 'test'
+  ...
+# Subtest: Version-changed store refuses writes rather than silently falling back
+ok 197 - Version-changed store refuses writes rather than silently falling back
+  ---
+  duration_ms: 0.291654
+  type: 'test'
+  ...
+# Subtest: Draft save and delete do not touch source song rows
+ok 198 - Draft save and delete do not touch source song rows
+  ---
+  duration_ms: 0.748416
+  type: 'test'
+  ...
+# Subtest: Catalog retains levels with distinct tempo maps even when notes are equal
+ok 199 - Catalog retains levels with distinct tempo maps even when notes are equal
+  ---
+  duration_ms: 0.475194
+  type: 'test'
+  ...
+# Subtest: VPD pose parser counts bones
+ok 200 - VPD pose parser counts bones
+  ---
+  duration_ms: 2.395431
+  type: 'test'
+  ...
+# Subtest: invalid PMX and VMD are refused
+ok 201 - invalid PMX and VMD are refused
+  ---
+  duration_ms: 1.334468
+  type: 'test'
+  ...
+# Subtest: project validation warns without model and motion
+ok 202 - project validation warns without model and motion
+  ---
+  duration_ms: 0.174307
+  type: 'test'
+  ...
+# Subtest: VMD role distinguishes camera-only motion
+ok 203 - VMD role distinguishes camera-only motion
+  ---
+  duration_ms: 0.120142
+  type: 'test'
+  ...
+# Subtest: VMD full parser exposes bone keyframes for runtime
+ok 204 - VMD full parser exposes bone keyframes for runtime
+  ---
+  duration_ms: 2.583074
+  type: 'test'
+  ...
+# Subtest: VPD full parser exposes pose transforms
+ok 205 - VPD full parser exposes pose transforms
+  ---
+  duration_ms: 0.30093
+  type: 'test'
+  ...
+# Subtest: PMX full parser reads an empty valid 2.0 container
+ok 206 - PMX full parser reads an empty valid 2.0 container
+  ---
+  duration_ms: 0.563339
+  type: 'test'
+  ...
+# Subtest: Offline shell install requests only static application shell files
+ok 207 - Offline shell install requests only static application shell files
+  ---
+  duration_ms: 41.458317
+  type: 'test'
+  ...
+# Subtest: Offline shell activate deletes only old DIVA caches
+ok 208 - Offline shell activate deletes only old DIVA caches
+  ---
+  duration_ms: 1.682462
+  type: 'test'
+  ...
+# Subtest: Offline shell ignores user audio, foreign origins and non-GET requests
+ok 209 - Offline shell ignores user audio, foreign origins and non-GET requests
+  ---
+  duration_ms: 6.531426
+  type: 'test'
+  ...
+# Subtest: Offline shell caches HTML and returns cached content on failed network
+ok 210 - Offline shell caches HTML and returns cached content on failed network
+  ---
+  duration_ms: 8.031086
+  type: 'test'
+  ...
+# Subtest: A failed cache write does not break valid online content
+ok 211 - A failed cache write does not break valid online content
+  ---
+  duration_ms: 1.941207
+  type: 'test'
+  ...
+# Subtest: Offline without cached shell rejects rather than fabricating content
+ok 212 - Offline without cached shell rejects rather than fabricating content
+  ---
+  duration_ms: 1.007616
+  type: 'test'
+  ...
+# Subtest: default meter remains 4/4
+ok 213 - default meter remains 4/4
+  ---
+  duration_ms: 4.914851
+  type: 'test'
+  ...
+# Subtest: 3/4 measures are three quarter notes
+ok 214 - 3/4 measures are three quarter notes
+  ---
+  duration_ms: 1.843756
+  type: 'test'
+  ...
+# Subtest: 7/8 grouping defaults to 2+2+3
+ok 215 - 7/8 grouping defaults to 2+2+3
+  ---
+  duration_ms: 0.213591
+  type: 'test'
+  ...
+# Subtest: changing meter preserves note timestamps
+ok 216 - changing meter preserves note timestamps
+  ---
+  duration_ms: 0.290473
+  type: 'test'
+  ...
+# Subtest: mid-measure signature changes are rejected atomically
+ok 217 - mid-measure signature changes are rejected atomically
+  ---
+  duration_ms: 0.271645
+  type: 'test'
+  ...
+# Subtest: invalid group sum is rejected
+ok 218 - invalid group sum is rejected
+  ---
+  duration_ms: 0.221818
+  type: 'test'
+  ...
+# Subtest: empty meter map is rejected
+ok 219 - empty meter map is rejected
+  ---
+  duration_ms: 0.191277
+  type: 'test'
+  ...
+# Subtest: duplicate meter positions rejected
+ok 220 - duplicate meter positions rejected
+  ---
+  duration_ms: 0.215893
+  type: 'test'
+  ...
+# Subtest: grid phase and variable BPM remain exact
+ok 221 - grid phase and variable BPM remain exact
+  ---
+  duration_ms: 0.769593
+  type: 'test'
+  ...
+# Subtest: bar lines remain on 7/8 when quarter grid selected
+ok 222 - bar lines remain on 7/8 when quarter grid selected
+  ---
+  duration_ms: 0.489723
+  type: 'test'
+  ...
+# Subtest: 6/8 metronome accents groups with unique boundaries
+ok 223 - 6/8 metronome accents groups with unique boundaries
+  ---
+  duration_ms: 0.4552
+  type: 'test'
+  ...
+# Subtest: PV follows four bars in 3/4, not sixteen quarters
+ok 224 - PV follows four bars in 3/4, not sixteen quarters
+  ---
+  duration_ms: 0.334616
+  type: 'test'
+  ...
+# Subtest: meter roundtrip in native MIDI retains map
+ok 225 - meter roundtrip in native MIDI retains map
+  ---
+  duration_ms: 3.522512
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.25x preserves a 440 Hz tone and requested duration
+ok 226 - WSOLA 0.25x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 53.150164
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.5x preserves a 440 Hz tone and requested duration
+ok 227 - WSOLA 0.5x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 21.552873
+  type: 'test'
+  ...
+# Subtest: WSOLA 0.75x preserves a 440 Hz tone and requested duration
+ok 228 - WSOLA 0.75x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 4.572687
+  type: 'test'
+  ...
+# Subtest: WSOLA 1x preserves a 440 Hz tone and requested duration
+ok 229 - WSOLA 1x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 1.86836
+  type: 'test'
+  ...
+# Subtest: WSOLA 1.25x preserves a 440 Hz tone and requested duration
+ok 230 - WSOLA 1.25x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 4.084724
+  type: 'test'
+  ...
+# Subtest: WSOLA 1.5x preserves a 440 Hz tone and requested duration
+ok 231 - WSOLA 1.5x preserves a 440 Hz tone and requested duration
+  ---
+  duration_ms: 2.707204
+  type: 'test'
+  ...
+# Subtest: unity rate copies samples without aliasing
+ok 232 - unity rate copies samples without aliasing
+  ---
+  duration_ms: 1.257298
+  type: 'test'
+  ...
+# Subtest: stereo opposite phase does not become silence
+ok 233 - stereo opposite phase does not become silence
+  ---
+  duration_ms: 8.677826
+  type: 'test'
+  ...
+# Subtest: silent audio stays silent
+ok 234 - silent audio stays silent
+  ---
+  duration_ms: 2.883424
+  type: 'test'
+  ...
+# Subtest: short audio does not loop indefinitely
+ok 235 - short audio does not loop indefinitely
+  ---
+  duration_ms: 0.319812
+  type: 'test'
+  ...
+# Subtest: invalid stretch rate and mismatched channels rejected
+ok 236 - invalid stretch rate and mismatched channels rejected
+  ---
+  duration_ms: 6.141824
+  type: 'test'
+  ...
+# Subtest: MIDI note on/off timestamps forwarded
+ok 237 - MIDI note on/off timestamps forwarded
+  ---
+  duration_ms: 0.419622
+  type: 'test'
+  ...
+# Subtest: MIDI velocity zero is note off
+ok 238 - MIDI velocity zero is note off
+  ---
+  duration_ms: 0.100876
+  type: 'test'
+  ...
+# Subtest: MIDI repeat is not a second strike
+ok 239 - MIDI repeat is not a second strike
+  ---
+  duration_ms: 0.082416
+  type: 'test'
+  ...
+# Subtest: MIDI channels and ports release independently
+ok 240 - MIDI channels and ports release independently
+  ---
+  duration_ms: 0.228712
+  type: 'test'
+  ...
+# Subtest: MIDI input rejected during modal cannot latch a key
+ok 241 - MIDI input rejected during modal cannot latch a key
+  ---
+  duration_ms: 0.104319
+  type: 'test'
+  ...
+# Subtest: mapping rejects duplicates and out-of-range notes
+ok 242 - mapping rejects duplicates and out-of-range notes
+  ---
+  duration_ms: 0.136641
+  type: 'test'
+  ...
+# Subtest: MIDI reconfigure releases held sources
+ok 243 - MIDI reconfigure releases held sources
+  ---
+  duration_ms: 0.14601
+  type: 'test'
+  ...
+# Subtest: system exclusive and malformed MIDI ignored
+ok 244 - system exclusive and malformed MIDI ignored
+  ---
+  duration_ms: 0.074221
+  type: 'test'
+  ...
+# Subtest: storage audit is read-only and reports missing and unused assets
+ok 245 - storage audit is read-only and reports missing and unused assets
+  ---
+  duration_ms: 0.669416
+  type: 'test'
+  ...
+# Subtest: six original lesson charts validate and remain deterministic
+ok 246 - six original lesson charts validate and remain deterministic
+  ---
+  duration_ms: 3.320633
+  type: 'test'
+  ...
+# Subtest: academy audio WAV is self-contained PCM, 32 seconds
+ok 247 - academy audio WAV is self-contained PCM, 32 seconds
+  ---
+  duration_ms: 39.471339
+  type: 'test'
+  ...
+# Subtest: HOLD lesson cannot pass with taps and zero bonus
+ok 248 - HOLD lesson cannot pass with taps and zero bonus
+  ---
+  duration_ms: 0.208657
+  type: 'test'
+  ...
+# Subtest: academy medals require full speed and a nonempty result
+ok 249 - academy medals require full speed and a nonempty result
+  ---
+  duration_ms: 0.076395
+  type: 'test'
+  ...
+# Subtest: academy progress merge never replaces a medal with a worse attempt
+ok 250 - academy progress merge never replaces a medal with a worse attempt
+  ---
+  duration_ms: 0.213238
+  type: 'test'
+  ...
+# Subtest: invalid academy import fails before changing current state
+ok 251 - invalid academy import fails before changing current state
+  ---
+  duration_ms: 0.104681
+  type: 'test'
+  ...
+# Subtest: native MIDI roundtrip preserves exact meter fields
+ok 252 - native MIDI roundtrip preserves exact meter fields
+  ---
+  duration_ms: 1.881708
+  type: 'test'
+  ...
+# Subtest: WSOLA refuses non-finite PCM rather than silently distorting it
+ok 253 - WSOLA refuses non-finite PCM rather than silently distorting it
+  ---
+  duration_ms: 0.189457
+  type: 'test'
+  ...
+# Subtest: MIDI router rejects invalid channels at creation
+ok 254 - MIDI router rejects invalid channels at creation
+  ---
+  duration_ms: 0.135367
+  type: 'test'
+  ...
+# Subtest: MIDI router ignores negative or fractional message bytes
+ok 255 - MIDI router ignores negative or fractional message bytes
+  ---
+  duration_ms: 0.087734
+  type: 'test'
+  ...
+# Subtest: standard MIDI conductor exports actual mixed meter
+ok 256 - standard MIDI conductor exports actual mixed meter
+  ---
+  duration_ms: 1.014022
+  type: 'test'
+  ...
+# Subtest: ordinary MIDI import adopts valid signatures without retiming notes
+ok 257 - ordinary MIDI import adopts valid signatures without retiming notes
+  ---
+  duration_ms: 0.911104
+  type: 'test'
+  ...
+# Subtest: ordinary MIDI with mid-bar change warns without discarding notes
+ok 258 - ordinary MIDI with mid-bar change warns without discarding notes
+  ---
+  duration_ms: 0.637413
+  type: 'test'
+  ...
+# Subtest: standard signatures reflect offset and tempo without changing native metadata
+ok 259 - standard signatures reflect offset and tempo without changing native metadata
+  ---
+  duration_ms: 0.849018
+  type: 'test'
+  ...
+# Subtest: all six academy medals are reachable by a deterministic correct performance
+ok 260 - all six academy medals are reachable by a deterministic correct performance
+  ---
+  duration_ms: 22.471283
+  type: 'test'
+  ...
+# Subtest: V10 preserves distinct model ids
+ok 261 - V10 preserves distinct model ids
+  ---
+  duration_ms: 2.884613
+  type: 'test'
+  ...
+# Subtest: V10 active clip follows musical time
+ok 262 - V10 active clip follows musical time
+  ---
+  duration_ms: 0.534873
+  type: 'test'
+  ...
+# Subtest: V10 auto show uses chart sections and rotates motions
+ok 263 - V10 auto show uses chart sections and rotates motions
+  ---
+  duration_ms: 5.261101
+  type: 'test'
+  ...
+# Subtest: V10 falls back to musical phrases without sections
+ok 264 - V10 falls back to musical phrases without sections
+  ---
+  duration_ms: 2.646665
+  type: 'test'
+  ...
+# Subtest: V11 MMD bezier keeps endpoints and curves midpoint
+ok 265 - V11 MMD bezier keeps endpoints and curves midpoint
+  ---
+  duration_ms: 1.181289
+  type: 'test'
+  ...
+# Subtest: V11 bone sampling uses per-channel VMD interpolation
+ok 266 - V11 bone sampling uses per-channel VMD interpolation
+  ---
+  duration_ms: 0.912203
+  type: 'test'
+  ...
+# Subtest: V11 camera sampling accepts six interpolation channels
+ok 267 - V11 camera sampling accepts six interpolation channels
+  ---
+  duration_ms: 1.888061
+  type: 'test'
+  ...
+# V12 structure tests: PASS
+# Subtest: tests/v12-structure.test.cjs
+ok 10 - tests/v12-structure.test.cjs
+  ---
+  duration_ms: 66.971437
+  type: 'test'
+  ...
+# Subtest: tempo map simplifies reliable variable windows
+ok 269 - tempo map simplifies reliable variable windows
+  ---
+  duration_ms: 1.362052
+  type: 'test'
+  ...
+# Subtest: tempo map stays global when tempo is stable
+ok 270 - tempo map stays global when tempo is stable
+  ---
+  duration_ms: 1.051899
+  type: 'test'
+  ...
+# Subtest: director creates musical formations
+ok 271 - director creates musical formations
+  ---
+  duration_ms: 1.755288
+  type: 'test'
+  ...
+# Subtest: formation interpolation remains finite
+ok 272 - formation interpolation remains finite
+  ---
+  duration_ms: 0.719321
+  type: 'test'
+  ...
+# Subtest: variable tempo grid stays continuous across a tempo change
+ok 273 - variable tempo grid stays continuous across a tempo change
+  ---
+  duration_ms: 0.381201
+  type: 'test'
+  ...
+# Subtest: V16 PMD full parser yields renderable geometry
+ok 274 - V16 PMD full parser yields renderable geometry
+  ---
+  duration_ms: 4.056306
+  type: 'test'
+  ...
+# Subtest: V16 director normalization preserves formations
+ok 275 - V16 director normalization preserves formations
+  ---
+  duration_ms: 1.252363
+  type: 'test'
+  ...
+# Subtest: V16 activeClip respects intentional timeline gaps
+ok 276 - V16 activeClip respects intentional timeline gaps
+  ---
+  duration_ms: 0.228817
+  type: 'test'
+  ...
+# Subtest: V16 variable tempo grid is used at later segment
+ok 277 - V16 variable tempo grid is used at later segment
+  ---
+  duration_ms: 0.738206
+  type: 'test'
+  ...
+# Subtest: director clamps dancers and creates slots
+ok 278 - director clamps dancers and creates slots
+  ---
+  duration_ms: 1.49312
+  type: 'test'
+  ...
+# Subtest: director positions are centered
+ok 279 - director positions are centered
+  ---
+  duration_ms: 1.112095
+  type: 'test'
+  ...
+# Subtest: auto cuts follow four bars
+ok 280 - auto cuts follow four bars
+  ---
+  duration_ms: 0.358387
+  type: 'test'
+  ...
+# Subtest: validation warns for dense ensembles
+ok 281 - validation warns for dense ensembles
+  ---
+  duration_ms: 0.365569
+  type: 'test'
+  ...
+1..281
+# tests 281
+# suites 0
+# pass 281
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5961.558234

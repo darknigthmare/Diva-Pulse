@@ -1,0 +1,45 @@
+{
+  "environment": "Chromium 144 Linux / Playwright / Xvfb + SwiftShader / set_content (opaque origin)",
+  "checks": [
+    {
+      "name": "Boot: three original songs and fifteen charts",
+      "passed": true
+    },
+    {
+      "name": "Real WebGL2 context, shader and stage drawing",
+      "passed": true
+    },
+    {
+      "name": "Modules: trio, per-slot costume and sakura stage",
+      "passed": true
+    },
+    {
+      "name": "GLB: embedded skinned model and animation loaded",
+      "passed": true
+    },
+    {
+      "name": "GLB: animation changes joint rotation",
+      "passed": true
+    },
+    {
+      "name": "GLB: original cast restored after clearing import",
+      "passed": true
+    },
+    {
+      "name": "Workflow interruption after 6 checks",
+      "passed": false,
+      "error": "Audio import: decoded eight-second WAV, empty chart library"
+    }
+  ],
+  "passed": 6,
+  "failed": 1,
+  "uncaughtErrors": [],
+  "console": [],
+  "notValidated": [
+    "HTTP or file navigation blocked by host browser policy",
+    "Persistent IndexedDB across reloads (opaque test origin)",
+    "Actual file download completion (serialization captured)",
+    "Physical gamepads, touch devices and Bluetooth latency",
+    "Safari, Firefox and Android browsers"
+  ]
+}
