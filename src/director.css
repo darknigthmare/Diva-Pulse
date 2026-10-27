@@ -22,3 +22,13 @@
 #modal.director-modal .buttons button{white-space:normal;line-height:1.35;overflow-wrap:break-word;min-width:0;min-height:40px;padding:8px 10px}
 #modal.director-modal .director-toolbar .check{display:flex;flex-direction:row;align-items:center;gap:8px}
 @media(max-width:480px){#modal.director-modal .primary{letter-spacing:0;font-size:11px}.director-block{font-size:11px}}
+/* V29 group selection remains usable without horizontal scrolling. */
+.director-batch{border:1px solid #3d5965;border-radius:12px;padding:16px;margin:16px 0;min-width:0}
+.director-batch legend{color:#84e8d9;letter-spacing:.12em}
+.director-batch output{display:block;margin-top:12px}
+.director-clip{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}
+.director-clip .check,.director-key .check{display:flex;align-items:center;gap:8px}
+.director-clip .check input,.director-key .check input{width:auto}
+@media(max-width:480px){.director-clip{grid-template-columns:repeat(2,minmax(0,1fr))}.director-clip label:nth-child(2){grid-column:auto}.director-batch{padding:10px}}
+
+#directorMessage{position:static}
