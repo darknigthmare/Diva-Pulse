@@ -20,6 +20,13 @@ for line in patch.decode().splitlines():
   assert name not in paths;paths.append(name)
 subprocess.run(['git','apply','--check','-'],cwd=R,input=patch,check=True)
 subprocess.run(['git','apply','-'],cwd=R,input=patch,check=True)
+# Native IDB returns the same object-store wrapper on repeated access. The test
+# intentionally aborts once; duplicate instrumentation must not abort it twice.
+test=R/'tests/v34_browser_test.py';text=test.read_text()
+old="req.addEventListener('success',()=>{aborted=true;tx.abort();},{once:true});"
+new="req.addEventListener('success',()=>{if(aborted)return;aborted=true;tx.abort();},{once:true});"
+assert text.count(old)==1
+test.write_text(text.replace(old,new))
 base=R/'planning/BACKLOG_V33.json'
 assert sha(base.read_bytes())=='85124106390d65f8c7d4f54b4a7a04abf4e336338469b54ad5b9f45da18dc1cb'
 a=json.loads(base.read_text());u=json.loads((T/'tracking.json').read_text());updates={r[0]:r for r in u.pop('replacementRows')}
