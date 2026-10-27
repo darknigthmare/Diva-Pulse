@@ -1,0 +1,69 @@
+name: Restore verified V28 sources
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-v28.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: diva-pulse-source-restore
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch original archive and verify its digest
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 --max-time 180 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JHwJlNzgmcxQy32tjF7NiVZPuH/a6edc4d1-a4d5-4acd-a3d5-cb16a8a79350.zip' --output "$RUNNER_TEMP/diva-v28.zip"
+          echo '8ffcf4816f602c90b4666585d2d38d269e7614ee10dc4d825b21c8b31187ddf0  '"$RUNNER_TEMP/diva-v28.zip" | sha256sum --check
+      - name: Restore missing project files without overwriting later edits
+        shell: python
+        run: |
+          import os, pathlib, stat, zipfile
+          root = pathlib.Path.cwd()
+          archive = pathlib.Path(os.environ['RUNNER_TEMP']) / 'diva-v28.zip'
+          added = 0
+          with zipfile.ZipFile(archive) as z:
+              for info in z.infolist():
+                  path = pathlib.PurePosixPath(info.filename)
+                  if path.is_absolute() or '..' in path.parts or '\\' in info.filename:
+                      raise RuntimeError('Unsafe archive path')
+                  if stat.S_ISLNK(info.external_attr >> 16):
+                      raise RuntimeError('Archive links are not allowed')
+                  if not path.parts or path.parts[0] != 'DIVA_PULSE_V28':
+                      raise RuntimeError('Unexpected archive root')
+                  relative = pathlib.Path(*path.parts[1:])
+                  if not relative.parts or any(p in ('.git', '.github', '.env') for p in relative.parts):
+                      continue
+                  target = root / relative
+                  if info.is_dir():
+                      target.mkdir(parents=True, exist_ok=True)
+                  elif not target.exists():
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      target.write_bytes(z.read(info))
+                      added += 1
+          print(f'Restored {added} files. Existing repository files retained.')
+      - name: Check source build and logic suite
+        run: |
+          python3 build.py
+          npm test
+      - name: Publish restored files
+        shell: bash
+        run: |
+          git config user.name 'Diva Pulse maintenance'
+          git config user.email '7942594+darknigthmare@users.noreply.github.com'
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: import complete recovered Diva Pulse V28 sources, assets and QA history'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
