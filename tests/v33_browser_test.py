@@ -24,9 +24,15 @@ try:
   p.wait_for_function('document.documentElement.dataset.v28Ready==="true"');idle()
   ok('V33 release and cosmetic module installed',p.evaluate('PulseCore.VERSION')==version and p.evaluate('document.documentElement.dataset.feedback33Ready==="true"'))
   ok('HTTP mode uses real IndexedDB, document mode explicitly temporary',p.evaluate('PulseApp.store.persistent') if mode=='http' else not p.evaluate('PulseApp.store.persistent'))
-  p.evaluate('''async()=>{const a=PulseApp;a.settings.hitSound=false;a.applySettings();await a.startGame('autoplay');window.oldSfx33=a.audio.sfx;window.legacySfx33=0;a.audio.sfx=()=>legacySfx33++;window.audioBaseline33=a.feedback33.sounds.stats.played;a.engine.events.push({rating:'COOL',note:{lane:0,type:'tap',x:.4,y:.5},error:0});}''');p.wait_for_timeout(160)
+  # Freeze only the transport clock, not the running AudioContext or game frame.
+  # Two real autoplay notes isolate this assertion from runner/rendering speed.
+  p.evaluate('''async()=>{const a=PulseApp;a.settings.hitSound=false;a.applySettings();await a.startGame('autoplay');a.audio.pause();a.audio.pausedAt=0;
+    a.gameChart=PulseCore.validateChart({title:'Sound probe',bpm:120,notes:[{id:'mute-probe',time:1,lane:0,type:'tap',x:.4,y:.5},{id:'single-probe',time:2,lane:2,type:'tap',x:.5,y:.4}]});
+    a.engine=new PulseCore.JudgeEngine(a.gameChart,{noFail:true});a.feedback33.sounds.stop();a.feedback33.effects.clear();window.oldSfx33=a.audio.sfx;window.legacySfx33=0;a.audio.sfx=()=>legacySfx33++;window.audioBaseline33=a.feedback33.sounds.stats.played;a.audio.pausedAt=1;}''')
+  p.wait_for_function('PulseApp.engine.processed===1')
   ok('Autoplay respects disabled hit sound on both audio paths',p.evaluate('legacySfx33===0&&PulseApp.feedback33.sounds.stats.played===audioBaseline33'))
-  p.evaluate('''const a=PulseApp;a.settings.hitSound=true;a.applySettings();a.engine.events.push({rating:'COOL',note:{lane:2,type:'tap',x:.5,y:.4},error:0});''');p.wait_for_timeout(100)
+  p.evaluate('''const a=PulseApp;a.settings.hitSound=true;a.applySettings();a.audio.pausedAt=2;''')
+  p.wait_for_function('PulseApp.engine.processed===2')
   ok('A judged note creates one procedural sound, not a double trigger',p.evaluate('PulseApp.feedback33.sounds.stats.played===audioBaseline33+1&&legacySfx33===0'))
   p.evaluate('PulseApp.audio.sfx=oldSfx33;PulseApp.pause()')
   ok('Pause stops active feedback voices and clears transient effects',p.evaluate('PulseApp.feedback33.sounds.voices.size===0&&PulseApp.feedback33.effects.items.length===0'))
