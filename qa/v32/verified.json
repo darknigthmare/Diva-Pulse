@@ -1,0 +1,21 @@
+{
+  "version": "32.0.0",
+  "buildSha256": "22bdfe014b5781e43149e821f1cb1f5248f66086ff4711e1f5192f8e01976ca9",
+  "workbookSha256": "0fd254363bfee19542f77fe60e030655b7cc85673983d862c893bb0aac353d01",
+  "logicPassed": 947,
+  "launcherPassed": 10,
+  "browserChecks": {
+    "loops": 16,
+    "audition": 32,
+    "regression-workflow": 18,
+    "regression-director": 23,
+    "regression-persistence": 14,
+    "transactions": 11
+  },
+  "browserTotal": 114,
+  "backlogItems": 123,
+  "done": 35,
+  "open": 88,
+  "sheets": 13,
+  "scope": "HTTP/IndexedDB for current workflows, persistence and transaction abort; Director regression remains injected-document. Software GPU; no physical-device certification."
+}

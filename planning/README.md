@@ -1,11 +1,11 @@
-# Suivi V30 — PR #1
+# Suivi courant — V32
 
-Le classeur `DIVA_PULSE_MANQUANTS_V30.xlsx`, le JSON et le CSV décrivent les mêmes 114 points. Les 22 lignes « Fait » portent sur des périmètres vérifiés, pas sur une certification du jeu entier. Les 92 autres restent partielles, à faire ou à qualifier.
+Classeur : [DIVA_PULSE_MANQUANTS_V32.xlsx](DIVA_PULSE_MANQUANTS_V32.xlsx).
 
-Le manifeste `V30_DELIVERY_MANIFEST.json` est le reçu du **premier transfert**, avant la correction visuelle mobile et l'activation finale de la CI. Ce n'est pas le manifeste d'intégrité de la dernière révision.
+123 points : 35 faits dans leur périmètre, 20 partiels, 41 à faire, 27 à valider ; 88 restent ouverts. Aucun pourcentage de finition du jeu n’est déduit de ces compteurs.
 
-Le build final prévu par cette passe a l'empreinte SHA-256 `797cf9923ddf47b6e8a9c08ffd895951fae4d9e7ec0f16c9f43ddcecee2ac36b`. Le classeur a l'empreinte `23a96415144c05b32d80c4cbc921bc164983e89ff68fbaeab5f4d0bca07c84b0`.
+Le JSON `BACKLOG_V32.json` et le CSV `MANQUANTS_V32.csv` permettent une revue textuelle. Les onglets historiques V28 à V31 conservent leur contexte. Le code V31 précédemment local est désormais intégré avec V32 ; les preuves natives sont rattachées au build, et ne certifient aucun périphérique physique.
 
-La preuve de validation native de chaque révision est son exécution **Pull request quality** : l'artefact contient `verified.json`, les trois rapports navigateur et les traces logiques. La vérification refuse les preuves périmées ou injectées pour le scénario HTTP natif. Les rapports `qa/v30/local-before-mobile` sont historiques et explicitement séparés. Aucun résultat historique n'est additionné au nouveau passage.
+`V32_RELEASE.json` fixe les empreintes du build et du classeur. Le contrôle `tools/verify_pr32.py` compare les tâches et les compteurs du classeur au JSON et exige les nouvelles preuves natives.
 
-PR : https://github.com/darknigthmare/Diva-Pulse/pull/1
+PR #1 : https://github.com/darknigthmare/Diva-Pulse/pull/1. Aucune fusion dans main.
