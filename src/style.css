@@ -21,3 +21,17 @@
 
 /* V24: suggestions and read-only state remain legible on portrait devices. */
 .motion24-proposals{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.motion24-proposals p{flex-basis:100%;margin:4px 0}.motion24-proposals button{white-space:normal;max-width:100%}.readonly24{position:fixed;bottom:0;left:0;right:0;background:#44242c;color:#fff0e7;padding:12px 20px;font-size:13px;z-index:8000;border-top:1px solid #ffad90}#storage24Details{overflow-wrap:anywhere}.sync-row button{white-space:normal}
+
+/* V34 informational gauges: no transform animation or flash. */
+#holdMeter34{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:130px;z-index:16;display:grid;grid-template-columns:repeat(2,minmax(85px,1fr));gap:6px;max-width:230px;pointer-events:none}
+#holdMeter34[hidden],.hold-cell34[hidden]{display:none!important}
+.hold-cell34{padding:7px 10px;border:1px solid #8ee7d0;border-radius:8px;background:rgba(7,18,30,.93);color:#eefff9;font:600 11px/1.5 system-ui;min-width:0}
+.hold-bar34{display:block;height:4px;margin-top:4px;background:#27414c;overflow:hidden;border-radius:2px}
+.hold-bar34 i{display:block;width:100%;height:100%;background:#8ee7d0;transform-origin:left center}
+.media-list34{max-height:32vh;overflow:auto;display:grid;gap:8px}
+.media-list34 .check{display:flex;align-items:center;gap:10px;overflow-wrap:anywhere;font-size:13px}
+.media-list34 input{flex:0 0 auto}
+@media(max-width:600px){#holdMeter34{bottom:155px;max-width:190px;right:8px}.hold-cell34{font-size:10px;padding:5px 8px}}
+
+#mediaAck34{display:flex;align-items:center;gap:10px;line-height:1.5}#mediaAck34 input{flex:0 0 auto}
+@media(max-width:600px){#mediaCandidates34~.buttons{display:grid;grid-template-columns:1fr;gap:8px}#mediaCandidates34~.buttons button{min-height:44px;white-space:normal}}

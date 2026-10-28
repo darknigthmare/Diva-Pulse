@@ -1,0 +1,125 @@
+{
+  "version": "34.0.0",
+  "buildSha256": "1c6efbe5d93ef8ecdb09eef0d1f00eadd0c1bf5a2b425030679ab6ef608c0d35",
+  "passed": 28,
+  "failed": 0,
+  "failure": null,
+  "errors": [],
+  "checks": [
+    {
+      "name": "V34 modules boot on the selected storage surface",
+      "passed": true
+    },
+    {
+      "name": "Inventory protects persistent, unknown and in-memory draft references",
+      "passed": true
+    },
+    {
+      "name": "Media names are literal text, never inserted as HTML",
+      "passed": true
+    },
+    {
+      "name": "Cleanup requires explicit selection and backup acknowledgement",
+      "passed": true
+    },
+    {
+      "name": "Selection alone is not destructive authorization",
+      "passed": true
+    },
+    {
+      "name": "Selection plus acknowledgement enables requested cleanup",
+      "passed": true
+    },
+    {
+      "name": "Exported inventory contains metadata and references, not binary payloads",
+      "passed": true
+    },
+    {
+      "name": "Any committed change marks the open inventory stale",
+      "passed": true
+    },
+    {
+      "name": "Rescanning does not silently reselect previously checked media",
+      "passed": true
+    },
+    {
+      "name": "Transaction recheck preserves a newly referenced runtime asset",
+      "passed": true
+    },
+    {
+      "name": "Real IDB abort after deletion request restores bytes and emits no successful commit",
+      "passed": true
+    },
+    {
+      "name": "Confirmed cleanup removes only the selected orphan",
+      "passed": true
+    },
+    {
+      "name": "Cleanup leaves songs and charts identical",
+      "passed": true
+    },
+    {
+      "name": "A missing reference is visible and disables destructive cleanup",
+      "passed": true
+    },
+    {
+      "name": "AudioContext suspension pauses the live game and clears source inputs",
+      "passed": true
+    },
+    {
+      "name": "Suspended input cannot score or arm a held source",
+      "passed": true
+    },
+    {
+      "name": "AudioContext recovery alone does not restart a paused game",
+      "passed": true
+    },
+    {
+      "name": "Explicit resume starts the same paused song",
+      "passed": true
+    },
+    {
+      "name": "Multiple hold gauges remain readable with all decorative VFX off",
+      "passed": true
+    },
+    {
+      "name": "Hold HUD redraws do not alter score or replay data",
+      "passed": true
+    },
+    {
+      "name": "Hold status stays within the narrow viewport",
+      "passed": true
+    },
+    {
+      "name": "Releasing one hold does not clear a second lane gauge",
+      "passed": true
+    },
+    {
+      "name": "A closed audio context is recreated safely on explicit resume",
+      "passed": true
+    },
+    {
+      "name": "Hold-gauge preference persists through its settings handler",
+      "passed": true
+    },
+    {
+      "name": "Hiding the document pauses the actual Director audition without discarding the draft",
+      "passed": true
+    },
+    {
+      "name": "Returning visible leaves the Director paused until explicitly resumed",
+      "passed": true
+    },
+    {
+      "name": "Director can resume normally after an interruption",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors in V34 flow",
+      "passed": true
+    }
+  ],
+  "mode": "http",
+  "nativeAbortExecuted": true,
+  "scope": "Native Web Audio and HTTP/IndexedDB transactional test. Software GPU and viewport emulation, not device certification."
+}

@@ -1,0 +1,34 @@
+PASS V31 current release and explicitly selected storage mode load
+PASS Keyboard block selection exposes pressed state
+PASS Modifier click extends selection without moving events
+PASS Actual pointer drag moves clips, camera, light and formation together
+PASS Whole pointer gesture has one undo entry
+PASS Pointer cancellation publishes no partial mixed edit
+PASS Collision during group drag leaves every track unchanged
+PASS Clip split is available in live UI
+PASS UI merge restores contiguous source timing
+PASS Clip can be copied from D1 to same-model D3
+PASS Formation positions are editable without changing motion clips
+PASS All montage operations leave saved song and charts intact
+PASS Audition starts native Web Audio without starting the game transport
+CLOCK {'audio': 2.220589569160998, 'stage': 2.2002721088435377, 'slider': '2.2', 'playing': True, 'frameError': None, 'context': 'running'}
+PASS Audio cursor and rendered MMD share one time source
+PASS Pause disconnects source and freezes audition cursor
+RESUME {'position': 2.75, 'time': 2.839977324263039, 'playing': True}
+PASS Scrub then resume starts from requested audio second
+PASS Scrubbing while playing replaces source at requested position
+PASS Half-speed audition follows half the audio-context elapsed time
+PASS A/B loop uses native source boundaries and a wrapped cursor
+PASS Invalid A/B edit does not corrupt the active loop
+PASS Stop silences source and returns to A
+PASS Space toggles audition outside text fields
+PASS Audio and formation controls fit a phone-width viewport
+PASS Audition adds no score or note changes
+PASS Closing Director disposes audition nodes but preserves shared game context
+PASS Unsaved formation edit recovers without starting sound
+PASS Director export preserves formation geometry and schema 19
+PASS Save publishes formation and completed-draft marker atomically
+PASS Director JSON reimports the saved formation coordinates
+PASS Closing during async audio preparation cannot start a stale audition
+PASS Native renderer remains healthy
+PASS No unhandled JavaScript exception

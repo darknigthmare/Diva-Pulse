@@ -1,0 +1,22 @@
+PASS V33 release and cosmetic module installed
+PASS HTTP mode uses real IndexedDB, document mode explicitly temporary
+PASS Autoplay respects disabled hit sound on both audio paths
+PASS A judged note creates one procedural sound, not a double trigger
+PASS Pause stops active feedback voices and clears transient effects
+PASS Paused input cannot arm a stuck gameplay source
+PASS Delayed resume after leaving the song cannot restart hidden audio
+PASS Lost touch capture releases only its own source
+PASS Last device release ends the hold without a duplicate judgment
+PASS Native Web Audio and VFX remain bounded under 1000 feedback events
+PASS Effects do not mutate result, replay log or charts
+PASS Live zero-volume setting stops feedback voices immediately
+PASS COOL success draws halo and bounded spark rays
+PASS System reduced-motion disables particles and stage movement
+PASS In-game reduced-motion also uses a stationary ring
+PASS Reduced-effects option removes extra visuals but leaves judgments intact
+PASS Actual offline audio render has a finite signal and silent tail
+PASS New sound preference persists through the real settings handler
+PASS Refused preference save preserves the saved option and resets the control
+PASS Feedback settings fit a narrow viewport without clipped controls
+PASS Losing focus pauses play and clears all inputs and sounds
+PASS No unhandled JavaScript error in the full V33 flow

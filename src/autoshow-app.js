@@ -12,7 +12,7 @@ function install(app){
  // Do not publish an automatically modified scene before the store commit.
  const put=app.store.put.bind(app.store),atomic=app.store.atomic.bind(app.store);
  app.store.put=async function(name,value){if(name!=='songs')return put(name,value);const next=prepare(value);await put(name,next);value.scene=next.scene;if(app.song?.id===value.id)app.stage.autoShowPlan=next.scene.autoShow?.mode==='off'?null:next.scene.autoShow;};
- app.store.atomic=async function(rows){const staged=rows.map(([n,v])=>[n,n==='songs'?prepare(v):v]);await atomic(staged);rows.forEach(([n,v],i)=>{if(n==='songs')v.scene=staged[i][1].scene;});};
+ app.store.atomic=async function(rows,options={}){const opts=structuredClone(options);const staged=rows.map(([n,v])=>[n,n==='songs'?prepare(v):v]);await atomic(staged,opts);rows.forEach(([n,v],i)=>{if(n==='songs')v.scene=staged[i][1].scene;});};
  // The plan owns only extra data; source fields and charts stay unchanged.
  app.ensureAutoShow=async function(song=this.song,opts={}){if(!song)return null;const next=A.prepare(song,{enabled:this.settings.autoShowImport!==false,...opts});if(JSON.stringify(next.scene)!==JSON.stringify(song.scene)){await this.store.put('songs',next);song.scene=next.scene;}return song.scene.autoShow||null;};
  const oldDirector=root.PulseV10.applyDirector;

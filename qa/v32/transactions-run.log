@@ -1,0 +1,11 @@
+PASS Transaction tests run on HTTP with real writable IndexedDB
+PASS Real database initially stores phase-bearing schema 20 and binary data
+PASS Abort occurs after a successful real IDB request, not an application mock
+PASS Abort rolls back deletion, song update and binary overwrite together
+PASS Abort cannot promote snapshots or emit a success notification
+PASS Retry commits write and deletion with native completion
+PASS Conflicting deletion refuses the whole native request before mutation
+PASS Studio abort leaves source, edit, recovery and dirty state retryable
+PASS Native Studio retry removes the old recovery and preserves source charts
+PASS Reload retains the mixed commit, binary bytes and schema 20 phase
+PASS No unhandled exception during native abort/retry flow

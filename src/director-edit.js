@@ -7,18 +7,18 @@ const D=root.PulseDirector||(typeof require==='function'?require('./director-cor
 const fail=message=>{throw Error(message);};
 function finite(value,label){if(typeof value!=='number'||!Number.isFinite(value))fail(label+' doit être un nombre fini.');return value;}
 function refs(draft,selection){
- if(!Array.isArray(selection)||!selection.length||selection.length>3072)fail('Sélection vide ou trop grande.');
+ if(!Array.isArray(selection)||!selection.length||selection.length>3584)fail('Sélection vide ou trop grande.');
  const seen=new Set();
  return selection.map(key=>{
-  if(typeof key!=='string'||!/^(clip:[0-3]|camera|light):\d+$/.test(key))fail('Sélection invalide.');
+  if(typeof key!=='string'||!/^(clip:[0-3]|camera|light|formation):\d+$/.test(key))fail('Sélection invalide.');
   if(seen.has(key))fail('Sélection dupliquée.');seen.add(key);
   const p=key.split(':'),kind=p[0],slot=kind==='clip'?Number(p[1]):null,index=Number(p.at(-1));
-  const track=kind==='clip'?draft.slots[slot]?.clips:draft[kind+'Track'];
+  const track=kind==='clip'?draft.slots[slot]?.clips:(kind==='formation'?draft.formations:draft[kind+'Track']);
   if(!Number.isSafeInteger(index)||!track?.[index])fail('La sélection a changé : sélectionner à nouveau.');
   return {key,kind,slot,index,value:track[index]};
  });
 }
-function all(raw){const d=D.normalizeDirector(raw),keys=[];d.slots.forEach((s,i)=>s.clips.forEach((_,j)=>keys.push(`clip:${i}:${j}`)));for(const k of ['camera','light'])d[k+'Track'].forEach((_,i)=>keys.push(`${k}:${i}`));return keys;}
+function all(raw){const d=D.normalizeDirector(raw),keys=[];d.slots.forEach((s,i)=>s.clips.forEach((_,j)=>keys.push(`clip:${i}:${j}`)));for(const k of ['camera','light','formation'])(k==='formation'?d.formations:d[k+'Track']).forEach((_,i)=>keys.push(`${k}:${i}`));return keys;}
 function copy(raw,selection){
  const d=D.normalizeDirector(raw),items=refs(d,selection);
  const anchor=Math.min(...items.map(x=>x.kind==='clip'?x.value.start:x.value.time));
@@ -34,24 +34,24 @@ function move(raw,selection,delta){
 function remove(raw,selection){
  const d=D.normalizeDirector(structuredClone(raw)),items=refs(d,selection);
  for(const item of items.sort((a,b)=>b.index-a.index)){
-  const track=item.kind==='clip'?d.slots[item.slot].clips:d[item.kind+'Track'];track.splice(item.index,1);
+  const track=item.kind==='clip'?d.slots[item.slot].clips:(item.kind==='formation'?d.formations:d[item.kind+'Track']);track.splice(item.index,1);
  }
  return D.normalizeDirector(d);
 }
 function paste(raw,clipboard,time){
  finite(time,'Curseur');const d=D.normalizeDirector(structuredClone(raw));
  if(time<0||time>d.duration)fail('Curseur hors du spectacle.');
- if(!clipboard||clipboard.format!=='DIVA-PULSE-DIRECTOR-CLIPBOARD'||clipboard.version!==1||!Array.isArray(clipboard.entries)||!clipboard.entries.length||clipboard.entries.length>3072)fail('Presse-papiers Director invalide.');
+ if(!clipboard||clipboard.format!=='DIVA-PULSE-DIRECTOR-CLIPBOARD'||clipboard.version!==1||!Array.isArray(clipboard.entries)||!clipboard.entries.length||clipboard.entries.length>3584)fail('Presse-papiers Director invalide.');
  finite(clipboard.anchor,'Origine du presse-papiers');
  const delta=time-clipboard.anchor;
  for(const item of clipboard.entries){
-  if(!item||!['clip','camera','light'].includes(item.kind)||!item.value||typeof item.value!=='object')fail('Élément à coller invalide.');
+  if(!item||!['clip','camera','light','formation'].includes(item.kind)||!item.value||typeof item.value!=='object')fail('Élément à coller invalide.');
   const value=structuredClone(item.value);
   if(item.kind==='clip'){
    if(!Number.isInteger(item.slot)||!d.slots[item.slot])fail('Le danseur destinataire n’existe plus.');
    value.start=finite(value.start,'Début')+delta;value.end=finite(value.end,'Fin')+delta;
    value.id='';d.slots[item.slot].clips.push(value);
-  }else{value.time=finite(value.time,'Instant')+delta;d[item.kind+'Track'].push(value);}
+  }else{value.time=finite(value.time,'Instant')+delta;(item.kind==='formation'?d.formations:d[item.kind+'Track']).push(value);}
  }
  return D.normalizeDirector(d);
 }

@@ -32,3 +32,18 @@
 @media(max-width:480px){.director-clip{grid-template-columns:repeat(2,minmax(0,1fr))}.director-clip label:nth-child(2){grid-column:auto}.director-batch{padding:10px}}
 
 #directorMessage{position:static}
+/* V30: retain readable labels and touch targets instead of squeezing six columns. */
+#modal.director-modal .director-batch .buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+@media(max-width:600px){
+ #modal.director-modal .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #modal.director-modal .director-batch .buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #modal.director-modal .buttons button{min-height:48px;word-break:normal;overflow-wrap:normal;hyphens:none}
+}
+/* V31: key lanes and selected state use shape/border as well as colour. */
+.director-point{width:22px;transform:translateX(-50%);z-index:2}
+.director-strip{margin-right:12px}
+.director-block[aria-pressed="true"]{outline:3px solid #fff;outline-offset:1px;font-weight:bold}
+.director-block:focus-visible{outline:3px dashed #fff;outline-offset:3px}
+.director-block.drag-invalid{outline:3px dashed #ffb7bd}
+#dPlaybackStatus{min-height:2.5em}
+@media(prefers-reduced-motion:reduce){.director-block{transition:none!important}}

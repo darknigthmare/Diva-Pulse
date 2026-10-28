@@ -82,7 +82,7 @@ function install(app){
  const put=app.store.put.bind(app.store),atomic=app.store.atomic.bind(app.store);
  async function inherited(song){if(!app.settings.mmdDefaultSourceId||app.songs.some(s=>s.id===song.id))return song;const source=await app.store.get('songs',app.settings.mmdDefaultSourceId);if(!source?.scene?.mmd)return song;for(const id of source.scene.mmd.assetIds||[]){const a=await app.store.get('assets',id);if(!a?.blob)return song;}return A.attachDefault(song,source);}
  app.store.put=async function(n,v){if(n!=='songs')return put(n,v);const next=await inherited(v);await put(n,next);v.scene=next.scene;};
- app.store.atomic=async function(rows){const restoring=rows.some(([n])=>n==='settings'),staged=[];for(const [n,v] of rows)staged.push([n,n==='songs'&&!restoring?await inherited(v):v]);await atomic(staged);rows.forEach(([n,v],i)=>{if(n==='songs')v.scene=staged[i][1].scene;});};
+ app.store.atomic=async function(rows,options={}){const opts=structuredClone(options);const restoring=rows.some(([n])=>n==='settings'),staged=[];for(const [n,v] of rows)staged.push([n,n==='songs'&&!restoring?await inherited(v):v]);await atomic(staged,opts);rows.forEach(([n,v],i)=>{if(n==='songs')v.scene=staged[i][1].scene;});};
  document.documentElement.dataset.mmdImportReady='true';
 }
 root.PulseMMDImportApp=install;

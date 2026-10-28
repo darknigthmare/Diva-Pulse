@@ -1,0 +1,24 @@
+{
+  "version": "33.0.0",
+  "buildSha256": "6f9e03d461b62f7263f2131116684bae3891d52f4fd77428fae316550d675ec2",
+  "workbookSha256": "79aca4e1a1f8835a3b70e82ed40956b12d62f647a3aeafb47f94595f92768565",
+  "logicPassed": 995,
+  "newLogic": 48,
+  "launcherPassed": 10,
+  "browserChecks": {
+    "feedback": 22,
+    "loops": 16,
+    "audition": 32,
+    "regression-workflow": 18,
+    "regression-director": 23,
+    "regression-persistence": 14,
+    "transactions": 11
+  },
+  "browserTotal": 136,
+  "newBrowser": 22,
+  "backlogItems": 132,
+  "done": 44,
+  "open": 88,
+  "sheets": 15,
+  "scope": "Current feedback/audio tests and persistence use HTTP and native browser APIs. Director regression uses an injected document. Synthetic event-load tests are not physical-device performance or acoustic latency certification."
+}

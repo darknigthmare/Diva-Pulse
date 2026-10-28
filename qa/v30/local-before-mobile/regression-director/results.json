@@ -1,0 +1,103 @@
+{
+  "version": "30.0.0",
+  "buildSha256": "7a13a2603d688c8d93f3d51dc62c9585a6926e14a608b8e3581b86beebc8a5da",
+  "passed": 23,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Current V29 bundle boots and retains the original 15 demo charts",
+      "passed": true
+    },
+    {
+      "name": "Native software WebGL2 renderer is active",
+      "passed": true
+    },
+    {
+      "name": "PMX and VMD import still reaches the actual renderer",
+      "passed": true
+    },
+    {
+      "name": "Select all counts clips and both key tracks",
+      "passed": true
+    },
+    {
+      "name": "Copy/paste adds clips and keys with relative timing",
+      "passed": true
+    },
+    {
+      "name": "Pasting leaves the saved scene and note charts untouched",
+      "passed": true
+    },
+    {
+      "name": "Moving a mixed selection preserves its relative offsets",
+      "passed": true
+    },
+    {
+      "name": "Collision visibly refuses the whole group with no partial edit",
+      "passed": true
+    },
+    {
+      "name": "Undo restores the previous complete group",
+      "passed": true
+    },
+    {
+      "name": "Redo restores the accepted move and clears stale selection",
+      "passed": true
+    },
+    {
+      "name": "Deleting a mixed group keeps all unselected events",
+      "passed": true
+    },
+    {
+      "name": "Deletion is undoable in a single step",
+      "passed": true
+    },
+    {
+      "name": "Cursor snapping uses current chart tempo",
+      "passed": true
+    },
+    {
+      "name": "Edited director preview loads real MMD with finite poses",
+      "passed": true
+    },
+    {
+      "name": "Director dialog fits a phone-width viewport",
+      "passed": true
+    },
+    {
+      "name": "Batch controls do not create horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Refused save keeps source unchanged and dialog retryable",
+      "passed": true
+    },
+    {
+      "name": "Successful save commits song and applied-draft marker together",
+      "passed": true
+    },
+    {
+      "name": "Publication does not alter charts or notes",
+      "passed": true
+    },
+    {
+      "name": "Already applied draft is not offered for recovery",
+      "passed": true
+    },
+    {
+      "name": "Portable backup excludes applied recovery tombstones",
+      "passed": true
+    },
+    {
+      "name": "Renderer remains healthy after preview and publication",
+      "passed": true
+    },
+    {
+      "name": "No unhandled JavaScript exception",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "scope": "Real Chromium + SwiftShader UI. Temporary document storage; not physical iPhone or universal MMD certification."
+}

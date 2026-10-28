@@ -1,90 +1,10 @@
-name: Publish and verify V29
+name: Legacy V29 publisher (retired)
 on:
-  push:
-    paths:
-      - '.github/workflows/publish-v29.yml'
-      - 'tools/apply_v29.py'
-      - 'src/director-edit.js'
-      - 'tests/v29*'
   workflow_dispatch:
 permissions:
-  contents: write
-defaults:
-  run:
-    shell: bash
-concurrency:
-  group: diva-pulse-v29-publication
-  cancel-in-progress: false
+  contents: read
 jobs:
-  verify-and-publish:
+  information:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Build V29 and check all logical contracts
-        run: |
-          mkdir -p qa/v29
-          python3 tools/apply_v29.py
-          python3 build.py
-          python3 tools/verify_release.py | tee qa/v29/release-check.txt
-          npm test | tee qa/v29/logic.tap
-          python3 tests/launcher_test.py | tee qa/v29/launcher.txt
-      - name: Install pinned browser test tooling
-        run: |
-          python3 -m pip install -r requirements-test.txt
-          python3 -m playwright install --with-deps chromium
-          python3 - <<'PY' >> "$GITHUB_ENV"
-          from playwright.sync_api import sync_playwright
-          with sync_playwright() as p:
-              print('CHROMIUM_PATH=' + p.chromium.executable_path)
-          PY
-      - name: Exercise real Director UI and transactional publication
-        run: |
-          rm -f qa/v29/director/results.json
-          xvfb-run -a python3 tests/v29_browser_test.py | tee qa/v29/director-run.txt
-      - name: Verify native persistence, multi-window locking and offline reload
-        run: |
-          rm -f qa/v29/persistence/results.json
-          xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v29/persistence-run.txt
-      - name: Independently verify fresh evidence before publication
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import hashlib,json,re
-          digest=hashlib.sha256(Path('index.html').read_bytes()).hexdigest()
-          for name,count in [('director',23),('persistence',14)]:
-              report=json.loads(Path(f'qa/v29/{name}/results.json').read_text())
-              assert report['version']=='29.0.0' and report['buildSha256']==digest
-              assert report['passed']==count and report['failed']==0 and report['failure'] is None
-              assert len(report['checks'])==count and all(c['passed'] for c in report['checks'])
-              assert not report['errors']
-          tap=Path('qa/v29/logic.tap').read_text()
-          assert re.search(r'^# pass 810$',tap,re.M) and re.search(r'^# fail 0$',tap,re.M)
-          assert 'TOTAL 10 PASS' in Path('qa/v29/launcher.txt').read_text()
-          print('All independent evidence gates passed for build',digest)
-          PY
-      - name: Preserve execution evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: diva-pulse-v29-verification
-          path: qa/v29/
-          retention-days: 30
-      - name: Commit generated release only after all checks pass
-        run: |
-          git config user.name 'Diva Pulse maintenance'
-          git config user.email '7942594+darknigthmare@users.noreply.github.com'
-          git add --all
-          if ! git diff --cached --quiet; then
-            git commit -m 'feat: publish tested V29 group editing, atomic Director save and native browser QA'
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+      - run: echo "Historical workflow retired. Use Pull request quality; recovery sources remain in Git history. No branch is written by this workflow."

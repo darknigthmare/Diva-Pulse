@@ -1,0 +1,140 @@
+/* V34 media inventory: conservative reachability, explicit selection, no automatic
+ * deletion. Native recheck and deletes share one transaction over every store.
+ * All string references, including unknown settings/scores, protect assets.
+ */
+(function(root){
+'use strict';
+const STORES=['songs','settings','scores','assets'];
+const MAX_NODES=500000, MAX_ASSETS=5000;
+const referenceKey=k=>/(?:Asset|AssetId)$/.test(k)||k==='assetId';
+const error=message=>{throw Error(message);};
+function describe(a){return {id:a.id,name:String(a.name||a.id).slice(0,512),kind:String(a.kind||'inconnu').slice(0,80),bytes:a.blob?.size||0,type:a.blob?.type||'',valid:typeof Blob!=='undefined'&&a.blob instanceof Blob};}
+function inspect(snapshot,extra=[]){
+ for(const name of STORES)if(!Array.isArray(snapshot?.[name]))error('Inventaire incomplet : '+name);
+ if(snapshot.assets.length>MAX_ASSETS)error('Inventaire limité à 5 000 médias. Aucun nettoyage effectué.');
+ const byId=new Map(),references=new Map(),missing=new Map();
+ for(const a of snapshot.assets){if(!a||typeof a.id!=='string'||!a.id||byId.has(a.id))error('Identifiant média absent ou dupliqué.');byId.set(a.id,a);}
+ let nodes=0;const seen=new WeakSet();
+ const use=(id,path,required=false)=>{
+  if(id==null||id==='')return;
+  if(typeof id!=='string'){if(required)error('Référence média invalide : '+path);return;}
+  const target=byId.has(id)?references:required?missing:null;if(!target)return;
+  if(!target.has(id))target.set(id,new Set());const paths=target.get(id);if(paths.size<12)paths.add(path);
+ };
+ const walk=(value,path,depth=0)=>{
+  if(++nodes>MAX_NODES||depth>80)error('Inventaire trop complexe : nettoyage désactivé.');
+  if(typeof value==='string'){use(value,path);return;}
+  if(!value||typeof value!=='object'||(typeof Blob!=='undefined'&&value instanceof Blob))return;
+  if(seen.has(value))return;seen.add(value);
+  if(ArrayBuffer.isView(value)||value instanceof ArrayBuffer)return;
+  for(const [k,v]of Object.entries(value)){
+   const p=path+'.'+k;
+   if(referenceKey(k))use(v,p,true);
+   if(k==='files'&&path.endsWith('.mmd')){if(!Array.isArray(v))error('Liste MMD invalide : '+p);for(const entry of v)use(entry?.id,p+'.id',true);}
+   if(k==='assetIds'){
+    if(!Array.isArray(v))error('Liste de références invalide : '+p);
+    for(const id of v){if(typeof id!=='string'||!id)error('Identifiant média invalide : '+p);use(id,p,true);}
+   }
+   walk(v,p,depth+1);
+  }
+ };
+ for(const name of STORES.filter(n=>n!=='assets'))for(const row of snapshot[name])walk(row,name+':'+String(row?.id||'?'));
+ for(const [i,row]of extra.entries())walk(row,'mémoire:'+i);
+ const assets=[...byId.values()].map(a=>({...describe(a),references:[...(references.get(a.id)||[])],protected:references.has(a.id)})).sort((a,b)=>a.id.localeCompare(b.id));
+ const issues=[...missing].map(([id,paths])=>({id,reason:'Référence absente',references:[...paths]}));
+ for(const a of assets)if(!a.valid)issues.push({id:a.id,reason:'Contenu média absent ou invalide',references:a.references});
+ return {format:'DIVA-PULSE-MEDIA-REPORT',version:1,assets,issues,orphans:assets.filter(a=>!a.protected&&a.valid),totalBytes:assets.reduce((n,a)=>n+a.bytes,0),protectedCount:assets.filter(a=>a.protected).length};
+}
+function selection(report,ids){
+ if(!report||report.format!=='DIVA-PULSE-MEDIA-REPORT'||report.version!==1||!Array.isArray(report.orphans)||!Array.isArray(ids)||!ids.length||ids.length>MAX_ASSETS)error('Sélection de nettoyage invalide.');
+ if(report.issues.length)error('Références manquantes : réparer la bibliothèque avant nettoyage.');
+ const known=new Map(report.orphans.map(a=>[a.id,a])),seen=new Set();
+ return ids.map(id=>{if(typeof id!=='string'||seen.has(id)||!known.has(id))error('Média non proposé ou sélection dupliquée.');seen.add(id);return {...known.get(id)};});
+}
+function recheck(report,selected){
+ if(report.issues.length)error('La bibliothèque présente une référence absente. Rien supprimé.');
+ const current=new Map(report.orphans.map(a=>[a.id,a]));
+ for(const a of selected){const b=current.get(a.id);if(!b||['name','kind','bytes','type'].some(k=>a[k]!==b[k]))error('Bibliothèque modifiée : relancer l’analyse. Rien supprimé.');}
+ return {deleted:selected.map(a=>a.id),bytes:selected.reduce((n,a)=>n+a.bytes,0)};
+}
+function roots(app){
+ return [app.songs,app.song,app.editor?.chart,app.v3State,app.v4State,app.v5State,app.catalogState,
+  ...['directorRecoveries','faceRecoveries','physicsRecoveries'].flatMap(k=>app[k]instanceof Map?[...app[k].values()]:[])];
+}
+class Vault{
+ constructor(store,getRoots=()=>[]){this.store=store;this.getRoots=getRoots;this.revision=0;this.reviews=new WeakMap();this.unwatch=store.watch(e=>{if(e.type==='commit'||e.type==='unavailable')this.revision++;});}
+ dispose(){this.unwatch();}
+ transact(mode,callback){
+  const s=this.store;s.guard();if(mode==='readwrite')s.assertWritable();
+  if(!s.db){const data=Object.fromEntries(STORES.map(n=>[n,[...s.memory[n].values()]]));return Promise.resolve(callback(data,id=>s.memory.assets.delete(id)));}
+  return new Promise((resolve,reject)=>{
+   const tx=s.db.transaction(STORES,mode);let pending=STORES.length,result,cause;const data={};
+   tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(cause||tx.error||Error('Lecture du stockage impossible.'));
+   tx.onabort=()=>reject(cause||tx.error||Error('Nettoyage annulé : aucune suppression validée.'));
+   for(const name of STORES){const req=tx.objectStore(name).getAll();req.onsuccess=()=>{
+    data[name]=req.result;if(--pending)return;
+    // No await here: deletion requests must be queued in the active IDB task.
+    try{result=callback(data,id=>tx.objectStore('assets').delete(id));}catch(e){cause=e;tx.abort();}
+   };}
+  });
+ }
+ async review(){const report=await this.transact('readonly',data=>inspect(data,this.getRoots()));this.reviews.set(report,this.revision);return report;}
+ async clean(report,ids){
+  const selected=selection(report,ids),revision=this.reviews.get(report);
+  if(revision===undefined||revision!==this.revision)error('Analyse périmée : relancer l’analyse.');
+  let result;
+  try{result=await this.transact('readwrite',(data,del)=>{
+   if(revision!==this.revision)error('Bibliothèque modifiée pendant le nettoyage.');
+   const fresh=inspect(data,this.getRoots()),result=recheck(fresh,selected);
+   // All checks precede all deletes, also on the in-memory fallback.
+   for(const id of result.deleted)del(id);return result;
+  });}catch(e){this.store.emit({type:'write-error',error:e,rows:[],deletes:[]});throw e;}
+  this.reviews.delete(report);
+  const deletes=result.deleted.map(id=>['assets',id]);
+  for(const id of result.deleted)this.store.lastCommitted.delete('assets:'+id);
+  this.store.emit({type:'commit',rows:[],deletes});
+  for(const id of result.deleted)this.store.emit({type:'delete',store:'assets',id});
+  return result;
+ }
+}
+function install(app){
+ const $=id=>document.getElementById(id),S=root.PulseServices;
+ const vault=new Vault(app.store,()=>roots(app));app.mediaVault=vault;
+ $('settings').insertAdjacentHTML('beforeend',`<section class="settings-card" id="mediaVault34"><div class="eyebrow">34 / BIBLIOTHÈQUE</div><h2>GARDER L’ESSENTIEL.</h2><p>Analyse les médias utilisés et les références manquantes. Aucun fichier n’est supprimé automatiquement. Les brouillons et les morceaux en mémoire sont protégés.</p><button id="mediaAnalyze34">Analyser les médias locaux</button><p id="mediaStatus34" role="status">Exportez un .pulsebundle avant tout nettoyage.</p></section>`);
+ const bytes=n=>(n/1048576).toFixed(2)+' Mio';
+ const busySafe=()=>{if(app.view==='game'||app.directorAudition||app.editor?.listening||app.editor?.recording)error('Arrêter le jeu ou l’écoute avant l’analyse.');};
+ app.openMediaReview=async()=>{
+  busySafe();await app.flushDraft?.();await app.directorDraftWrite;await app.faceDraftWrite;await app.physicsDraftWrite;
+  const report=await vault.review();
+  app.openModal('<div class="eyebrow">BIBLIOTHÈQUE / ANALYSE LOCALE</div><h2>MÉDIAS ET RÉFÉRENCES.</h2><p id="mediaSummary34"></p><p id="mediaIssues34" role="status"></p><div id="mediaCandidates34" class="media-list34"></div><p>Seuls les médias cochés et toujours inutilisés seront supprimés. Les morceaux, partitions et brouillons ne sont pas supprimés.</p><label class="check" id="mediaAck34"><input type="checkbox" id="mediaConfirm34"> J’ai conservé les fichiers nécessaires ou exporté une sauvegarde.</label><div class="buttons"><button id="mediaReport34">Exporter le diagnostic JSON</button><button id="mediaRescan34">Réexaminer</button><button id="mediaClean34" disabled>Supprimer les médias sélectionnés</button></div><p id="mediaOutcome34" role="status"></p>');
+  $('mediaSummary34').textContent=`${report.assets.length} médias · ${bytes(report.totalBytes)} · ${report.protectedCount} protégés · ${report.orphans.length} inutilisés.`;
+  $('mediaIssues34').textContent=report.issues.length?report.issues.map(x=>x.reason+' : '+x.id).join(' ; '):'Aucune référence média manquante détectée.';
+  const list=$('mediaCandidates34');
+  // Bound DOM work: larger libraries can be cleaned in explicitly reviewed batches.
+  for(const a of report.orphans.slice(0,200)){
+   const label=document.createElement('label');label.className='check';const cb=document.createElement('input');cb.type='checkbox';cb.dataset.mediaId=a.id;
+   label.append(cb,document.createTextNode(`${a.name} · ${a.kind} · ${bytes(a.bytes)}`));list.append(label);
+  }
+  if(!report.orphans.length)list.textContent='Aucun média inutilisé à retirer.';
+  if(report.orphans.length>200)list.append(document.createTextNode('200 médias affichés. Réexaminer après ce lot pour la suite.'));
+  const chosen=()=>[...list.querySelectorAll('input:checked')].map(el=>el.dataset.mediaId);
+  const button=$('mediaClean34'),ack=$('mediaConfirm34');
+  const sync=()=>{const n=chosen().length;button.disabled=!!report.issues.length||!ack.checked||!n||vault.reviews.get(report)!==vault.revision||app.store.readOnly===true;button.textContent=`Supprimer ${n} média${n>1?'s':''} sélectionné${n>1?'s':''}`;};
+  list.onchange=sync;ack.onchange=sync;
+  $('mediaReport34').onclick=()=>S.download(JSON.stringify(report,null,2),'DIVA_PULSE_DIAGNOSTIC_MEDIAS.json');
+  $('mediaRescan34').onclick=()=>app.run(app.openMediaReview,'Nouvelle analyse…');
+  button.onclick=()=>app.run(async()=>{
+   if(!ack.checked)error('Confirmer la sauvegarde avant nettoyage.');busySafe();button.disabled=true;
+   try{const out=await vault.clean(report,chosen());$('mediaStatus34').textContent=`${out.deleted.length} médias supprimés · ${bytes(out.bytes)} libérés. Les données référencées sont conservées.`;
+    app.closeModal();app.toast('Nettoyage terminé : '+out.deleted.length+' médias inutilisés.');
+   }catch(e){if($('mediaOutcome34'))$('mediaOutcome34').textContent=e.message;sync();throw e;}
+  },'Vérification des références puis nettoyage…');
+  sync();
+ };
+ $('mediaAnalyze34').onclick=()=>app.run(app.openMediaReview,'Analyse locale des médias…');
+ // Stale inventory never silently changes its list or selection under the user.
+ app.store.watch(e=>{if(e.type==='commit'&&$('mediaClean34')){$('mediaClean34').disabled=true;$('mediaOutcome34').textContent='Bibliothèque modifiée : réexaminer avant nettoyage.';}});
+ document.documentElement.dataset.mediaVault34Ready='true';
+}
+const api={inspect,selection,recheck,Vault,roots,install,MAX_NODES,MAX_ASSETS};root.PulseMediaVault=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);

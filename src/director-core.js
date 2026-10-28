@@ -44,7 +44,9 @@ function normalizeDirector(raw={}){
  for(let i=1;i<formations.length;i++)if(Math.abs(formations[i].time-formations[i-1].time)<1e-7)throw Error('Deux formations occupent le même instant.');
  if(raw.cuts!==undefined&&(!Array.isArray(raw.cuts)||raw.cuts.length>2000))throw Error('Coupes caméra invalides.');for(const c of raw.cuts||[]){number(c.time,0,0,duration,'Instant de coupe');if(!['auto','front','close','wide','orbit','high'].includes(c.camera))throw Error('Caméra de coupe inconnue.');}
  if(raw.rhythm){if(!Array.isArray(raw.rhythm.tempoMap)||raw.rhythm.tempoMap.length>2000)throw Error('Carte de tempo Director invalide.');C.tempoMap(raw.rhythm);}
- return {...raw,version:19,duration,enabled:raw.enabled!==false,count,spacing,useCamera:raw.useCamera!==false,slots,formations,cuts:(raw.cuts||[]).slice(0,2000),cameraTrack:normalizeTrack(raw.cameraTrack,'camera',duration),lightTrack:normalizeTrack(raw.lightTrack,'light',duration)};
+ const phased=slots.some(s=>s.clips.some(c=>c.loopPhaseBeats>0));
+ if(phased&&!raw.rhythm)throw Error('Carte de tempo requise pour une phase de boucle.');
+ return {...raw,version:phased||raw.version===20?20:19,duration,enabled:raw.enabled!==false,count,spacing,useCamera:raw.useCamera!==false,slots,formations,cuts:(raw.cuts||[]).slice(0,2000),cameraTrack:normalizeTrack(raw.cameraTrack,'camera',duration),lightTrack:normalizeTrack(raw.lightTrack,'light',duration)};
 }
 function clipState(clips,time){
  const i=clips.findIndex(c=>time>=c.start&&time<c.end);if(i<0)return null;

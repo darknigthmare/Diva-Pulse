@@ -1,0 +1,10 @@
+{
+  "version": "32.0.0",
+  "sourceCommit": "f4fa7d6d4baca70313d63622e8e7f0434c89ef97",
+  "buildSha256": "22bdfe014b5781e43149e821f1cb1f5248f66086ff4711e1f5192f8e01976ca9",
+  "workbookSha256": "0fd254363bfee19542f77fe60e030655b7cc85673983d862c893bb0aac353d01",
+  "tasks": 123,
+  "sheets": 13,
+  "sourceVerificationRun": 40522984445,
+  "scope": "PR only, not merged; final quality evidence must match these digests."
+}
