@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "purpose": "Registre documentaire des guides sélectionnés pour Diva Pulse ; aucune installation automatique ni dépendance de runtime.",
+  "reviewed_on": "2026-10-29",
+  "source": {
+    "repository": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+    "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+    "license": "Apache-2.0",
+    "router": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/router/SKILL.md",
+    "custom_engine_reference": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/router/references/custom-engines.md"
+  },
+  "project": {
+    "repository": "https://github.com/darknigthmare/Diva-Pulse",
+    "reviewed_commit": "1337f0889cb52fd899ab963443273b9feffa0fa6",
+    "reviewed_version": "34.0.0",
+    "engine": "JavaScript maison, Canvas 2D, WebGL 2 direct, Web Audio",
+    "backlog": "planning/BACKLOG_V34.json"
+  },
+  "skills": [
+    {
+      "name": "audio-design",
+      "path": "skills/disciplines/audio-design/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/audio-design/SKILL.md",
+      "use_for": "Audio, timing musical, mixage et SFX",
+      "project_files": [
+        "src/services.js",
+        "src/enhancements.js",
+        "src/feedback33.js",
+        "src/live-feedback34.js"
+      ],
+      "backlog_ids": [
+        "GAME-04",
+        "PER-01",
+        "SFX-01"
+      ],
+      "existing_checks": [
+        "tests/v33.test.cjs",
+        "tests/v34.test.cjs",
+        "tests/v34_browser_test.py"
+      ],
+      "adaptation": "Le transport et les timestamps restent la référence ; aucun réagencement du morceau ni retard des frappes par quantification générique."
+    },
+    {
+      "name": "input-systems",
+      "path": "skills/disciplines/input-systems/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/input-systems/SKILL.md",
+      "use_for": "Actions, remappage et périphériques",
+      "project_files": [
+        "src/app.js",
+        "src/live-app.js",
+        "src/precision-app.js",
+        "src/enhancements.js"
+      ],
+      "backlog_ids": [
+        "GAME-07",
+        "QA-03",
+        "UX-02"
+      ],
+      "existing_checks": [
+        "tests/live.test.cjs",
+        "tests/precision.test.cjs"
+      ],
+      "adaptation": "Préserver timestamps, appuis et relâchements ; les buffers de saut et coyote time ne s'appliquent pas aux jugements."
+    },
+    {
+      "name": "game-feel",
+      "path": "skills/disciplines/game-feel/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-feel/SKILL.md",
+      "use_for": "Lisibilité des impacts, combos et maintien",
+      "project_files": [
+        "src/feedback33.js",
+        "src/live-feedback34.js",
+        "src/app.js"
+      ],
+      "backlog_ids": [
+        "UX-03",
+        "UX-05",
+        "PER-01"
+      ],
+      "existing_checks": [
+        "tests/v33.test.cjs",
+        "tests/v33_browser_test.py",
+        "tests/v34_browser_test.py"
+      ],
+      "adaptation": "Présentation sans modification du scoring, replay ou chart ; pas de hit-stop musical ; informations utiles conservées avec effets réduits."
+    },
+    {
+      "name": "game-ui-ux",
+      "path": "skills/disciplines/game-ui-ux/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-ui-ux/SKILL.md",
+      "use_for": "HUD, focus, menus et accessibilité",
+      "project_files": [
+        "src/template.html",
+        "src/style.css",
+        "src/director.css",
+        "src/director-app.js"
+      ],
+      "backlog_ids": [
+        "DIR-05",
+        "UX-01",
+        "UX-02",
+        "UX-03",
+        "UX-04"
+      ],
+      "existing_checks": [
+        "tests/v30_browser_test.py",
+        "tests/v33_browser_test.py",
+        "tests/v34_browser_test.py"
+      ],
+      "adaptation": "Relier les concepts aux contrôles DOM/Canvas existants et vérifier le parcours réel ; distinguer viewport simulé et appareil."
+    },
+    {
+      "name": "camera-systems",
+      "path": "skills/disciplines/camera-systems/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/camera-systems/SKILL.md",
+      "use_for": "Cadrage, transitions et contraintes de scène",
+      "project_files": [
+        "src/stage.js",
+        "src/director-core.js",
+        "src/director-workflow.js",
+        "src/autoshow-core.js"
+      ],
+      "backlog_ids": [
+        "ANI-09",
+        "ANI-11",
+        "UX-05"
+      ],
+      "existing_checks": [
+        "tests/v20-autoshow.test.cjs",
+        "tests/v32.test.cjs"
+      ],
+      "adaptation": "Évaluer au temps musical, respecter les clés manuelles et le mouvement réduit ; cadrage et occlusion restent à qualifier."
+    },
+    {
+      "name": "procedural-gen",
+      "path": "skills/disciplines/procedural-gen/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/procedural-gen/SKILL.md",
+      "use_for": "Génération reproductible d'AutoMap et Auto Show",
+      "project_files": [
+        "src/core.js",
+        "src/automap-core.js",
+        "src/autoshow-core.js"
+      ],
+      "backlog_ids": [
+        "MAP-01",
+        "MAP-02",
+        "MAP-04",
+        "ANI-09",
+        "ANI-10"
+      ],
+      "existing_checks": [
+        "tests/automap.test.cjs",
+        "tests/v20-autoshow.test.cjs",
+        "tests/v23-automap.test.cjs"
+      ],
+      "adaptation": "Appliquer déterminisme et validation aux données musicales ; les algorithmes de terrain/donjon ne constituent pas un générateur de chorégraphies."
+    },
+    {
+      "name": "save-systems",
+      "path": "skills/disciplines/save-systems/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/save-systems/SKILL.md",
+      "use_for": "Intégrité, schémas et restauration",
+      "project_files": [
+        "src/services.js",
+        "src/reliability.js",
+        "src/media-vault.js",
+        "src/bundle-core.js"
+      ],
+      "backlog_ids": [
+        "SAV-05",
+        "SAV-06",
+        "SAV-08",
+        "SAV-09",
+        "SAV-10"
+      ],
+      "existing_checks": [
+        "tests/v29_persistence_test.py",
+        "tests/v32_transactions_test.py",
+        "tests/v34_browser_test.py"
+      ],
+      "adaptation": "Utiliser les transactions IndexedDB et formats existants ; distinguer succès de requête et commit, et version du jeu et version de schéma."
+    },
+    {
+      "name": "performance-optimization",
+      "path": "skills/disciplines/performance-optimization/SKILL.md",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/performance-optimization/SKILL.md",
+      "use_for": "Profilage CPU/GPU, ressources et sessions longues",
+      "project_files": [
+        "src/stage.js",
+        "src/secondary-physics.js",
+        "src/services.js",
+        "src/feedback33.js"
+      ],
+      "backlog_ids": [
+        "PER-01",
+        "PER-02",
+        "PER-04",
+        "MMD-16",
+        "QA-03"
+      ],
+      "existing_checks": [
+        "tests/v27_benchmark.cjs",
+        "tests/v28_timing_benchmark.cjs",
+        "tests/v33_browser_test.py"
+      ],
+      "adaptation": "Comparer avant/après sur la même scène et le même appareil ; les benchmarks synthétiques ne prouvent ni latence acoustique ni fluidité matérielle."
+    }
+  ],
+  "gaps": [
+    "Aucune fiche spécialisée jeu de rythme dans le catalogue examiné.",
+    "Aucune fiche MMD/PMX/PMD/VMD dédiée dans le catalogue examiné.",
+    "Les API d'intégration viennent du moteur web du projet ; les exemples d'autres moteurs ne sont pas directement exécutables.",
+    "Les vérifications existantes sont des points de départ, pas une attestation des critères encore ouverts."
+  ],
+  "excluded_engine_skill_sets": [
+    "godot",
+    "unity",
+    "unreal",
+    "threejs",
+    "phaser",
+    "pixijs"
+  ],
+  "update_policy": "Réviser les changements amont et les adaptations locales avant de modifier le commit de référence ; garder les statuts du backlog fondés sur des preuves."
+}
