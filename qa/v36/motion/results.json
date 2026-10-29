@@ -1,0 +1,103 @@
+{
+  "version": "36.0.0",
+  "buildSha256": "eb3ff08de03a42b44d63fd1ab7dac1668641abdfa37f8fb407ce3f482be1e448",
+  "passed": 22,
+  "failed": 0,
+  "failure": null,
+  "errors": [],
+  "checks": [
+    {
+      "name": "HTTP boot uses native IndexedDB and WebGL2",
+      "passed": true
+    },
+    {
+      "name": "User motion option commits through the actual checkbox handler",
+      "passed": true
+    },
+    {
+      "name": "User motion option stops CSS transitions and spinner without hiding status text",
+      "passed": true
+    },
+    {
+      "name": "User option survives a real page reload",
+      "passed": true
+    },
+    {
+      "name": "A refused preference write restores the checkbox, runtime and stored preference",
+      "passed": true
+    },
+    {
+      "name": "System preference reaches rendering and CSS without overwriting the user option",
+      "passed": true
+    },
+    {
+      "name": "Actual Canvas fallback decor respects the system preference",
+      "passed": true
+    },
+    {
+      "name": "Builtin cuts keep actual WebGL view and projection fixed",
+      "passed": true
+    },
+    {
+      "name": "Director camera keeps actual WebGL view and projection fixed",
+      "passed": true
+    },
+    {
+      "name": "Authored Director camera still evaluates without driving the calm view",
+      "passed": true
+    },
+    {
+      "name": "Actual scene particles, bars and lighting stay still",
+      "passed": true
+    },
+    {
+      "name": "Director preview uses the same calm camera policy",
+      "passed": true
+    },
+    {
+      "name": "VMD camera on the original PMX fixture cannot override the calm view",
+      "passed": true
+    },
+    {
+      "name": "Auto Show camera stays calm",
+      "passed": true
+    },
+    {
+      "name": "Auto Show manual camera override remains calm without editing its keys",
+      "passed": true
+    },
+    {
+      "name": "Disabling calm mode restores authored camera movement",
+      "passed": true
+    },
+    {
+      "name": "Seeking backwards preserves the calm view",
+      "passed": true
+    },
+    {
+      "name": "Camera checks preserve charts, records and authored camera data",
+      "passed": true
+    },
+    {
+      "name": "Calm mode keeps score, accuracy, judgment and HOLD information visible with VFX disabled",
+      "passed": true
+    },
+    {
+      "name": "Changing system motion during a frozen-clock HOLD preserves score, replay and chart",
+      "passed": true
+    },
+    {
+      "name": "Essential HOLD gauge remains within the narrow viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors in motion scenarios",
+      "passed": true
+    }
+  ],
+  "buildUnchanged": true,
+  "nativeHTTP": true,
+  "nativeIndexedDB": true,
+  "nativeWebGL": true,
+  "scope": "Actual WebGL uniform submissions, Canvas, HTTP and IndexedDB; system preference is emulated. Original PMX diagnostic fixture, software GPU, no physical-device, imported-video or complete MMD-animation certification."
+}

@@ -112,7 +112,14 @@
             on('lyricsInput', 'change', async (e) => { const f = e.target.files[0]; e.target.value = ''; if (f)
                 await this.importLyrics(f); });
             for (const id of ['musicVolume', 'sfxVolume', 'inputOffset', 'visualOffset', 'approachSpeed', 'graphicsQuality', 'reduceMotion', 'showTouch', 'useVideo', 'noFail'])
-                on(id, id.includes('Volume') ? 'input' : 'change', async () => { const el = $(id); this.settings[id] = el.type === 'checkbox' ? el.checked : Number(el.value); this.applySettings(); await this.store.put('settings', this.settings); });
+                on(id, id.includes('Volume') ? 'input' : 'change', async () => { const el = $(id);
+                    if (id === 'reduceMotion') {
+                        const value = el.checked, disabled = el.disabled; el.disabled = true;
+                        try { await this.store.put('settings', { ...this.settings, reduceMotion: value }); this.settings.reduceMotion = value; this.applySettings(); }
+                        finally { el.checked = this.settings.reduceMotion === true; el.disabled = disabled; }
+                        return;
+                    }
+                    this.settings[id] = el.type === 'checkbox' ? el.checked : Number(el.value); this.applySettings(); await this.store.put('settings', this.settings); });
             on('calibrateButton', 'click', () => this.startCalibration());
             on('resetBindings', 'click', async () => { this.settings.keys = [...DEFAULTS.keys]; await this.store.put('settings', this.settings); this.renderSettings(); });
             for (const id of ['backupButton', 'exportLibrary'])

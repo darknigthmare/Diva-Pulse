@@ -115,3 +115,12 @@ La version du moteur est 5.0.0. Le JSON de chart reste dans le schéma natif add
 Le pack `.pulsepack` courant utilise `version:5` et ajoute `v5State:{id:"v5-state",academy:{...}}`. Chaque résultat d’Académie possède une précision de 0 à 100, un booléen `completed` et un compteur entier de tentatives entre 0 et 1 000 000. Seuls les six identifiants de leçon connus sont fusionnés. Meilleure précision, médaille acquise et maximum de tentatives sont conservés. Cette fusion ne certifie pas l’origine du résultat et n’est pas un anti-triche.
 
 Les exemples et champs V3/V4 ci-dessus restent utiles pour leur rétrocompatibilité. Les sections « V3 » décrivent le format historique, pas une promesse d’enregistrer les nouveaux réglages V5 dans une application V3.
+
+
+## Contrôle des archives de bibliothèque — V36
+
+L'import de `DIVA-PULSE-LIBRARY` accepte les numéros de schéma **2, 3, 4 et 5** ; ces numéros ne suivent pas la version du jeu. Le conteneur `.pulsebundle` demeure version **1**. Une version absente, inconnue ou de type incorrect est refusée avant toute écriture ; le binaire vérifie le manifeste avant de lire les blocs de médias.
+
+Les morceaux, médias, partitions d'un même morceau et destinations de brouillons doivent avoir des identifiants cohérents et sans doublons. Les médias obligatoires de la scène, du montage et des brouillons doivent être présents. Les erreurs indiquent le chemin du champ fautif. La restauration attribue de nouveaux IDs aux morceaux/médias dans une transaction unique ; les signatures reconnues des records historiques sont conservées.
+
+Un brouillon Studio dont la partition source a été retirée reste récupérable si son morceau est présent. Les anciens scores sans morceau/partition et les entrées de setlist incompatibles gardent leur filtrage historique. Les sessions et replays ne sont pas fusionnés. Le [guide V36](V36_ARCHIVES_SCENE_CALME.md) détaille ce périmètre et ses preuves.

@@ -1,7 +1,7 @@
 /* DIVA PULSE 3 — independent rhythm engine. No official game code or assets. */
 (function (root) {
     'use strict';
-    const VERSION = '35.0.0';
+    const VERSION = '36.0.0';
     const LANES = ['△', '□', '×', '○', '‹', '›'];
     const DIFFICULTIES = ['EASY', 'NORMAL', 'HARD', 'EXTREME', 'EX EXTREME'];
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));

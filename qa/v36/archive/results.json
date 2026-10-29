@@ -1,0 +1,319 @@
+{
+  "version": "36.0.0",
+  "buildSha256": "eb3ff08de03a42b44d63fd1ab7dac1668641abdfa37f8fb407ce3f482be1e448",
+  "passed": 76,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Archive tests use native IndexedDB and the exclusive writer lease",
+      "passed": true
+    },
+    {
+      "name": "pulsepack opens confirmation without a storage write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack adds one complete song",
+      "passed": true
+    },
+    {
+      "name": "pulsepack assigns a new owner",
+      "passed": true
+    },
+    {
+      "name": "pulsepack remaps the scene and media graph",
+      "passed": true
+    },
+    {
+      "name": "pulsepack remaps all draft owners and preserves orphan chart work",
+      "passed": true
+    },
+    {
+      "name": "pulsepack reattaches the facial guide",
+      "passed": true
+    },
+    {
+      "name": "pulsepack keeps previous-pack draft media separate from the published scene",
+      "passed": true
+    },
+    {
+      "name": "pulsepack retains distinct historical score signatures and profiles",
+      "passed": true
+    },
+    {
+      "name": "pulsepack retains exact media bytes",
+      "passed": true
+    },
+    {
+      "name": "pulsepack preserves existing songs",
+      "passed": true
+    },
+    {
+      "name": "pulsepack commits all rows in one native transaction",
+      "passed": true
+    },
+    {
+      "name": "pulsepack keeps compatible entries of historical setlists",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle opens confirmation without a storage write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle adds one complete song",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle assigns a new owner",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle remaps the scene and media graph",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle remaps all draft owners and preserves orphan chart work",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle reattaches the facial guide",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle keeps previous-pack draft media separate from the published scene",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle retains distinct historical score signatures and profiles",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle retains exact media bytes",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle preserves existing songs",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle commits all rows in one native transaction",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle keeps compatible entries of historical setlists",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses duplicate songs before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses duplicate assets before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses duplicate charts before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses duplicate chart drafts before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses duplicate Director owners before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses missing chart draft owner before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses missing audio before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses missing MMD file before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses missing Director clip before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses missing face guide before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses colliding restored score keys before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Director model outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Director motion outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Director clip outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Auto Show model outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Auto Show motion outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses Auto Show clip outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses in-pack texture used as a motion before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses in-pack motion used as a model before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses second camera outside the loaded cache before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses unknown future version before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack refuses unknown V1 version before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses duplicate songs before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses duplicate assets before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses duplicate charts before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses duplicate chart drafts before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses duplicate Director owners before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses missing chart draft owner before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses missing audio before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses missing MMD file before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses missing Director clip before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses missing face guide before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses colliding restored score keys before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Director model outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Director motion outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Director clip outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Auto Show model outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Auto Show motion outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses Auto Show clip outside its pack before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses in-pack texture used as a motion before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses in-pack motion used as a model before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses second camera outside the loaded cache before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses unknown future version before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle refuses unknown V1 version before media decoding/body reads and every write",
+      "passed": true
+    },
+    {
+      "name": "Confirmation rechecks a library mutated after review without decoding or writing",
+      "passed": true
+    },
+    {
+      "name": "Native transaction abort after a successful put leaves all stores unchanged",
+      "passed": true
+    },
+    {
+      "name": "Retry after native abort commits one complete restore",
+      "passed": true
+    },
+    {
+      "name": "Full browser reopen keeps each restored copy out of quarantine",
+      "passed": true
+    },
+    {
+      "name": "Full browser reopen preserves exact restored records and media bytes",
+      "passed": true
+    },
+    {
+      "name": "Generated build stays unchanged throughout the archive test",
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser exception during archive restoration",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeAbortExecuted": true,
+  "nativeHTTP": true,
+  "nativeIndexedDB": true,
+  "buildUnchanged": true,
+  "scope": "Native localhost Chromium, IndexedDB, real transaction abort and full browser close/reopen. Small synthetic binary fixtures; not media decoder, actual quota/eviction, 1 GiB, Safari or physical device certification."
+}

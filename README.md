@@ -6,20 +6,20 @@ Jeu de rythme autonome : cinq difficultés, partitions éditables, AutoMap, Auto
 
 Lancer `LANCER_WINDOWS.bat` sous Windows ou `LANCER_MAC_LINUX.command` sous macOS/Linux. Python 3 doit être disponible. Autre possibilité : `python3 lancer.py`. Les données de bibliothèque restent dans le navigateur ; exporter un `.pulsebundle` avant migration ou nettoyage du stockage.
 
-## Version proposée — V35
+## Version proposée — V36
 
-La [PR #2](https://github.com/darknigthmare/Diva-Pulse/pull/2) applique les guides gamedev au rythme et au cycle audio. `main` reste sur V34, intégrée par la [PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1).
+La [PR #2](https://github.com/darknigthmare/Diva-Pulse/pull/2) applique les guides gamedev au rythme, au cycle audio, aux sauvegardes et au mouvement réduit. `main` reste sur V34, intégrée par la [PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1).
 
-- Les continuations de chaînes et les MISS suivent l'ordre musical des événements. Des entrées livrées chronologiquement donnent le même résultat avec différentes cadences d'affichage simulées.
-- Les lancements, reprises et boucles devenus périmés pendant une préparation audio, scène ou vidéo sont annulés. Une interruption impose une nouvelle action explicite.
-- Les cibles restent visibles jusqu'à la fin de la fenêtre du profil de jugement, notamment les 180 ms du profil Accessible.
-- Un [contrat versionné des règles maison](docs/REGLES_DIVA_PULSE_V1.md) précise les fenêtres, barèmes, HOLD, chaînes, accords, replays et limites.
+- Les restaurations contrôlent les versions de bibliothèque, les références obligatoires et les destinations en double avant toute écriture. Les erreurs désignent le champ concerné.
+- Les copies restaurées conservent les signatures historiques des records et les brouillons récupérables. La restauration complète reste transactionnelle.
+- Le mouvement réduit stabilise la caméra finale, y compris Director/VMD, Auto Show et les changements de plans, ainsi que les éléments de décor concernés. Le choix du jeu et la préférence système s'appliquent aussi au Canvas de secours et aux transitions CSS.
+- Les correctifs de rythme et de cycle audio de V35 restent contrôlés : ordre musical des chaînes/MISS, annulation des préparations périmées et visibilité des cibles jusqu'à la fin de leur fenêtre de jugement.
 
-[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V35.xlsx) · [JSON](planning/BACKLOG_V35.json) · [CSV](planning/MANQUANTS_V35.csv) · [Guide V35 et preuves](docs/V35_RYTHME_FIABLE.md)
+[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V36.xlsx) · [JSON](planning/BACKLOG_V36.json) · [CSV](planning/MANQUANTS_V36.csv) · [Guide V36 et preuves](docs/V36_ARCHIVES_SCENE_CALME.md)
 
-Le classeur distingue 49 points réalisés dans leur périmètre, 26 partiels, 36 à faire et 25 à valider : 87 ouverts. `GAME-01` passe à Partiel ; `GAME-03`, `GAME-04` et `UX-03` reçoivent les constats et limites du correctif. Ces compteurs ne constituent pas un pourcentage de finition du jeu. Le root motion avancé, l'adaptation entre squelettes, le corpus MMD, la latence physique et la qualification sur appareils réels restent ouverts.
+Le classeur distingue 50 points réalisés dans leur périmètre, 25 partiels, 36 à faire et 25 à valider : 86 ouverts. `SAV-10` passe à Fait pour le contrôle des références déclarées des archives de bibliothèque ; `ARC-04`, `GAME-05` et `UX-05` conservent leurs validations restantes. Ces compteurs ne constituent pas un pourcentage de finition du jeu. La matrice complète des records/replays, les autres formats d'import, les animations intrinsèques des vidéos/modèles, le corpus MMD, la latence physique et la qualification sur appareils réels restent ouverts.
 
-Les fonctionnalités précédentes restent documentées dans les guides [V34](docs/V34_BIBLIOTHEQUE_LIVE.md), [V33](docs/V33_RESSENTI_GAMEPLAY.md) et [V32](docs/V32_BOUCLES_SAUVEGARDES.md).
+Les fonctionnalités précédentes restent documentées dans les guides [V35](docs/V35_RYTHME_FIABLE.md), [V34](docs/V34_BIBLIOTHEQUE_LIVE.md), [V33](docs/V33_RESSENTI_GAMEPLAY.md) et [V32](docs/V32_BOUCLES_SAUVEGARDES.md). Le [contrat des règles maison](docs/REGLES_DIVA_PULSE_V1.md) reste la référence pour les fenêtres, barèmes, HOLD, chaînes, accords et replays.
 
 ## Guides pour la suite du développement
 

@@ -11,7 +11,7 @@ Ces consignes adaptent le catalogue gamedev aux sources de ce dépôt. Les deman
 
 ## Architecture à respecter
 
-- Diva Pulse V35 est un moteur web maison en JavaScript : Canvas 2D, WebGL 2 direct et Web Audio. `package.json` n'installe aucun moteur de runtime. Le routeur amont prévoit ce cas dans `router/references/custom-engines.md`.
+- Diva Pulse V36 est un moteur web maison en JavaScript : Canvas 2D, WebGL 2 direct et Web Audio. `package.json` n'installe aucun moteur de runtime. Le routeur amont prévoit ce cas dans `router/references/custom-engines.md`.
 - Modifier les sources sous `src/`, puis générer `index.html` et `DIVA_PULSE_JOUER.html` avec `python3 build.py`. Conserver les deux sorties identiques et l'exécution autonome sans CDN.
 - Lire l'ordre des scripts dans `src/template.html` et `build.py` : plusieurs extensions historiques enveloppent des méthodes existantes. Le numéro dans un nom de fichier ne prouve pas qu'il est obsolète.
 - Les exemples Godot, Unity, Unreal ou Three.js servent à comprendre un concept. Les API concrètes viennent du code web du projet ; une migration de moteur nécessite une demande spécifique.
@@ -38,16 +38,16 @@ python3 tests/launcher_test.py
 python3 tools/verify_release.py
 ```
 
-Exécuter en plus le scénario navigateur du sous-système touché, indiqué dans le guide. Pour le rythme : `tests/rhythm-events.test.cjs` et `tests/rules-contract.test.cjs` ; pour les lancements, boucles et reprises : `tests/v35_playback_browser.py`. Reproduire le problème puis vérifier le résultat attendu ; éviter les tests qui recopient simplement l'implémentation.
+Exécuter en plus le scénario navigateur du sous-système touché, indiqué dans le guide. Pour les archives : `tests/archive-integrity.test.cjs` et `tests/v36_archive_browser.py` ; pour le mouvement réduit : `tests/v36-motion.test.cjs` et `tests/v36_motion_browser.py`. Pour le rythme : `tests/rhythm-events.test.cjs` et `tests/rules-contract.test.cjs` ; pour les lancements, boucles et reprises : `tests/v35_playback_browser.py`. Reproduire le problème puis vérifier le résultat attendu ; éviter les tests qui recopient simplement l'implémentation.
 
 Pour la documentation seule, vérifier les chemins, liens, SHA et identifiants du backlog. Ne pas annoncer de nouvelle validation du gameplay sur la base de ces contrôles documentaires.
 
-La CI existante complète la revue. Conserver ses exigences et examiner ses résultats sur le commit de la PR. `tools/verify_pr35.py` vérifie le classeur V35 exact et des preuves fraîches : un changement du suivi exige de mettre ses vérifications en cohérence, sans contourner un échec.
+La CI existante complète la revue. Conserver ses exigences et examiner ses résultats sur le commit de la PR. `tools/verify_pr36.py` vérifie le classeur V36 exact et des preuves fraîches : un changement du suivi exige de mettre ses vérifications en cohérence, sans contourner un échec.
 
 ## Livrer et rendre compte
 
 - Utiliser une branche et une PR pour les changements du projet. Identifier les guides appliqués et leur adaptation dans la description.
-- Le suivi V35 (`planning/BACKLOG_V35.json`, CSV et Excel associés) est la base des statuts. Un guide ajouté ne termine aucune fonctionnalité ; conserver les critères ouverts tant qu'ils ne sont pas exécutés.
+- Le suivi V36 (`planning/BACKLOG_V36.json`, CSV et Excel associés) est la base des statuts. Un guide ajouté ne termine aucune fonctionnalité ; conserver les critères ouverts tant qu'ils ne sont pas exécutés.
 - Associer les résultats au SHA testé et, pour le jeu généré, au hash du build. Séparer observations actuelles et rapports historiques.
 - Distinguer tests logiques, navigateur HTTP, document injecté et matériel physique. Un viewport mobile ou SwiftShader ne valide pas un iPhone, un GPU réel ni la latence acoustique.
-- Les documents V3–V28 sont historiques. Pour la situation V35, privilégier le README courant, `docs/V35_RYTHME_FIABLE.md`, `docs/REGLES_DIVA_PULSE_V1.md`, les guides V32–V34 et le backlog courant.
+- Les documents V3–V28 sont historiques. Pour la situation V36, privilégier le README courant, `docs/V36_ARCHIVES_SCENE_CALME.md`, `docs/V35_RYTHME_FIABLE.md`, `docs/REGLES_DIVA_PULSE_V1.md`, les guides V32–V34 et le backlog courant.
