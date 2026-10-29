@@ -151,15 +151,40 @@ try:
             ('sourcesUnchanged','Camera checks preserve charts, records and authored camera data')]:
             ok(name, matrices[key])
 
-        p.evaluate('''async()=>{
+        hud = p.evaluate('''async()=>{
             const a=PulseApp;await a.startGame('practice',{from:0,to:8,rate:1,loop:false,countClicks:false});a.audio.pause();a.audio.pausedAt=1.5;
             a.gameChart=PulseCore.validateChart({id:'ux36-hold',title:'Information oracle',notes:[{id:'h',time:1,lane:0,type:'hold',duration:2,x:.5,y:.5}]});
             a.engine=new PulseCore.JudgeEngine(a.gameChart);a.engine.press(0,1);a.engine.update(1.5);
             a.settings.vfxIntensity=0;a.settings.reducedEffects=true;a.settings.holdGauge=true;a.settings.hitSound=false;a.applySettings();a.paused=false;
             window.result36=JSON.stringify(a.engine.result());window.inputs36=JSON.stringify(a.replayInputs);window.chart36=JSON.stringify(a.gameChart);
+            // Observe the first ready frame here: COOL lasts 520 ms, whereas
+            // score and HOLD stay visible on this frozen musical clock.
+            return await new Promise(resolve=>{
+                let frame,timer;
+                const snapshot=ts=>({
+                    score:document.getElementById('gameScore').textContent,
+                    accuracy:document.getElementById('gameAccuracy').textContent,
+                    judgment:document.getElementById('judgment').textContent,
+                    hold:document.getElementById('holdMeter34').textContent,
+                    holdHidden:document.getElementById('holdMeter34').hidden,
+                    lifeWidth:parseFloat(document.getElementById('lifeFill').style.width),
+                    judgmentAgeMs:a.lastJudgment?performance.now()-a.lastJudgment.when:null,
+                    judgmentFrameAgeMs:a.lastJudgment&&Number.isFinite(ts)?ts-a.lastJudgment.when:null
+                });
+                const finish=value=>{cancelAnimationFrame(frame);clearTimeout(timer);resolve(value);};
+                const observe=ts=>{
+                    const value=snapshot(ts);
+                    if(value.score==='00001100'&&!value.holdHidden)finish(value);
+                    else frame=requestAnimationFrame(observe);
+                };
+                timer=setTimeout(()=>finish(snapshot()),30000);
+                frame=requestAnimationFrame(observe);
+            });
         }''')
-        p.wait_for_function('document.getElementById("gameScore").textContent==="00001100" && !document.getElementById("holdMeter34").hidden')
-        ok('Calm mode keeps score, accuracy, judgment and HOLD information visible with VFX disabled', p.evaluate('''()=>document.getElementById('gameAccuracy').textContent==='100.00%' && document.getElementById('judgment').textContent.includes('COOL') && document.getElementById('holdMeter34').textContent.includes('HOLD') && parseFloat(document.getElementById('lifeFill').style.width)>0'''))
+        print('HUD snapshot '+json.dumps(hud, ensure_ascii=False), flush=True)
+        ok('Calm mode keeps score, accuracy, judgment and HOLD information visible with VFX disabled',
+           hud['score']=='00001100' and not hud['holdHidden'] and hud['accuracy']=='100.00%'
+           and 'COOL' in hud['judgment'] and 'HOLD' in hud['hold'] and hud['lifeWidth']>0)
         p.emulate_media(reduced_motion='no-preference')
         p.wait_for_function('document.documentElement.dataset.reducedMotion==="false"')
         p.emulate_media(reduced_motion='reduce')

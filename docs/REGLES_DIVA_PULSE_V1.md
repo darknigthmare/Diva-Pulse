@@ -207,6 +207,18 @@ La signature actuelle inclut l'offset et les paramètres des notes : temps, lane
 
 Un nouveau record doit être éligible, CLEAR, et dépasser strictement le **score total** du record précédent. Une égalité ne remplace pas le record. Le score total comprend le bonus HOLD : la sélection du meilleur record ne se fait donc pas uniquement sur la précision affichée.
 
+### Finalisation d'une prise depuis V37
+
+L'éligibilité et le profil proviennent du moteur de la prise terminée, notamment de son option `noFail`. Une modification ultérieure des préférences ne transforme pas une session assistée en record normal. Avant le premier accès asynchrone au stockage, la finalisation capture le résultat, la partition, l'identité du morceau, les options du moteur et le journal d'entrées, y compris le relâchement final des sources réelles.
+
+Les fins en attente comparent leurs scores au dernier meilleur record dont le commit a réussi. Elles utilisent la même clé `rules4` et les mêmes suffixes de profil qu'auparavant. Une égalité, une prise non CLEAR, un mode assisté ou un refus de commit ne remplace pas le meilleur record. Le journal de session est ajouté après un commit réussi ; une sauvegarde refusée laisse le replay de la prise disponible dans l'écran courant, sans annoncer une session sauvegardée.
+
+Une sortie ou une nouvelle partie pendant l'écriture ne réattribue pas les données de l'ancienne prise au morceau, au profil ou au moteur courants. Le résultat capturé peut terminer sa sauvegarde, mais il ne replace pas l'écran sur les résultats, ne modifie pas l'audio ou le moteur d'une nouvelle prise et ne remplace pas son replay. Les post-traitements de l'entraînement, de l'académie et du profil utilisent la même identité de finalisation. Cette identité distingue les demandes de nouvelle partie et les navigations des interruptions audio : masquer la page ou perdre le focus pendant un commit ne bloque pas les résultats d'une prise inchangée et ne relance pas l'audio. Les anciens résumés d'entraînement sont retirés lorsqu'un résultat courant s'affiche ; une finalisation périmée ne nettoie pas l'écran d'une nouvelle prise.
+
+Un lancement de replay capture sa partition, son profil, son option no-fail et ses entrées avant les préparations asynchrones. Il ne substitue pas temporairement les partitions du morceau dans la bibliothèque. Une annulation laisse cette liste et le journal d'une prise encore active inchangés. L'état interne qui identifie une prise n'ajoute aucun champ au format `DIVA-PULSE-REPLAY` version 1, aux records ou aux archives.
+
+La preuve V37 porte sur la matrice des modes et profils, les commits différés/refusés, les changements de partition et des replays chronologiques avec accords, HOLD et chaînes. Elle ne requalifie pas les anciens records et ne garantit pas l'identité numérique de tous les anciens replays. Les délais de livraison d'entrées ne sont toujours pas enregistrés : aucun rollback d'une entrée reçue après une frame future n'est ajouté. La sérialisation des fins est interne à l'instance de l'application ; elle ne constitue pas une preuve générale de concurrence entre plusieurs fenêtres ni une mesure de latence matérielle.
+
 ## 10. Cibles visibles et séparation de la présentation
 
 Le dessin utilise le profil réellement porté par le moteur de la prise : sa borne tardive est de 140 ms en standard, 180 ms en accessible et 100 ms en précision. La borne de dessin est incluse. La sélection rapide de candidats reçoit cette borne et garde une marge conservative d'une milliseconde ; le dessin applique ensuite la borne exacte et l'état réel de chaque note.

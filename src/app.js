@@ -316,13 +316,13 @@
         practiceDialog() { if (!this.chart)
             return; this.openModal(`<div class="eyebrow">PRACTICE / NO RECORD</div><h2>TRAVAILLER UN PASSAGE</h2><div class="two-col"><label>Début (s)<input id="practiceFrom" type="number" min="0" max="${this.song.duration}" value="0" step=".1"></label><label>Fin (s)<input id="practiceTo" type="number" min="1" max="${this.song.duration}" value="${Math.min(this.song.duration, 20).toFixed(1)}" step=".1"></label></div><label>Vitesse audio<select id="practiceRate"><option value=".5">50 %</option><option value=".75">75 %</option><option value="1" selected>100 %</option><option value="1.25">125 %</option></select></label><label class="check"><input id="practiceLoop" type="checkbox" checked> Répéter le passage</label><p>La vitesse modifie aussi la hauteur du son dans cette version. Aucun record n’est enregistré.</p><div class="buttons"><button id="practiceStart" class="primary">COMMENCER</button></div>`); $('practiceStart').onclick = () => { let o = { from: +$('practiceFrom').value, to: +$('practiceTo').value, rate: +$('practiceRate').value, loop: $('practiceLoop').checked }; if (o.from < 0 || o.to > this.song.duration + .1 || o.to - o.from < 1)
             return this.toast('Choisir un passage valide d’au moins une seconde.', true); this.closeModal(); this.run(() => this.startGame('practice', o), 'Préparation de l’entraînement…'); }; }
-        async startGame(mode = 'play', practice = null) {
+        async startGame(mode = 'play', practice = null, replay = null) {
             const song = this.song, epoch = this.liveEpoch34?.(), generation = this.pitchGeneration;
             const activeRequest = () => this.song === song && this.liveEpoch34?.() === epoch && this.pitchGeneration === generation && !document.hidden;
             if (this.view === 'editor') await this.editor.autosave();
             if (!activeRequest()) return false;
             // Autosave may legitimately replace the selected chart or create a derived copy.
-            const chart = this.chart, current = () => activeRequest() && this.chart === chart;
+            const selectedChart = this.chart, chart = mode === 'replay' ? replay?.chart : selectedChart, current = () => activeRequest() && this.chart === selectedChart;
             if (mode !== 'pv' && !chart?.notes.length) throw Error('Aucune partition jouable dans cette difficulté.');
             await this.prepareAudio();
             if (!current() || this.audio.ctx?.state !== 'running') return false;
@@ -334,7 +334,12 @@
             this.practice = mode === 'practice' ? (practice || { from: 0, to: song.duration, rate: 1, loop: false }) : null;
             this.paused = false; this.finishing = false; this.clearSources(); this.bursts = []; this.lastJudgment = null; this.frozenStageRendered = false;
             this.gameChart = chart ? structuredClone(chart) : C.validateChart({ title: song.title, notes: [] });
-            this.engine = mode === 'pv' ? null : new C.JudgeEngine(this.gameChart, { noFail: mode !== 'play' || this.settings.noFail, judgmentProfile: this.settings.judgmentProfile || 'standard' });
+            this.engine = mode === 'pv' ? null : new C.JudgeEngine(this.gameChart, {
+                noFail: mode === 'replay' ? !!replay.noFail : mode !== 'play' || this.settings.noFail,
+                judgmentProfile: mode === 'replay' ? replay.judgmentProfile || 'standard' : this.settings.judgmentProfile || 'standard',
+                legacyChains: mode === 'replay' && String(replay.engine || '').startsWith('3.')
+            });
+            this.takeToken = {}; this.activeReplay = replay;
             const from = this.practice?.from || 0;
             this.engine?.reset(from, this.practice?.to ?? Infinity);
             this.audio.play(this.buffer, from - 1.7, this.practice?.rate || 1);
@@ -342,7 +347,7 @@
             this.view = 'game'; $('app').className = 'mode-game';
             document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'game'));
             $('gameTitle').textContent = song.title;
-            $('gameDifficulty').textContent = mode === 'pv' ? 'PV VIEWER' : this.difficulty;
+            $('gameDifficulty').textContent = mode === 'pv' ? 'PV VIEWER' : this.gameChart.difficulty;
             $('gameModeLabel').textContent = mode === 'pv' ? 'PV / CLIP' : mode === 'autoplay' ? 'AUTOPLAY / RECORDS OFF' : mode === 'practice' ? 'PRACTICE / RECORDS OFF' : this.settings.noFail ? 'NO FAIL / RECORDS OFF' : 'LIVE / NORMAL';
             $('gameDuration').textContent = this.formatTime(song.duration);
             $('judgment').textContent = ''; $('combo').textContent = ''; $('lyrics').textContent = ''; $('gameScore').textContent = '00000000'; $('gameAccuracy').textContent = '—'; $('lifeFill').style.width = '50%';
@@ -708,45 +713,59 @@
             const line = (this.song.lyrics || []).findLast(l => l.time <= time);
             $('lyrics').textContent = line?.text || '';
         }
-        scoreKey(chart) { const p=this.view==='game'?(this.engine?.profile||'standard'):(this.settings.judgmentProfile||'standard');return `${this.song.id}/${chart.id}/${C.chartSignature(chart)}/rules4${p==='standard'?'':'/profile-'+p}`; }
+        scoreKey(chart,{songId=this.song.id,profile=this.view==='game'?(this.engine?.profile||'standard'):(this.settings.judgmentProfile||'standard')}={}) { return songId+'/'+chart.id+'/'+C.chartSignature(chart)+'/rules4'+(profile==='standard'?'':'/profile-'+profile); }
         async finish() {
-            if (this.finishing)
-                return;
+            if (this.finishing) return;
             this.finishing = true;
-            this.audio.pause();
-            $('pvVideo').pause();
-            $('pvVideo').hidden = true;
+            const mode = this.mode, engine = this.engine, token = this.takeToken, epoch = this.liveTakeEpoch?.();
+            const current = () => this.takeToken === token && this.engine === engine && this.liveTakeEpoch?.() === epoch && (this.view === 'game' || this.view === 'results');
+            this.audio.pause(); $('pvVideo').pause(); $('pvVideo').hidden = true;
             this.clearSources();
-            if (this.mode === 'pv') {
+            if (mode === 'pv') {
                 await this.showView('library');
-                this.finishing = false;
-                return;
+                if (this.takeToken === token) this.finishing = false;
+                return { mode, current, result: null };
             }
-            const r = this.engine.finish();
+            // Capture the completed take before any commit yields to navigation.
+            const chart = structuredClone(this.gameChart), song = {
+                id: this.song.id, title: this.song.title, duration: this.song.duration,
+                audioHash: this.song.audioHash || null, demoId: this.song.demoId || null
+            };
+            const r = engine.finish(), noFail = !!engine.options.noFail, profile = engine.profile;
+            const completion = {
+                mode, engine, current, chart, song, noFail, profile, result: r,
+                practice: this.practice ? structuredClone(this.practice) : null,
+                inputs: structuredClone(this.replayInputs || []), endTime: this.audio.time, started: this.takeStarted
+            };
             this.lastResult = r;
-            const eligible = this.mode === 'play' && !this.settings.noFail;
+            const eligible = mode === 'play' && !noFail;
             let newRecord = false;
             if (eligible && r.cleared) {
-                const id = this.scoreKey(this.gameChart), previous = this.scores.find(s => s.id === id);
-                if (!previous || r.score > previous.score) {
-                    const record = { id, rulesVersion:4, judgmentProfile:this.engine.profile, songId: this.song.id, chartId: this.gameChart.id, ...r, errors: undefined, date: new Date().toISOString() };
-                    try {
-                        await this.store.put('scores', record);
-                        this.scores = this.scores.filter(x => x.id !== id);
-                        this.scores.push(record);
-                        newRecord = true;
-                    }
-                    catch (e) {
-                        this.toast('La partie est terminée, mais le record n’a pas pu être sauvegardé.', true);
-                    }
-                }
+                const id = this.scoreKey(chart, { songId: song.id, profile });
+                const record = { id, rulesVersion:4, judgmentProfile:profile, songId:song.id, chartId:chart.id, ...r, errors:undefined, date:new Date().toISOString() };
+                // Compare against the last committed score, not a stale baseline
+                // shared by two finishes waiting on IndexedDB.
+                const write = async () => {
+                    const previous = this.scores.find(s => s.id === id);
+                    if (previous && r.score <= previous.score) return false;
+                    await this.store.put('scores', record);
+                    this.scores = this.scores.filter(x => x.id !== id);
+                    this.scores.push(record);
+                    return true;
+                };
+                const pending = (this.recordWrite || Promise.resolve()).catch(() => {}).then(write);
+                this.recordWrite = pending;
+                try { newRecord = await pending; }
+                catch (e) { this.toast('La partie est terminée, mais le record n’a pas pu être sauvegardé.', true); }
             }
+            completion.eligible = eligible; completion.newRecord = newRecord;
+            if (!current()) return completion;
             this.view = 'results';
             $('app').className = 'mode-results';
             document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'results'));
-            $('resultMode').textContent = eligible ? 'LIVE RESULT' : this.mode === 'autoplay' ? 'AUTOPLAY · AUCUN RECORD' : this.mode === 'practice' ? 'ENTRAÎNEMENT · AUCUN RECORD' : 'NO FAIL · AUCUN RECORD';
+            $('resultMode').textContent = eligible ? 'LIVE RESULT' : mode === 'autoplay' ? 'AUTOPLAY · AUCUN RECORD' : mode === 'practice' ? 'ENTRAÎNEMENT · AUCUN RECORD' : 'NO FAIL · AUCUN RECORD';
             $('resultTitle').textContent = r.fullCombo ? 'FULL COMBO' : r.failed ? 'LIVE FAILED' : r.cleared ? 'LIVE CLEAR' : 'LIVE FINISHED';
-            $('resultSong').textContent = `${this.song.title} · ${this.gameChart.difficulty}`;
+            $('resultSong').textContent = `${song.title} · ${chart.difficulty}`;
             $('resultRank').textContent = r.rank;
             $('resultAccuracy').textContent = r.accuracy.toFixed(2) + '%';
             $('resultCombo').textContent = `${r.score.toLocaleString('fr-FR')} points · combo maximal ${r.maxCombo} · bonus HOLD ${r.holdBonus}`;
@@ -755,6 +774,7 @@
             $('timingSummary').textContent = `Décalage moyen : ${r.meanError > 0 ? '+' : ''}${r.meanError.toFixed(1)} ms. Négatif = en avance ; positif = en retard. Barème DIVA PULSE, non identique à SEGA.`;
             this.drawTiming(r.errors);
             window.scrollTo(0, 0);
+            return completion;
         }
         drawTiming(errors) { const cv = $('timingGraph'), ctx = cv.getContext('2d'); cv.width = 640; cv.height = 90; ctx.fillStyle = '#0b1627'; ctx.fillRect(0, 0, 640, 90); ctx.fillStyle = '#284b50'; ctx.fillRect(244, 0, 152, 90); ctx.strokeStyle = '#77ffe2'; ctx.beginPath(); ctx.moveTo(320, 0); ctx.lineTo(320, 90); ctx.stroke(); ctx.fillStyle = '#85eedd'; errors.slice(-500).forEach((e, i) => ctx.fillRect(320 + e / 140 * 290 - 1, 12 + (i % 8) * 7, 3, 3)); ctx.fillStyle = '#a6b8d1'; ctx.font = '10px monospace'; ctx.fillText('-140 ms', 8, 82); ctx.fillText('0', 317, 82); ctx.fillText('+140 ms', 581, 82); }
         capture() { if (!this.stage.available)

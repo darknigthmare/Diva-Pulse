@@ -128,7 +128,7 @@ try:
                 const a=PulseApp,s=a.songs.at(-1),all=await a.store.all('assets'),known=new Set(all.map(x=>x.id)),refs=[s.audioAsset,s.videoAsset,...PulseDirector.assetReferences(s.scene)],drafts=(await a.store.all('settings')).filter(d=>d.songId===s.id),scores=(await a.store.all('scores')).filter(r=>r.songId===s.id);
                 restored36.push(s.id);
                 return {count:a.songs.length===songCount36+1,copy:s.id!=='archive-song',refs:refs.every(id=>known.has(id)&&!['audio','video','model','motion','guide'].includes(id)),
-                    drafts:drafts.length===4&&drafts.some(d=>d.originalId==='deleted-chart-parent')&&drafts.filter(d=>d.packId).every(d=>d.packId===s.scene.mmd.id),
+                    drafts:drafts.length===4&&drafts.some(d=>d.originalId==='deleted-chart-parent')&&drafts.filter(d=>d.packId).every(d=>d.packId===(d.director?'previous-pack':s.scene.mmd.id)),
                     oldPackDraft:drafts.some(d=>d.director&&known.has(d.director.slots[0].clips[0].motionAssetId)&&!s.scene.mmd.assetIds.includes(d.director.slots[0].clips[0].motionAssetId)&&d.director.slots[0].clips[0].motionAssetId!==s.scene.mmdDirector.slots[0].clips[0].motionAssetId),
                     guide:drafts.some(d=>d.track?.sourceAsset===s.scene.faceTrack.sourceAsset),scores:scores.length===3&&scores.some(r=>r.id.endsWith('/abcdef01/rules4'))&&scores.some(r=>r.id.endsWith('/profile-accessible')),
                     bytes:JSON.stringify([...new Uint8Array(await all.find(x=>x.id===s.audioAsset).blob.arrayBuffer())])==='[0,17,128,255]',

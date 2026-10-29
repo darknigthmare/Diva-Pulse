@@ -15,6 +15,18 @@ function archiveObject(value,path){if(!value||typeof value!=='object'||Array.isA
 function archiveList(value,path,max){if(!Array.isArray(value)||value.length>max)archiveError(path,'liste attendue, maximum '+max+'.');return value;}
 function archiveId(value,path){if(typeof value!=='string'||!value)archiveError(path,'identifiant non vide attendu.');return value;}
 function archiveUnique(rows,path){const out=new Map();rows.forEach((row,i)=>{archiveObject(row,`${path}[${i}]`);const id=archiveId(row.id,`${path}[${i}].id`);if(out.has(id))archiveError(`${path}[${i}].id`,'identifiant dupliqué.');out.set(id,row);});return out;}
+// Import/recovery boundaries must reject an unknown schema before the permissive
+// editing normalizer can promote it or replace its version. Unversioned V9/V10
+// Directors are historical data; loop phase was first persisted in schema 20.
+function readDirector(value,path='Director'){
+ archiveObject(value,path);
+ if(value.version!==undefined&&![19,20].includes(value.version))archiveError(path+'.version','version Director non prise en charge ; versions acceptées : sans version (historique), 19, 20.');
+ const D=root.PulseDirector||(typeof require==='function'?require('./director-core.js'):null);
+ if(!D)archiveError(path,'module Director indisponible.');
+ let next;try{next=D.normalizeDirector(structuredClone(value));}catch(e){archiveError(path,e.message);}
+ if(next.version===20&&value.version!==20)archiveError(path+'.version','une phase de boucle exige le schéma 20 explicite.');
+ return next;
+}
 function scoreSuffix(record,chart,path='scores'){
  const prefix=record.songId+'/'+record.chartId+'/',suffix=typeof record.id==='string'&&record.id.startsWith(prefix)?record.id.slice(prefix.length):'',match=/^([a-f\d]{1,8})(\/rules4)?(?:\/profile-(accessible|precision))?$/.exec(suffix);
  if(match){
@@ -40,7 +52,7 @@ function validateLibrary(raw){
   archiveObject(value,path);const slots=archiveList(value.slots===undefined?[]:value.slots,path+'.slots',4);
   slots.forEach((slot,i)=>{const at=`${path}.slots[${i}]`;archiveObject(slot,at);available(slot.modelAssetId,at+'.modelAssetId','model');available(slot.motionAssetId,at+'.motionAssetId','motion');
    archiveList(slot.clips===undefined?[]:slot.clips,at+'.clips',512).forEach((clip,j)=>{archiveObject(clip,`${at}.clips[${j}]`);available(clip.motionAssetId,`${at}.clips[${j}].motionAssetId`,'motion');});});
-  if(root.PulseDirector)check(()=>root.PulseDirector.normalizeDirector(value),path);
+  readDirector(value,path);
  };
  const face=(value,path)=>{archiveObject(value,path);ref(value.sourceAsset,path+'.sourceAsset');if(root.PulseFace)check(()=>root.PulseFace.validate(value),path);};
  raw.songs.forEach((song,i)=>{
@@ -100,5 +112,5 @@ async function unpack(file,opts={}){
  const blobs=new Map();let at=HEADER+size,done=0;for(const a of raw.assets){const blob=file.slice(at,at+a.size,a.type),hs=await hashes(blob,{...opts,base:done,total});if(hs.some((h,i)=>h!==a.hashes[i]))throw Error('Média altéré : '+a.name);blobs.set(a.id,blob);at+=a.size;done+=a.size;}abort(opts.signal);
  return {raw,blobs,totalBytes:total};
 }
-const api={MAGIC,HEADER,CHUNK,MAX_BODY,MAX_META,LIBRARY_VERSIONS,digest,hashes,pack,unpack,mediaCheck,validateLibrary,scoreSuffix};root.PulseBundle=api;if(typeof module!=='undefined')module.exports=api;
+const api={MAGIC,HEADER,CHUNK,MAX_BODY,MAX_META,LIBRARY_VERSIONS,digest,hashes,pack,unpack,mediaCheck,validateLibrary,readDirector,scoreSuffix};root.PulseBundle=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

@@ -61,6 +61,54 @@ function snap(time,bpm=120,beats=1,offset=0){
  if(!beats)return time;const step=60/bpm*beats;
  return Math.max(0,Math.round((time-offset)/step)*step+offset);
 }
+// A library keeps one recovery per song. A different pack or an unsupported
+// schema is protected until the user explicitly resumes, reassociates or discards.
+const bundle=()=>root.PulseBundle||(typeof require==='function'?require('./bundle-core.js'):null);
+function recoveryAssets(song){
+ if(!song?.id||!song.scene?.mmd?.id)fail('Le morceau ou le pack MMD a changé.');
+ const pack=song.scene.mmd,files=new Map((pack.files||[]).map(f=>[f.id,f])),choices={model:[],motion:[]};let camera=false;
+ for(const id of new Set(pack.assetIds||[])){
+  const f=files.get(id);if(!f)continue;
+  if(f.role==='model')choices.model.push({...f});
+  if(f.role==='motion')choices.motion.push({...f});
+  if(f.role==='camera'&&!camera){choices.motion.push({...f});camera=true;}
+ }
+ return choices;
+}
+function recoveryRefs(director){
+ const refs=new Map(),add=(role,id,use)=>{if(!id)return;const key=JSON.stringify([role,id]);if(!refs.has(key))refs.set(key,{key,role,id,uses:[]});refs.get(key).uses.push(use);};
+ director.slots.forEach((slot,i)=>{add('model',slot.modelAssetId,'D'+(i+1)+' · modèle');add('motion',slot.motionAssetId,'D'+(i+1)+' · motion de base');slot.clips.forEach((clip,j)=>add('motion',clip.motionAssetId,'D'+(i+1)+' · clip '+(j+1)));});
+ return [...refs.values()];
+}
+function inspectRecovery(saved,song){
+ if(!saved||(['applied','discarded'].includes(saved.status)&&!saved.director))return {kind:'none'};
+ try{
+  if(saved.songId!==song?.id)fail('Le propriétaire du brouillon ne correspond pas à ce morceau.');
+  const director=bundle().readDirector(saved.director,'Brouillon Director'),choices=recoveryAssets(song),refs=recoveryRefs(director);
+  const compatible=saved.packId===song.scene.mmd.id&&refs.every(r=>choices[r.role].some(f=>f.id===r.id));
+  return {kind:compatible?'compatible':'reassociate',director,refs,choices};
+ }catch(e){return {kind:'unsupported',error:e.message};}
+}
+function reassociateRecovery(saved,song,mapping={},now=Date.now()){
+ const info=inspectRecovery(saved,song);if(info.kind==='unsupported')fail(info.error);if(info.kind==='none')fail('Aucun brouillon à réassocier.');
+ if(!mapping||typeof mapping!=='object'||Array.isArray(mapping))fail('Associations de médias invalides.');
+ const keys=new Set(info.refs.map(r=>r.key)),selected=new Map();
+ for(const key of Object.keys(mapping))if(!keys.has(key))fail('Association de média inconnue.');
+ for(const ref of info.refs){
+  // Keep only an already identical available ID. Names are never used to guess.
+  const id=Object.hasOwn(mapping,ref.key)?mapping[ref.key]:ref.id;
+  if(typeof id!=='string'||!info.choices[ref.role].some(f=>f.id===id))fail('Choisir '+(ref.role==='model'?'un modèle':'une motion')+' du pack courant pour '+ref.uses.join(', ')+'.');
+  selected.set(ref.key,id);
+ }
+ const director=structuredClone(info.director),remap=(role,id)=>id?selected.get(JSON.stringify([role,id])):id;
+ for(const slot of director.slots){slot.modelAssetId=remap('model',slot.modelAssetId);slot.motionAssetId=remap('motion',slot.motionAssetId);for(const clip of slot.clips)clip.motionAssetId=remap('motion',clip.motionAssetId);}
+ return {...structuredClone(saved),id:'director-draft:'+song.id,songId:song.id,packId:song.scene.mmd.id,status:'draft',director,updatedAt:finite(now,'Date')};
+}
+function recoverySourceJSON(saved){return JSON.stringify(saved,null,2);}
+function restoredRecoveryPackId(saved,sourceSong,copySong){
+ const source=sourceSong?.scene?.mmd?.id;
+ return typeof source==='string'&&source&&saved.packId===source?copySong.scene.mmd.id:saved.packId;
+}
 function publication(song,draft,packId,now=Date.now()){
  if(!song||typeof song.id!=='string'||!song.id||!packId||song.scene?.mmd?.id!==packId)fail('Le morceau ou le pack MMD a changé.');
  const director=D.normalizeDirector({...structuredClone(draft),duration:song.duration});
@@ -72,6 +120,6 @@ function publication(song,draft,packId,now=Date.now()){
  const tombstone={id:'director-draft:'+song.id,songId:song.id,packId,status:'applied',director:null,updatedAt:finite(now,'Date')};
  return [['songs',candidate],['settings',tombstone]];
 }
-root.PulseDirectorEdit={all,copy,move,remove,paste,snap,publication};
+root.PulseDirectorEdit={all,copy,move,remove,paste,snap,publication,inspectRecovery,reassociateRecovery,recoverySourceJSON,restoredRecoveryPackId};
 if(typeof module!=='undefined')module.exports=root.PulseDirectorEdit;
 })(globalThis);

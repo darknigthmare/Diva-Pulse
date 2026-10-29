@@ -17,6 +17,10 @@ La sélection ci-dessus garde sa base historique V34. La première application e
 
 Le [lot V36](V36_ARCHIVES_SCENE_CALME.md) applique `save-systems` au contrôle préalable des archives et à la conservation des identifiants de records, puis `camera-systems` et `game-ui-ux` au mouvement réduit. Les parcours ajoutés vérifient les refus sans écriture, les restaurations valides, le cadrage calme et les préférences système/utilisateur. Le suivi courant est [BACKLOG_V36.json](../planning/BACKLOG_V36.json) ; les versions précédentes restent des instantanés historiques.
 
+## Troisième application — V37
+
+Le [lot V37](V37_PRISES_RECUPERATION.md) applique les notions de données faisant foi et d’écriture cohérente à la fin d’une prise, puis les règles de récupération explicite aux brouillons Director. Les scénarios ciblent les réglages modifiés, les écritures tardives, la réassociation à un autre pack et les versions Director embarquées inconnues. Le suivi courant devient [BACKLOG_V37.json](../planning/BACKLOG_V37.json) ; la sélection initiale et ses bases historiques restent documentées ci-dessus.
+
 ## Le contrat technique du projet
 
 | Domaine | Sources à lire avant modification | Contrat |

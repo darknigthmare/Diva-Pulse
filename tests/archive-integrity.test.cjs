@@ -3,6 +3,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const C=require('../src/core.js');require('../src/creator.js');require('../src/live-core.js');require('../src/precision-core.js');require('../src/hash-core.js');require('../src/services.js');require('../src/director-core.js');require('../src/face-core.js');require('../src/face-drafts.js');require('../src/physics-drafts.js');require('../src/autoshow-core.js');
 const B=require('../src/bundle-core.js'),S=globalThis.PulseServices;
+require('../src/director-edit.js');
 const source=fs.readFileSync(require.resolve('../src/enhancements.js'),'utf8');
 const review=source.slice(source.indexOf('  app.reviewBackup='),source.indexOf('  app.songManager='));
 const chart=(id='chart',lane=0)=>C.validateChart({id,title:id,notes:[{time:1,lane}],source:'manual'});

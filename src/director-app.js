@@ -43,18 +43,70 @@ function install(app){
  wrap('renderSettings',old=>{old();$('judgmentProfile').value=app.settings.judgmentProfile||'standard';$('judgmentWindows').textContent='COOL / FINE / SAFE / SAD : ±'+C.JUDGMENT_PROFILES[$('judgmentProfile').value].map(v=>Math.round(v*1000)).join(' / ±')+' ms.';});
  $('judgmentProfile').onchange=()=>app.run(async()=>{const candidate={...app.settings,judgmentProfile:C.judgmentProfile($('judgmentProfile').value)};await app.store.put('settings',candidate);app.settings=candidate;app.renderSettings();app.renderLibrary();},'Enregistrement du profil…');
  wrap('startGame',async(old,...args)=>{const result=await old(...args);if(result===false)return false;if(app.engine)$('gameModeLabel').textContent+=' · '+app.engine.profile.toUpperCase();return result;});
- wrap('finish',async old=>{await old();if(app.lastResult&&app.engine)$('resultMode').textContent+=' · '+app.engine.profile.toUpperCase();});
+ wrap('finish',async old=>{const completion=await old();if(completion?.result&&completion.current())$('resultMode').textContent+=' · '+completion.profile.toUpperCase();return completion;});
  const panel=$('mmdPanel');panel.insertAdjacentHTML('beforeend',`<div class="buttons"><button id="importMmdFolder">＋ Importer un dossier</button><button id="openMmdDirector" class="primary">DIRECTOR · TIMELINE & PLANS</button></div><input id="mmdFolderInput" type="file" webkitdirectory multiple hidden>`);
  let session=null,previewTimer=null;
  app.directorRecoveries=new Map();app.directorDraftWrite=Promise.resolve();
  const draftKey=id=>'director-draft:'+id;
- function stashDraft(){if(!session||JSON.stringify(session.draft)===session.lastQueued)return;
-  session.lastQueued=JSON.stringify(session.draft);// Returning to the initial state must also replace any older autosaved draft.
-  const current=session,snapshot={id:draftKey(session.owner),songId:session.owner,packId:session.packId,director:structuredClone(session.draft),updatedAt:Date.now()};
-  app.directorRecoveries.set(session.owner,snapshot);if($('dDraftStatus'))$('dDraftStatus').textContent='Sauvegarde du brouillon…';
-  app.directorDraftWrite=app.directorDraftWrite.catch(()=>{}).then(()=>app.store.put('settings',snapshot)).then(()=>{if(session===current&&$('dDraftStatus'))$('dDraftStatus').textContent=app.store.persistent?'Brouillon sauvegardé localement':'Brouillon TEMPORAIRE · exporter avant fermeture';}).catch(e=>{if(session===current&&$('dDraftStatus'))$('dDraftStatus').textContent='Brouillon non sauvegardé · exporter le Director JSON';app.toast('Brouillon Director conservé en mémoire : '+e.message,true);});
+ function recoveryActive(current){return session===current&&app.song===current.song&&current.owner===app.song?.id&&current.packId===app.song?.scene?.mmd?.id&&$('modal').open&&$('dRecovery')===current.recoveryBox;}
+ function recoveryReady(current=session){return !!current&&current.recoveryState==='ready'&&recoveryActive(current);}
+ function recoveryState(current,state,message){
+  if(!recoveryActive(current))return false;current.recoveryState=state;$('directorContent').inert=state!=='ready';
+  if(message)$('dDraftStatus').textContent=message;return true;
  }
- function offerRecovery(){const current=session,owner=current.owner;Promise.resolve(app.directorRecoveries.get(owner)||app.store.get('settings',draftKey(owner))).then(saved=>{if(session!==current||!saved?.director||saved.status==='applied'||saved.songId!==owner||saved.packId!==current.packId||JSON.stringify(saved.director)===current.initialJSON)return;const box=$('dRecovery');if(!box)return;box.hidden=false;$('dRecover').onclick=()=>{try{const next=D.normalizeDirector(saved.director);session.history.push(structuredClone(session.draft));session.draft=next;session.redo=[];session.selection.clear();session.loaded=false;box.hidden=true;renderDirector();}catch(e){app.toast(e.message,true);}};}).catch(e=>app.toast('Lecture du brouillon impossible : '+e.message,true));
+ function stashDraft(){if(!recoveryReady()||JSON.stringify(session.draft)===session.lastQueued)return;
+  session.lastQueued=JSON.stringify(session.draft);// Returning to the initial state must also replace any older autosaved draft.
+  const current=session,snapshot={...structuredClone(session.recoveryBase||{}),id:draftKey(session.owner),songId:session.owner,packId:session.packId,status:'draft',director:structuredClone(session.draft),updatedAt:Date.now()};
+  app.directorRecoveries.set(session.owner,snapshot);if($('dDraftStatus'))$('dDraftStatus').textContent='Sauvegarde du brouillon…';
+  app.directorDraftWrite=app.directorDraftWrite.catch(()=>{}).then(()=>app.store.put('settings',snapshot)).then(()=>{if(recoveryActive(current))$('dDraftStatus').textContent=app.store.persistent?'Brouillon sauvegardé localement':'Brouillon TEMPORAIRE · exporter avant fermeture';}).catch(e=>{if(recoveryActive(current))$('dDraftStatus').textContent='Brouillon non sauvegardé · exporter le Director JSON';app.toast('Brouillon Director conservé en mémoire : '+e.message,true);});
+ }
+ function acceptRecovery(current,saved,director,message){
+  if(!recoveryActive(current))return false;
+  current.recoveryBase=structuredClone(saved);current.history.push(structuredClone(current.draft));current.draft=structuredClone(director);current.lastQueued=JSON.stringify(current.draft);current.redo=[];current.selection.clear();current.loaded=false;
+  current.recoveryBox.hidden=true;recoveryState(current,'ready',message);renderDirector();return true;
+ }
+ async function resolveRecovery(current,action,mapping){
+  if(!recoveryActive(current)||current.recoveryState!=='pending')return false;
+  const E=root.PulseDirectorEdit,saved=current.recoverySource;
+  const candidate=action==='discard'?{id:draftKey(current.owner),songId:current.owner,packId:current.packId,status:'discarded',director:null,updatedAt:Date.now()}:E.reassociateRecovery(saved,current.song,mapping);
+  recoveryState(current,'writing','Enregistrement du choix de récupération…');for(const el of current.recoveryBox.querySelectorAll('button,select'))el.disabled=true;
+  // The next dialog waits for this entire operation, including cache publication.
+  // Request success alone must never discard the previous recovery after abort.
+  const write=app.directorDraftWrite.catch(()=>{}).then(()=>{if(!recoveryActive(current))throw Error('La session Director a changé avant l’enregistrement.');return app.store.put('settings',candidate);}).then(()=>{if(action==='discard')app.directorRecoveries.delete(current.owner);else app.directorRecoveries.set(current.owner,structuredClone(candidate));});
+  app.directorDraftWrite=write.catch(()=>{});
+  try{
+   await write;if(!recoveryActive(current))return false;
+   if(action==='discard'){current.recoveryBase=null;current.recoveryBox.hidden=true;recoveryState(current,'ready','Ancien brouillon écarté. Les prochaines modifications formeront un nouveau brouillon.');return true;}
+   return acceptRecovery(current,candidate,candidate.director,'Brouillon réassocié et sauvegardé. Enregistrer le spectacle reste une action distincte.');
+  }catch(e){if(recoveryActive(current)){recoveryState(current,'pending','Choix non enregistré · le brouillon précédent est conservé.');for(const el of current.recoveryBox.querySelectorAll('button,select'))el.disabled=false;$('dRecoveryMessage').textContent=e.message;}throw e;}
+ }
+ function showRecovery(current,info){
+  if(!recoveryActive(current))return;
+  const box=current.recoveryBox,compatible=info.kind==='compatible',supported=info.kind!=='unsupported';box.hidden=false;
+  const explanation=info.kind==='unsupported'?'Ce brouillon ne peut pas être repris ici : '+info.error:compatible?'Un brouillon non appliqué existe pour ce morceau et ce pack.':'Un brouillon non appliqué existe pour un ancien pack, ou référence des médias absents du pack courant. Choisis les médias explicitement pour le réassocier.';
+  box.innerHTML='<p>'+esc(explanation)+'</p><p>Le brouillon sauvegardé reste protégé jusqu’à ton choix. Fermer cette fenêtre le conserve. La réassociation remplace ce brouillon après validation, sans publier le spectacle ; tu peux exporter sa source avant ce choix.</p><div class="buttons">'+(compatible?'<button id="dRecover">Reprendre le brouillon</button>':'')+(supported?'<button id="dReassociate">Réassocier au pack courant…</button>':'')+'<button id="dExportRecovery">Exporter le brouillon source</button><button id="dDiscardRecovery">Écarter le brouillon puis commencer</button></div><p class="muted">L’export source est le JSON brut sauvegardé, avec tous ses champs et sa version.</p><p id="dRecoveryMessage" role="status"></p><div id="dRecoveryMappings" hidden></div>';
+  $('dExportRecovery').onclick=()=>{if(recoveryActive(current))root.PulseServices.download(root.PulseDirectorEdit.recoverySourceJSON(current.recoverySource),current.song.title+'.director-recovery.json');};
+  $('dDiscardRecovery').onclick=()=>app.run(()=>resolveRecovery(current,'discard'),'Conservation du choix de récupération…');
+  if(compatible)$('dRecover').onclick=()=>{if(current.recoveryState==='pending')acceptRecovery(current,current.recoverySource,info.director,'Brouillon repris. Les modifications restent séparées du spectacle publié.');};
+  if(supported)$('dReassociate').onclick=()=>{
+   if(!recoveryActive(current)||current.recoveryState!=='pending')return;
+   const fields=$('dRecoveryMappings');fields.hidden=false;
+   fields.innerHTML='<p>Associe chaque référence au média du pack courant. Les noms ne déterminent aucune association automatique. Le timing, les clés et les phases de boucle sont conservés.</p>'+info.refs.map((ref,i)=>'<label>'+esc(ref.uses.join(', '))+' · '+esc(ref.id)+'<select id="dRecoveryAsset'+i+'">'+options(info.choices[ref.role],ref.id,'Choisir '+(ref.role==='model'?'un modèle':'une motion'))+'</select></label>').join('')+'<div class="buttons"><button id="dConfirmReassociate" class="primary">Confirmer la réassociation du brouillon</button><button id="dCancelReassociate">Annuler la réassociation</button></div>';
+   $('dCancelReassociate').onclick=()=>{if(recoveryActive(current))fields.hidden=true;};
+   $('dConfirmReassociate').onclick=()=>app.run(()=>{const mapping={};for(let i=0;i<info.refs.length;i++)mapping[info.refs[i].key]=$('dRecoveryAsset'+i).value;return resolveRecovery(current,'reassociate',mapping);},'Réassociation du brouillon…');
+  };
+ }
+ async function offerRecovery(current=session){
+  if(!recoveryActive(current))return false;const token=++current.recoveryRead;
+  recoveryState(current,'loading','Recherche d’un brouillon sauvegardé…');current.recoveryBox.hidden=true;
+  try{
+   await app.directorDraftWrite;if(!recoveryActive(current)||token!==current.recoveryRead)return false;
+   const saved=app.directorRecoveries.get(current.owner)||await app.store.get('settings',draftKey(current.owner));
+   if(!recoveryActive(current)||token!==current.recoveryRead)return false;
+   const info=root.PulseDirectorEdit.inspectRecovery(saved,current.song);
+   if(info.kind==='none'||(info.kind==='compatible'&&JSON.stringify(info.director)===current.initialJSON)){current.recoveryBase=info.kind==='none'?null:structuredClone(saved);recoveryState(current,'ready','Aucune modification non enregistrée.');return true;}
+   current.recoverySource=structuredClone(saved);recoveryState(current,'pending','Brouillon sauvegardé protégé · choisis une action de récupération.');showRecovery(current,info);return false;
+  }catch(e){if(recoveryActive(current)&&token===current.recoveryRead){recoveryState(current,'error','Lecture impossible · l’édition reste protégée pour conserver le brouillon.');current.recoveryBox.hidden=false;current.recoveryBox.innerHTML='<p>'+esc(e.message)+'</p><button id="dRetryRecovery">Réessayer la lecture du brouillon</button>';$('dRetryRecovery').onclick=()=>offerRecovery(current);}return false;}
  }
  const closePreview=()=>{clearInterval(previewTimer);previewTimer=null;session?.audition?.dispose();delete app.directorAudition;delete app.stage.directorClock;delete app.stage.directorPreview;if(session){session=null;app.modelLoaded=null;Promise.resolve(app.applyScene()).catch(e=>app.toast(e.message,true));}};
  wrap('closeModal',old=>{closePreview();return old();});
@@ -100,18 +152,18 @@ function install(app){
  app.openMMDDirector=function(){
   if(!app.song?.scene?.mmd)return app.toast('Importe d’abord un pack contenant un PMX ou PMD.',true);
   const base=app.song.scene.mmdDirector||root.PulseAutoShow?.effectiveDirector(app.song.scene);const initial=D.normalizeDirector({...base,duration:app.song.duration,count:base?.count||1});
-  session={draft:initial,initialJSON:JSON.stringify(initial),lastQueued:JSON.stringify(initial),owner:app.song.id,packId:app.song.scene.mmd.id,history:[],redo:[],loaded:false,time:0,selection:new Set(),clipboard:null,snap:0,audition:null,audioRate:1,audioVolume:app.settings.volume??.65,loopEnabled:false,loopA:0,loopB:Math.min(20,app.song.duration)};
-  app.openModal('<div class="eyebrow">DIRECTOR / ÉDITION NON DESTRUCTIVE</div><h2>MONTE TON SPECTACLE.</h2><p>Temps exprimés en secondes de la chanson. Les changements restent un brouillon jusqu’à Enregistrer. Lecture audio et animation partagent la même horloge ; les notes et records restent inchangés.</p><div id="dRecovery" hidden><p>Un brouillon non appliqué existe pour ce morceau et ce pack.</p><button id="dRecover">Reprendre le brouillon</button></div><p id="dDraftStatus" role="status">Aucune modification non enregistrée.</p><p id="directorMessage" role="status"></p><div id="directorContent" tabindex="-1"></div>');
+  session={song:app.song,recoveryState:'loading',recoveryRead:0,recoveryBase:null,draft:initial,initialJSON:JSON.stringify(initial),lastQueued:JSON.stringify(initial),owner:app.song.id,packId:app.song.scene.mmd.id,history:[],redo:[],loaded:false,time:0,selection:new Set(),clipboard:null,snap:0,audition:null,audioRate:1,audioVolume:app.settings.volume??.65,loopEnabled:false,loopA:0,loopB:Math.min(20,app.song.duration)};
+  app.openModal('<div class="eyebrow">DIRECTOR / ÉDITION NON DESTRUCTIVE</div><h2>MONTE TON SPECTACLE.</h2><p>Temps exprimés en secondes de la chanson. Les changements restent un brouillon jusqu’à Enregistrer. Lecture audio et animation partagent la même horloge ; les notes et records restent inchangés.</p><div id="dRecovery" hidden></div><p id="dDraftStatus" role="status">Aucune modification non enregistrée.</p><p id="directorMessage" role="status"></p><div id="directorContent" tabindex="-1"></div>');
   $('modal').classList.add('director-modal');
-  renderDirector();offerRecovery();
+  session.recoveryBox=$('dRecovery');renderDirector();return offerRecovery(session);
  };
  $('openMmdDirector').onclick=app.openMMDDirector;
- function mutate(fn){try{pauseAudition();const next=structuredClone(session.draft);fn(next);const valid=D.normalizeDirector(next);if(JSON.stringify(valid)===JSON.stringify(session.draft))return;session.history.push(structuredClone(session.draft));session.history=session.history.slice(-60);session.redo=[];session.draft=valid;session.selection.clear();session.loaded=false;renderDirector();}catch(e){$('directorMessage').textContent=e.message;}}
+ function mutate(fn){if(!recoveryReady())return;try{pauseAudition();const next=structuredClone(session.draft);fn(next);const valid=D.normalizeDirector(next);if(JSON.stringify(valid)===JSON.stringify(session.draft))return;session.history.push(structuredClone(session.draft));session.history=session.history.slice(-60);session.redo=[];session.draft=valid;session.selection.clear();session.loaded=false;renderDirector();}catch(e){$('directorMessage').textContent=e.message;}}
  function options(files,value,empty){return '<option value="">'+empty+'</option>'+files.map(f=>`<option value="${esc(f.id)}" ${value===f.id?'selected':''}>${esc(f.name)}</option>`).join('');}
  function field(label,value,scope,extra=''){return `<label>${label}<input type="number" step=".01" value="${value}" ${scope} ${extra}></label>`;}
  function renderDirector(){
   if(!session)return;
-  pauseAudition();
+  $('directorContent').inert=!recoveryReady();pauseAudition();
   const E=root.PulseDirectorEdit;const picked=()=>[...session.selection];
   const batch=fn=>mutate(next=>Object.assign(next,fn(next)));
   const reportError=e=>{$('directorMessage').textContent=e.message;};
@@ -166,7 +218,7 @@ function install(app){
   });
   for(const el of $('directorContent').querySelectorAll('[data-field]'))el.onchange=()=>{const k=el.dataset.field;let value=el.type==='checkbox'?el.checked:el.tagName==='SELECT'?el.value:el.type==='color'?[1,3,5].map(i=>parseInt(el.value.slice(i,i+2),16)/255):Number(el.value);if(k.endsWith('AssetId'))value||=null;if(['sourceBpm','loopBeats'].includes(k)&&el.value==='')value=null;mutate(next=>{if(el.dataset.track)(el.dataset.track==='formation'?next.formations:next[el.dataset.track+'Track'])[+el.dataset.k][k]=value;else if(el.dataset.c!==undefined){const clip=next.slots[+el.dataset.s].clips[+el.dataset.c];clip[k]=value;if(k==='motionAssetId'){clip.sourceBpm=null;clip.loopBeats=null;delete clip.loopPhaseBeats;}}else next.slots[+el.dataset.s][k]=value;});};
   for(const id of ['dEnabled','dCount','dSpacing','dCamera'])$(id).onchange=()=>mutate(next=>{next[{dEnabled:'enabled',dCount:'count',dSpacing:'spacing',dCamera:'useCamera'}[id]]=$(id).type==='checkbox'?$(id).checked:Number($(id).value);});
-  $('dUndo').onclick=()=>{session.redo.push(session.draft);session.draft=session.history.pop();session.selection.clear();session.loaded=false;renderDirector();};$('dRedo').onclick=()=>{session.history.push(session.draft);session.draft=session.redo.pop();session.selection.clear();session.loaded=false;renderDirector();};
+  $('dUndo').onclick=()=>{if(!recoveryReady())return;session.redo.push(session.draft);session.draft=session.history.pop();session.selection.clear();session.loaded=false;renderDirector();};$('dRedo').onclick=()=>{if(!recoveryReady())return;session.history.push(session.draft);session.draft=session.redo.pop();session.selection.clear();session.loaded=false;renderDirector();};
   for(const el of $('directorContent').querySelectorAll('[data-select]'))el.onchange=()=>{if(el.checked)session.selection.add(el.dataset.select);else session.selection.delete(el.dataset.select);refreshSelection();};
   $('dSelectAll').onclick=()=>{session.selection=new Set(E.all(session.draft));refreshSelection();};
   $('dSelectNone').onclick=()=>{session.selection.clear();refreshSelection();};
@@ -198,7 +250,7 @@ function install(app){
     session.audition?.setLoop(a,b,enabled);Object.assign(session,{loopA:a,loopB:b,loopEnabled:enabled});drawPreview();
    }catch(e){$('dLoop').checked=session.loopEnabled;$('dLoopA').value=session.loopA;$('dLoopB').value=session.loopB;reportError(e);}
   };
-  $('dSave').onclick=()=>app.run(async()=>{const current=session,owner=app.song;if(!current||current.owner!==owner.id)throw Error('Le morceau a changé.');await app.directorDraftWrite;if(session!==current||app.song!==owner)throw Error('La session Director a changé.');const rows=E.publication(owner,current.draft,current.packId);await app.store.atomic(rows);Object.assign(owner,rows[0][1]);app.directorRecoveries.delete(current.owner);if(session===current){app.closeModal();renderMMD();}app.toast('Spectacle et fin du brouillon enregistrés ensemble. Les partitions sont inchangées.');},'Sauvegarde du spectacle…');
+  $('dSave').onclick=()=>app.run(async()=>{const current=session,owner=app.song;if(!recoveryReady(current))throw Error('Choisis d’abord une action pour le brouillon sauvegardé.');if(current.owner!==owner.id)throw Error('Le morceau a changé.');await app.directorDraftWrite;if(session!==current||app.song!==owner)throw Error('La session Director a changé.');const rows=E.publication(owner,current.draft,current.packId);await app.store.atomic(rows);Object.assign(owner,rows[0][1]);app.directorRecoveries.delete(current.owner);if(session===current){app.closeModal();renderMMD();}app.toast('Spectacle et fin du brouillon enregistrés ensemble. Les partitions sont inchangées.');},'Sauvegarde du spectacle…');
   $('modal').scrollTop=sc;$('directorMessage').textContent='Brouillon — '+d.slots.reduce((n,s)=>n+s.clips.length,0)+' clips · '+d.cameraTrack.length+' clés caméra · '+d.lightTrack.length+' clés lumière.';
  }
  app.pauseDirectorAudition=()=>pauseAudition();
@@ -209,7 +261,7 @@ function install(app){
   if($('dPlaybackStatus'))$('dPlaybackStatus').textContent='Écoute en pause · aucun record modifié.';
  }
  async function loadAudition(withAudio){
-  const current=session,owner=app.song;if(!current||current.owner!==owner.id)return;
+  const current=session,owner=app.song;if(!recoveryReady(current)||current.owner!==owner.id)return;
   pauseAudition();
   if(current.audition?.context.state==='closed'){current.audition.dispose();current.audition=null;delete app.directorAudition;}
   if(withAudio&&!current.audition){
@@ -250,11 +302,11 @@ function install(app){
  root.addEventListener('pagehide',()=>{session?.audition?.dispose();clearInterval(previewTimer);});
  // Re-open portable Director projects against the current pack; IDs stay explicit.
  panel.insertAdjacentHTML('beforeend','<button id="importDirector">Importer un Director JSON</button><input id="directorInput" type="file" accept=".json" hidden>');
- $('importDirector').onclick=()=>$('directorInput').click();$('directorInput').onchange=e=>{const f=e.target.files[0];e.target.value='';if(f)app.run(async()=>{if(f.size>4*1024*1024)throw Error('Director JSON limité à 4 Mo.');const raw=JSON.parse(await f.text());const d=root.PulseDirectorEdit.readProject(raw,app.song.duration,app.song.scene.mmd?.assetIds);app.openMMDDirector();session.draft=d;renderDirector();},'Lecture du Director…');};
+ $('importDirector').onclick=()=>$('directorInput').click();$('directorInput').onchange=e=>{const f=e.target.files[0];e.target.value='';if(f)app.run(async()=>{if(f.size>4*1024*1024)throw Error('Director JSON limité à 4 Mo.');const raw=JSON.parse(await f.text());const owner=app.song,d=root.PulseDirectorEdit.readProject(raw,owner.duration,owner.scene.mmd?.assetIds);const ready=await app.openMMDDirector();if(!ready)throw Error('Un brouillon sauvegardé est protégé. Résous sa récupération, puis importe à nouveau ce Director.');if(app.song!==owner||!recoveryReady())throw Error('La session Director a changé.');session.history.push(structuredClone(session.draft));session.draft=d;renderDirector();},'Lecture du Director…');};
  wrap('showView',(old,...args)=>{if(session)app.closeModal();return old(...args);});
  // Capture only our dialog commands; typing, IME and the game keep their own keys.
  document.addEventListener('keydown',event=>{
-  if(!session||!$('modal').open||!$('modal').classList.contains('director-modal')||app.busy)return;
+  if(!recoveryReady()||!$('modal').classList.contains('director-modal')||app.busy)return;
   const target=event.target,editing=!!(target?.isContentEditable||target?.closest?.('input,textarea,select,[role="textbox"]'));
   if(target?.closest?.('.director-block')&&(event.key===' '||event.key==='Enter'))return;
   const command=root.PulseDirectorEdit.shortcut(event,editing);if(!command)return;

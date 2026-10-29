@@ -48,34 +48,45 @@ function install(app){
     if(this.view==='game'&&this.mode==='play')this.replayInputs.push({time:Math.max(this.replayInputs.at(-1)?.time??t,t),lane,down:false});
     if(this.mode!=='replay')this.engine?.release(lane,t);if(this.editor.recording)this.editor.recordRelease(lane,this.audio.timeAt(stamp));
   };
-  app.advanceReplay=function(time){const r=this.pendingReplay;if(!r)return;while(this.replayCursor<r.inputs.length&&r.inputs[this.replayCursor].time<=time){const x=r.inputs[this.replayCursor++];this.engine.update(x.time);if(x.down)this.engine.press(x.lane,x.time);else this.engine.release(x.lane,x.time);}this.engine.update(time);};
+  app.advanceReplay=function(time){const r=this.activeReplay;if(!r)return;while(this.replayCursor<r.inputs.length&&r.inputs[this.replayCursor].time<=time){const x=r.inputs[this.replayCursor++];this.engine.update(x.time);if(x.down)this.engine.press(x.lane,x.time);else this.engine.release(x.lane,x.time);}this.engine.update(time);};
   const oldPause=app.pause.bind(app);app.pause=function(){const snapshot=this.mode==='replay'&&this.engine?{held:new Set(this.engine.held),heldSince:new Map(this.engine.heldSince),chainArmed:new Set(this.engine.chainArmed),activeHolds:new Map([...this.engine.activeHolds].map(([k,v])=>[k,{...v}]))}:null;oldPause();if(snapshot)Object.assign(this.engine,snapshot);};
   wrap('startGame',async(prev,mode='play',practice=null)=>{
+    if(mode==='replay'&&!app.pendingReplay)throw Error('Aucun replay chargé.');
+    const replay=mode==='replay'?structuredClone(app.pendingReplay):null;
+    const clearSetlist=mode==='play'&&!app.queueLaunching&&app.view==='library';
+    if(await prev(mode,practice,replay)===false)return false;
+    // A cancelled preparation must not erase the running take's input log.
     app.replayInputs=[];app.replayCursor=0;
-    if(mode==='play'&&!app.queueLaunching&&app.view==='library')app.activeSetlist=null;
-    if(mode==='replay'){
-      if(!app.pendingReplay)throw Error('Aucun replay chargé.');const savedCharts=app.song.charts,savedID=app.selectedChartId,savedDiff=app.difficulty;
-      const c=app.pendingReplay.chart;app.song.charts=[...savedCharts,c];app.selectedChartId=c.id;app.difficulty=c.difficulty;
-      try{if(await prev(mode,practice)===false)return false;app.engine=new C.JudgeEngine(c,{noFail:app.pendingReplay.noFail,judgmentProfile:app.pendingReplay.judgmentProfile||'standard',legacyChains:String(app.pendingReplay.engine||'').startsWith('3.')});app.gameChart=structuredClone(c);$('gameModeLabel').textContent='REPLAY / AUCUN RECORD';}
-      finally{app.song.charts=savedCharts;app.selectedChartId=savedID;app.difficulty=savedDiff;}
-    }else if(await prev(mode,practice)===false)return false;
+    if(clearSetlist)app.activeSetlist=null;
+    if(mode==='replay')$('gameModeLabel').textContent='REPLAY / AUCUN RECORD';
     app.takeStarted=new Date().toISOString();app.frameError=false;return true;
   });
   wrap('finish',async prev=>{
-    if(app.finishing)return;const mode=app.mode,at=app.audio.time;await prev();if(mode==='pv'||!app.lastResult)return;
-    const result=app.lastResult,stats=C.timingStats(result.errors),log=result.log||[];
+    if(app.finishing)return;
+    const completion=await prev();if(!completion?.result)return completion;
+    const {mode,result,chart,song,profile,noFail,practice}=completion,stats=C.timingStats(result.errors),log=result.log||[];
     if(mode==='play'){
-      let last=-Infinity;const inputs=app.replayInputs.map(e=>({...e,time:(last=Math.max(e.time,last))}));
-      app.lastReplay={format:'DIVA-PULSE-REPLAY',version:1,engine:C.VERSION,judgmentProfile:app.engine.profile,chart:structuredClone(app.gameChart),songId:app.song.id,audioHash:app.song.audioHash||null,demoId:app.song.demoId||null,title:app.song.title,inputs,endTime:at,noFail:app.settings.noFail,result,created:app.takeStarted};
-      app.v3State.sessions.push({songId:app.song.id,chartId:app.gameChart.id,signature:C.chartSignature(app.gameChart),judgmentProfile:app.engine.profile,title:app.song.title,difficulty:app.gameChart.difficulty,accuracy:result.accuracy,score:result.score,fullCombo:result.fullCombo,mode:app.settings.noFail?'no-fail':'play',date:app.takeStarted});
-      app.v3State.sessions=app.v3State.sessions.slice(-200);try{await app.store.put('settings',app.v3State);}catch(e){app.toast('Historique non sauvegardé : '+e.message,true);}
+      let last=-Infinity;
+      const inputs=completion.inputs.map(e=>({...e,time:(last=Math.max(e.time,last))}));
+      completion.replay={format:'DIVA-PULSE-REPLAY',version:1,engine:C.VERSION,judgmentProfile:profile,chart:structuredClone(chart),songId:song.id,audioHash:song.audioHash,demoId:song.demoId,title:song.title,inputs,endTime:completion.endTime,noFail,result,created:completion.started};
+      if(completion.current())app.lastReplay=completion.replay;
+      const session={songId:song.id,chartId:chart.id,signature:C.chartSignature(chart),judgmentProfile:profile,title:song.title,difficulty:chart.difficulty,accuracy:result.accuracy,score:result.score,fullCombo:result.fullCombo,mode:noFail?'no-fail':'play',date:completion.started};
+      const write=async()=>{
+        const next={...app.v3State,sessions:[...app.v3State.sessions,session].slice(-200)};
+        await app.store.put('settings',next);
+        app.v3State={...app.v3State,sessions:next.sessions};
+      };
+      const pending=(app.sessionWrite||Promise.resolve()).catch(()=>{}).then(write);app.sessionWrite=pending;
+      try{await pending;}catch(e){app.toast('Historique non sauvegardé : '+e.message,true);}
     }
+    if(!completion.current())return completion;
     $('performanceStats').innerHTML=`<div><strong>${stats.median.toFixed(1)} ms</strong><small>MÉDIANE</small></div><div><strong>${stats.deviation.toFixed(1)} ms</strong><small>DISPERSION</small></div><div><strong>${stats.early} / ${stats.late}</strong><small>AVANCE / RETARD</small></div><div><strong>${stats.center}</strong><small>DANS ±5 MS</small></div>`;
     $('exportReplay').hidden=$('watchReplay').hidden=mode!=='play';$('applyTiming').hidden=mode!=='play'||stats.suggestion===null;app.timingSuggestion=stats.suggestion;
     const suggestions=$('practiceSuggestions');suggestions.replaceChildren();
-    if(!['autoplay','replay'].includes(mode)){const bad=C.practiceSegments(mode==='practice'?{...app.gameChart,notes:app.gameChart.notes.filter(n=>n.time+app.gameChart.offset>=app.practice.from&&n.time+app.gameChart.offset<app.practice.to)}:app.gameChart,log,app.song.duration).filter(x=>x.bad>0).slice(0,3);if(bad.length){let h=document.createElement('p');h.textContent='Reprendre les passages difficiles :';suggestions.append(h);for(const s of bad){let b=document.createElement('button');b.textContent=`${app.formatTime(s.from)} – ${app.formatTime(s.to)} · ${s.bad} notes à retravailler`;b.onclick=()=>app.run(()=>app.startGame('practice',{from:s.from,to:s.to,rate:.75,loop:true}),'Préparation du passage…');suggestions.append(b);}}}
+    if(!['autoplay','replay'].includes(mode)){const bad=C.practiceSegments(mode==='practice'?{...chart,notes:chart.notes.filter(n=>n.time+chart.offset>=practice.from&&n.time+chart.offset<practice.to)}:chart,log,song.duration).filter(x=>x.bad>0).slice(0,3);if(bad.length){let h=document.createElement('p');h.textContent='Reprendre les passages difficiles :';suggestions.append(h);for(const s of bad){let b=document.createElement('button');b.textContent=`${app.formatTime(s.from)} – ${app.formatTime(s.to)} · ${s.bad} notes à retravailler`;b.onclick=()=>app.run(()=>app.startGame('practice',{from:s.from,to:s.to,rate:.75,loop:true}),'Préparation du passage…');suggestions.append(b);}}}
     if(mode==='replay')$('resultMode').textContent='REPLAY · AUCUN RECORD';
     $('setlistNext').hidden=!app.activeSetlist||app.activeSetlist.index>=app.activeSetlist.entries.length-1;
+    return completion;
   });
   bind('exportReplay',()=>{if(app.lastReplay)S.download(JSON.stringify(app.lastReplay),app.lastReplay.title+'.pulsereplay');});
   bind('watchReplay',()=>{app.pendingReplay=app.lastReplay;return app.run(()=>app.startGame('replay'),'Lecture du replay…');});
@@ -135,7 +146,7 @@ function install(app){
       if(prefs)prefs=root.PulseQuality.preferences(prefs,{strict:true}).value;
       const catalogState={id:'v4-catalog',entries:C.mergeCatalog(this.catalogState?.entries||[],incomingCatalog).entries};
       const drafts=(raw.drafts||[]).map(d=>{const songId=songMap.get(d.songId);if(!songId)throw Error('Le morceau du brouillon est absent du pack.');return {...d,id:`draft:${songId}:${d.originalId}`,songId,chart:C.validateChart(d.chart)};});
-      const directorDrafts=(raw.directorDrafts||[]).map(d=>{const owner=songs.find(s=>s.id===songMap.get(d.songId));if(!owner?.scene?.mmd)throw Error('Brouillon Director : morceau ou pack manquant.');return {...d,id:'director-draft:'+owner.id,songId:owner.id,packId:owner.scene.mmd.id,director:root.PulseDirector.remapScene({mmdDirector:d.director},idMap).mmdDirector};});
+      const directorDrafts=(raw.directorDrafts||[]).map(d=>{const owner=songs.find(s=>s.id===songMap.get(d.songId));if(!owner?.scene?.mmd)throw Error('Brouillon Director : morceau ou pack manquant.');return {...d,id:'director-draft:'+owner.id,songId:owner.id,packId:root.PulseDirectorEdit.restoredRecoveryPackId(d,raw.songs.find(s=>s.id===d.songId),owner),director:root.PulseDirector.remapScene({mmdDirector:d.director},idMap).mmdDirector};});
       const faceDrafts=root.PulseFaceDrafts.remap(raw.faceDrafts||[],songMap,idMap);
       const physicsDrafts=root.PulsePhysicsDrafts.remap(raw.physicsDrafts||[],songMap,songs);
       const state5={id:'v5-state',academy};

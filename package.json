@@ -1,6 +1,6 @@
 {
   "name": "diva-pulse",
-  "version": "36.0.0",
+  "version": "37.0.0",
   "private": true,
   "description": "Offline rhythm game with coherent AutoMap and an editable MMD Director",
   "scripts": {
@@ -21,7 +21,9 @@
     "test:browser:vault": "python3 tests/v34_browser_test.py",
     "test:browser:lifecycle": "python3 tests/v35_playback_browser.py",
     "test:browser:archives": "python3 tests/v36_archive_browser.py",
-    "test:browser:motion": "python3 tests/v36_motion_browser.py"
+    "test:browser:motion": "python3 tests/v36_motion_browser.py",
+    "test:browser:recovery": "python3 tests/v37_recovery_browser.py",
+    "test:browser:records-replays": "python3 tests/v37_record_replay_browser.py"
   },
   "engines": {
     "node": ">=22"

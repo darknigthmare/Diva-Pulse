@@ -30,12 +30,12 @@ jobs:
         env:
           REVIEW_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          mkdir -p qa/v34 qa/v35 qa/v36
-          printf 'Review head: %s\nChecked-out commit: %s\n' "$REVIEW_HEAD" "$(git rev-parse HEAD)" > qa/v36/commit.txt
-          python3 tools/verify_release.py | tee qa/v36/release-check.txt
+          mkdir -p qa/v34 qa/v35 qa/v36 qa/v37
+          printf 'Review head: %s\nChecked-out commit: %s\n' "$REVIEW_HEAD" "$(git rev-parse HEAD)" > qa/v37/commit.txt
+          python3 tools/verify_release.py | tee qa/v37/release-check.txt
           git diff --exit-code -- index.html DIVA_PULSE_JOUER.html
-          npm test | tee qa/v36/logic.tap
-          python3 tests/launcher_test.py | tee qa/v36/launcher.txt
+          npm test | tee qa/v37/logic.tap
+          python3 tests/launcher_test.py | tee qa/v37/launcher.txt
       - name: Install pinned driver and identify the runner browser
         timeout-minutes: 4
         run: |
@@ -43,11 +43,13 @@ jobs:
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$BROWSER"
           printf 'CHROMIUM_PATH=%s\n' "$BROWSER" >> "$GITHUB_ENV"
-          "$BROWSER" --version | tee qa/v36/browser-version.txt
-          python3 -m pip show playwright > qa/v36/driver-version.txt
-      - name: Run fresh archives, motion, playback and regression scenarios
+          "$BROWSER" --version | tee qa/v37/browser-version.txt
+          python3 -m pip show playwright > qa/v37/driver-version.txt
+      - name: Run fresh recovery, records and previous browser scenarios
         run: |
-          rm -f qa/v34/{vault-live,feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v35/playback/results.json qa/v36/archive/results.json qa/v36/motion/results.json qa/v36/verified.json
+          rm -f qa/v34/{vault-live,feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v35/playback/results.json qa/v36/archive/results.json qa/v36/motion/results.json qa/v37/recovery/results.json qa/v37/records-replays/results.json qa/v37/verified.json
+          xvfb-run -a python3 tests/v37_recovery_browser.py | tee qa/v37/recovery-run.log
+          xvfb-run -a python3 tests/v37_record_replay_browser.py | tee qa/v37/records-replays-run.log
           xvfb-run -a python3 tests/v36_archive_browser.py | tee qa/v36/archive-run.log
           xvfb-run -a python3 tests/v36_motion_browser.py | tee qa/v36/motion-run.log
           xvfb-run -a python3 tests/v35_playback_browser.py | tee qa/v35/playback-run.log
@@ -60,15 +62,16 @@ jobs:
           xvfb-run -a python3 tests/v29_persistence_test.py | tee qa/v34/persistence-run.log
           xvfb-run -a python3 tests/v32_transactions_test.py | tee qa/v34/transactions-run.log
       - name: Check current evidence and exact Excel against the backlog
-        run: python3 tools/verify_pr36.py
+        run: python3 tools/verify_pr37.py
       - name: Preserve commit-linked evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: diva-pulse-v36-${{ github.run_id }}
+          name: diva-pulse-v37-${{ github.run_id }}
           path: |
             qa/v34/
             qa/v35/
             qa/v36/
-            planning/DIVA_PULSE_MANQUANTS_V36.xlsx
+            qa/v37/
+            planning/DIVA_PULSE_MANQUANTS_V37.xlsx
           retention-days: 30
