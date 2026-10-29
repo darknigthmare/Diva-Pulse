@@ -17,6 +17,7 @@ Q = Path(os.getenv('PULSE_QA_DIR', str(R / 'qa/v37/records-replays')))
 Q.mkdir(parents=True, exist_ok=True)
 build_hash = hashlib.sha256((R / 'index.html').read_bytes()).hexdigest()
 checks, errors = [], []
+error_details, http_errors = [], []
 failure = None
 
 class Quiet(SimpleHTTPRequestHandler):
@@ -41,7 +42,24 @@ try:
         p = browser.new_page(viewport={'width': 1280, 'height': 900})
         p.set_default_timeout(30000)
         p.on('pageerror', lambda e: errors.append(str(e)))
-        p.on('console', lambda message: errors.append(message.text) if message.type == 'error' else None)
+        def collect_console(message):
+            if message.type != 'error':
+                return
+            errors.append(message.text)
+            detail = {'message': message.text, 'location': message.location,
+                      'afterCheck': checks[-1]['name'] if checks else 'startup'}
+            error_details.append(detail)
+            print('BROWSER_ERROR ' + json.dumps(detail), flush=True)
+
+        def collect_response(response):
+            if response.status < 400:
+                return
+            detail = {'status': response.status, 'url': response.url}
+            http_errors.append(detail)
+            print('HTTP_ERROR ' + json.dumps(detail), flush=True)
+
+        p.on('console', collect_console)
+        p.on('response', collect_response)
         p.goto(f'http://127.0.0.1:{server.server_port}/', wait_until='domcontentloaded')
         p.wait_for_function('window.PulseApp && document.documentElement.dataset.live34Ready === "true" && !PulseApp.busy')
         p.evaluate("""async()=>{
@@ -334,6 +352,7 @@ if not unchanged and not failure:
     'version': (R / 'VERSION.txt').read_text().strip(), 'buildSha256': build_hash,
     'passed': sum(c['passed'] for c in checks), 'failed': sum(not c['passed'] for c in checks),
     'failure': failure, 'errors': errors, 'checks': checks, 'buildUnchanged': unchanged,
+    'errorDetails': error_details, 'httpErrors': http_errors,
     'nativeHTTP': True, 'nativeIndexedDB': True, 'nativeWebAudio': True,
     'scope': 'Production methods and controls on native HTTP/IndexedDB/Web Audio; original silent test buffers, controlled timestamps, injected visibility/blur, deferred promises and one intentional native transaction abort. No historical-replay, physical-latency or multi-window concurrency certification.'
 }, ensure_ascii=False, indent=2) + '\n')
