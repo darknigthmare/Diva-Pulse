@@ -22,3 +22,9 @@ Les attentes de lecture/écriture sont volontairement différées pour rendre le
 | Total navigateur, sans double comptage | 365 |
 
 La V37 ajoute 107 tests Node et 81 contrôles navigateur. Le reçu `verified.json` n’est produit que lorsque tous les ensembles exigés réussissent sur le même build et que le classeur correspond à son empreinte attendue.
+
+## Correction du chargement de l’icône
+
+Le premier passage CI de V37 a signalé une erreur console HTTP 404. Une seconde exécution, avec les mêmes assertions et un diagnostic enrichi, a identifié la requête implicite `/favicon.ico` au démarrage sous Chrome 156 : [journal de diagnostic](https://github.com/darknigthmare/Diva-Pulse/actions/runs/40931179457).
+
+L’icône PNG existante est désormais embarquée en `data:` dans le template et les deux HTML autonomes. Le test conserve le refus des erreurs console ; il enregistre aussi leur emplacement, le dernier contrôle effectué et les réponses HTTP en erreur. Les preuves courantes sont régénérées sur le build corrigé, sans modifier les compteurs ni les statuts du suivi.
