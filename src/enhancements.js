@@ -56,10 +56,10 @@ function install(app){
     if(mode==='replay'){
       if(!app.pendingReplay)throw Error('Aucun replay chargé.');const savedCharts=app.song.charts,savedID=app.selectedChartId,savedDiff=app.difficulty;
       const c=app.pendingReplay.chart;app.song.charts=[...savedCharts,c];app.selectedChartId=c.id;app.difficulty=c.difficulty;
-      try{await prev(mode,practice);app.engine=new C.JudgeEngine(c,{noFail:app.pendingReplay.noFail,judgmentProfile:app.pendingReplay.judgmentProfile||'standard',legacyChains:String(app.pendingReplay.engine||'').startsWith('3.')});app.gameChart=structuredClone(c);$('gameModeLabel').textContent='REPLAY / AUCUN RECORD';}
+      try{if(await prev(mode,practice)===false)return false;app.engine=new C.JudgeEngine(c,{noFail:app.pendingReplay.noFail,judgmentProfile:app.pendingReplay.judgmentProfile||'standard',legacyChains:String(app.pendingReplay.engine||'').startsWith('3.')});app.gameChart=structuredClone(c);$('gameModeLabel').textContent='REPLAY / AUCUN RECORD';}
       finally{app.song.charts=savedCharts;app.selectedChartId=savedID;app.difficulty=savedDiff;}
-    }else await prev(mode,practice);
-    app.takeStarted=new Date().toISOString();app.frameError=false;
+    }else if(await prev(mode,practice)===false)return false;
+    app.takeStarted=new Date().toISOString();app.frameError=false;return true;
   });
   wrap('finish',async prev=>{
     if(app.finishing)return;const mode=app.mode,at=app.audio.time;await prev();if(mode==='pv'||!app.lastResult)return;

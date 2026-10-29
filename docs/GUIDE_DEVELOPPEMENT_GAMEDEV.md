@@ -9,6 +9,10 @@ Ce guide traduit une sélection de fiches du catalogue [awesome-gamedev-agent-sk
 - Catalogue retenu : commit `19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9`. Les liens ci-dessous sont figés à cette révision.
 - Suivi de référence : [BACKLOG_V34.json](../planning/BACKLOG_V34.json) et [Excel V34](../planning/DIVA_PULSE_MANQUANTS_V34.xlsx), 136 points dont 87 ouverts à la date de l'examen. Cette sélection ne change aucun statut.
 
+## Première application — V35
+
+La sélection ci-dessus garde sa base historique V34. La première application est décrite dans [V35 — Rythme fiable](V35_RYTHME_FIABLE.md) : ordre des jugements indépendant des images pour des entrées livrées chronologiquement, annulation des préparations audio périmées, cibles visibles jusqu'à la borne du profil et [contrat des règles maison](REGLES_DIVA_PULSE_V1.md). Le [suivi V35](../planning/BACKLOG_V35.json) contient les nouveaux constats. `GAME-01` passe à Partiel ; les validations matérielles restent ouvertes.
+
 ## Le contrat technique du projet
 
 | Domaine | Sources à lire avant modification | Contrat |

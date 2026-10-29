@@ -1,7 +1,7 @@
 /* DIVA PULSE 3 — independent rhythm engine. No official game code or assets. */
 (function (root) {
     'use strict';
-    const VERSION = '34.0.0';
+    const VERSION = '35.0.0';
     const LANES = ['△', '□', '×', '○', '‹', '›'];
     const DIFFICULTIES = ['EASY', 'NORMAL', 'HARD', 'EXTREME', 'EX EXTREME'];
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -93,7 +93,7 @@
           this.from=from;this.to=to;
           this.notes=this.chart.notes.map(n=>({...n,state:n.time+this.chart.offset<from-1e-7||n.time+this.chart.offset>=to?'skipped':'pending'}));
           this.total=this.notes.filter(n=>n.state!=='skipped').length;this.combo=0;this.maxCombo=0;this.score=0;this.holdBonus=0;this.life=127;
-          this.counts={COOL:0,FINE:0,SAFE:0,SAD:0,MISS:0,WRONG:0};this.errors=[];this.log=[];this.activeHolds=new Map();this.held=new Set();this.heldSince=new Map();this.chainArmed=new Set();this.events=[];this.lastTime=from;this.cursor=0;this.failed=false;this.processed=0;
+          this.counts={COOL:0,FINE:0,SAFE:0,SAD:0,MISS:0,WRONG:0};this.errors=[];this.log=[];this.activeHolds=new Map();this.held=new Set();this.heldSince=new Map();this.chainArmed=new Set();this.events=[];this.lastTime=from;this.cursor=0;this.failed=false;this.processed=0;this._updating=false;
         }
         accrueHolds(time,autoplay=false){
           for(const [lane,h] of this.activeHolds){
@@ -115,10 +115,15 @@
             this.failed = true; }
         press(lane, time) {
             if (!Number.isInteger(lane)||lane<0||lane>5||!Number.isFinite(time)) return null;
+            // Input timestamps, not the last rendered frame, close held chains.
+            // Autoplay calls this method from update and must not advance twice.
+            // Delayed input cannot roll back events or HOLD points already settled.
+            // Only advance chronologically; a new press keeps its explicit timestamp.
+            if (!this._updating && time >= this.lastTime) this.update(time);
             this.accrueHolds(time);
-            this.lastTime = time;
             if (this.held.has(lane))
                 return null;
+            this.lastTime = time;
             this.held.add(lane);this.heldSince.set(lane,time);
             this.activeHolds.delete(lane);
             const search = time - this.chart.offset;
@@ -145,47 +150,69 @@
                 this.activeHolds.set(lane, { start: time, end: time + Math.min(best.duration || 5, 5), awarded: 0, note: best });
             return { note: best, rating, delta };
         }
-        release(lane,time=this.lastTime) { if(!Number.isInteger(lane)||lane<0||lane>5||!Number.isFinite(time))return; this.accrueHolds(time); this.held.delete(lane);this.heldSince.delete(lane);this.chainArmed.delete(lane); this.activeHolds.delete(lane); }
+        release(lane,time=this.lastTime) {
+            if(!Number.isInteger(lane)||lane<0||lane>5||!Number.isFinite(time))return;
+            if (!this._updating && time >= this.lastTime) this.update(time);
+            this.accrueHolds(time);this.held.delete(lane);this.heldSince.delete(lane);this.chainArmed.delete(lane);this.activeHolds.delete(lane);
+        }
         clearInputs() { this.held.clear();this.heldSince.clear();this.chainArmed.clear(); this.activeHolds.clear(); }
         update(time, autoplay = false) {
-            if (!Number.isFinite(time))
+            if (!Number.isFinite(time) || this._updating)
                 return;
-            this.lastTime = time;
-            if (autoplay) {
-                for (let i = this.cursor; i < this.notes.length; i++) {
-                    const n = this.notes[i], t = n.time + this.chart.offset;
-                    if (t > time)
-                        break;
-                    if (n.state === 'pending') {
-                        this.release(n.lane,t);
-                        this.press(n.lane, t);
-                        if (n.type !== 'hold' && n.type !== 'chain')
-                            this.release(n.lane,t);
-                    }
-                }
+            this._updating = true;
+            try {
                 this.lastTime = time;
-            }
-            else {
-                for (let i = this.cursor; i < this.notes.length; i++) {
-                    const n = this.notes[i], t = n.time + this.chart.offset;
-                    if (t > time)
-                        break;
-                    if (n.state === 'pending' && n.type === 'chain' && n.lane > 3 && (this.options.legacyChains || this.chainArmed.has(n.lane)) && this.held.has(n.lane) && (this.heldSince.get(n.lane)??Infinity)<=t) {
-                        this.accrueHolds(t);this.lastTime=t;this.event(n, 'COOL', 0);this.lastTime=time;
-                        this.activeHolds.set(n.lane, { start: t, end: t + Math.min(n.duration || .3, 5), awarded: 0, note: n });
+                let expiry = this.cursor;
+                // MISS deadlines and held chains share one chronological order.
+                // Keep the late boundary inclusive and scan expirations only once,
+                // even when a stalled frame crosses many notes.
+                const expireBefore = until => {
+                    while (expiry < this.notes.length) {
+                        const n = this.notes[expiry], t = n.time + this.chart.offset;
+                        if (t >= until - this.windows[3]) break;
+                        expiry++;
+                        if (n.state === 'pending') {
+                            const deadline = t + this.windows[3];
+                            this.accrueHolds(deadline);
+                            this.lastTime = deadline;
+                            this.event(n, 'MISS');
+                        }
+                    }
+                };
+                if (autoplay) {
+                    for (let i = this.cursor; i < this.notes.length; i++) {
+                        const n = this.notes[i], t = n.time + this.chart.offset;
+                        if (t > time)
+                            break;
+                        if (n.state === 'pending') {
+                            this.release(n.lane,t);
+                            this.press(n.lane, t);
+                            if (n.type !== 'hold' && n.type !== 'chain')
+                                this.release(n.lane,t);
+                        }
                     }
                 }
+                else {
+                    for (let i = this.cursor; i < this.notes.length; i++) {
+                        const n = this.notes[i], t = n.time + this.chart.offset;
+                        if (t > time)
+                            break;
+                        if (n.state === 'pending' && n.type === 'chain' && n.lane > 3 && (this.options.legacyChains || this.chainArmed.has(n.lane)) && this.held.has(n.lane) && (this.heldSince.get(n.lane)??Infinity)<=t) {
+                            expireBefore(t);
+                            this.accrueHolds(t);this.lastTime=t;this.event(n, 'COOL', 0);
+                            this.activeHolds.set(n.lane, { start: t, end: t + Math.min(n.duration || .3, 5), awarded: 0, note: n });
+                        }
+                    }
+                }
+                expireBefore(time);
+                while (this.cursor < this.notes.length && this.notes[this.cursor].state !== 'pending')
+                    this.cursor++;
+                this.lastTime = time;
+                this.accrueHolds(time,autoplay);
             }
-            for (let i = this.cursor; i < this.notes.length; i++) {
-                let n = this.notes[i];
-                if (n.time + this.chart.offset >= time - this.windows[3])
-                    break;
-                if (n.state === 'pending')
-                    this.event(n, 'MISS');
+            finally {
+                this._updating = false;
             }
-            while (this.cursor < this.notes.length && this.notes[this.cursor].state !== 'pending')
-                this.cursor++;
-            this.accrueHolds(time,autoplay);
         }
         finish() { for (const n of this.notes)
             if (n.state === 'pending')

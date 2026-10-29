@@ -17,13 +17,15 @@ function install(app){
   epoch++;
   if(app.directorAudition?.playing){app.pauseDirectorAudition();if($('directorMessage'))$('directorMessage').textContent='Écoute mise en pause. Reprendre explicitement pour continuer.';}
   if(app.editor?.listening||app.editor?.recording)app.editor.stop();
-  if(app.view==='game'&&!app.paused)app.pause();
+  // Preparing the next loop is paused internally but still needs the pause UI.
+  if(app.view==='game'&&(!app.paused||app.pitchPreparing))app.pause();
+  app.cancelPitch?.();
   app.feedback33?.sounds.stop();
  };
  const interrupted=()=>{if(boundContext&&boundContext.state!=='running')stopPreview();};
  const attach=()=>{const ctx=app.audio.ctx;if(ctx===boundContext)return;if(boundContext)boundContext.removeEventListener?.('statechange',interrupted);boundContext=ctx;ctx?.addEventListener?.('statechange',interrupted);};
  // Statechange can be delayed, so reconcile before inputs and rendering too.
- const reconcile=()=>{attach();if((document.hidden||boundContext?.state==='interrupted'||boundContext?.state==='suspended'||boundContext?.state==='closed')&&((app.view==='game'&&!app.paused&&app.audio.playing)||app.directorAudition?.playing||app.editor?.listening))stopPreview();};
+ const reconcile=()=>{attach();if((document.hidden||boundContext?.state==='interrupted'||boundContext?.state==='suspended'||boundContext?.state==='closed')&&((app.view==='game'&&((!app.paused&&app.audio.playing)||app.pitchPreparing))||app.directorAudition?.playing||app.editor?.listening))stopPreview();};
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPreview();});
  window.addEventListener('pagehide',stopPreview);
  wrap('resume',async(old,...args)=>{try{return await old(...args);}catch(e){app.toast('Reprise audio impossible : '+e.message,true);return false;}});

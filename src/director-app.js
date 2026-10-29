@@ -42,7 +42,7 @@ function install(app){
  wrap('applySettings',old=>{if(!Object.hasOwn(C.JUDGMENT_PROFILES,app.settings.judgmentProfile))app.settings.judgmentProfile='standard';old();});
  wrap('renderSettings',old=>{old();$('judgmentProfile').value=app.settings.judgmentProfile||'standard';$('judgmentWindows').textContent='COOL / FINE / SAFE / SAD : ±'+C.JUDGMENT_PROFILES[$('judgmentProfile').value].map(v=>Math.round(v*1000)).join(' / ±')+' ms.';});
  $('judgmentProfile').onchange=()=>app.run(async()=>{const candidate={...app.settings,judgmentProfile:C.judgmentProfile($('judgmentProfile').value)};await app.store.put('settings',candidate);app.settings=candidate;app.renderSettings();app.renderLibrary();},'Enregistrement du profil…');
- wrap('startGame',async(old,...args)=>{await old(...args);if(app.engine)$('gameModeLabel').textContent+=' · '+app.engine.profile.toUpperCase();});
+ wrap('startGame',async(old,...args)=>{const result=await old(...args);if(result===false)return false;if(app.engine)$('gameModeLabel').textContent+=' · '+app.engine.profile.toUpperCase();return result;});
  wrap('finish',async old=>{await old();if(app.lastResult&&app.engine)$('resultMode').textContent+=' · '+app.engine.profile.toUpperCase();});
  const panel=$('mmdPanel');panel.insertAdjacentHTML('beforeend',`<div class="buttons"><button id="importMmdFolder">＋ Importer un dossier</button><button id="openMmdDirector" class="primary">DIRECTOR · TIMELINE & PLANS</button></div><input id="mmdFolderInput" type="file" webkitdirectory multiple hidden>`);
  let session=null,previewTimer=null;

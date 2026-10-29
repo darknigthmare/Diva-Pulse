@@ -18,6 +18,10 @@ function install(app){
  wrap('init',async prev=>{await prev();app.renderSettings();document.documentElement.dataset.v5Ready='true';});
  // One stretch buffer at a time; cancel and release its worker on exit.
  app.cancelPitch=function(){this.pitchGeneration++;this.pitchAbort?.abort();this.pitchAbort=null;this.pitchPreparing=false;$('pitchWait').hidden=true;};
+ // Capture the request before the first await, including the live interruption epoch.
+ // A late worker result must never authorize a new playback request by itself.
+ const playbackRequest=()=>({generation:app.pitchGeneration,epoch:app.liveEpoch34?.(),song:app.song,chart:app.chart,gameChart:app.gameChart,practice:app.practice});
+ const currentPlaybackRequest=r=>r.generation===app.pitchGeneration&&r.epoch===app.liveEpoch34?.()&&r.song===app.song&&r.chart===app.chart&&r.gameChart===app.gameChart&&r.practice===app.practice&&!document.hidden;
  app.preparePitch=async function(practice){
    if(!practice?.preservePitch||Math.abs(practice.rate-1)<1e-8){audio.stretched=null;return;}
    const generation=this.pitchGeneration;await this.prepareAudio();if(generation!==this.pitchGeneration)throw Error('Préparation audio annulée.');const original=this.buffer;
@@ -67,24 +71,42 @@ function install(app){
  });
  wrap('startGame',async(prev,mode='play',practice=null)=>{
    app.cancelPitch();audio.stretched=null;const options=app.nextPracticeAudio;app.nextPracticeAudio=null;
-   if(mode==='practice'){practice=C.safePractice({...practice,preservePitch:options?.preservePitch??practice?.preservePitch??app.settings.preservePitchDefault,countClicks:options?.countClicks??practice?.countClicks??app.settings.practiceClicksDefault},app.song.duration);await app.preparePitch(practice);}
-   await prev(mode,practice);app.schedulePracticeCount();
+   const request=playbackRequest();
+   if(mode==='practice'){
+     practice=C.safePractice({...practice,preservePitch:options?.preservePitch??practice?.preservePitch??app.settings.preservePitchDefault,countClicks:options?.countClicks??practice?.countClicks??app.settings.practiceClicksDefault},app.song.duration);
+     try{await app.preparePitch(practice);}catch(e){if(!currentPlaybackRequest(request))return false;throw e;}
+   }
+   if(!currentPlaybackRequest(request))return false;
+   const result=await prev(mode,practice);if(result!==false)app.schedulePracticeCount();return result;
  });
  app.restartPracticeLoop=async function(){
-   if(this.pitchPreparing||this.paused||!this.practice)return;
-   const token=++this.pitchGeneration;this.pitchPreparing=true;this.paused=true;audio.pause();this.clearSources();
+   this.reconcileAudio34?.();
+   if(this.pitchPreparing||this.paused||!this.practice||document.hidden||audio.ctx?.state!=='running')return false;
+   const token=++this.pitchGeneration,request=playbackRequest(),practice=this.practice;
+   this.pitchPreparing=true;this.paused=true;audio.pause();this.clearSources();
    try{
-     this.engine?.reset(this.practice.from,this.practice.to);audio.pausedAt=this.practice.from-1.7;
-     if(this.practice.preservePitch&&Math.abs(this.practice.rate-1)>1e-8){$('pitchWait').hidden=false;$('pitchWaitText').textContent='Préparation locale de l’audio…';}
-     await this.preparePitch(this.practice);
-     if(token!==this.pitchGeneration||this.view!=='game')return;
-     audio.play(this.buffer,this.practice.from-1.7,this.practice.rate);$('pvVideo').playbackRate=this.practice.rate;this.bursts=[];this.lastJudgment=null;this.schedulePracticeCount();this.paused=false;
-   }catch(e){if(token===this.pitchGeneration){this.paused=false;this.pause();this.toast(e.message,true);}}
+     this.engine?.reset(practice.from,practice.to);audio.pausedAt=practice.from-1.7;
+     if(practice.preservePitch&&Math.abs(practice.rate-1)>1e-8){$('pitchWait').hidden=false;$('pitchWaitText').textContent='Préparation locale de l’audio…';}
+     await this.preparePitch(practice);
+     this.reconcileAudio34?.();
+     if(!currentPlaybackRequest(request)||this.view!=='game'||this.finishing||!this.paused||audio.ctx?.state!=='running')return false;
+     audio.play(this.buffer,practice.from-1.7,practice.rate);$('pvVideo').playbackRate=practice.rate;this.bursts=[];this.lastJudgment=null;this.schedulePracticeCount();this.paused=false;return true;
+   }catch(e){if(currentPlaybackRequest(request)&&this.view==='game'){this.paused=false;this.pause();this.toast(e.message,true);}return false;}
    finally{if(token===this.pitchGeneration){this.pitchPreparing=false;$('pitchWait').hidden=true;}}
  };
  bind('cancelPitchLoop',()=>{app.cancelPitch();app.closeModal();return app.showView('library');});
  wrap('showView',async(prev,view)=>{if(view!=='game'){app.cancelPitch();audio.stretched=null;}app.midiLearn=null;if($('cancelMIDILearn'))$('cancelMIDILearn').hidden=true;app.midiRouter?.clear();await prev(view);});
- wrap('resume',async prev=>{if(app.paused&&app.practice?.preservePitch){await app.preparePitch(app.practice);audio.rate=app.practice.rate;}return prev();});
+ wrap('resume',async prev=>{
+   if(!app.paused||app.view!=='game'||app.finishing||document.hidden)return false;
+   app.cancelPitch();const request=playbackRequest();
+   if(app.practice?.preservePitch){
+     try{await app.preparePitch(app.practice);}catch(e){if(!currentPlaybackRequest(request))return false;throw e;}
+     if(!currentPlaybackRequest(request)||!app.paused||app.view!=='game'||app.finishing)return false;
+     audio.rate=app.practice.rate;
+   }
+   if(!currentPlaybackRequest(request))return false;
+   return prev();
+ });
  wrap('pause',prev=>{if(app.pitchPreparing){app.cancelPitch();app.paused=false;}prev();app.midiRouter?.clear();});
  // Meter-aware studio: edits keep the original source immutable via existing history.
  app.renderMeters=function(){if(!ed.chart)return;const rows=$('meterList');rows.replaceChildren();

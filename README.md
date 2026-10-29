@@ -6,15 +6,20 @@ Jeu de rythme autonome : cinq difficultés, partitions éditables, AutoMap, Auto
 
 Lancer `LANCER_WINDOWS.bat` sous Windows ou `LANCER_MAC_LINUX.command` sous macOS/Linux. Python 3 doit être disponible. Autre possibilité : `python3 lancer.py`. Les données de bibliothèque restent dans le navigateur ; exporter un `.pulsebundle` avant migration ou nettoyage du stockage.
 
-## Version courante — V34
+## Version proposée — V35
 
-V34 intégrée dans `main` via la [PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1), fusionnée le 28 octobre 2026. Nettoyage explicite des médias inutilisés avec relecture transactionnelle des références ; protection des morceaux, des réglages et des brouillons ; diagnostic exportable. Mise en pause lors des interruptions audio, reprise manuelle et jauges HOLD lisibles même lorsque les effets sont coupés. Les sons sont préparés silencieusement avant le premier jugement.
+La [PR #2](https://github.com/darknigthmare/Diva-Pulse/pull/2) applique les guides gamedev au rythme et au cycle audio. `main` reste sur V34, intégrée par la [PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1).
 
-[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V34.xlsx) · [JSON](planning/BACKLOG_V34.json) · [CSV](planning/MANQUANTS_V34.csv) · [Guide V34 et limites](docs/V34_BIBLIOTHEQUE_LIVE.md)
+- Les continuations de chaînes et les MISS suivent l'ordre musical des événements. Des entrées livrées chronologiquement donnent le même résultat avec différentes cadences d'affichage simulées.
+- Les lancements, reprises et boucles devenus périmés pendant une préparation audio, scène ou vidéo sont annulés. Une interruption impose une nouvelle action explicite.
+- Les cibles restent visibles jusqu'à la fin de la fenêtre du profil de jugement, notamment les 180 ms du profil Accessible.
+- Un [contrat versionné des règles maison](docs/REGLES_DIVA_PULSE_V1.md) précise les fenêtres, barèmes, HOLD, chaînes, accords, replays et limites.
 
-Les effets localisés et les signatures Pulse/Arcade/Soft V33 restent présents, ainsi que l’écoute indépendante, la boucle A/B, le montage groupé, la grille à tempo variable, la scission/fusion de clips compatibles et les sauvegardes atomiques. [Guide V33](docs/V33_RESSENTI_GAMEPLAY.md) · [Guide V32](docs/V32_BOUCLES_SAUVEGARDES.md).
+[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V35.xlsx) · [JSON](planning/BACKLOG_V35.json) · [CSV](planning/MANQUANTS_V35.csv) · [Guide V35 et preuves](docs/V35_RYTHME_FIABLE.md)
 
-Le classeur distingue 49 points réalisés dans leur périmètre, 25 partiels, 37 à faire et 25 à valider : 87 ouverts. Il ne constitue pas un pourcentage de finition du jeu. Root motion avancé, adaptation entre squelettes, corpus MMD, latence physique et qualification sur appareils réels restent ouverts.
+Le classeur distingue 49 points réalisés dans leur périmètre, 26 partiels, 36 à faire et 25 à valider : 87 ouverts. `GAME-01` passe à Partiel ; `GAME-03`, `GAME-04` et `UX-03` reçoivent les constats et limites du correctif. Ces compteurs ne constituent pas un pourcentage de finition du jeu. Le root motion avancé, l'adaptation entre squelettes, le corpus MMD, la latence physique et la qualification sur appareils réels restent ouverts.
+
+Les fonctionnalités précédentes restent documentées dans les guides [V34](docs/V34_BIBLIOTHEQUE_LIVE.md), [V33](docs/V33_RESSENTI_GAMEPLAY.md) et [V32](docs/V32_BOUCLES_SAUVEGARDES.md).
 
 ## Guides pour la suite du développement
 

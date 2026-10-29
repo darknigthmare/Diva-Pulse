@@ -309,9 +309,39 @@
         practiceDialog() { if (!this.chart)
             return; this.openModal(`<div class="eyebrow">PRACTICE / NO RECORD</div><h2>TRAVAILLER UN PASSAGE</h2><div class="two-col"><label>Début (s)<input id="practiceFrom" type="number" min="0" max="${this.song.duration}" value="0" step=".1"></label><label>Fin (s)<input id="practiceTo" type="number" min="1" max="${this.song.duration}" value="${Math.min(this.song.duration, 20).toFixed(1)}" step=".1"></label></div><label>Vitesse audio<select id="practiceRate"><option value=".5">50 %</option><option value=".75">75 %</option><option value="1" selected>100 %</option><option value="1.25">125 %</option></select></label><label class="check"><input id="practiceLoop" type="checkbox" checked> Répéter le passage</label><p>La vitesse modifie aussi la hauteur du son dans cette version. Aucun record n’est enregistré.</p><div class="buttons"><button id="practiceStart" class="primary">COMMENCER</button></div>`); $('practiceStart').onclick = () => { let o = { from: +$('practiceFrom').value, to: +$('practiceTo').value, rate: +$('practiceRate').value, loop: $('practiceLoop').checked }; if (o.from < 0 || o.to > this.song.duration + .1 || o.to - o.from < 1)
             return this.toast('Choisir un passage valide d’au moins une seconde.', true); this.closeModal(); this.run(() => this.startGame('practice', o), 'Préparation de l’entraînement…'); }; }
-        async startGame(mode = 'play', practice = null) { if (this.view === 'editor')
-            await this.editor.autosave(); if (mode !== 'pv' && !this.chart?.notes.length)
-            throw Error('Aucune partition jouable dans cette difficulté.'); await this.prepareAudio(); await this.applyScene(); this.lastMode = mode; this.mode = mode; this.practice = mode === 'practice' ? (practice || { from: 0, to: this.song.duration, rate: 1, loop: false }) : null; this.paused = false; this.finishing = false; this.clearSources(); this.bursts = []; this.lastJudgment = null; this.frozenStageRendered = false; this.gameChart = this.chart ? structuredClone(this.chart) : C.validateChart({ title: this.song.title, notes: [] }); this.engine = mode === 'pv' ? null : new C.JudgeEngine(this.gameChart, { noFail: mode !== 'play' || this.settings.noFail, judgmentProfile:this.settings.judgmentProfile||'standard' }); const from = this.practice?.from || 0; this.engine?.reset(from,this.practice?.to??Infinity); this.audio.play(this.buffer, from - 1.7, this.practice?.rate || 1); this.view = 'game'; $('app').className = 'mode-game'; document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'game')); $('gameTitle').textContent = this.song.title; $('gameDifficulty').textContent = mode === 'pv' ? 'PV VIEWER' : this.difficulty; $('gameModeLabel').textContent = mode === 'pv' ? 'PV / CLIP' : mode === 'autoplay' ? 'AUTOPLAY / RECORDS OFF' : mode === 'practice' ? 'PRACTICE / RECORDS OFF' : this.settings.noFail ? 'NO FAIL / RECORDS OFF' : 'LIVE / NORMAL'; $('gameDuration').textContent = this.formatTime(this.song.duration); $('judgment').textContent = ''; $('combo').textContent = ''; $('lyrics').textContent = ''; $('gameScore').textContent = '00000000'; $('gameAccuracy').textContent = '—'; $('lifeFill').style.width = '50%'; $('pvCapture').hidden = mode !== 'pv'; $('touchControls').hidden = !this.settings.showTouch || mode === 'pv'; $('notesCanvas').hidden = mode === 'pv'; await this.prepareVideo(); this.closeModal(); window.scrollTo(0, 0); }
+        async startGame(mode = 'play', practice = null) {
+            const song = this.song, epoch = this.liveEpoch34?.(), generation = this.pitchGeneration;
+            const activeRequest = () => this.song === song && this.liveEpoch34?.() === epoch && this.pitchGeneration === generation && !document.hidden;
+            if (this.view === 'editor') await this.editor.autosave();
+            if (!activeRequest()) return false;
+            // Autosave may legitimately replace the selected chart or create a derived copy.
+            const chart = this.chart, current = () => activeRequest() && this.chart === chart;
+            if (mode !== 'pv' && !chart?.notes.length) throw Error('Aucune partition jouable dans cette difficulté.');
+            await this.prepareAudio();
+            if (!current() || this.audio.ctx?.state !== 'running') return false;
+            await this.applyScene();
+            if (!current() || this.audio.ctx?.state !== 'running') return false;
+            await this.prepareVideo();
+            if (!current() || this.audio.ctx?.state !== 'running') return false;
+            this.lastMode = mode; this.mode = mode;
+            this.practice = mode === 'practice' ? (practice || { from: 0, to: song.duration, rate: 1, loop: false }) : null;
+            this.paused = false; this.finishing = false; this.clearSources(); this.bursts = []; this.lastJudgment = null; this.frozenStageRendered = false;
+            this.gameChart = chart ? structuredClone(chart) : C.validateChart({ title: song.title, notes: [] });
+            this.engine = mode === 'pv' ? null : new C.JudgeEngine(this.gameChart, { noFail: mode !== 'play' || this.settings.noFail, judgmentProfile: this.settings.judgmentProfile || 'standard' });
+            const from = this.practice?.from || 0;
+            this.engine?.reset(from, this.practice?.to ?? Infinity);
+            this.audio.play(this.buffer, from - 1.7, this.practice?.rate || 1);
+            $('pvVideo').playbackRate = this.practice?.rate || 1;
+            this.view = 'game'; $('app').className = 'mode-game';
+            document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'game'));
+            $('gameTitle').textContent = song.title;
+            $('gameDifficulty').textContent = mode === 'pv' ? 'PV VIEWER' : this.difficulty;
+            $('gameModeLabel').textContent = mode === 'pv' ? 'PV / CLIP' : mode === 'autoplay' ? 'AUTOPLAY / RECORDS OFF' : mode === 'practice' ? 'PRACTICE / RECORDS OFF' : this.settings.noFail ? 'NO FAIL / RECORDS OFF' : 'LIVE / NORMAL';
+            $('gameDuration').textContent = this.formatTime(song.duration);
+            $('judgment').textContent = ''; $('combo').textContent = ''; $('lyrics').textContent = ''; $('gameScore').textContent = '00000000'; $('gameAccuracy').textContent = '—'; $('lifeFill').style.width = '50%';
+            $('pvCapture').hidden = mode !== 'pv'; $('touchControls').hidden = !this.settings.showTouch || mode === 'pv'; $('notesCanvas').hidden = mode === 'pv';
+            this.closeModal(); window.scrollTo(0, 0); return true;
+        }
         async prepareVideo() { let video = $('pvVideo'); video.pause(); video.hidden = true; if (this.videoURL) {
             URL.revokeObjectURL(this.videoURL);
             this.videoURL = null;
@@ -586,11 +616,11 @@
             const ctx = c.getContext('2d');
             ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
             ctx.clearRect(0, 0, w, h);
-            const rect = this.rect(w, h), rad = C.clamp(rect.width * .023, 16, 28) * (this.settings.noteScale||1), visual = time - this.settings.visualOffset / 1000, notes = this.engine?.notes || [];
+            const rect = this.rect(w, h), rad = C.clamp(rect.width * .023, 16, 28) * (this.settings.noteScale||1), visual = time - this.settings.visualOffset / 1000, notes = this.engine?.notes || [], lateWindow = (this.engine?.windows || C.JUDGMENT_PROFILES.standard)[3];
             let visible = [];
-            for (const n of (C.visibleNotes ? C.visibleNotes(notes, visual, this.gameChart?.offset||0, this.settings.approachSpeed) : notes)) {
+            for (const n of (C.visibleNotes ? C.visibleNotes(notes, visual, this.gameChart?.offset||0, this.settings.approachSpeed, lateWindow) : notes)) {
                 let hitTime = n.time + this.gameChart.offset, approach = n.approach / this.settings.approachSpeed;
-                if (n.state !== 'pending' || visual < hitTime - approach || visual > hitTime + .15)
+                if (n.state !== 'pending' || visual < hitTime - approach || visual > hitTime + lateWindow)
                     continue;
                 const p = C.clamp(1 - (hitTime - visual) / approach, 0, 1.1), x = rect.x + n.x * rect.width, y = rect.y + n.y * rect.height;
                 visible.push({ n, x, y, p });

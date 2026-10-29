@@ -10,4 +10,5 @@ before=(R/'index.html').read_bytes()
 subprocess.run([sys.executable,'build.py'],cwd=R,check=True)
 assert before==(R/'index.html').read_bytes()==(R/'DIVA_PULSE_JOUER.html').read_bytes()
 assert b'/*__' not in before
+assert re.search(r'<title>[^<]*\bV'+re.escape(version.split('.')[0])+r'</title>', before.decode('utf-8'))
 print(json.dumps({'version':version,'buildBytes':len(before),'sha256':hashlib.sha256(before).hexdigest(),'standaloneIdentical':True,'deterministicBuild':True}))
