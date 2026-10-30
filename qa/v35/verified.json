@@ -1,0 +1,32 @@
+{
+  "version": "35.0.0",
+  "buildSha256": "7686e98290b348daa3ac7fc607d101cc55d2ff01df94efd16ab009746f983e44",
+  "workbookSha256": "ee0ebe849d4aaea09296be9b0a773f7cafaa6935de4dfbba884699390c220ed2",
+  "logicPassed": 1200,
+  "newLogic": 158,
+  "launcherPassed": 10,
+  "browserChecks": {
+    "vault-live": 28,
+    "feedback": 22,
+    "loops": 16,
+    "audition": 32,
+    "regression-workflow": 18,
+    "regression-director": 23,
+    "regression-persistence": 14,
+    "transactions": 11,
+    "playback": 22
+  },
+  "browserTotal": 186,
+  "backlogItems": 136,
+  "done": 49,
+  "open": 87,
+  "sheets": 17,
+  "statusCounts": {
+    "Fait": 49,
+    "Partiel": 26,
+    "À faire": 36,
+    "À valider": 25
+  },
+  "backlogExcelJsonCsvIdentical": true,
+  "scope": "HTTP/IndexedDB and native Web Audio; transactional abort after deletion. Playback boundaries deliberately deferred and visibility events injected; real WSOLA worker. 23 inherited Director checks use an injected document. Software GPU and emulated viewports; no acoustic, physical-device or full MMD-corpus certification."
+}

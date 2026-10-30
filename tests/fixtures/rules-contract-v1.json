@@ -1,0 +1,148 @@
+{
+  "contractVersion": 1,
+  "ruleSet": "rules4",
+  "reference": "Diva Pulse maison ; aucune édition Project DIVA certifiée",
+  "reviewedBase": "633ead8bce01f383c016a4e155f02961e934fdba",
+  "judgments": {
+    "standard": [[0,"COOL"],[0.033,"COOL"],[0.033001,"FINE"],[0.067,"FINE"],[0.067001,"SAFE"],[0.1,"SAFE"],[0.100001,"SAD"],[0.14,"SAD"],[0.140001,"MISS"]],
+    "accessible": [[0,"COOL"],[0.045,"COOL"],[0.045001,"FINE"],[0.09,"FINE"],[0.090001,"SAFE"],[0.135,"SAFE"],[0.135001,"SAD"],[0.18,"SAD"],[0.180001,"MISS"]],
+    "precision": [[0,"COOL"],[0.025,"COOL"],[0.025001,"FINE"],[0.05,"FINE"],[0.050001,"SAFE"],[0.075,"SAFE"],[0.075001,"SAD"],[0.1,"SAD"],[0.100001,"MISS"]]
+  },
+  "rankCases": [
+    {"cool":100,"accuracy":100,"rank":"S+","cleared":true},
+    {"cool":99,"accuracy":99,"rank":"S+","cleared":true},
+    {"cool":98,"accuracy":98,"rank":"S","cleared":true},
+    {"cool":95,"accuracy":95,"rank":"S","cleared":true},
+    {"cool":94,"accuracy":94,"rank":"A","cleared":true},
+    {"cool":90,"accuracy":90,"rank":"A","cleared":true},
+    {"cool":89,"accuracy":89,"rank":"B","cleared":true},
+    {"cool":80,"accuracy":80,"rank":"B","cleared":true},
+    {"cool":79,"accuracy":79,"rank":"C","cleared":true},
+    {"cool":70,"accuracy":70,"rank":"C","cleared":true},
+    {"cool":69,"accuracy":69,"rank":"D","cleared":true},
+    {"cool":60,"accuracy":60,"rank":"D","cleared":true},
+    {"cool":59,"accuracy":59,"rank":"E","cleared":false},
+    {"cool":0,"accuracy":0,"rank":"E","cleared":false}
+  ],
+  "scenarios": [
+    {
+      "id":"TAP-01","title":"Un appui répété ne rejoue pas une note","endTime":2,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":1.01,"lane":0,"down":true},{"time":1.02,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1},"baseScore":1000,"holdBonus":0,"score":1000,"accuracy":100,"life":129,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"SCORE-01","title":"Quatre jugements différents","endTime":5,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":2,"lane":1},{"id":"c","time":3,"lane":2},{"id":"d","time":4,"lane":3}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":1.01,"lane":0,"down":false},{"time":2.05,"lane":1,"down":true},{"time":2.06,"lane":1,"down":false},{"time":3.08,"lane":2,"down":true},{"time":3.09,"lane":2,"down":false},{"time":4.12,"lane":3,"down":true},{"time":4.13,"lane":3,"down":false}],
+      "expected":{"total":4,"processed":4,"counts":{"COOL":1,"FINE":1,"SAFE":1,"SAD":1},"baseScore":2250,"holdBonus":0,"score":2250,"accuracy":56.25,"life":122,"maxCombo":2,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["COOL","FINE","SAFE","SAD"]}
+    },
+    {
+      "id":"CHORD-01","title":"Accord complet dans l'ordre inverse des lanes","endTime":2,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":1,"lane":1}],
+      "inputs":[{"time":1,"lane":1,"down":true},{"time":1,"lane":0,"down":true},{"time":1.05,"lane":0,"down":false},{"time":1.05,"lane":1,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"COOL":2},"baseScore":2000,"holdBonus":0,"score":2000,"accuracy":100,"life":131,"maxCombo":2,"combo":2,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL","COOL"]}
+    },
+    {
+      "id":"CHORD-02","title":"Un seul symbole validé dans un accord","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":1,"lane":1}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":1.05,"lane":0,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"COOL":1,"MISS":1},"baseScore":1000,"holdBonus":0,"score":1000,"accuracy":50,"life":115,"maxCombo":1,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["COOL","MISS"]}
+    },
+    {
+      "id":"WRONG-01","title":"WRONG puis bonne touche : précision 100 %, sans full combo","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0}],
+      "inputs":[{"time":1,"lane":3,"down":true},{"time":1,"lane":0,"down":true},{"time":1.05,"lane":3,"down":false},{"time":1.05,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1,"WRONG":1},"baseScore":1000,"holdBonus":0,"score":1000,"accuracy":100,"life":123,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":false,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"IDLE-01","title":"Une touche éloignée de toute note ne pénalise pas","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0}],
+      "inputs":[{"time":0.2,"lane":3,"down":true},{"time":0.3,"lane":3,"down":false},{"time":1,"lane":0,"down":true},{"time":1.05,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1},"baseScore":1000,"holdBonus":0,"score":1000,"accuracy":100,"life":129,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"HELD-01","title":"Tenir avant une tête ne la valide pas","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0}],
+      "inputs":[{"time":0,"lane":0,"down":true},{"time":1,"lane":0,"down":true},{"time":1.5,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"MISS":1},"baseScore":0,"holdBonus":0,"score":0,"accuracy":0,"life":113,"maxCombo":0,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["MISS"]}
+    },
+    {
+      "id":"HOLD-01","title":"Relâchement à 755 ms : 151 points sans pénalité de queue","endTime":4,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0,"type":"hold","duration":2}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":1.755,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1},"baseScore":1000,"holdBonus":151,"score":1151,"accuracy":100,"life":129,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"HOLD-02","title":"Durée déclarée de 30 s : plafond de 1000 points","endTime":9,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0,"type":"hold","duration":30}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":8,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1},"baseScore":1000,"holdBonus":1000,"score":2000,"accuracy":100,"life":129,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"HOLD-03","title":"Deux lanes maintenues indépendamment : 300 + 400 points","endTime":4,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0,"type":"hold","duration":2},{"id":"b","time":1,"lane":1,"type":"hold","duration":2}],
+      "inputs":[{"time":1,"lane":0,"down":true},{"time":1,"lane":1,"down":true},{"time":2.5,"lane":0,"down":false},{"time":3,"lane":1,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"COOL":2},"baseScore":2000,"holdBonus":700,"score":2700,"accuracy":100,"life":131,"maxCombo":2,"combo":2,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL","COOL"]}
+    },
+    {
+      "id":"HOLD-04","title":"Une tête SAFE ne démarre pas de bonus","endTime":4,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0,"type":"hold","duration":2}],
+      "inputs":[{"time":1.08,"lane":0,"down":true},{"time":3,"lane":0,"down":false}],
+      "expected":{"total":1,"processed":1,"counts":{"SAFE":1},"baseScore":400,"holdBonus":0,"score":400,"accuracy":40,"life":127,"maxCombo":0,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["SAFE"]}
+    },
+    {
+      "id":"CHAIN-01","title":"Trois maillons maintenus : 40 + 40 + 60 points","endTime":2,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":5,"type":"chain","duration":0.3},{"id":"b","time":1.2,"lane":5,"type":"chain","duration":0.3},{"id":"c","time":1.4,"lane":5,"type":"chain","duration":0.3}],
+      "inputs":[{"time":1,"lane":5,"down":true},{"time":2,"lane":5,"down":false}],
+      "expected":{"total":3,"processed":3,"counts":{"COOL":3},"baseScore":3000,"holdBonus":140,"score":3140,"accuracy":100,"life":133,"maxCombo":3,"combo":3,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL","COOL","COOL"]}
+    },
+    {
+      "id":"CHAIN-02","title":"Tête slide puis deux maillons : seuls les maillons portent un bonus","endTime":2,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":4,"type":"slide"},{"id":"b","time":1.2,"lane":4,"type":"chain","duration":0.3},{"id":"c","time":1.4,"lane":4,"type":"chain","duration":0.3}],
+      "inputs":[{"time":1,"lane":4,"down":true},{"time":2,"lane":4,"down":false}],
+      "expected":{"total":3,"processed":3,"counts":{"COOL":3},"baseScore":3000,"holdBonus":100,"score":3100,"accuracy":100,"life":133,"maxCombo":3,"combo":3,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL","COOL","COOL"]}
+    },
+    {
+      "id":"CHAIN-03","title":"Prémaintien sans tête valide : deux MISS","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":5,"type":"chain","duration":0.3},{"id":"b","time":1.2,"lane":5,"type":"chain","duration":0.3}],
+      "inputs":[{"time":0,"lane":5,"down":true},{"time":2,"lane":5,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"MISS":2},"baseScore":0,"holdBonus":0,"score":0,"accuracy":0,"life":99,"maxCombo":0,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["MISS","MISS"]}
+    },
+    {
+      "id":"CHAIN-04","title":"Relâchement exactement sur le maillon : le temps atteint est validé","endTime":2,"replay":true,"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":5,"type":"chain","duration":0.3},{"id":"b","time":1.2,"lane":5,"type":"chain","duration":0.3}],
+      "inputs":[{"time":1,"lane":5,"down":true},{"time":1.2,"lane":5,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"COOL":2},"baseScore":2000,"holdBonus":40,"score":2040,"accuracy":100,"life":131,"maxCombo":2,"combo":2,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL","COOL"]}
+    },
+    {
+      "id":"PRACTICE-01","title":"Intervalle [2,4[ : deux notes, avec bonus de maintien","endTime":4,"reset":[2,4],"cadence":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":2,"lane":1,"type":"hold","duration":5},{"id":"c","time":3,"lane":2},{"id":"d","time":4,"lane":3}],
+      "inputs":[{"time":2,"lane":1,"down":true},{"time":3,"lane":2,"down":true},{"time":3.05,"lane":2,"down":false},{"time":3.5,"lane":1,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"COOL":2},"baseScore":2000,"holdBonus":300,"score":2300,"accuracy":100,"life":131,"maxCombo":2,"combo":2,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["skipped","COOL","COOL","skipped"]}
+    },
+    {
+      "id":"PRACTICE-02","title":"Le maintien ne dépasse pas la fin du passage","endTime":4,"reset":[2,3],
+      "notes":[{"id":"a","time":2,"lane":0,"type":"hold","duration":5}],
+      "inputs":[{"time":2,"lane":0,"down":true}],
+      "expected":{"total":1,"processed":1,"counts":{"COOL":1},"baseScore":1000,"holdBonus":200,"score":1200,"accuracy":100,"life":129,"maxCombo":1,"combo":1,"cleared":true,"failed":false,"fullCombo":true,"rank":"S+","states":["COOL"]}
+    },
+    {
+      "id":"NEAREST-01","title":"La note de même lane la plus proche est choisie","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":1.1,"lane":0}],
+      "inputs":[{"time":1.06,"lane":0,"down":true},{"time":1.07,"lane":0,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"FINE":1,"MISS":1},"baseScore":750,"holdBonus":0,"score":750,"accuracy":37.5,"life":114,"maxCombo":1,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["MISS","FINE"]}
+    },
+    {
+      "id":"NEAREST-02","title":"Équidistance exacte : la première note chronologique gagne","endTime":2,"replay":true,
+      "notes":[{"id":"a","time":1,"lane":0},{"id":"b","time":1.25,"lane":0}],
+      "inputs":[{"time":1.125,"lane":0,"down":true},{"time":1.13,"lane":0,"down":false}],
+      "expected":{"total":2,"processed":2,"counts":{"SAD":1,"MISS":1},"baseScore":100,"holdBonus":0,"score":100,"accuracy":5,"life":105,"maxCombo":0,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":["SAD","MISS"]}
+    },
+    {
+      "id":"EMPTY-01","title":"Le moteur vide n'accorde ni clear ni full combo","endTime":1,
+      "notes":[],"inputs":[],
+      "expected":{"total":0,"processed":0,"counts":{},"baseScore":0,"holdBonus":0,"score":0,"accuracy":0,"life":127,"maxCombo":0,"combo":0,"cleared":false,"failed":false,"fullCombo":false,"rank":"E","states":[]}
+    }
+  ]
+}

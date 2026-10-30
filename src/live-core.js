@@ -7,9 +7,12 @@ const clone=v=>structuredClone(v);
 function lowerBound(notes,time){let lo=0,hi=notes.length;while(lo<hi){const m=(lo+hi)>>>1;if(notes[m].time<time)lo=m+1;else hi=m;}return lo;}
 // The import validator caps approach at 15 s. This conservative range never drops
 // a valid custom trajectory, even after a seek or changing speed.
-function visibleNotes(notes,time,offset=0,speed=1){
+function visibleNotes(notes,time,offset=0,speed=1,lateWindow=.15){
   if(!Number.isFinite(time))return [];
-  const lo=lowerBound(notes,time-offset-.151),hi=lowerBound(notes,time-offset+15/Math.max(.5,speed)+.001);
+  // This is a conservative candidate range. The renderer supplies the current
+  // judgment profile's late window, then applies each note's exact bounds.
+  const tail=Number.isFinite(lateWindow)?Math.max(0,lateWindow):.15;
+  const lo=lowerBound(notes,time-offset-tail-.001),hi=lowerBound(notes,time-offset+15/Math.max(.5,speed)+.001);
   return notes.slice(lo,hi);
 }
 function normalizeTitle(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();}

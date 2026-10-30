@@ -94,6 +94,7 @@ function install(app){
  const motion=matchMedia('(prefers-reduced-motion: reduce)'),effects=new Effects(),sounds=new SoundBank(app.audio);
  app.feedback33={effects,sounds};
  const reduced=()=>motion.matches||app.settings.reduceMotion===true;
+ app.isMotionReduced=reduced;
  const reset=()=>{effects.clear();sounds.stop();};
  app.consumeFeedback33=(event,now)=>{const c=effects.push(event,now);if(c&&!app.paused)sounds.play(event,app.settings);};
  app.drawFeedback33=function(ctx,rect,rad,now,time){
@@ -118,7 +119,7 @@ function install(app){
  };
  $('settings').insertAdjacentHTML('beforeend',`<section class="settings-card" id="feedbackSettings33"><div class="eyebrow">33 / RESSENTI DU LIVE</div><h2>CHAQUE FRAPPE COMPTE.</h2><p>Halo précis pour COOL, anneau pour FINE, croix discrète pour une erreur et jauge de maintien. Aucun changement de score ni de fenêtre de jugement.</p><label>Intensité des effets<input id="vfxIntensity" type="range" min="0" max="1" step=".05"><output id="vfxIntensityOut"></output></label><label>Signature sonore<select id="sfxStyle"><option value="pulse">Pulse · cristal</option><option value="arcade">Arcade · harmonique</option><option value="soft">Soft · doux</option></select></label><label class="check"><input id="missSound" type="checkbox"> Signaler les erreurs par un son discret</label><button id="testFeedback33">Écouter le son de réussite</button><p id="motionPreference33" role="status"></p><p>Les effets respectent « Réduire les éclats », « Réduire les mouvements » et la préférence du système. Au maximum 48 impacts et 12 sons simultanés ; aucun flash plein écran.</p></section>`);
  const sync=()=>{const o=options(app.settings);$('vfxIntensity').value=o.vfxIntensity;$('vfxIntensityOut').textContent=Math.round(o.vfxIntensity*100)+' %';$('sfxStyle').value=o.sfxStyle;$('missSound').checked=o.missSound;$('motionPreference33').textContent=reduced()?'Mouvements réduits : halos fixes, sans particules.':'Effets localisés actifs ; symboles et timing prioritaires.';};
- wrap('applySettings',prev=>{Object.assign(app.settings,options(app.settings));prev();app.stage.reduceMotion=reduced();
+ wrap('applySettings',prev=>{Object.assign(app.settings,options(app.settings));prev();syncMotion();
   if(app.audio.sfxGain)app.audio.sfxGain.gain.setTargetAtTime(app.audio.sfxVolume,app.audio.ctx.currentTime,.01);
   if(!app.settings.hitSound||app.audio.sfxVolume===0)sounds.stop();sync();});
  wrap('renderSettings',prev=>{prev();sync();});
@@ -129,7 +130,7 @@ function install(app){
  $('testFeedback33').onclick=()=>app.run(async()=>{await app.audio.init();const played=sounds.play({rating:'COOL',note:{lane:0,type:'tap'}},app.settings);app.toast(played?'Son de réussite joué.':'Sons désactivés ou volume nul : aucun son joué.');},'Essai sonore…');
  // Some browsers defer media-query change events while a surface is busy.
  // Reconcile before the existing frame as well, never after stage rendering.
- const syncMotion=()=>{const value=reduced();if(app.stage.reduceMotion!==value){effects.clear();app.stage.reduceMotion=value;sync();}};
+ const syncMotion=()=>{const value=reduced();document.documentElement.dataset.reducedMotion=String(value);if(app.stage.reduceMotion!==value){effects.clear();app.stage.reduceMotion=value;sync();}};
  motion.addEventListener?.('change',syncMotion);
  wrap('frame',(prev,ts)=>{syncMotion();return prev(ts);});
  wrap('startGame',async(prev,...args)=>{reset();return prev(...args);});

@@ -1,0 +1,161 @@
+{
+  "version": "37.0.0",
+  "buildSha256": "61d87a5929a91331b699005c4a5582e312a84abf821460fa915091f5b4bfd8ba",
+  "passed": 36,
+  "failed": 0,
+  "failure": null,
+  "errors": [],
+  "checks": [
+    {
+      "name": "HTTP boot uses native persistent IndexedDB and a running AudioContext",
+      "passed": true
+    },
+    {
+      "name": "standard / play / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "standard / play / noFail=True: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "standard / practice / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "standard / autoplay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "standard / replay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "standard / pv / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / play / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / play / noFail=True: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / practice / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / autoplay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / replay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "accessible / pv / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / play / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / play / noFail=True: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / practice / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / autoplay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / replay / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "precision / pv / noFail=False: native records stay in the correct category",
+      "passed": true
+    },
+    {
+      "name": "Navigation and the actual no-fail checkbox during commit cannot relabel the finished take",
+      "passed": true
+    },
+    {
+      "name": "An old commit preserves the newer engine, native audio playback and finishing state",
+      "passed": true
+    },
+    {
+      "name": "A completed take reaches its results while hidden and remains silent after visibility returns",
+      "passed": true
+    },
+    {
+      "name": "An older finish cannot take over a new preparation before its engine is installed",
+      "passed": true
+    },
+    {
+      "name": "Overlapping 1000/750 results, release order first-second: IndexedDB keeps 1000",
+      "passed": true
+    },
+    {
+      "name": "Overlapping 1000/750 results, release order second-first: IndexedDB keeps 1000",
+      "passed": true
+    },
+    {
+      "name": "Overlapping 750/1000 results, release order first-second: IndexedDB keeps 1000",
+      "passed": true
+    },
+    {
+      "name": "Overlapping 750/1000 results, release order second-first: IndexedDB keeps 1000",
+      "passed": true
+    },
+    {
+      "name": "A real IndexedDB abort preserves the old record and the new take replay",
+      "passed": true
+    },
+    {
+      "name": "An abandoned replay launch changes neither source library nor the previous input log",
+      "passed": true
+    },
+    {
+      "name": "Prepared replay uses its captured chart, difficulty, profile, no-fail and inputs",
+      "passed": true
+    },
+    {
+      "name": "A captured live HOLD/chord/chain replay matches the independent 4170-point oracle",
+      "passed": true
+    },
+    {
+      "name": "The actual Watch Replay button reproduces that score without replacing a record",
+      "passed": true
+    },
+    {
+      "name": "Actual pause/resume closes the HOLD and its replay at the same 1100-point result",
+      "passed": true
+    },
+    {
+      "name": "A delayed academy commit preserves the medal and cannot take over a newer live",
+      "passed": true
+    },
+    {
+      "name": "Records, take categories and the academy result survive a real reload",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser or rendering errors in record/replay scenarios",
+      "passed": true
+    }
+  ],
+  "buildUnchanged": true,
+  "errorDetails": [],
+  "httpErrors": [],
+  "nativeHTTP": true,
+  "nativeIndexedDB": true,
+  "nativeWebAudio": true,
+  "scope": "Production methods and controls on native HTTP/IndexedDB/Web Audio; original silent test buffers, controlled timestamps, injected visibility/blur, deferred promises and one intentional native transaction abort. No historical-replay, physical-latency or multi-window concurrency certification."
+}

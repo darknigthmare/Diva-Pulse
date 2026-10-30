@@ -115,3 +115,19 @@ La version du moteur est 5.0.0. Le JSON de chart reste dans le schéma natif add
 Le pack `.pulsepack` courant utilise `version:5` et ajoute `v5State:{id:"v5-state",academy:{...}}`. Chaque résultat d’Académie possède une précision de 0 à 100, un booléen `completed` et un compteur entier de tentatives entre 0 et 1 000 000. Seuls les six identifiants de leçon connus sont fusionnés. Meilleure précision, médaille acquise et maximum de tentatives sont conservés. Cette fusion ne certifie pas l’origine du résultat et n’est pas un anti-triche.
 
 Les exemples et champs V3/V4 ci-dessus restent utiles pour leur rétrocompatibilité. Les sections « V3 » décrivent le format historique, pas une promesse d’enregistrer les nouveaux réglages V5 dans une application V3.
+
+
+## Contrôle des archives de bibliothèque — V36
+
+L'import de `DIVA-PULSE-LIBRARY` accepte les numéros de schéma **2, 3, 4 et 5** ; ces numéros ne suivent pas la version du jeu. Le conteneur `.pulsebundle` demeure version **1**. Une version absente, inconnue ou de type incorrect est refusée avant toute écriture ; le binaire vérifie le manifeste avant de lire les blocs de médias.
+
+Les morceaux, médias, partitions d'un même morceau et destinations de brouillons doivent avoir des identifiants cohérents et sans doublons. Les médias obligatoires de la scène, du montage et des brouillons doivent être présents. Les erreurs indiquent le chemin du champ fautif. La restauration attribue de nouveaux IDs aux morceaux/médias dans une transaction unique ; les signatures reconnues des records historiques sont conservées.
+
+Un brouillon Studio dont la partition source a été retirée reste récupérable si son morceau est présent. Les anciens scores sans morceau/partition et les entrées de setlist incompatibles gardent leur filtrage historique. Les sessions et replays ne sont pas fusionnés. Le [guide V36](V36_ARCHIVES_SCENE_CALME.md) détaille ce périmètre et ses preuves.
+## Récupération des brouillons et Directors embarqués — V37
+
+La bibliothèque reste au schéma 5. Les documents Director inclus dans une scène, un Auto Show ou un brouillon suivent la même frontière de validation : schéma 19 ou 20 explicite, ou document historique sans version et sans phase de boucle. Une version explicite inconnue ou une phase déclarée hors du schéma 20 est refusée avant toute écriture. La normalisation des éditions légitimes peut toujours promouvoir un montage vers le schéma 20.
+
+Lors d’une restauration en copie, le `packId` d’un brouillon Director est remplacé par celui du nouveau pack seulement s’il correspondait au pack du morceau source. Une origine étrangère ou absente reste identifiable comme telle. L’ouverture du Director protège ce brouillon avant toute modification ; la reprise compatible, l’export de sa source brute, l’abandon explicite et la réassociation des modèles/motions sont des choix distincts. Une réassociation validée remplace le brouillon, sans publier le spectacle. Voir [V37_PRISES_RECUPERATION.md](V37_PRISES_RECUPERATION.md).
+
+Les replays restent au schéma 1. Leur partition, leur profil et leur option Sans échec proviennent de la prise jouée ; les réglages modifiés pendant une écriture ne reclassent pas rétroactivement la prise. Le contrat `rules4` et les signatures historiques de records restent inchangés.

@@ -1,0 +1,37 @@
+{
+  "version": "37.0.0",
+  "buildSha256": "61d87a5929a91331b699005c4a5582e312a84abf821460fa915091f5b4bfd8ba",
+  "workbookSha256": "a1177f899a208a88fd18e70946b4f7ed97fdca4acb9f2c30f225e85fc73766ea",
+  "logicPassed": 1398,
+  "newLogic": 107,
+  "launcherPassed": 10,
+  "browserChecks": {
+    "vault-live": 28,
+    "feedback": 22,
+    "loops": 16,
+    "audition": 32,
+    "regression-workflow": 18,
+    "regression-director": 23,
+    "regression-persistence": 14,
+    "transactions": 11,
+    "playback": 22,
+    "archive": 76,
+    "motion": 22,
+    "recovery": 45,
+    "records-replays": 36
+  },
+  "browserTotal": 365,
+  "backlogItems": 136,
+  "done": 50,
+  "open": 86,
+  "sheets": 17,
+  "tables": 16,
+  "statusCounts": {
+    "Fait": 50,
+    "Partiel": 27,
+    "À faire": 36,
+    "À valider": 23
+  },
+  "backlogExcelJsonCsvIdentical": true,
+  "scope": "Native HTTP/IndexedDB for recovery, records and replays; deliberately deferred reads/writes and playback preparation, plus native transaction abort. Visibility events are controlled in tests. Previous archive, motion, Web Audio and WSOLA evidence rerun. 23 inherited Director checks use an injected document. Software GPU and emulated viewports; no physical-device, acoustic, complete legacy-library or MMD-corpus certification."
+}

@@ -1,0 +1,101 @@
+{
+  "version": "35.0.0",
+  "buildSha256": "7686e98290b348daa3ac7fc607d101cc55d2ff01df94efd16ab009746f983e44",
+  "passed": 22,
+  "failed": 0,
+  "failure": null,
+  "errors": [],
+  "checks": [
+    {
+      "name": "Native HTTP boot uses persistent storage and a running audio context",
+      "passed": true
+    },
+    {
+      "name": "Hide/show during scene preparation cancels the original launch",
+      "passed": true
+    },
+    {
+      "name": "Navigation during audio preparation cannot launch the abandoned song",
+      "passed": true
+    },
+    {
+      "name": "Late video completion cannot create a partially initialized replay",
+      "passed": true
+    },
+    {
+      "name": "A fresh replay installs its recorded profile before the first frame",
+      "passed": true
+    },
+    {
+      "name": "Loop preparation stops playback and enters its pending state",
+      "passed": true
+    },
+    {
+      "name": "Hiding during a pending loop cancels preparation and exposes resume",
+      "passed": true
+    },
+    {
+      "name": "Returning visible before a late loop result does not restart music",
+      "passed": true
+    },
+    {
+      "name": "An explicit resume after cancellation starts exactly once",
+      "passed": true
+    },
+    {
+      "name": "Native AudioContext suspension cancels pending loop preparation",
+      "passed": true
+    },
+    {
+      "name": "Context recovery plus a late worker result still requires user resume",
+      "passed": true
+    },
+    {
+      "name": "Leaving practice rejects the pending loop without hidden playback",
+      "passed": true
+    },
+    {
+      "name": "A current loop completes once and clears preparation state",
+      "passed": true
+    },
+    {
+      "name": "A delayed resume cannot acquire a new authorization after hide/show",
+      "passed": true
+    },
+    {
+      "name": "The newest explicit resume can complete normally",
+      "passed": true
+    },
+    {
+      "name": "A rejected older resume cannot stop or restart the newer playback",
+      "passed": true
+    },
+    {
+      "name": "Late pitch preparation cannot launch a cancelled practice session",
+      "passed": true
+    },
+    {
+      "name": "Real WSOLA worker still prepares a slower practice buffer",
+      "passed": true
+    },
+    {
+      "name": "Explicit resume reuses a valid pitch-preserved buffer",
+      "passed": true
+    },
+    {
+      "name": "Leaving the final session stops audio and releases preparation",
+      "passed": true
+    },
+    {
+      "name": "Starting from dirty Studio plays the newly saved derived chart",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors in playback lifecycle scenarios",
+      "passed": true
+    }
+  ],
+  "nativeHTTP": true,
+  "nativeAudio": true,
+  "scope": "Native HTTP/IndexedDB and Web Audio; controlled deferred preparation boundaries and injected visibility events. Final WSOLA check uses the real worker. Software GPU, no physical-device or acoustic certification."
+}

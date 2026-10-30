@@ -1,0 +1,195 @@
+{
+  "version": "37.0.0",
+  "buildSha256": "61d87a5929a91331b699005c4a5582e312a84abf821460fa915091f5b4bfd8ba",
+  "passed": 45,
+  "failed": 0,
+  "failure": null,
+  "checks": [
+    {
+      "name": "Recovery runs on native HTTP and writable IndexedDB",
+      "passed": true
+    },
+    {
+      "name": "Previous-pack recovery is visible before any edit or storage write",
+      "passed": true
+    },
+    {
+      "name": "Blocked synthetic edit and keyboard save leave the source and publication unchanged",
+      "passed": true
+    },
+    {
+      "name": "Source export contains the exact recovery record and its extra fields",
+      "passed": true
+    },
+    {
+      "name": "Equal filenames do not guess model or motion associations",
+      "passed": true
+    },
+    {
+      "name": "Canceling and closing keep the exact previous-pack recovery",
+      "passed": true
+    },
+    {
+      "name": "Portable Director import waits for recovery and cannot overwrite its source",
+      "passed": true
+    },
+    {
+      "name": "Late read from the closed Director cannot unlock the next dialog",
+      "passed": true
+    },
+    {
+      "name": "Only the current read reveals its recovery decision",
+      "passed": true
+    },
+    {
+      "name": "Read failure leaves editing protected and offers a retry",
+      "passed": true
+    },
+    {
+      "name": "Read retry recovers the untouched source",
+      "passed": true
+    },
+    {
+      "name": "Library V5 exporter retains previous-pack recovery and all referenced media",
+      "passed": true
+    },
+    {
+      "name": "pulsepack foreign recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsepack foreign recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsepack same recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsepack same recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsepack absent recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsepack absent recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle foreign recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle foreign recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle same recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle same recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle absent recovery reaches review without writing",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle absent recovery copy keeps owner, provenance, phases and source",
+      "passed": true
+    },
+    {
+      "name": "pulsepack rejects unknown schema before media read, decode or write",
+      "passed": true
+    },
+    {
+      "name": "pulsepack rejects phase hidden as schema 19 before media read, decode or write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle rejects unknown schema before media read, decode or write",
+      "passed": true
+    },
+    {
+      "name": "pulsebundle rejects phase hidden as schema 19 before media read, decode or write",
+      "passed": true
+    },
+    {
+      "name": "Read-only refusal keeps source, edit guard and published scene unchanged",
+      "passed": true
+    },
+    {
+      "name": "Native abort after put success preserves the previous recovery and cache",
+      "passed": true
+    },
+    {
+      "name": "Retry commits reassociation and unlocks editing without publishing",
+      "passed": true
+    },
+    {
+      "name": "Same-pack resume keeps source metadata and writes nothing until editing",
+      "passed": true
+    },
+    {
+      "name": "First edit autosaves with schema 20 phases and source metadata preserved",
+      "passed": true
+    },
+    {
+      "name": "Publication commits the scene and applied tombstone while keeping charts",
+      "passed": true
+    },
+    {
+      "name": "Applied tombstone never resurrects an already published recovery",
+      "passed": true
+    },
+    {
+      "name": "Unknown stored Director version is protected and cannot be normalized or reassociated",
+      "passed": true
+    },
+    {
+      "name": "Unknown-version source export preserves every field exactly",
+      "passed": true
+    },
+    {
+      "name": "Closing unsupported recovery does not modify its source",
+      "passed": true
+    },
+    {
+      "name": "Native abort also preserves unsupported recovery after explicit discard fails",
+      "passed": true
+    },
+    {
+      "name": "Explicit discard retry commits its tombstone and preserves the published song",
+      "passed": true
+    },
+    {
+      "name": "Full browser reopen preserves the published song and explicit discard marker",
+      "passed": true
+    },
+    {
+      "name": "Full browser reopen keeps every archive copy, phase and provenance",
+      "passed": true
+    },
+    {
+      "name": "Restored old-pack recovery remains visible and protected after a full reopen",
+      "passed": true
+    },
+    {
+      "name": "Integrated build stays unchanged during the native recovery test",
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser exception in the recovery lifecycle",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeHTTP": true,
+  "nativeIndexedDB": true,
+  "nativeAbortExecuted": true,
+  "buildUnchanged": true,
+  "scope": "Native localhost Chromium/IndexedDB, real V27 MMD fixtures, protected previous-pack Director recovery, explicit reassociation and discard, refused writes and native transaction abort, schema boundaries, both library archive formats, and full browser close/reopen. Does not certify the full V22–V29 historical migration matrix, actual quota/eviction, OS crash, Safari or physical devices."
+}

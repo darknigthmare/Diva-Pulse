@@ -424,6 +424,25 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
             tails.forEach((n, i) => n.q = quatEuler(Math.sin(phase / 2 + i) * .12 * amount, 0, Math.sin(phase / 2 + i) * .08 * amount));
             r.q = quatEuler(0, style === 'spin' && !this.reduceMotion ? beat * Math.PI / 8 : Math.sin(phase / 8) * .08, 0);
         }
+        reducedCamera(aspect) {
+            // A presentation-only, time-independent view of every declared formation.
+            // Cache by the layout objects replaced by applyScene; never sample a moving
+            // performer or edit the authored camera/formation tracks to calm the view.
+            const plan=this.directorPreview===undefined&&this.autoShowPlan?.mode!=='off'?this.autoShowPlan:null,config=this.director?.config;
+            const key=[aspect,plan,config,this.rigs,this.cast,this.custom,this.spacing,this.modelScale];
+            if(this.reducedCameraCache?.key.every((v,i)=>v===key[i]))return this.reducedCameraCache.pose;
+            const min=[0,0,0],max=[0,0,0],include=p=>{if(!p)return;for(let i=0;i<3;i++)if(Number.isFinite(p[i])){min[i]=Math.min(min[i],p[i]);max[i]=Math.max(max[i],p[i]);}};
+            for(const r of this.rigs||[])include([r.baseX*(this.spacing||1),0,r.baseZ]);
+            if(config)for(const p of root.PulseV10Core.positions(config.count,config.spacing))include(p);
+            for(const f of config?.formations||[])for(const p of f.positions||[])include(p);
+            for(const f of plan?.formations||[])for(const p of f.positions||[])include(p);
+            const scale=Math.max(1,this.modelScale||1,...(config?.slots||[]).map(s=>s.scale||1)),fov=.64,margin=1.5*scale;
+            const target=[(min[0]+max[0])/2,(min[1]+max[1]+3.2*scale)/2,(min[2]+max[2])/2];
+            const depth=(max[2]-min[2])/2+margin;
+            const distance=Math.max(9,((max[0]-min[0])/2+margin)/(Math.tan(fov/2)*Math.max(.1,aspect)),((max[1]-min[1]+3.2*scale)/2+.5*scale)/Math.tan(fov/2))+depth;
+            const pose={eye:[target[0],target[1],target[2]+distance],target,fov,far:Math.max(150,distance+depth+10)};
+            this.reducedCameraCache={key,pose};return pose;
+        }
         render(time = 0, bpm = 120, { menu = false, preview = false, pv = false, energy = .4,beat=time*bpm/60 } = {}) {
             if (!this.available)
                 return;
@@ -435,7 +454,7 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
             const plan=this.directorPreview!==undefined?null:this.autoShowPlan, A=root.PulseAutoShow;
             const show=plan&&(!menu||preview)?A.sample(plan,time,{reduceMotion:this.reduceMotion,aspect:(this.canvas.clientWidth||960)/(this.canvas.clientHeight||540)}):null;
             this.lastAutoShowSample=show;
-            if(show){energy=show.section?.energy??energy;if(!plan.overrides.stage&&show.stage&&show.stage!==this.stageId)this.setStage(show.stage);}
+            if(show){energy=show.section?.energy??energy;if(!this.reduceMotion&&!plan.overrides.stage&&show.stage&&show.stage!==this.stageId)this.setStage(show.stage);}
             const gl = this.gl, w = this.directorPreview!==undefined?960:this.canvas.clientWidth, h = this.directorPreview!==undefined?432:this.canvas.clientHeight;
             if (!w || !h)
                 return;
@@ -449,7 +468,7 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             gl.useProgram(this.program);
             let event = menu ? null : this.eventAt(time), mode = event?.camera || this.cameraMode, dance = event?.dance || this.dance;
-            if (event?.stage && event.stage !== this.stageId && (!show||plan.overrides.stage))
+            if (!this.reduceMotion && event?.stage && event.stage !== this.stageId && (!show||plan.overrides.stage))
                 this.setStage(event.stage);
             if(this.director?.models?.length)this.animateDirector(Math.max(0,time));
             if(this.custom?.kind==='mmd'){this.animateMMD(this.custom,Math.max(0,time));const m=this.custom,rot=quatEuler(0,(this.modelRotation||0)*Math.PI/180,0),f=this.modelScale||1;m.root.s=m.baseScale.map(v=>v*f);m.root.q=rot;m.root.p=point(trs([0,0,0],rot,[f,f,f]),m.basePosition);world(m.root);}
@@ -474,18 +493,21 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
               const old=pose(previous,time);current={eye:current.eye.map((v,i)=>old.eye[i]+(v-old.eye[i])*mix),target:current.target.map((v,i)=>old.target[i]+(v-old.target[i])*mix)};
             }
             if(show&&!plan.overrides.camera&&show.camera)current={eye:show.camera.eye,target:show.camera.target};
+            const calmCamera=this.reduceMotion?this.reducedCamera(w/h):null;
+            if(calmCamera)current=calmCamera;
             this.eye=current.eye;this.target=current.target;this.frame++;
-            const activeMmdCam=(show&&!plan.overrides.camera?show.camera:null)||this.director?.activeCamera||((this.custom?.kind==='mmd')?this.custom.activeCamera:null);
-            const viewMatrix=lookAt(this.eye,this.target),vp=mul(perspective(activeMmdCam?activeMmdCam.fov:.64,w/h),viewMatrix);gl.uniformMatrix4fv(this.u.View,false,viewMatrix);
+            const activeMmdCam=calmCamera||(show&&!plan.overrides.camera?show.camera:null)||this.director?.activeCamera||((this.custom?.kind==='mmd')?this.custom.activeCamera:null);
+            const viewMatrix=lookAt(this.eye,this.target),vp=mul(perspective(activeMmdCam?activeMmdCam.fov:.64,w/h,.1,calmCamera?.far??150),viewMatrix);gl.uniformMatrix4fv(this.u.View,false,viewMatrix);
             let preset = STAGES.find(x => x.id === this.stageId);
-            const light=(show&&!plan.overrides.lighting?show.light:null)||this.director?.activeLight;gl.uniform3fv(this.u.LightColor,light?.color||[1,1,1]);gl.uniform1f(this.u.LightIntensity,light?.intensity??1);
+            const light=(show&&!plan.overrides.lighting?show.light:null)||(this.reduceMotion&&this.director?root.PulseDirector.sampleTrack(this.director.config.lightTrack,0,'light'):this.director?.activeLight);gl.uniform3fv(this.u.LightColor,light?.color||[1,1,1]);gl.uniform1f(this.u.LightIntensity,light?.intensity??1);
             gl.uniform3fv(this.u.Eye, this.eye);
             gl.uniform3fv(this.u.Accent, rgb(preset.a));
-            this.bars.forEach((b, i) => { let height = .15 + Math.abs(Math.sin(time * 2.7 + i * .43)) * (.8 + energy * .8); b.s[1] = height; b.p[1] = .55 + height / 2; });
+            const decorTime=this.reduceMotion?0:time,decorEnergy=this.reduceMotion?.4:energy;
+            this.bars.forEach((b, i) => { let height = .15 + Math.abs(Math.sin(decorTime * 2.7 + i * .43)) * (.8 + decorEnergy * .8); b.s[1] = height; b.p[1] = .55 + height / 2; });
             if(this.concertFX)this.concertFX.hidden=!this.lights;
             this.beams?.forEach(({pivot,index})=>{pivot.q=quatEuler(.1+Math.sin((this.reduceMotion?0:time)*.42+index)*.18,0,Math.sin((this.reduceMotion?0:time)*.65+index*1.2)*.5);});
             this.lightsticks?.forEach((n,i)=>{n.q=quatEuler(0,0,this.reduceMotion?0:Math.sin(beat*Math.PI+i*.4)*.35);});
-            this.particles.forEach((p, i) => p.p = [Math.sin(i * 12.3 + time * .15) * 4, 3.7 - ((time * .22 + i * .31) % 3.4), Math.cos(i * 2.7 + time * .13) * 3]);
+            this.particles.forEach((p, i) => p.p = [Math.sin(i * 12.3 + decorTime * .15) * 4, 3.7 - ((decorTime * .22 + i * .31) % 3.4), Math.cos(i * 2.7 + decorTime * .13) * 3]);
             if (this.custom) {
                 if(this.custom.kind!=='mmd'){this.animateGLB(this.custom, Math.max(0, time));const m=this.custom,rot=quatEuler(0,(this.modelRotation||0)*Math.PI/180,0),f=this.modelScale||1;m.root.s=m.baseScale.map(v=>v*f);m.root.q=rot;m.root.p=point(trs([0,0,0],rot,[f,f,f]),m.basePosition);world(this.custom.root);}
             }

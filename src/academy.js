@@ -56,10 +56,25 @@ function install(app){
  };
  $('academyButton').onclick=()=>app.academyDialog();
  const start=app.startGame.bind(app);app.startGame=async function(mode,practice){if(!practice?.academy)this.activeLesson=null;return start(mode,practice);};
- const finish=app.finish.bind(app);app.finish=async function(){if(this.finishing)return;const lesson=this.activeLesson,mode=this.mode;await finish();if(!lesson||mode!=='practice'||this.gameChart?.id!==`academy-v5-${lesson.id}`||!this.lastResult)return;
-  const result=this.lastResult,old=this.v5State.academy[lesson.id]||{accuracy:0,completed:false,attempts:0},passed=lessonPassed(lesson,result,this.practice.rate),next={...this.v5State,academy:{...this.v5State.academy,[lesson.id]:{accuracy:Math.max(old.accuracy,result.accuracy),completed:old.completed||passed,attempts:Math.min(1000000,old.attempts+1)}}};
-  let saved=true;try{await this.store.put('settings',next);this.v5State=next;}catch(e){saved=false;this.toast('Progression non sauvegardée : '+e.message,true);}
-  const box=document.createElement('div');box.className='academy-result';box.innerHTML=`<h3>${passed?'◆ LEÇON VALIDÉE':'◇ CONTINUE À T’ENTRAÎNER'}</h3><p>${lesson.title} · ${passed?'Objectif atteint.':lesson.goal}</p><small>${saved?(this.store.persistent?'Progression enregistrée localement.':'Progression temporaire : exporter le pack avant fermeture.'):'Progression non sauvegardée.'}</small><button id="backAcademy">Retour à l’académie</button>`;$('performanceStats').append(box);$('backAcademy').onclick=async()=>{await this.showView('library');this.academyDialog();};
+ const finish=app.finish.bind(app);app.finish=async function(){
+  if(this.finishing)return;
+  const lesson=this.activeLesson,completion=await finish();
+  if(!completion?.result)return completion;
+  const {mode,chart,practice,result}=completion;
+  if(!lesson||mode!=='practice'||chart.id!=='academy-v5-'+lesson.id)return completion;
+  const passed=lessonPassed(lesson,result,practice.rate);
+  const write=async()=>{
+   const old=this.v5State.academy[lesson.id]||{accuracy:0,completed:false,attempts:0};
+   const next={...this.v5State,academy:{...this.v5State.academy,[lesson.id]:{accuracy:Math.max(old.accuracy,result.accuracy),completed:old.completed||passed,attempts:Math.min(1000000,old.attempts+1)}}};
+   await this.store.put('settings',next);this.v5State={...this.v5State,academy:next.academy};
+  };
+  const pending=(this.academyWrite||Promise.resolve()).catch(()=>{}).then(write);this.academyWrite=pending;
+  let saved=true;try{await pending;}catch(e){saved=false;this.toast('Progression non sauvegardée : '+e.message,true);}
+  if(!completion.current())return completion;
+  const box=document.createElement('div');box.className='academy-result';
+  box.innerHTML='<h3>'+(passed?'◆ LEÇON VALIDÉE':'◇ CONTINUE À T’ENTRAÎNER')+'</h3><p>'+lesson.title+' · '+(passed?'Objectif atteint.':lesson.goal)+'</p><small>'+(saved?(this.store.persistent?'Progression enregistrée localement.':'Progression temporaire : exporter le pack avant fermeture.'):'Progression non sauvegardée.')+'</small><button id="backAcademy">Retour à l’académie</button>';
+  $('performanceStats').append(box);$('backAcademy').onclick=async()=>{await this.showView('library');this.academyDialog();};
+  return completion;
  };
 }
 root.PulseAcademy=install;

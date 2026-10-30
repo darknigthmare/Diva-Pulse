@@ -1,6 +1,6 @@
 /* Optional app-shell cache; personal music is never sent here or to a server. */
 'use strict';
-const CACHE='DIVA-PULSE-MMD-DIRECTOR-34.0.0';
+const CACHE='DIVA-PULSE-MMD-DIRECTOR-37.0.0';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
 const allowed=new Set(SHELL.map(path=>new URL(path,self.registration.scope).href));
 self.addEventListener('install',event=>{
