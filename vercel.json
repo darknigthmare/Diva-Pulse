@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "true",
+  "buildCommand": "mkdir -p .vercel-static/icons && cp index.html DIVA_PULSE_JOUER.html manifest.webmanifest sw.js .vercel-static/ && cp icons/icon-192.png icons/icon-512.png .vercel-static/icons/",
+  "outputDirectory": ".vercel-static"
+}
