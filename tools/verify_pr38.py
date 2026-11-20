@@ -65,8 +65,14 @@ build = (R / 'index.html').read_bytes()
 digest = hashlib.sha256(build).hexdigest()
 assert build == (R / 'DIVA_PULSE_JOUER.html').read_bytes()
 assert b'/*__' not in build and b'<?xml' not in build[:20]
-results = json.loads((Q / 'results.json').read_text())
-assert results['version'] == version and results['buildSha256'] == digest, 'Browser evidence is from another build'
+results_path = Q / 'results.json'
+if not results_path.exists():
+    raise SystemExit(f'Preuve navigateur absente : {results_path}. Exécuter tests/v38_browser_test.py sur le build {digest}.')
+results = json.loads(results_path.read_text())
+if results.get('version') != version:
+    raise SystemExit(f"Preuve navigateur pour la version {results.get('version')} au lieu de {version}.")
+if results.get('buildSha256') != digest:
+    raise SystemExit('Preuve navigateur produite sur un autre build : hash différent de index.html.')
 assert results['passed'] == BROWSER_CHECKS and results['failed'] == 0 and not results['failure'] and not results['errors'], results
 assert len(results['checks']) == BROWSER_CHECKS and all(x['passed'] for x in results['checks'])
 assert results['mode'] == 'http' and results['nativeHTTP'] is True and results['buildUnchanged'] is True
