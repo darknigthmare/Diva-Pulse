@@ -42,7 +42,7 @@ Aucun échantillon musical tiers, aucune chanson commerciale, aucun enregistreme
 | 3D-02 | `tests/assets/minimal.pmx` | Fixture PMX minimale | Production interne | `2a8e27d78823cf275d74ca755c7cab72ffe0d9351a9b7c0870b36f05ef9269fa` | Documenté |
 | 3D-03 | `tests/assets/minimal.vmd` | Fixture VMD minimale | Production interne | `754c2e7ab6103aa71e613cb76ec4cdf44b026b901edac9a0e3b8205fefa3e52e` | Documenté |
 | 3D-04 | Silhouettes, décors, costumes | Géométrie procédurale | `src/stage.js` | déterministe | Documenté |
-| 3D-05 | Modèles, costumes et décors finaux | Assets de production | Non fournis (voir Bible, chapitre 12) | — | À produire |
+| 3D-05 | Modèles, costumes et décors finaux | Assets de production | Non fournis (voir Bible, chapitre 13) | — | À produire |
 | 3D-06 | `examples/v19/`, `v21/`, `v24/` (PMX/VMD de diagnostic) | Fixtures techniques | Production interne ; `examples/v19/LIRE.md` autorise leur réutilisation | voir fichiers | Documenté |
 
 ## 4. Références externes non redistribuées
@@ -66,7 +66,7 @@ Les audios, vidéos, partitions, modèles et motions importés restent **locaux*
 | Aucun fichier `LICENSE` à la racine | Conditions de réutilisation du code et des assets non explicites | Décision du propriétaire : licence du code, mention des assets | Ouvert |
 | Provenance des icônes PWA non consignée | Incertitude sur l'origine des deux PNG | Retrouver la source ou régénérer les icônes depuis le favicon | Ouvert |
 | Corpus MMD représentatif absent | La compatibilité ne peut être décrite que par fonction | Constituer un corpus autorisé (`MMD-14`) | Ouvert |
-| Aucun asset AAA final (modèles, costumes, scènes, musique produite) | Le jeu reste un socle technique et ludique | Exécuter le palier de production validé (Bible, chapitre 12) | À produire |
+| Aucun asset AAA final (modèles, costumes, scènes, musique produite) | Le jeu reste un socle technique et ludique | Exécuter le palier de production validé (Bible, chapitre 13) | À produire |
 | Textes et interface en français uniquement | Diffusion internationale limitée | Architecture i18n puis FR/EN/JA | À produire |
 | Aucune certification appareil, acoustique ou accessibilité | Promesses commerciales limitées | Matrice de test et audit externe | Ouvert |
 

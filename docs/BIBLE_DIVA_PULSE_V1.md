@@ -1,6 +1,8 @@
 # BIBLE DIVA PULSE — V1
 
-**Document de référence produit.** Version 1, base `main` `fc8e453d102c62c75b65d9a2a33dc076d2511330`, build V38.0.0. Statut : proposition à valider par le propriétaire du projet. Ce document décrit une cible ; il ne certifie aucune fonctionnalité non prouvée.
+**Document de référence produit.** Version 1.1, base `main` `fc8e453d102c62c75b65d9a2a33dc076d2511330`, build V38.0.0. Statut : proposition à valider par le propriétaire du projet. Ce document décrit une cible ; il ne certifie aucune fonctionnalité non prouvée.
+
+**Révision 1.1** : public, piliers et anti-objectifs explicités ; accessibilité traitée comme chapitre normatif distinct, avec cible WCAG 2.2 AA et règles propres au rythme.
 
 Sources normatives à conserver : [règles du jeu](REGLES_DIVA_PULSE_V1.md), [guide V38](V38_FINITION_JOYABLE.md), [provenance des contenus](PROVENANCE_CONTENUS.md), [suivi V38](../planning/BACKLOG_V38.json). En cas de contradiction, le contrat des règles et les tests priment sur ce document.
 
@@ -19,21 +21,65 @@ Sources normatives à conserver : [règles du jeu](REGLES_DIVA_PULSE_V1.md), [gu
 
 Le jeu ne fournit **aucun catalogue musical officiel**, aucun modèle MMD tiers et aucune reproduction certifiée d'une édition commerciale de Project DIVA. Les noms de personnages identifient des silhouettes de travail.
 
-## 2. Piliers et anti-objectifs
+## 2. Public, piliers et anti-objectifs
 
-**Piliers**
+Ce chapitre fixe pour qui le jeu existe, ce qu'il promet et ce qu'il refuse. Il ne remplace ni les règles du chapitre 5, ni les mesures du chapitre 13.
+
+### 2.1 Publics prioritaires
+
+| Public | Besoin principal | Ce qui le retient | Preuve à produire |
+|---|---|---|---|
+| Débutant en jeu de rythme (public principal) | Comprendre sans guide externe et réussir une première boucle | Onboarding, calibration, leçons, difficulté lisible | Parcours première visite et observation de joueurs neufs (`QA-07`) |
+| Pratiquant régulier | Mesurer ses progrès et cibler ses erreurs | Records locaux, replays, entraînement par passage, objectifs | Records et replays liés au build ; pas seulement des compteurs |
+| Créateur de partitions | Importer, générer, corriger et exporter | Studio, AutoMap, formats documentés | Corpus réel et contrôle de jouabilité (`MAP-01/02/04`) |
+| Monteur MMD / Director | Composer une scène et un clip lisibles | Director, imports MMD, caméra, export | Compatibilité décrite par fonction (`MMD-14`), jamais universelle |
+| Joueur hors ligne ou matériel modeste | Jouer sans réseau, sans compte, sans GPU récent | Local-first, PWA, qualité 3D réglable | Matrice navigateurs et appareils (`QA-02/03`, `PER-02`) |
+| Joueur avec besoins d'accessibilité | Réduire les barrières de lecture, de motricité et de mouvement | Palette, formes, remappage, vitesse, une main, réduction de mouvement | Chapitre 11 ; audit externe non réalisé à ce jour |
+
+### 2.2 Contextes d'usage
+
+Desktop au clavier, portable, mobile en 390×844, manette standard, tactile, casque filaire ou Bluetooth, session hors ligne, GPU logiciel, mouvement réduit, interface française uniquement en V38. Une session type dure 3 à 12 minutes ; une leçon, 30 secondes. Le jeu doit rester lisible dans ces contextes, pas seulement sur la machine de développement.
+
+### 2.3 Non-publics
+
+- Compétition en ligne, classements mondiaux, anti-triche serveur.
+- Jeu mobile à collection, énergie, gacha ou live-ops.
+- Console et certification constructeur.
+- Catalogue musical officiel, reprise certifiée d'une édition commerciale.
+- Réseau social, fil d'actualité, partage public hébergé.
+
+Ces usages ne sont pas des cibles V1. Les servir exigerait un autre modèle économique, juridique et technique ; les mentionner ne crée aucun engagement.
+
+### 2.4 Piliers
 
 1. **Le temps musical fait foi.** Les jugements dépendent des timestamps et du transport audio, jamais des images, des effets ou de la caméra.
 2. **La donnée appartient au joueur.** Bibliothèque locale, exports complets, aucune télémétrie silencieuse.
 3. **Créer autant que jouer.** Éditeur, AutoMap, Auto Show et Director sont des modes de première classe, pas des annexes.
 4. **Honnêteté des limites.** Un import accepté n'est pas une compatibilité universelle ; un compteur n'est pas une note de finition commerciale.
+5. **Lisible avant spectaculaire.** Une barrière de lecture, de motricité ou de mouvement n'est pas une difficulté légitime. La difficulté doit rester dans la partition et les fenêtres de jugement, pas dans l'interface.
 
-**Anti-objectifs**
+### 2.5 Anti-objectifs et arbitrages
 
-- Compte obligatoire, cloud implicite, monétisation, publicité, mécaniques de rétention obscures.
-- Verrouillage du contenu existant derrière la progression.
-- Remplacement silencieux d'une partition, d'un record ou d'un brouillon.
-- Revendication « AAA » sans budget, assets, localisation et certification correspondants.
+| Anti-objectif | Raison | Ce que le projet accepte de perdre |
+|---|---|---|
+| Compte obligatoire, cloud implicite, monétisation, publicité, rétention obscure | Contrat local-first et propriété des données | Revenus récurrents, mesure d'audience centralisée, live-ops |
+| Contenu existant verrouillé derrière la progression | Le joueur possède déjà sa bibliothèque | Une partie de la rétention artificielle |
+| Remplacement silencieux d'une partition, d'un record ou d'un brouillon | Confiance dans les sauvegardes | Moins de dialogues automatiques, plus de confirmations explicites |
+| Télémétrie silencieuse | Vie privée et fonctionnement hors ligne | Moins de données de funnel ; recours aux exports locaux et aux playtests |
+| Catalogue officiel ou assets tiers non licenciés | Risque juridique et identité originale | Bibliothèque plus petite, production musicale plus lente |
+| Revendication « AAA » sans budget, assets, localisation et certification | Honnêteté des limites | Un discours marketing plus prudent |
+| Couleur seule, audio seul ou réflexes seuls comme unique information | Accessibilité | Plus de travail de design et de test |
+| Effets, caméra ou hit-stop qui modifient un jugement | Invariant de timing | Moins de spectacle gratuit autour des notes |
+| Difficulté utilisée comme verrou de contenu | Respect du joueur | Récompenses cosmétiques seulement |
+| Latence masquée ou compensation invisible | Compréhension de la calibration | Plus de réglages exposés, donc plus de pédagogie |
+
+### 2.6 Hypothèses à valider
+
+1. **Compréhension** : un joueur neuf lance une leçon puis un morceau sans aide externe. Si moins de 4 joueurs sur 5 y parviennent, l'onboarding est refait ; `GAME-08` reste Partiel.
+2. **Calibration** : des profils nommés (filaire, Bluetooth, haut-parleurs) réduisent les erreurs systématiques sans modifier les records. Si les joueurs ne comprennent pas le profil actif, revenir à un réglage unique mieux expliqué.
+3. **Motricité** : une disposition une main permet de terminer une leçon EASY. Si elle dégrade la lecture ou crée des conflits de touches, la limiter à l'entraînement et le documenter.
+
+Tant que ces hypothèses ne sont pas testées, aucun statut « Fait » ne peut être déduit du seul code.
 
 ## 3. Boucles de jeu
 
@@ -78,21 +124,86 @@ Cinq niveaux (`EASY` à `EX EXTREME`) partagent les mêmes repères musicaux ; l
 
 Silhouettes procédurales stylisées, palettes par scène, accents lumineux, HUD sobre. Priorité absolue : lisibilité des notes et des cibles sur les scènes claires. Les effets restent décoratifs et bornés (48 impacts, 12 voix, 96 buffers) ; la réduction de mouvement est appliquée à WebGL, Canvas et CSS.
 
-Les assets finaux (personnages, costumes, décors) ne sont pas produits. La cible est décrite au chapitre 12.
+Les assets finaux (personnages, costumes, décors) ne sont pas produits. La cible est décrite au chapitre 13.
 
 ## 9. Direction audio
 
 Trois signatures de frappe originales, sons synthétisés, aucun échantillon tiers. La musique du jeu est **importée par le joueur** ou synthétisée localement (démos, académie). Le mix respecte les volumes Music/SFX/UI ; les SFX ne retardent jamais un jugement. La calibration manuelle et l'indication avance/retard sont disponibles ; la latence acoustique réelle reste non certifiée (`GAME-04`).
 
-## 10. UX et accessibilité
+## 10. UX
 
-- Clavier remappable, manette, tactile, raccourcis d'accords.
-- Mouvement réduit (système et utilisateur), intensité des effets, contraste des notes, jauges HOLD indépendantes.
+- Hiérarchie stable : bibliothèque, jeu, résultat, réglages ; aucune impasse sans retour.
+- Clavier remappable, manette, tactile, raccourcis d'accords ; pause explicite en jeu.
+- Retour immédiat : jugement, combo, jauge HOLD, erreur actionnable, état vide avec action.
+- Messages qui disent quoi faire, pas seulement ce qui a échoué ; le diagnostic reste local.
 - Cibles visibles jusqu'à la fin de la fenêtre du profil actif.
-- États d'erreur actionnables (réessayer, copier le détail, fermer) et états vides avec action.
-- Restent ouverts : audit lecteur d'écran complet (`UX-04`), matrice 390×844 sur tous les écrans (`UX-01`), appareils physiques (`QA-03`), noteskins et disposition une main.
+- Réglages compréhensibles : volumes, deux offsets distincts, vitesse d'approche, qualité 3D, mouvement réduit.
 
-## 11. Technique
+L'accessibilité normative, les critères WCAG 2.2 AA et les règles propres au rythme sont traités au chapitre 11. Les deux chapitres ne se substituent pas : le chapitre 10 décrit l'expérience, le chapitre 11 fixe les exigences vérifiables.
+
+## 11. Accessibilité — cible WCAG 2.2 AA et règles du rythme
+
+### 11.1 Statut et portée
+
+**Cible**, pas certification. DIVA PULSE vise WCAG 2.2 niveau AA pour l'interface web (DOM, réglages, messages, résultats) et applique des règles supplémentaires au gameplay, que WCAG ne couvre pas directement. Aucune revendication de conformité ne peut être publiée avant un audit externe et des tests sur appareils réels.
+
+La portée couvre : interface et navigation, réglages, écrans de résultat, messages d'erreur, onboarding, contenu textuel, commandes clavier/manette/tactile, et information de jeu (couloirs, notes, HOLD, slides). Le canvas de jeu n'a pas d'équivalent ARIA automatique : il exige des équivalents DOM et des règles dédiées.
+
+### 11.2 Cible WCAG 2.2 AA (interface web)
+
+| Critère | Exigence retenue | Portée dans le jeu |
+|---|---|---|
+| 1.4.1 Usage de la couleur | L'information ne repose jamais sur la couleur seule | Couloirs : glyphe, position et couleur ; états HOLD : forme et texte |
+| 1.4.3 Contraste (minimum) | 4,5:1 pour le texte, 3:1 pour le grand texte | Textes, boutons, messages, résultats |
+| 1.4.11 Contraste des éléments non textuels | 3:1 pour les composants et états | Bordures de focus, jauges, cibles, icônes |
+| 1.4.4 / 1.4.10 Redimensionnement et reflow | Zoom 200 % sans perte ; pas de défilement horizontal à 320 px | Réglages, bibliothèque, résultats ; le canvas peut se réduire mais garde une alternative textuelle |
+| 2.1.1 Clavier | Toute action disponible au clavier | Navigation, réglages, jeu, pause, modales |
+| 2.2.1 Réglage du temps | Pas de limite de temps sur les menus ; le timing du jeu est essentiel | Aucune modale chronométrée ; pause disponible |
+| 2.3.1 Pas plus de trois flashs par seconde | Limite des flashs et animations | Effets, scènes, transitions |
+| 2.4.7 Focus visible | Focus toujours visible | Boutons, champs, cartes, modales |
+| 2.5.8 Taille de cible (minimum) | 24×24 px CSS minimum ; cible interne 44×44 px | Commandes tactiles, boutons de modale, réglages |
+| 3.2.1 / 3.2.3 Prévisibilité | Navigation et changements de contexte prévisibles | Vues, modales, réglages |
+| 3.3.1 / 3.3.3 Erreurs | Erreur identifiée et suggestion de correction | Import, sauvegarde, calibration, chargement |
+| 4.1.2 / 4.1.3 Nom, rôle, valeur et messages de statut | Composants nommés ; résultats et erreurs annoncés | Boutons, jauges, panneau d'erreur, résumé de résultat |
+
+Les critères non applicables au canvas sont couverts par des équivalents DOM : résumé de résultat, réglages, messages d'état, commandes nommées. Un équivalent DOM ne rend pas le jeu complet utilisable au lecteur d'écran ; cette limite est explicite au 11.4.
+
+### 11.3 Règles propres au rythme
+
+| Barrière | Règle | État V38 | Preuve restante |
+|---|---|---|---|
+| Couleurs de couloirs indiscernables | Glyphe distinct, position fixe, palette alternative à contraste vérifié | Partiel : glyphes et couleurs existent, palette alternative non livrée | Calcul de contraste et test daltonisme |
+| Dépendance à l'audition | Indices visuels pour chaque événement ; aucun mode ne repose sur l'audio seul | Oui pour les notes ; pas de sous-titres de voix (aucune voix) | Test sans audio |
+| Dépendance à la vision | Indices audio optionnels, jamais uniques ; le jeu complet sans vision n'est pas revendiqué | Non | Déclarer la limite ; ne pas promettre un mode aveugle |
+| Basse vision | Zoom 200 %, texte redimensionnable, HUD lisible, contraste élevé | Partiel | Test zoom et reflow |
+| Motricité fine | Remappage, manette, tactile, raccourcis d'accords, vitesse 0,5–1×, boucle A/B, une main | Partiel : remappage et vitesse existent ; une main non livrée | Test une main sur leçon EASY |
+| Charge cognitive | Onboarding court, descriptions de difficulté, pause, pas de menu chronométré | Partiel | Parcours première visite |
+| Photosensibilité | Flashs bornés, mouvement réduit, fond assombri | Partiel : réduction de mouvement existe ; limite de flashs non mesurée | Test de fréquence et audit |
+| HOLD et slides | État lisible sans couleur seule : forme, jauge, texte ; tolérance de relâchement documentée | Partiel | Test daltonisme et lecteur d'écran sur le résumé |
+| Latence | Deux offsets distincts (saisie, visuel), profils nommés, explication de la médiane | Partiel : offsets existent, profils non livrés | Compréhension et persistance des profils |
+| Difficulté | Profil `accessible`, mode sans échec, entraînement ; les records assistés restent séparés | Oui | Vérifier que l'aide ne crée pas de record normal |
+| Lecteur d'écran | Résumé de résultat, erreurs et états annoncés ; canvas non entièrement navigable | Partiel | Audit NVDA/VoiceOver externe |
+
+**Invariants à ne jamais casser pour l'accessibilité** : un effet, une palette, une réduction de mouvement ou un changement de vitesse d'approche ne modifie jamais l'horloge de jugement, les fenêtres, les signatures de partition ni les records. La compensation reste explicite et réversible.
+
+### 11.4 Limites et preuves
+
+- Preuves automatisables : contraste calculé, présence des noms/rôles, focus, reflow, taille des cibles, absence de couleur seule dans le DOM.
+- Preuves manuelles : parcours clavier complet, zoom 200 %, lecteur d'écran (NVDA, VoiceOver), mouvement réduit, une main.
+- Preuves non réalisées à ce jour : audit WCAG externe, test daltonisme réel, laboratoire photosensibilité, appareils physiques, jeu sans vision, étude cognitive.
+- **V38 ne peut pas déclarer « conforme WCAG 2.2 AA »** : elle vise la cible, expose ses limites et documente ses preuves. Le mot « conforme » est réservé à un audit terminé.
+
+### 11.5 Déclaration type (à publier seulement après preuves)
+
+> DIVA PULSE vise WCAG 2.2 niveau AA. Cette version est partiellement vérifiée : contrastes et navigation clavier contrôlés automatiquement, audit lecteur d'écran et appareils physiques non réalisés. Les limites connues sont décrites dans le guide de la version. Aucune conformité complète n'est revendiquée.
+
+Cette déclaration est un modèle. Elle ne doit être publiée qu'avec la version, le build et les preuves correspondantes.
+
+### 11.6 Backlog et statuts
+
+L'accessibilité reste suivie par `UX-01` à `UX-05`, `QA-03`, `QA-07` et `DIR-05`. Aucun de ces points ne passe à « Fait » sur la seule présence d'un réglage : il faut la preuve de la classe correspondante (logique, navigateur, lecteur d'écran, appareil, audit). Le chapitre 14 fixe la définition de « fini ».
+
+## 12. Technique
 
 | Sujet | Contrat |
 |---|---|
@@ -103,7 +214,7 @@ Trois signatures de frappe originales, sons synthétisés, aucun échantillon ti
 | Performance | Budget de frame non certifié (`PER-01/02`) ; mesure avant toute promesse |
 | Sécurité | Aucune donnée envoyée ; médias importés locaux ; consentement explicite pour tout futur micro |
 
-## 12. Reste à produire pour un niveau AAA
+## 13. Reste à produire pour un niveau AAA
 
 **Méthode.** Effort en semaines-personne (sp), fourchettes, confiance ±30 %, hors gestion de projet (+15 %). Hypothèses : contenu original, moteur conservé, sous-traitance partielle possible, cible web-first. Ces chiffres dimensionnent une décision ; ils ne constituent pas un devis.
 
@@ -148,13 +259,13 @@ Trois signatures de frappe originales, sons synthétisés, aucun échantillon ti
 
 Management, frais juridiques externes, achat de matériel de test, marketing, support, localisation des supports marketing, coûts de licence éventuels.
 
-## 13. Qualité et définition de « fini »
+## 14. Qualité et définition de « fini »
 
 **Classes de preuve** : logique Node, HTTP natif/IndexedDB, document injecté, Web Audio/WebGL logiciel, appareil physique. Une preuve ne vaut que pour sa classe.
 
 **Sortie V38** : build déterministe, `npm test` sans échec, lanceur 10/10, parcours navigateur V38, classeur/JSON/CSV identiques. Aucun statut « Fait » sans preuve liée au build testé.
 
-**« Fait »** signifie « vérifié dans la portée de la ligne », pas « jeu commercialement terminé ». La finition AAA exige les lots du chapitre 12 et une validation externe (appareils, acoustique, playtests, juridique).
+**« Fait »** signifie « vérifié dans la portée de la ligne », pas « jeu commercialement terminé ». La finition AAA exige les lots du chapitre 13 et une validation externe (appareils, acoustique, playtests, juridique).
 
 ## Décisions soumises à validation
 
