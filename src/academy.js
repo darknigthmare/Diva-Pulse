@@ -1,4 +1,4 @@
-/* Six original practice lessons. Synthesized here; no recordings or official charts. */
+/* Eight original practice lessons. Synthesized here; no recordings or official charts. */
 (function(root){
 'use strict';
 const C=root.PulseCore||(typeof require==='function'?require('./core.js'):null);

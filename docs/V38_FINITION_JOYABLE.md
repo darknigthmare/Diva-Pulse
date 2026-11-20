@@ -25,7 +25,7 @@ Deux morceaux synthétisés localement : `MIDNIGHT DRIVE` (142 BPM) et `CORAL SI
 
 ## États d'erreur et états vides (`UX-06`)
 
-`src/ui-states.js` ajoute un panneau d'erreur persistant avec **Réessayer**, **Copier le détail** et **Fermer**, sans modifier le texte ni le rôle du toast historique. Les recherches sans résultat proposent une action réelle (effacer la recherche, importer un audio, ouvrir l'académie).
+`src/ui-states.js` ajoute un panneau d'erreur persistant avec **Réessayer**, **Copier le détail** et **Fermer**, sans modifier le texte ni le rôle du toast historique. Une recherche sans résultat propose d'effacer la recherche et le filtre favori.
 
 ## Preuves
 

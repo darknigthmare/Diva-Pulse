@@ -18,7 +18,7 @@ const UNLOCKS=Object.freeze([
 ]);
 function objective(id,title,hint,xp,target,count){return Object.freeze({id,title,hint,xp,target,count});}
 const OBJECTIVES=Object.freeze([
- objective('first-live','Premier concert','Termine une partie en mode Live.',100,1,c=>c.playSessions),
+ objective('first-live','Premier concert','Termine une partie en mode Live.',100,1,c=>c.scores.length),
  objective('first-fc','Premier FULL COMBO','Enchaîne toutes les notes sans erreur.',150,1,c=>c.fullCombos),
  objective('rank-a','Rang A','Atteins 90 % de précision sur une partition.',200,1,c=>c.maxAccuracy>=90?1:0),
  objective('five-pieces','Cinq morceaux','Joue cinq morceaux différents.',250,5,c=>c.songs),
@@ -37,15 +37,14 @@ function buildContext(input){
  const scores=(Array.isArray(input?.scores)?input.scores:[]).filter(validScore);
  const sessions=(Array.isArray(input?.sessions)?input.sessions:[]).filter(validSession);
  const academy=input?.academy&&typeof input.academy==='object'&&!Array.isArray(input.academy)?input.academy:{};
- const playSessions=sessions.length+scores.length;
- const fullCombos=scores.filter(r=>r.fullCombo===true).length+sessions.filter(r=>r.fullCombo===true).length;
+ const fullCombos=scores.filter(r=>r.fullCombo===true).length;
  const maxAccuracy=scores.reduce((n,r)=>Math.max(n,r.accuracy),0);
  const songs=new Set([...scores.map(r=>r.songId),...sessions.map(r=>r.songId)]).size;
  const difficulties=new Set(sessions.map(r=>r.difficulty).filter(d=>C?.DIFFICULTIES?.includes(d))).size;
  const lessons=Object.values(academy).filter(v=>v&&v.completed===true).length;
  const holdBonus=scores.reduce((n,r)=>Math.max(n,finite(r.holdBonus)),0);
  const chartKeys=new Set(scores.map(r=>r.chartId?r.songId+'/'+r.chartId:r.songId)).size;
- return {scores,sessions,playSessions,fullCombos,maxAccuracy,songs,difficulties,lessons,holdBonus,chartKeys};
+ return {scores,fullCombos,maxAccuracy,songs,difficulties,lessons,holdBonus,chartKeys};
 }
 function levelFor(xp){
  const value=Math.max(0,finite(xp));
@@ -72,11 +71,9 @@ function evaluate(input={}){
  return {
   xp,level:level.level,levelName:level.name,
   nextLevelXp:next?next.min:null,
-  toNext:next?next.min-xp:0,
   progressToNext:next?clamp((xp-level.min)/span,0,1):1,
   objectives,
-  unlocks:UNLOCKS.map(u=>({...u,unlocked:xp>=u.xp})),
-  unlocked:unlockedIds(xp)
+  unlocks:UNLOCKS.map(u=>({...u,unlocked:xp>=u.xp}))
  };
 }
 function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}

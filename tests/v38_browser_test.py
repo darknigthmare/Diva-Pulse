@@ -67,7 +67,7 @@ try:
         page.locator('[data-error-act="close"]').click()
         ok('Error panel closes without altering the view', page.locator('#errorState').is_hidden() and page.evaluate('PulseApp.view==="library"'))
 
-        derived = page.evaluate('''()=>{const scores=[],sessions=[];for(let i=0;i<5;i++)scores.push({songId:"s"+i,chartId:"c"+i,accuracy:99,fullCombo:true,holdBonus:700});for(const d of PulseCore.DIFFICULTIES)sessions.push({songId:"s"+d,difficulty:d,mode:"play"});const a=PulseProgression.evaluate({scores,sessions,academy:{pulse:{completed:true},holds:{completed:true},slides:{completed:true}}});return {xp:a.xp,level:a.level,unlocked:a.unlocked,done:a.objectives.filter(o=>o.done).length,chartKeys:a.objectives.find(o=>o.id==="ten-clears").count};}''')
+        derived = page.evaluate('''()=>{const scores=[],sessions=[];for(let i=0;i<5;i++)scores.push({songId:"s"+i,chartId:"c"+i,accuracy:99,fullCombo:true,holdBonus:700});for(const d of PulseCore.DIFFICULTIES)sessions.push({songId:"s"+d,difficulty:d,mode:"play"});const a=PulseProgression.evaluate({scores,sessions,academy:{pulse:{completed:true},holds:{completed:true},slides:{completed:true}}});return {xp:a.xp,level:a.level,unlocked:a.unlocks.filter(u=>u.unlocked).map(u=>u.id),done:a.objectives.filter(o=>o.done).length,chartKeys:a.objectives.find(o=>o.id==="ten-clears").count};}''')
         ok('Derived progression reaches level 5 and unlocks AURORA only', derived['level'] >= 5 and derived['unlocked'] == ['aurora'] and derived['chartKeys'] == 5)
         ok('Five distinct scores never forge ten clears', derived['chartKeys'] == 5)
 

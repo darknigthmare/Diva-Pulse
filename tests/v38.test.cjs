@@ -14,7 +14,7 @@ const full=()=>{
 };
 test('V38 progression starts empty without inventing a record',()=>{
  const state=P.evaluate({});
- assert.equal(state.xp,0);assert.equal(state.level,1);assert.deepEqual(state.unlocked,[]);
+ assert.equal(state.xp,0);assert.equal(state.level,1);assert.deepEqual(state.unlocks.filter(u=>u.unlocked),[]);
  assert.ok(state.objectives.every(o=>!o.done&&o.xp===0));
  assert.equal(state.objectives.length,P.OBJECTIVES.length);
 });
@@ -43,7 +43,7 @@ test('V38 distinct songs, difficulties and academy lessons are counted',()=>{
 test('V38 all objectives unlock the final level without changing the input',()=>{
  const input=full(),snapshot=structuredClone(input),state=P.evaluate(input);
  assert.ok(state.objectives.every(o=>o.done),state.objectives.filter(o=>!o.done).map(o=>o.id).join(','));
- assert.equal(state.xp,2250);assert.equal(state.level,6);assert.deepEqual(state.unlocked,['aurora','ember']);
+ assert.equal(state.xp,2250);assert.equal(state.level,6);assert.deepEqual(state.unlocks.filter(u=>u.unlocked).map(u=>u.id),['aurora','ember']);
  assert.deepEqual(input,snapshot);
 });
 test('V38 malformed records are ignored instead of inventing progress',()=>{

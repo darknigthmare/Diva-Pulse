@@ -4,7 +4,7 @@ Registre des contenus **distribués** avec DIVA PULSE et des références **non 
 
 **Statuts** : `Documenté` (origine et droits connus), `À confirmer` (présent, chaîne de provenance incomplète), `À produire` (cible non fournie), `Non redistribué` (référence externe citée seulement).
 
-**Empreintes de référence** : build V38 `index.html` = `c2f6039f76218541ca6f78709d20bd405036fe4e27418d40a8d657812118d1da`. Les empreintes ci-dessous sont des SHA-256 des octets distribués ; elles ne constituent pas une preuve de droits.
+**Empreintes de référence** : build V38 `index.html` = `37800126df7d7abdd528ceccfd6c71a69f8f7be7485075cc0b4329739c0648db`. Les empreintes ci-dessous sont des SHA-256 des octets distribués ; elles ne constituent pas une preuve de droits.
 
 ## 1. Code et moteur
 

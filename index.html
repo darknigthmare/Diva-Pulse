@@ -4303,7 +4303,7 @@ function install(app){
 }
 root.PulseV5=install;
 })(globalThis);
-</script><script>/* Six original practice lessons. Synthesized here; no recordings or official charts. */
+</script><script>/* Eight original practice lessons. Synthesized here; no recordings or official charts. */
 (function(root){
 'use strict';
 const C=root.PulseCore||(typeof require==='function'?require('./core.js'):null);
@@ -6534,7 +6534,7 @@ const UNLOCKS=Object.freeze([
 ]);
 function objective(id,title,hint,xp,target,count){return Object.freeze({id,title,hint,xp,target,count});}
 const OBJECTIVES=Object.freeze([
- objective('first-live','Premier concert','Termine une partie en mode Live.',100,1,c=>c.playSessions),
+ objective('first-live','Premier concert','Termine une partie en mode Live.',100,1,c=>c.scores.length),
  objective('first-fc','Premier FULL COMBO','Enchaîne toutes les notes sans erreur.',150,1,c=>c.fullCombos),
  objective('rank-a','Rang A','Atteins 90 % de précision sur une partition.',200,1,c=>c.maxAccuracy>=90?1:0),
  objective('five-pieces','Cinq morceaux','Joue cinq morceaux différents.',250,5,c=>c.songs),
@@ -6553,15 +6553,14 @@ function buildContext(input){
  const scores=(Array.isArray(input?.scores)?input.scores:[]).filter(validScore);
  const sessions=(Array.isArray(input?.sessions)?input.sessions:[]).filter(validSession);
  const academy=input?.academy&&typeof input.academy==='object'&&!Array.isArray(input.academy)?input.academy:{};
- const playSessions=sessions.length+scores.length;
- const fullCombos=scores.filter(r=>r.fullCombo===true).length+sessions.filter(r=>r.fullCombo===true).length;
+ const fullCombos=scores.filter(r=>r.fullCombo===true).length;
  const maxAccuracy=scores.reduce((n,r)=>Math.max(n,r.accuracy),0);
  const songs=new Set([...scores.map(r=>r.songId),...sessions.map(r=>r.songId)]).size;
  const difficulties=new Set(sessions.map(r=>r.difficulty).filter(d=>C?.DIFFICULTIES?.includes(d))).size;
  const lessons=Object.values(academy).filter(v=>v&&v.completed===true).length;
  const holdBonus=scores.reduce((n,r)=>Math.max(n,finite(r.holdBonus)),0);
  const chartKeys=new Set(scores.map(r=>r.chartId?r.songId+'/'+r.chartId:r.songId)).size;
- return {scores,sessions,playSessions,fullCombos,maxAccuracy,songs,difficulties,lessons,holdBonus,chartKeys};
+ return {scores,fullCombos,maxAccuracy,songs,difficulties,lessons,holdBonus,chartKeys};
 }
 function levelFor(xp){
  const value=Math.max(0,finite(xp));
@@ -6588,11 +6587,9 @@ function evaluate(input={}){
  return {
   xp,level:level.level,levelName:level.name,
   nextLevelXp:next?next.min:null,
-  toNext:next?next.min-xp:0,
   progressToNext:next?clamp((xp-level.min)/span,0,1):1,
   objectives,
-  unlocks:UNLOCKS.map(u=>({...u,unlocked:xp>=u.xp})),
-  unlocked:unlockedIds(xp)
+  unlocks:UNLOCKS.map(u=>({...u,unlocked:xp>=u.xp}))
  };
 }
 function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -6636,13 +6633,14 @@ root.PulseProgression={LEVELS,UNLOCKS,OBJECTIVES,evaluate,levelFor,unlockedIds,i
 if(typeof module!=='undefined'&&module.exports)module.exports=root.PulseProgression;
 })(globalThis);
 
-/* DIVA PULSE V38 — états vides, erreurs et reprise uniformes. Le toast existant garde son texte. */
+/* DIVA PULSE V38 — erreurs actionnables et états vides cohérents. Le toast existant garde son texte. */
 (function(root){
 'use strict';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function install(app){
  if(!app||app.__uiStates38)return;
  app.__uiStates38=true;
+ let lastError=null;
  let host=document.getElementById('errorState');
  if(!host){
   host=document.createElement('div');
@@ -6650,38 +6648,33 @@ function install(app){
   host.setAttribute('role','alert');host.setAttribute('aria-live','assertive');
   document.body.append(host);
  }
- app.showErrorState=function(error,{retry=null,detail=null}={}){
-  const message=String(error?.message||error||'Erreur inconnue.');
-  const diagnostic=()=>{
-   const payload={version:root.PulseCore?.VERSION,view:this.view,song:this.song?.title||null,message,at:new Date().toISOString()};
-   try{return JSON.stringify({...payload,...(typeof detail==='function'?detail():detail||{})},null,2);}catch{return JSON.stringify(payload,null,2);}
-  };
+ const clear=()=>{host.hidden=true;host.replaceChildren();};
+ const show=(message,retry)=>{
+  const diagnostic=()=>JSON.stringify({version:root.PulseCore?.VERSION,view:app.view,song:app.song?.title||null,message},null,2);
   host.innerHTML=`<div class="error-state-card"><strong>ACTION INTERROMPUE</strong><p>${esc(message)}</p><div class="error-actions">${retry?'<button type="button" data-error-act="retry">RÉESSAYER</button>':''}<button type="button" data-error-act="detail">COPIER LE DÉTAIL</button><button type="button" data-error-act="close">FERMER</button></div></div>`;
   host.hidden=false;
-  host.querySelector('[data-error-act="close"]').onclick=()=>this.clearErrorState();
+  host.querySelector('[data-error-act="close"]').onclick=clear;
   const retryButton=host.querySelector('[data-error-act="retry"]');
-  if(retryButton)retryButton.onclick=()=>{this.clearErrorState();retry();};
+  if(retryButton)retryButton.onclick=()=>{clear();retry();};
   host.querySelector('[data-error-act="detail"]').onclick=async()=>{
    const text=diagnostic();
-   try{await navigator.clipboard.writeText(text);this.toast('Détail copié. Aucune donnée n’est envoyée.');}
+   try{await navigator.clipboard.writeText(text);app.toast('Détail copié. Aucune donnée n’est envoyée.');}
    catch{
-    this.openModal(`<div class="eyebrow">DIAGNOSTIC</div><h2>DÉTAIL TECHNIQUE</h2><p>Copier ce texte pour le support. Il reste local.</p><textarea id="errorDetail" rows="10" readonly></textarea>`);
+    app.openModal(`<div class="eyebrow">DIAGNOSTIC</div><h2>DÉTAIL TECHNIQUE</h2><p>Copier ce texte pour le support. Il reste local.</p><textarea id="errorDetail" rows="10" readonly></textarea>`);
     const field=document.getElementById('errorDetail');field.value=text;field.select();
    }
   };
  };
- app.clearErrorState=function(){host.hidden=true;host.replaceChildren();};
  const toast=app.toast.bind(app);
  app.toast=function(text,error=false,...rest){
-  if(error)app.__lastError={text:String(text??''),at:Date.now()};
+  if(error)lastError=String(text??'');
   return toast(text,error,...rest);
  };
  const run=app.run.bind(app);
  app.run=async function(fn,title){
-  app.__lastError=null;
+  lastError=null;
   const out=await run(fn,title);
-  const failure=app.__lastError;
-  if(failure)this.showErrorState(new Error(failure.text),{retry:()=>this.run(fn,title)});
+  if(lastError)show(lastError,()=>app.run(fn,title));
   return out;
  };
  const renderLibrary=app.renderLibrary.bind(app);
@@ -6689,16 +6682,14 @@ function install(app){
   const out=renderLibrary();
   const empty=document.querySelector('#songList .empty-list');
   if(empty){
-   const none=!this.songs.length;
-   empty.innerHTML=`<strong>${none?'AUCUN MORCEAU':'AUCUN RÉSULTAT'}</strong><p>${none?'Importe un audio pour créer ta bibliothèque locale.':'Aucun morceau ne correspond à cette recherche ou à ce filtre.'}</p><div class="empty-actions">${none?'<button type="button" data-empty="import">IMPORTER UN AUDIO</button>':'<button type="button" data-empty="clear">EFFACER LA RECHERCHE</button>'}<button type="button" data-empty="academy">ACADÉMIE</button></div>`;
-   empty.querySelector('[data-empty="import"]')?.addEventListener('click',()=>document.getElementById('addAudio').click());
-   empty.querySelector('[data-empty="clear"]')?.addEventListener('click',()=>{
+   empty.innerHTML='<strong>AUCUN RÉSULTAT</strong><p>Aucun morceau ne correspond à cette recherche ou à ce filtre.</p><div class="empty-actions"><button type="button" data-empty="clear">EFFACER LA RECHERCHE</button></div>';
+   empty.querySelector('[data-empty="clear"]').onclick=()=>{
     document.getElementById('searchSongs').value='';
-    document.getElementById('filterFavorite').setAttribute('aria-pressed','false');
+    const favorite=document.getElementById('filterFavorite');
+    favorite.setAttribute('aria-pressed','false');favorite.textContent='♡';
     this.favoriteFilter=false;
     this.renderLibrary();
-   });
-   empty.querySelector('[data-empty="academy"]')?.addEventListener('click',()=>this.academyDialog?.());
+   };
   }
   return out;
  };
@@ -6708,10 +6699,11 @@ root.PulseUIStates={install};
 </script><script>(function (root) {
     'use strict';
     const C = PulseCore, S = PulseServices, P = PulseStage, $ = id => document.getElementById(id), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])), colors = ['#83f4b9', '#dda7ff', '#86c3ff', '#ff9abc', '#ffdf80', '#ffdf80'];
+    const COSTUMES = ['classic', 'neon', 'snow', 'noir', ...((root.PulseProgression?.UNLOCKS) || []).map(u => u.id)];
     const DEFAULTS = { id: 'preferences', musicVolume: .65, sfxVolume: .18, inputOffset: 0, visualOffset: 0, approachSpeed: 1, graphicsQuality: 1.5, reduceMotion: false, showTouch: matchMedia('(pointer:coarse)').matches, useVideo: true, noFail: false, keys: ['KeyD', 'KeyF', 'KeyJ', 'KeyK', 'KeyS', 'KeyL'] };
     const sceneDefault = stage => ({ cast: ['miku'], costumes: ['classic', 'classic', 'classic'], stage: stage || 'arena', camera: 'auto', dance: 'idol', events: [], modelAsset: null, blend:.5,lights:true,spacing:1,modelRotation:0,modelScale:1 });
     function cleanScene(raw, fallback = 'arena') { if(raw?.secondaryPhysics27)raw={...raw,secondaryPhysics27:root.PulseSecondaryPhysics.normalize(raw.secondaryPhysics27)}; if(raw?.faceTrack)raw={...raw,faceTrack:root.PulseFace.validate(raw.faceTrack)}; const s = { ...sceneDefault(fallback), ...(raw || {}) }, ids = P.AVATARS.map(x => x.id), stages = P.STAGES.map(x => x.id), cameras = ['auto', 'front', 'close', 'wide', 'orbit', 'high'], dances = ['idol', 'step', 'wave', 'clap', 'reach', 'spin', 'pose']; s.cast = Array.isArray(s.cast) ? s.cast.filter(x => ids.includes(x)).slice(0, 3) : ['miku']; if (!s.cast.length)
-        s.cast = ['miku']; s.costumes = [0, 1, 2].map(i => ['classic', 'neon', 'snow', 'noir', 'aurora', 'ember'].includes(s.costumes?.[i]) ? s.costumes[i] : 'classic'); if (!stages.includes(s.stage))
+        s.cast = ['miku']; s.costumes = [0, 1, 2].map(i => COSTUMES.includes(s.costumes?.[i]) ? s.costumes[i] : 'classic'); if (!stages.includes(s.stage))
         s.stage = fallback; if (!cameras.includes(s.camera))
         s.camera = 'auto'; if (!dances.includes(s.dance))
         s.dance = 'idol'; s.events = (Array.isArray(s.events) ? s.events : []).filter(e => Number.isFinite(e.time) && e.time >= 0 && e.time <= 7200 && cameras.includes(e.camera) && dances.includes(e.dance) && stages.includes(e.stage)).slice(0, 2000).map(e => ({ id: e.id || C.uid(), time: e.time, camera: e.camera, dance: e.dance, stage: e.stage })).sort((a, b) => a.time - b.time); s.blend=C.clamp(C.finite(s.blend,.5),0,3);s.spacing=C.clamp(C.finite(s.spacing,1),.7,1.5);s.modelRotation=C.clamp(C.finite(s.modelRotation),-180,180);s.modelScale=C.clamp(C.finite(s.modelScale,1),.3,3);s.lights=s.lights!==false;return s; }
@@ -6934,7 +6926,7 @@ root.PulseUIStates={install};
             b.onclick = () => this.run(async () => { while (s.cast.length < slot)
                 s.cast.push('miku'); s.cast[slot] = a.id; s.modelAsset = null; await this.saveSong(); await this.applyScene(); this.renderWardrobe(); }, 'Changement de module…');
             grid.append(b);
-        } $('removeCast').hidden = slot === 0 || !s.cast[slot]; const costumes = $('costumeGrid'); costumes.replaceChildren(); const progress = root.PulseProgression && this.progression ? this.progression() : null, unlocked = new Set(progress ? progress.unlocked : []); for (const [id, name, sub, need] of [['classic', 'CLASSIQUE', 'Étude de silhouette'], ['neon', 'NEON CIRCUIT', 'Accents lumineux'], ['snow', 'SNOW SIGNAL', 'Blanc, col et jupe'], ['noir', 'NOCTURNE', 'Tenue sombre & chapeau'], ['aurora', 'AURORA', 'Débloqué par la progression', 800], ['ember', 'EMBER', 'Débloqué par la progression', 1300]]) {
+        } $('removeCast').hidden = slot === 0 || !s.cast[slot]; const costumes = $('costumeGrid'); costumes.replaceChildren(); const progress = this.progression ? this.progression() : null, unlocked = new Set(progress ? progress.unlocks.filter(u => u.unlocked).map(u => u.id) : []), rewards = ((root.PulseProgression?.UNLOCKS) || []).map(u => [u.id, u.label, 'Débloqué par la progression', u.xp]); for (const [id, name, sub, need] of [['classic', 'CLASSIQUE', 'Étude de silhouette'], ['neon', 'NEON CIRCUIT', 'Accents lumineux'], ['snow', 'SNOW SIGNAL', 'Blanc, col et jupe'], ['noir', 'NOCTURNE', 'Tenue sombre & chapeau']].concat(rewards)) {
             const locked = !!need && !unlocked.has(id);
             let b = document.createElement('button');
             b.className = (s.costumes[slot] === id ? 'active' : '') + (locked ? ' locked' : '');
