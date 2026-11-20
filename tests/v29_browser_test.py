@@ -24,7 +24,7 @@ try:
   b=w.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=False,args=['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   p=b.new_page(viewport={'width':1280,'height':900});p.set_default_timeout(30000);p.on('pageerror',lambda e:errors.append(str(e)))
   p.set_content(html);p.wait_for_function('document.documentElement.dataset.v28Ready==="true"');idle()
-  ok('Current V29 bundle boots and retains the original 15 demo charts',p.evaluate('v=>PulseCore.VERSION===v&&document.title.includes("V"+v.split(".")[0])&&PulseApp.songs.length===3&&PulseApp.songs.every(s=>s.charts.length===5)',version))
+  ok('Current V29 bundle boots and retains all built-in demo charts',p.evaluate('v=>PulseCore.VERSION===v&&document.title.includes("V"+v.split(".")[0])&&PulseApp.songs.length===5&&PulseApp.songs.every(s=>s.charts.length===5)',version))
   ok('Native software WebGL2 renderer is active',p.evaluate('PulseApp.stage.available&&PulseApp.stage.gl instanceof WebGL2RenderingContext'))
   p.evaluate('PulseApp.showView("wardrobe");document.getElementById("mmdPanel").open=true')
   p.locator('#mmdInput').set_input_files([str(R/'examples/v27/PENDULE.pmx'),str(R/'examples/v27/ANCRAGE.vmd')]);p.wait_for_selector('#miCommit');p.locator('#miCommit').click();idle();p.wait_for_function('PulseApp.stage.director?.models.length===1')

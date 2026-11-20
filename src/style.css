@@ -38,3 +38,35 @@
 
 #mediaAck34{display:flex;align-items:center;gap:10px;line-height:1.5}#mediaAck34 input{flex:0 0 auto}
 @media(max-width:600px){#mediaCandidates34~.buttons{display:grid;grid-template-columns:1fr;gap:8px}#mediaCandidates34~.buttons button{min-height:44px;white-space:normal}}
+/* V38 — progression locale, erreurs actionnables et états vides cohérents. */
+.progression-card{margin-top:12px;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:rgba(12,22,38,.72)}
+.progression-head{display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.12em;color:var(--accent)}
+.progression-head b{color:var(--ink);font-variant-numeric:tabular-nums}
+.progression-bar{height:6px;margin:8px 0;border-radius:99px;background:#0a1422;overflow:hidden}
+.progression-bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--violet));border-radius:inherit}
+.progression-card p{margin:0;font-size:11px;color:var(--muted);line-height:1.45}
+.progression-objectives{display:grid;gap:10px;max-height:52vh;overflow:auto;margin:14px 0}
+.objective{padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(10,18,33,.6)}
+.objective.done{border-color:rgba(112,240,220,.45)}
+.objective strong{font-size:12px;letter-spacing:.05em}
+.objective p{margin:4px 0 8px;font-size:11px;color:var(--muted)}
+.objective small{font-size:10px;color:var(--muted)}
+.progression-unlocks{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 12px;list-style:none}
+.progression-unlocks li{padding:6px 10px;border:1px solid var(--line);border-radius:99px;font-size:10px;color:var(--muted)}
+.progression-unlocks li.done{border-color:var(--accent);color:var(--accent)}
+#costumeGrid button.locked{opacity:.55;border-style:dashed}
+#errorState{position:fixed;z-index:60;right:18px;bottom:18px;max-width:min(430px,calc(100vw - 36px))}
+.error-state-card{padding:13px 15px;border:1px solid rgba(255,138,150,.55);border-left:4px solid #ff8a96;border-radius:9px;background:#1a1018;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+.error-state-card strong{display:block;font-size:10px;letter-spacing:.16em;color:#ffb3bb}
+.error-state-card p{margin:6px 0 10px;font-size:12px;line-height:1.45;color:var(--ink);overflow-wrap:anywhere}
+.error-actions{display:flex;flex-wrap:wrap;gap:7px}
+.error-actions button{font-size:10px;padding:7px 10px}
+.empty-list{display:grid;gap:8px;padding:18px 12px;text-align:left}
+.empty-list strong{font-size:10px;letter-spacing:.16em;color:var(--accent)}
+.empty-list p{font-size:11px;color:var(--muted);line-height:1.5}
+.empty-actions{display:flex;flex-wrap:wrap;gap:7px}
+.empty-actions button{font-size:10px;padding:7px 10px}
+.academy-guide{margin:14px 0;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:rgba(12,22,38,.6)}
+.academy-guide h3{margin:0 0 6px}
+.academy-guide p{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:9px}
+@media(max-width:800px){#errorState{right:10px;left:10px;bottom:10px;max-width:none}.progression-card{margin-top:9px}}

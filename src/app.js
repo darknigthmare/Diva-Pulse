@@ -4,7 +4,7 @@
     const DEFAULTS = { id: 'preferences', musicVolume: .65, sfxVolume: .18, inputOffset: 0, visualOffset: 0, approachSpeed: 1, graphicsQuality: 1.5, reduceMotion: false, showTouch: matchMedia('(pointer:coarse)').matches, useVideo: true, noFail: false, keys: ['KeyD', 'KeyF', 'KeyJ', 'KeyK', 'KeyS', 'KeyL'] };
     const sceneDefault = stage => ({ cast: ['miku'], costumes: ['classic', 'classic', 'classic'], stage: stage || 'arena', camera: 'auto', dance: 'idol', events: [], modelAsset: null, blend:.5,lights:true,spacing:1,modelRotation:0,modelScale:1 });
     function cleanScene(raw, fallback = 'arena') { if(raw?.secondaryPhysics27)raw={...raw,secondaryPhysics27:root.PulseSecondaryPhysics.normalize(raw.secondaryPhysics27)}; if(raw?.faceTrack)raw={...raw,faceTrack:root.PulseFace.validate(raw.faceTrack)}; const s = { ...sceneDefault(fallback), ...(raw || {}) }, ids = P.AVATARS.map(x => x.id), stages = P.STAGES.map(x => x.id), cameras = ['auto', 'front', 'close', 'wide', 'orbit', 'high'], dances = ['idol', 'step', 'wave', 'clap', 'reach', 'spin', 'pose']; s.cast = Array.isArray(s.cast) ? s.cast.filter(x => ids.includes(x)).slice(0, 3) : ['miku']; if (!s.cast.length)
-        s.cast = ['miku']; s.costumes = [0, 1, 2].map(i => ['classic', 'neon', 'snow', 'noir'].includes(s.costumes?.[i]) ? s.costumes[i] : 'classic'); if (!stages.includes(s.stage))
+        s.cast = ['miku']; s.costumes = [0, 1, 2].map(i => ['classic', 'neon', 'snow', 'noir', 'aurora', 'ember'].includes(s.costumes?.[i]) ? s.costumes[i] : 'classic'); if (!stages.includes(s.stage))
         s.stage = fallback; if (!cameras.includes(s.camera))
         s.camera = 'auto'; if (!dances.includes(s.dance))
         s.dance = 'idol'; s.events = (Array.isArray(s.events) ? s.events : []).filter(e => Number.isFinite(e.time) && e.time >= 0 && e.time <= 7200 && cameras.includes(e.camera) && dances.includes(e.dance) && stages.includes(e.stage)).slice(0, 2000).map(e => ({ id: e.id || C.uid(), time: e.time, camera: e.camera, dance: e.dance, stage: e.stage })).sort((a, b) => a.time - b.time); s.blend=C.clamp(C.finite(s.blend,.5),0,3);s.spacing=C.clamp(C.finite(s.spacing,1),.7,1.5);s.modelRotation=C.clamp(C.finite(s.modelRotation),-180,180);s.modelScale=C.clamp(C.finite(s.modelScale,1),.3,3);s.lights=s.lights!==false;return s; }
@@ -227,10 +227,13 @@
             b.onclick = () => this.run(async () => { while (s.cast.length < slot)
                 s.cast.push('miku'); s.cast[slot] = a.id; s.modelAsset = null; await this.saveSong(); await this.applyScene(); this.renderWardrobe(); }, 'Changement de module…');
             grid.append(b);
-        } $('removeCast').hidden = slot === 0 || !s.cast[slot]; const costumes = $('costumeGrid'); costumes.replaceChildren(); for (const [id, name, sub] of [['classic', 'CLASSIQUE', 'Étude de silhouette'], ['neon', 'NEON CIRCUIT', 'Accents lumineux'], ['snow', 'SNOW SIGNAL', 'Blanc, col et jupe'], ['noir', 'NOCTURNE', 'Tenue sombre & chapeau']]) {
+        } $('removeCast').hidden = slot === 0 || !s.cast[slot]; const costumes = $('costumeGrid'); costumes.replaceChildren(); const progress = root.PulseProgression && this.progression ? this.progression() : null, unlocked = new Set(progress ? progress.unlocked : []); for (const [id, name, sub, need] of [['classic', 'CLASSIQUE', 'Étude de silhouette'], ['neon', 'NEON CIRCUIT', 'Accents lumineux'], ['snow', 'SNOW SIGNAL', 'Blanc, col et jupe'], ['noir', 'NOCTURNE', 'Tenue sombre & chapeau'], ['aurora', 'AURORA', 'Débloqué par la progression', 800], ['ember', 'EMBER', 'Débloqué par la progression', 1300]]) {
+            const locked = !!need && !unlocked.has(id);
             let b = document.createElement('button');
-            b.className = s.costumes[slot] === id ? 'active' : '';
-            b.innerHTML = `${name}<small>${sub}</small>`;
+            b.className = (s.costumes[slot] === id ? 'active' : '') + (locked ? ' locked' : '');
+            b.disabled = locked;
+            b.innerHTML = `${name}<small>${locked ? `◆ ${need} XP` : sub}</small>`;
+            b.title = locked ? 'Débloqué par la progression locale.' : sub;
             b.onclick = () => this.run(async () => { s.costumes[slot] = id; await this.saveSong(); await this.applyScene(); this.renderWardrobe(); }, 'Changement de tenue…');
             costumes.append(b);
         } const stages = $('stageGrid'); stages.replaceChildren(); for (const st of P.STAGES) {
@@ -835,5 +838,7 @@
     root.PulseFeedback33.install(app);
     root.PulseMediaVault.install(app);
     root.PulseLive34.install(app);
+    if(root.PulseProgression)root.PulseProgression.install(app);
+    if(root.PulseUIStates)root.PulseUIStates.install(app);
     app.init().catch(e => { console.error(e); document.body.innerHTML = `<div style="padding:40px;font-family:system-ui;color:#eef;background:#102;min-height:100vh"><h1>DIVA PULSE</h1><h2>Le démarrage n’a pas abouti.</h2><p>${esc(e.message)}</p><p>Utiliser le lanceur local fourni, puis un navigateur récent. Les données existantes ne sont pas supprimées.</p></div>`; });
 })(globalThis);

@@ -6,21 +6,21 @@ Jeu de rythme autonome : cinq difficultés, partitions éditables, AutoMap, Auto
 
 Lancer `LANCER_WINDOWS.bat` sous Windows ou `LANCER_MAC_LINUX.command` sous macOS/Linux. Python 3 doit être disponible. Autre possibilité : `python3 lancer.py`. Les données de bibliothèque restent dans le navigateur ; exporter un `.pulsebundle` avant migration ou nettoyage du stockage.
 
-## Version proposée — V37
+## Version courante — V38
 
-La [PR #2](https://github.com/darknigthmare/Diva-Pulse/pull/2) poursuit l’application des guides gamedev au rythme, au cycle audio, aux sauvegardes et à la fiabilité des prises. `main` reste sur V34, intégrée par la [PR #1](https://github.com/darknigthmare/Diva-Pulse/pull/1).
+`main` a intégré la V37 via la [PR #2](https://github.com/darknigthmare/Diva-Pulse/pull/2). La V38 ferme la boucle joueur et documente la cible de production.
 
-- La finalisation d’une prise conserve ses options moteur, sa partition, ses entrées et son résultat avant toute attente du stockage. Les modes assistés restent séparés des records normaux.
-- Une écriture tardive ne rouvre pas un ancien résultat et ne modifie pas une nouvelle partie. Les records et l’historique sont enregistrés dans un ordre cohérent.
-- La lecture d’un replay utilise sa propre partition sans remplacer temporairement les partitions de la bibliothèque.
-- Les brouillons Director d’un ancien pack sont présentés avant toute modification susceptible de les écraser. Reprise, réassociation, export source et abandon sont des choix explicites.
-- Les versions Director embarquées dans les archives sont contrôlées à l’import, en conservant les formats historiques pris en charge et le schéma de bibliothèque 5.
+- Progression locale dérivée : huit objectifs, six niveaux, modules AURORA et EMBER, sans compte ni double crédit.
+- Académie étendue à huit leçons, avec guide de calibration et de sauvegarde.
+- Cinq démos originales synthétisées localement, cinq difficultés chacune, sans média tiers.
+- États d’erreur actionnables (réessayer, copier le détail, fermer) et états vides avec action.
+- [Bible du jeu V1](docs/BIBLE_DIVA_PULSE_V1.md) et [inventaire de provenance](docs/PROVENANCE_CONTENUS.md).
 
-[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V37.xlsx) · [JSON](planning/BACKLOG_V37.json) · [CSV](planning/MANQUANTS_V37.csv) · [Guide V37 et preuves](docs/V37_PRISES_RECUPERATION.md)
+[Excel courant : 136 points](planning/DIVA_PULSE_MANQUANTS_V38.xlsx) · [JSON](planning/BACKLOG_V38.json) · [CSV](planning/MANQUANTS_V38.csv) · [Guide V38 et preuves](docs/V38_FINITION_JOYABLE.md)
 
-Le suivi compte **50 points faits, 27 partiels, 36 à faire et 23 à valider**, soit **86 ouverts**. `SAV-08` et `GAME-05` passent de À valider à Partiel ; `ARC-04` reste Partiel. Les validations sur appareils réels, la latence acoustique, les autres formats, le corpus MMD et la matrice réelle complète des anciennes bibliothèques conservent leurs travaux restants. Les compteurs du classeur ne représentent pas un pourcentage de finition commerciale du jeu.
+Le suivi compte **52 points faits, 30 partiels, 31 à faire et 23 à valider**, soit **84 ouverts**. `GAME-06` et `UX-06` passent à Fait ; `GAME-08`, `ART-06` et `PUB-05` restent Partiel. Les validations sur appareils réels, la latence acoustique, les autres formats, le corpus MMD, la localisation et la matrice réelle complète des anciennes bibliothèques conservent leurs travaux restants. Les compteurs du classeur ne représentent pas un pourcentage de finition commerciale du jeu.
 
-Les fonctionnalités précédentes restent documentées dans les guides [V36](docs/V36_ARCHIVES_SCENE_CALME.md), [V35](docs/V35_RYTHME_FIABLE.md), [V34](docs/V34_BIBLIOTHEQUE_LIVE.md), [V33](docs/V33_RESSENTI_GAMEPLAY.md) et [V32](docs/V32_BOUCLES_SAUVEGARDES.md). Le [contrat des règles maison](docs/REGLES_DIVA_PULSE_V1.md) reste la référence pour les fenêtres, barèmes, HOLD, chaînes, accords et replays.
+Les fonctionnalités précédentes restent documentées dans les guides [V37](docs/V37_PRISES_RECUPERATION.md), [V36](docs/V36_ARCHIVES_SCENE_CALME.md), [V35](docs/V35_RYTHME_FIABLE.md), [V34](docs/V34_BIBLIOTHEQUE_LIVE.md), [V33](docs/V33_RESSENTI_GAMEPLAY.md) et [V32](docs/V32_BOUCLES_SAUVEGARDES.md). Le [contrat des règles maison](docs/REGLES_DIVA_PULSE_V1.md) reste la référence pour les fenêtres, barèmes, HOLD, chaînes, accords et replays.
 
 ## Guides pour la suite du développement
 

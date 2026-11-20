@@ -181,7 +181,7 @@ void main(){vec4 base=uColor;if(uTexture){vec4 tex=texture(uMap,vUV);base*=vec4(
             this.geos.set(name, this.upload(geometry(name))); return this.geos.get(name); }
         mesh(parent, kind, color, p = [0, 0, 0], s = [1, 1, 1], glow = 0, alpha = 1) { let n = add(parent, node(kind, p, s)); n.geo = typeof kind === 'string' ? this.geo(kind) : kind; n.color = [...rgb(color), alpha]; n.glow = glow; return n; }
         rig(id, costume) {
-            let a = AVATARS.find(a => a.id === id) || AVATARS[0], r = node(id), skin = a.skin, hair = a.hair, accent = a.accent, dark = costume === 'snow' ? '#f4f4ff' : costume === 'noir' ? '#17151f' : '#252839', cloth = costume === 'neon' ? '#253247' : costume === 'snow' ? '#f0f3ff' : costume === 'noir' ? '#30263c' : a.id === 'meiko' ? '#bb4259' : a.id === 'kaito' ? '#eff2ff' : '#c8d2e2';
+            let a = AVATARS.find(a => a.id === id) || AVATARS[0], r = node(id), skin = a.skin, hair = a.hair, accent = a.accent, dark = costume === 'snow' ? '#f4f4ff' : costume === 'noir' ? '#17151f' : costume === 'aurora' ? '#243a52' : costume === 'ember' ? '#3a1f22' : '#252839', cloth = costume === 'neon' ? '#253247' : costume === 'snow' ? '#f0f3ff' : costume === 'noir' ? '#30263c' : costume === 'aurora' ? '#c8f6ff' : costume === 'ember' ? '#ffb08a' : a.id === 'meiko' ? '#bb4259' : a.id === 'kaito' ? '#eff2ff' : '#c8d2e2';
             let body = add(r, node('hip', [0, 1.33, 0])), torso = add(body, node('torso', [0, .39, 0]));
             const m = (par, k, c, p, s, g = 0) => this.mesh(par, k, c, p, s, g);
             m(torso, 'sphere', cloth, [0, .14, 0], [.65, .94, .38]);

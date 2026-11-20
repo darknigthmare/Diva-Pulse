@@ -1,7 +1,7 @@
 /* DIVA PULSE 3 — independent rhythm engine. No official game code or assets. */
 (function (root) {
     'use strict';
-    const VERSION = '37.0.0';
+    const VERSION = '38.0.0';
     const LANES = ['△', '□', '×', '○', '‹', '›'];
     const DIFFICULTIES = ['EASY', 'NORMAL', 'HARD', 'EXTREME', 'EX EXTREME'];
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -463,7 +463,7 @@
         }
         return validateChart({ title: opts.title || 'Partition générée', difficulty, bpm, offset: 0, source: 'generated', generator: { algorithm: 'spectral-flux-v2', confidence: analysis.confidence, seed: opts.seed, quantized: !!opts.quantize }, notes });
     }
-    const DEMOS = [{ id: 'neon-promise', title: 'NEON PROMISE', subtitle: 'A signal in the night', artist: 'DIVA PULSE · instrumental original', bpm: 128, bars: 32, key: 57, style: 0, accent: '#73fff0', stage: 'arena' }, { id: 'glass-orbit', title: 'GLASS ORBIT', subtitle: 'Weightless / endless', artist: 'DIVA PULSE · instrumental original', bpm: 110, bars: 28, key: 62, style: 1, accent: '#b99aff', stage: 'orbital' }, { id: 'sakura-voltage', title: 'SAKURA VOLTAGE', subtitle: 'Bloom beyond the skyline', artist: 'DIVA PULSE · instrumental original', bpm: 156, bars: 40, key: 60, style: 2, accent: '#ffa3cd', stage: 'sakura' }];
+    const DEMOS = [{ id: 'neon-promise', title: 'NEON PROMISE', subtitle: 'A signal in the night', artist: 'DIVA PULSE · instrumental original', bpm: 128, bars: 32, key: 57, style: 0, accent: '#73fff0', stage: 'arena' }, { id: 'glass-orbit', title: 'GLASS ORBIT', subtitle: 'Weightless / endless', artist: 'DIVA PULSE · instrumental original', bpm: 110, bars: 28, key: 62, style: 1, accent: '#b99aff', stage: 'orbital' }, { id: 'sakura-voltage', title: 'SAKURA VOLTAGE', subtitle: 'Bloom beyond the skyline', artist: 'DIVA PULSE · instrumental original', bpm: 156, bars: 40, key: 60, style: 2, accent: '#ffa3cd', stage: 'sakura' }, { id: 'midnight-drive', title: 'MIDNIGHT DRIVE', subtitle: 'Chrome and rain', artist: 'DIVA PULSE · instrumental original', bpm: 142, bars: 34, key: 53, style: 0, accent: '#8fd0ff', stage: 'rooftop' }, { id: 'coral-signal', title: 'CORAL SIGNAL', subtitle: 'Warm static', artist: 'DIVA PULSE · instrumental original', bpm: 104, bars: 30, key: 64, style: 1, accent: '#ffb38a', stage: 'sakura' }];
     function demoChart(d, level = 1) {
         const random = rng(hashText(d.id)), beat = 60 / d.bpm, notes = [];
         let i = 0;

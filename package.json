@@ -1,6 +1,6 @@
 {
   "name": "diva-pulse",
-  "version": "37.0.0",
+  "version": "38.0.0",
   "private": true,
   "description": "Offline rhythm game with coherent AutoMap and an editable MMD Director",
   "scripts": {

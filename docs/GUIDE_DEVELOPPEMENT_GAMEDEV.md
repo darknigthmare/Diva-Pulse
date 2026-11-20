@@ -21,6 +21,10 @@ Le [lot V36](V36_ARCHIVES_SCENE_CALME.md) applique `save-systems` au contrôle p
 
 Le [lot V37](V37_PRISES_RECUPERATION.md) applique les notions de données faisant foi et d’écriture cohérente à la fin d’une prise, puis les règles de récupération explicite aux brouillons Director. Les scénarios ciblent les réglages modifiés, les écritures tardives, la réassociation à un autre pack et les versions Director embarquées inconnues. Le suivi courant devient [BACKLOG_V37.json](../planning/BACKLOG_V37.json) ; la sélection initiale et ses bases historiques restent documentées ci-dessus.
 
+## Quatrième application — V38
+
+Le [lot V38](V38_FINITION_JOYABLE.md) applique `input-systems` et `game-ui-ux` à la progression locale et aux états d’erreur, `procedural-gen` à deux démos synthétisées supplémentaires, et `save-systems` à la provenance et à l’académie. La [bible V1](BIBLE_DIVA_PULSE_V1.md) fixe la cible produit et le reste à produire ; l’[inventaire de provenance](PROVENANCE_CONTENUS.md) consigne les empreintes et les écarts. Le suivi courant est [BACKLOG_V38.json](../planning/BACKLOG_V38.json).
+
 ## Le contrat technique du projet
 
 | Domaine | Sources à lire avant modification | Contrat |
