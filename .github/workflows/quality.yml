@@ -47,6 +47,7 @@ jobs:
           python3 -m pip show playwright > qa/v39/driver-version.txt
       - name: Run fresh V39, accessibility and previous browser scenarios
         run: |
+          set -o pipefail
           rm -f qa/v34/{vault-live,feedback,loops,audition,regression-workflow,regression-director,regression-persistence,transactions}/results.json qa/v35/playback/results.json qa/v36/archive/results.json qa/v36/motion/results.json qa/v37/recovery/results.json qa/v37/records-replays/results.json qa/v38/results.json qa/v39/results.json qa/v39/verified.json qa/v39/accessibility/{browser,report}.json
           xvfb-run -a python3 tests/v39_browser_test.py | tee qa/v39/run.log
           xvfb-run -a python3 tests/v39_a11y_browser.py | tee qa/v39/accessibility/run.log
