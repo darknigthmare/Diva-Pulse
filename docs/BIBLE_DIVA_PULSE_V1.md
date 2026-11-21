@@ -264,11 +264,23 @@ Management, frais juridiques externes, achat de matériel de test, marketing, su
 
 ## 14. Qualité et définition de « fini »
 
-**Classes de preuve** : logique Node, HTTP natif/IndexedDB, document injecté, Web Audio/WebGL logiciel, appareil physique. Une preuve ne vaut que pour sa classe.
+**Classes de preuve** : logique Node, HTTP natif/IndexedDB, document injecté (`set_content` des tests navigateur historiques), Web Audio/WebGL logiciel, appareil physique. Une preuve ne vaut que pour sa classe et pour le build qu'elle a servi à tester. Les statuts se lisent comme au 11.3.
 
-**Sortie V38** : build déterministe, `npm test` sans échec, lanceur 10/10, parcours navigateur V38, classeur/JSON/CSV identiques. Aucun statut « Fait » sans preuve liée au build testé.
+**Sortie V38** : les commandes de sortie ont été exécutées sur le build `3780012…c0648db` (commit `5065f58`) ; leur état réel diffère de la liste complète.
 
-**« Fait »** signifie « vérifié dans la portée de la ligne », pas « jeu commercialement terminé ». La finition AAA exige les lots du chapitre 13 et une validation externe (appareils, acoustique, playtests, juridique).
+| Affirmation | État V38 | Preuve |
+|---|---|---|
+| Build déterministe | Oui | `python3 build.py` exécuté deux fois : `index.html` et `DIVA_PULSE_JOUER.html` identiques, 938 571 octets, sha256 `37800126df7d7abdd528ceccfd6c71a69f8f7be7485075cc0b4329739c0648db` ; `tools/verify_release.py` → `deterministicBuild: true`, `standaloneIdentical: true` |
+| `npm test` sans échec | Oui | 1 409 tests, 1 409 réussis, 0 échec, 0 ignoré, 0 annulé sur ce build |
+| Lanceur 10/10 | Oui | `tests/launcher_test.py` → `TOTAL 10 PASS` |
+| Parcours navigateur V38 | Non consigné | `qa/v38/results.json` et `qa/v38/verified.json` sont absents : `tools/verify_pr38.py` s'arrête sur cette preuve. La CI (`.github/workflows/quality.yml`) exécute `tests/v38_browser_test.py` (17 contrôles) et les 13 scénarios antérieurs à chaque PR ; le résultat de ce commit n'est pas encore consigné. Chromium/SwiftShader ne vaut ni appareil physique, ni audit |
+| Classeur / JSON / CSV identiques | Oui | `tools/verify_pr38.py` valide l'empreinte du classeur V38 (17 onglets, 16 tableaux, 136 lignes, 52 « Fait » / 30 « Partiel » / 31 « À faire » / 23 « À valider »), l'égalité exacte avec `planning/BACKLOG_V38.json` et `planning/MANQUANTS_V38.csv`, et l'intégrité du classeur V37, avant de s'arrêter sur la preuve navigateur |
+
+Ces preuves ne valent pas certification : elles disent quelles commandes passent sur quel build, pas que le jeu est fini.
+
+**« Fait »** signifie « vérifié dans la portée de la ligne », pas « jeu commercialement terminé ». Les 52 lignes « Fait » du classeur sont héritées de la V37 : leur champ « Fichiers / preuves » cite 39 fois des chemins `tests/`, `qa/` ou `tools/`, 3 fois des exécutions GitHub Actions, seules 2 mentionnent la V38, et aucune ne cite un hash de build. Elles ne sont donc ni ré-auditées sur le build V38, ni rattachées à lui : la règle « aucun statut Fait sans preuve » s'applique aux lignes modifiées par la V38 et aux preuves produites pour son build, pas à une revalidation rétroactive des 52 lignes antérieures. Leur colonne « Portée / limites » est renseignée sur les 52 lignes, ce qui borne chaque statut mais ne le rejoue pas.
+
+La finition AAA exige les lots du chapitre 13 et une validation externe (appareils, acoustique, playtests, juridique), absente à ce jour.
 
 ## Décisions soumises à validation
 
