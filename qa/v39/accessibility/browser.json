@@ -1,16 +1,21 @@
 {
   "version": "39.0.0",
-  "buildSha256": "aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa",
+  "buildSha256": "2d0383890f230b79d9621c705259f93a71fd23f1809b9d4e516b92c09b4f98c5",
   "mode": "http",
+  "views": [
+    "library",
+    "settings",
+    "results"
+  ],
   "buildUnchanged": true,
   "passed": 9,
   "failed": 0,
   "checks": [
     {
       "id": "C1",
-      "name": "text contrast measured in the DOM reaches 4.5:1",
+      "name": "text contrast reaches 4.5:1 in library, settings and results",
       "passed": true,
-      "detail": "[{\"selector\": \"#firstVisitTitle\", \"ratio\": 14.93, \"fontSize\": 19, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \".first-visit-card p\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \".first-visit-rules\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \"#selectedTitle\", \"ratio\": 17.31, \"fontSize\": 38.4, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \"#playButton\", \"ratio\": 11.7, \"fontSize\": 12, \"color\": \"rgb(9, 37, 33)\"}, {\"selector\": \"#progressionCard p\", \"ratio\": 7.22, \"fontSize\": 11, \"color\": \"rgb(151, 164, 189)\"}]"
+      "detail": "{\"checked\": {\"library\": 103, \"settings\": 160, \"results\": 25}, \"offenders\": []}"
     },
     {
       "id": "C2",
@@ -20,9 +25,9 @@
     },
     {
       "id": "C3",
-      "name": "targets reach 24px and primary actions 44px",
+      "name": "targets reach 24px and primary actions 44px in every measured view",
       "passed": true,
-      "detail": "{\"small\": [], \"primaries\": [{\"id\": \"playButton\", \"w\": 482, \"h\": 53, \"ok\": true}, {\"id\": \"firstVisitStart\", \"w\": 242, \"h\": 44, \"ok\": true}]}"
+      "detail": "{\"checked\": {\"library\": 37, \"settings\": 72, \"results\": 6}, \"small\": [], \"primaries\": [{\"id\": \"playButton\", \"w\": 482, \"h\": 53, \"ok\": true}, {\"id\": \"firstVisitStart\", \"w\": 242, \"h\": 44, \"ok\": true}, {\"id\": \"retryButton\", \"w\": 217, \"h\": 44, \"ok\": true}]}"
     },
     {
       "id": "C4",
@@ -63,5 +68,5 @@
   ],
   "errors": [],
   "failure": null,
-  "scope": "Measured DOM and emulated viewport only: canvas internals, screen readers, real colour-vision deficiencies and physical devices are out of scope. Not a WCAG conformance audit."
+  "scope": "Measured DOM and emulated viewport on library, settings and a results screen filled with representative values. Canvas internals, screen readers, real colour-vision deficiencies and physical devices are out of scope. Not a WCAG conformance audit."
 }

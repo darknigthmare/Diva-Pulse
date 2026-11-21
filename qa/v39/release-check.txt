@@ -1,2 +1,2 @@
-Build OK: 949,124 bytes — all code inline, zero CDN dependency
-{"version": "39.0.0", "buildBytes": 949124, "sha256": "aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa", "standaloneIdentical": true, "deterministicBuild": true}
+Build OK: 949,303 bytes — all code inline, zero CDN dependency
+{"version": "39.0.0", "buildBytes": 949303, "sha256": "2d0383890f230b79d9621c705259f93a71fd23f1809b9d4e516b92c09b4f98c5", "standaloneIdentical": true, "deterministicBuild": true}

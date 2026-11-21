@@ -62,6 +62,8 @@ test('V39 interactive targets declare 24px and primary actions 44px', () => {
   assert.match(css, /input\[type=checkbox\]\{width:24px;height:24px;min-height:24px\}/);
   assert.match(css, /input\[type=range\]\{height:24px;min-height:24px\}/);
   assert.match(css, /\.text-link,\.library-actions button,\.library-footer button,\.sub-actions button\{min-height:24px;min-width:24px/);
+  assert.match(css, /\.binding button\{min-height:24px;min-width:24px\}/);
+  assert.match(css, /\.result-actions button\{min-height:44px\}/);
 });
 test('V39 reflow rules cover narrow viewports without hiding overflow', () => {
   assert.match(css, /@media \(max-width:720px\)\{/);

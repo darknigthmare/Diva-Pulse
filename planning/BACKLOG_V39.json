@@ -1806,7 +1806,7 @@
       "Partiel",
       "Contraste, focus et cibles mesurés",
       "Neuf lignes du chapitre 11 restent Partiel : contraste, focus visible, reflow, zoom et tailles de cible ne sont mesurés par aucun test du dépôt.",
-      "V39 livré : contrastes texte et non textuels calculés, focus visible, cibles 24 px (44 px pour les actions principales), reflow 320 px et zoom 200 % ; tests/v39_a11y.test.cjs et tests/v39_a11y_browser.py (C1–C8 exécutés sur le build). Reste : canvas, lecteur d’écran et daltonisme hors preuve.",
+      "V39 livré : contrastes texte et non textuels calculés, focus visible, cibles 24 px (44 px pour les actions principales) et reflow 320 px mesurés sur la bibliothèque, les réglages et les résultats, plus zoom 200 % émulé ; tests/v39_a11y.test.cjs et tests/v39_a11y_browser.py (C1–C8 exécutés sur le build). Reste : canvas, lecteur d’écran et daltonisme hors preuve.",
       "Aucune paire sous seuil, aucun piège de focus, aucune cible sous 24 px, aucun défilement horizontal à 320 px sur réglages, bibliothèque et résultats.",
       "tests/v39_a11y.test.cjs ; tests/v39_a11y_browser.py ; qa/v39/accessibility/report.json ; docs/BIBLE_DIVA_PULSE_V1.md ch. 11",
       "QA-01 ; PUB-03",

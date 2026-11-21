@@ -20,13 +20,13 @@ La carte ne recouvre jamais la bibliothèque : les cartes de morceaux et `LANCER
 
 ## Mesures d'accessibilité (`UX-08`)
 
-`tests/v39_a11y.test.cjs` vérifie statiquement les jetons de thème, le focus, les tailles de cible et les règles de reflow. `tests/v39_a11y_browser.py` mesure le DOM construit et écrit `qa/v39/accessibility/browser.json`.
+`tests/v39_a11y.test.cjs` vérifie statiquement les jetons de thème, le focus, les tailles de cible et les règles de reflow. `tests/v39_a11y_browser.py` mesure le DOM construit des vues **bibliothèque, réglages et résultats** et écrit `qa/v39/accessibility/browser.json`. L'écran de résultats est rempli avec des valeurs représentatives dans le même DOM, pas par une partie complète jouée.
 
 | ID | Contrôle | Seuil |
 | --- | --- | --- |
-| C1 | Contraste du texte | 4,5:1 |
+| C1 | Contraste du texte, trois vues | 4,5:1 |
 | C2 | Focus clavier visible | contour 2 px |
-| C3 | Cibles interactives | 24 px ; 44 px pour les actions principales |
+| C3 | Cibles interactives, trois vues | 24 px ; 44 px pour les actions principales |
 | C4 | Reflow | aucun défilement horizontal à 320 px (bibliothèque, réglages, résultats) |
 | C5 | Zoom | 200 % sans défilement horizontal |
 | C6 | États actifs | attribut DOM (`aria-current`, `aria-pressed`, `role=progressbar`), pas la couleur seule |
@@ -50,7 +50,7 @@ Les règles `@media (max-width:720px)` réorganisent la bibliothèque, les régl
 - `tests/v39_browser_test.py` : première visite, un clic, saut, rejeu, stockage hostile.
 - `tests/v39_a11y_browser.py` : mesures C1–C8.
 
-Les résultats navigateur ont été exécutés localement le 21 novembre 2026 avec Chromium headless 159 (Playwright), sur le build `aa779df…` : 16 contrôles de première visite et 9 mesures C1–C8, toutes réussies, avec les journaux et captures sous `qa/v39/`. La CI de la PR les rejoue sur le commit publié ; les preuves locales ne remplacent ni un appareil physique ni une session humaine.
+Les résultats navigateur ont été exécutés localement le 21 novembre 2026 avec Chromium headless 159 (Playwright), sur le build `2d03838…` : 16 contrôles de première visite et 9 mesures C1–C8, toutes réussies, avec les journaux et captures sous `qa/v39/`. La CI de la PR les rejoue sur le commit publié ; les preuves locales ne remplacent ni un appareil physique ni une session humaine.
 
 ## Limites
 
