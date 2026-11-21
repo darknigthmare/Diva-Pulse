@@ -57,5 +57,5 @@ Les résultats navigateur ont été exécutés localement le 21 novembre 2026 av
 - Aucune conformité WCAG n'est revendiquée : le rapport est un relevé technique, pas un audit.
 - Le canvas de jeu, les lecteurs d'écran, le daltonisme réel et les appareils physiques restent hors preuve (`UX-04` partiel).
 - `GAME-12` reste **Partiel** : cinq sessions humaines `QA-07` doivent mesurer la compréhension et le temps `ready` → première note ; un test navigateur ne mesure pas la compréhension.
-- `QA-13` est documentaire : le protocole est écrit, aucune session n'est tenue.
+- `QA-13` reste **Partiel** : le protocole, le formulaire et la grille sont écrits, leur relecture indépendante reste à faire avant la première session ; aucune session n'est tenue.
 - La latence acoustique, les codecs et la matrice réelle des anciennes bibliothèques conservent leurs travaux restants.

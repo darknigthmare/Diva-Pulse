@@ -1829,14 +1829,14 @@
       "QA-13",
       "Tests et validation",
       "P1",
-      "Fait",
+      "Partiel",
       "QA-07 — protocole, consentement et grille",
       "QA-07 reste À valider : aucun protocole de session humaine n'est écrit, ni formulaire de consentement, ni grille d'observation.",
-      "docs/QA07_PROTOCOLE_V39.md : protocole de 60 minutes, rôles, tâches A–E, aide graduée L0–L3, chrono, grille, seuils fixés avant session, formulaire de consentement et durées de conservation. Documentaire seulement.",
+      "docs/QA07_PROTOCOLE_V39.md : protocole de 60 minutes, rôles, tâches A–E, aide graduée L0–L3, chrono, grille, seuils figés avant session, formulaire de consentement et durées de conservation. Reste : relecture indépendante du protocole, du formulaire et de la grille, puis version et date figées avant la première session. Aucune session tenue.",
       "Protocole, formulaire et grille relus ; seuils écrits avant toute session ; durées de conservation et de retrait définies.",
       "docs/QA07_PROTOCOLE_V39.md ; formulaire de consentement ; grille imprimable",
       "QA-07",
-      "Documentaire seulement : aucune session ne vaut preuve tant qu'elle n'est pas tenue et consignée."
+      "Documentaire seulement : la relecture indépendante n'est pas faite et aucune session ne vaut preuve tant qu'elle n'est pas tenue et consignée."
     ],
     [
       "QA-14",
@@ -1879,8 +1879,8 @@
     ]
   ],
   "statusCounts": {
-    "Fait": 53,
-    "Partiel": 33,
+    "Fait": 52,
+    "Partiel": 34,
     "À faire": 34,
     "À valider": 23
   },

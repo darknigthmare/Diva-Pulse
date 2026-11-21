@@ -17,14 +17,14 @@ A11Y = Q / 'accessibility'
 W = R / 'planning/DIVA_PULSE_MANQUANTS_V39.xlsx'
 W38 = R / 'planning/DIVA_PULSE_MANQUANTS_V38.xlsx'
 W37 = R / 'planning/DIVA_PULSE_MANQUANTS_V37.xlsx'
-WORKBOOK = '9db4530f8fbf80fc19b8e68cf3a106c84db7ada7eee8be017104bde8012c1b47'
+WORKBOOK = '6b78a2812566fe4a2a9c0ceeb60d1bf55c19068004d61d6bb059eb593dff65a8'
 WORKBOOK_V38 = '6714d9fbad344e096d0df0589e1cb1f872c692b5dc821fabd9cd0b62f11e06e7'
 WORKBOOK_V37 = 'a1177f899a208a88fd18e70946b4f7ed97fdca4acb9f2c30f225e85fc73766ea'
 BUILD_SHA = 'aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa'
 LOGIC_COUNT = 1423
 BROWSER_CHECKS = 16
 A11Y_CHECKS = 8
-COUNTS = {'Fait': 53, 'Partiel': 33, 'À faire': 34, 'À valider': 23}
+COUNTS = {'Fait': 52, 'Partiel': 34, 'À faire': 34, 'À valider': 23}
 
 assert hashlib.sha256(W37.read_bytes()).hexdigest() == WORKBOOK_V37, 'Historical V37 workbook changed'
 assert hashlib.sha256(W38.read_bytes()).hexdigest() == WORKBOOK_V38, 'Historical V38 workbook changed'
@@ -112,7 +112,7 @@ receipt = {
     'version': version, 'buildSha256': digest, 'workbookSha256': WORKBOOK,
     'logicPassed': LOGIC_COUNT, 'newLogic': LOGIC_COUNT - 1409, 'launcherPassed': 10,
     'firstVisitChecks': BROWSER_CHECKS, 'accessibilityChecks': A11Y_CHECKS,
-    'backlogItems': 143, 'done': 53, 'partial': 33, 'todo': 34, 'toValidate': 23, 'open': 90,
+    'backlogItems': 143, 'done': 52, 'partial': 34, 'todo': 34, 'toValidate': 23, 'open': 91,
     'sheets': 17, 'tables': 16, 'statusCounts': counts, 'backlogExcelJsonCsvIdentical': True,
     'accessibilityReport': 'qa/v39/accessibility/report.json',
     'scope': 'Native HTTP/IndexedDB first visit and measured DOM/viewport accessibility. Software GPU and emulated viewport; no physical device, acoustic latency, screen-reader, colour-vision, human comprehension or WCAG conformance. Historical V37/V38 browser suites are not re-asserted by this gate.'
