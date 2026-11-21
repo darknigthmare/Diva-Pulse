@@ -156,48 +156,51 @@ La portée couvre : interface et navigation, réglages, écrans de résultat, me
 | 1.4.1 Usage de la couleur | L'information ne repose jamais sur la couleur seule | Couloirs : glyphe, position et couleur ; états HOLD : forme et texte |
 | 1.4.3 Contraste (minimum) | 4,5:1 pour le texte, 3:1 pour le grand texte | Textes, boutons, messages, résultats |
 | 1.4.11 Contraste des éléments non textuels | 3:1 pour les composants et états | Bordures de focus, jauges, cibles, icônes |
-| 1.4.4 / 1.4.10 Redimensionnement et reflow | Zoom 200 % sans perte ; pas de défilement horizontal à 320 px | Réglages, bibliothèque, résultats ; le canvas peut se réduire mais garde une alternative textuelle |
+| 1.4.4 / 1.4.10 Redimensionnement et reflow | Zoom 200 % sans perte ; pas de défilement horizontal à 320 px | Réglages, bibliothèque, résultats ; le canvas peut se réduire, son équivalent textuel reste à livrer |
 | 2.1.1 Clavier | Toute action disponible au clavier | Navigation, réglages, jeu, pause, modales |
 | 2.2.1 Réglage du temps | Pas de limite de temps sur les menus ; le timing du jeu est essentiel | Aucune modale chronométrée ; pause disponible |
 | 2.3.1 Pas plus de trois flashs par seconde | Limite des flashs et animations | Effets, scènes, transitions |
-| 2.4.7 Focus visible | Focus toujours visible | Boutons, champs, cartes, modales |
+| 2.4.7 Focus visible | Focus toujours visible | Boutons, champs, cartes, modales ; styles `:focus-visible` partiels à généraliser |
 | 2.5.8 Taille de cible (minimum) | 24×24 px CSS minimum ; cible interne 44×44 px | Commandes tactiles, boutons de modale, réglages |
 | 3.2.1 / 3.2.3 Prévisibilité | Navigation et changements de contexte prévisibles | Vues, modales, réglages |
 | 3.3.1 / 3.3.3 Erreurs | Erreur identifiée et suggestion de correction | Import, sauvegarde, calibration, chargement |
-| 4.1.2 / 4.1.3 Nom, rôle, valeur et messages de statut | Composants nommés ; résultats et erreurs annoncés | Boutons, jauges, panneau d'erreur, résumé de résultat |
+| 4.1.2 / 4.1.3 Nom, rôle, valeur et messages de statut | Composants nommés ; erreurs et états annoncés | Boutons, jauges, panneau d'erreur (`role=alert`), toast (`role=status`) ; annonce du résumé de résultat à livrer |
 
-Les critères non applicables au canvas sont couverts par des équivalents DOM : résumé de résultat, réglages, messages d'état, commandes nommées. Un équivalent DOM ne rend pas le jeu complet utilisable au lecteur d'écran ; cette limite est explicite au 11.4.
+Les critères non applicables au canvas doivent être couverts par des équivalents DOM : réglages, messages d'état, commandes nommées et résumé de résultat. Ce résumé n'est pas encore annoncé (11.3) ; un équivalent DOM ne rend pas le jeu complet utilisable au lecteur d'écran, limite explicite au 11.4.
 
 ### 11.3 Règles propres au rythme
 
 | Barrière | Règle | État V38 | Preuve restante |
 |---|---|---|---|
-| Couleurs de couloirs indiscernables | Glyphe distinct, position fixe, palette alternative à contraste vérifié | Partiel : glyphes et couleurs existent, palette alternative non livrée | Calcul de contraste et test daltonisme |
-| Dépendance à l'audition | Indices visuels pour chaque événement ; aucun mode ne repose sur l'audio seul | Oui pour les notes ; pas de sous-titres de voix (aucune voix) | Test sans audio |
+| Couleurs de couloirs indiscernables | Glyphe distinct, position fixe, palette alternative à contraste vérifié | Partiel : `drawGlyph` dessine △ □ × ○ et deux flèches, avec une position et une couleur par couloir ; aucune palette alternative | Calcul de contraste et test daltonisme |
+| Dépendance à l'audition | Indices visuels pour chaque événement ; aucun mode ne repose sur l'audio seul | Partiel : chaque cible a un glyphe et un cercle d'approche, et le jugement vient des entrées ; aucun test sans audio. Les morceaux importés peuvent contenir des voix ; seules les paroles `.lrc` fournies sont affichées, sans sous-titres générés | Test sans audio ; décider du cas des voix importées |
 | Dépendance à la vision | Indices audio optionnels, jamais uniques ; le jeu complet sans vision n'est pas revendiqué | Non | Déclarer la limite ; ne pas promettre un mode aveugle |
-| Basse vision | Zoom 200 %, texte redimensionnable, HUD lisible, contraste élevé | Partiel | Test zoom et reflow |
-| Motricité fine | Remappage, manette, tactile, raccourcis d'accords, vitesse 0,5–1×, boucle A/B, une main | Partiel : remappage et vitesse existent ; une main non livrée | Test une main sur leçon EASY |
-| Charge cognitive | Onboarding court, descriptions de difficulté, pause, pas de menu chronométré | Partiel | Parcours première visite |
-| Photosensibilité | Flashs bornés, mouvement réduit, fond assombri | Partiel : réduction de mouvement existe ; limite de flashs non mesurée | Test de fréquence et audit |
-| HOLD et slides | État lisible sans couleur seule : forme, jauge, texte ; tolérance de relâchement documentée | Partiel | Test daltonisme et lecteur d'écran sur le résumé |
-| Latence | Deux offsets distincts (saisie, visuel), profils nommés, explication de la médiane | Partiel : offsets existent, profils non livrés | Compréhension et persistance des profils |
-| Difficulté | Profil `accessible`, mode sans échec, entraînement ; les records assistés restent séparés | Oui | Vérifier que l'aide ne crée pas de record normal |
-| Lecteur d'écran | Résumé de résultat, erreurs et états annoncés ; canvas non entièrement navigable | Partiel | Audit NVDA/VoiceOver externe |
+| Basse vision | Zoom 200 %, texte redimensionnable, HUD lisible, contraste élevé | Partiel : le viewport n'interdit pas le zoom et le HUD chiffré est en DOM ; zoom, reflow et contraste non testés | Test zoom 200 % et reflow à 320 px |
+| Motricité fine | Remappage, manette, tactile, raccourcis d'accords, vitesse réduite, boucle A/B, une main | Partiel : remappage clavier, manette, tactile, raccourcis d'accords, entraînement 25–100 % avec boucle et vitesse d'approche 0,75× ; mode une main absent | Test une main sur leçon EASY ; qualification manette et tactile physiques |
+| Charge cognitive | Accueil court, descriptions de difficulté, pause, pas de menu chronométré | Partiel : académie de 8 leçons, aide et pause ; aucun onboarding de première visite | Parcours première visite (`QA-07`) |
+| Photosensibilité | Flashs bornés, mouvement réduit, fond assombri | Partiel : réduction de mouvement (réglage et `prefers-reduced-motion`), fond assombri et effets réduits ; fréquence des flashs non mesurée | Test de fréquence et audit |
+| HOLD et slides | État lisible sans couleur seule : forme, jauge, texte ; tolérance de relâchement documentée | Partiel : glyphes distincts, étiquette HOLD/CHAIN et jauge avec pourcentage textuel ; règle de relâchement documentée (`REGLES_DIVA_PULSE_V1.md`, §5) | Test daltonisme et lecteur d'écran sur le résumé |
+| Latence | Deux offsets distincts (saisie, visuel), profils nommés, explication de la médiane | Partiel : `inputOffset` et `visualOffset` distincts, calibration et explication de la médiane ; profils nommés absents | Compréhension et persistance des profils |
+| Difficulté | Profil `accessible`, mode sans échec, entraînement ; les records assistés restent séparés | Oui : profil `accessible` (±45/90/135/180 ms), option « Désactiver l'échec », entraînement, record normal réservé à `mode === 'play'` sans `noFail` et clé de record suffixée `profile-…` | — (preuve logique sur le build V38 : `rules-contract`, `v37-record-replay` ; preuve navigateur V38 non consignée, aucune certification matérielle) |
+| Lecteur d'écran | Résumé de résultat, erreurs et états annoncés ; canvas non entièrement navigable | Partiel : panneau d'erreur `role=alert` et `aria-live=assertive`, toast `role=status`, commandes nommées ; aucun `aria-live` sur la vue Résultats et pas de gestion de focus au changement de vue | Audit NVDA/VoiceOver externe ; annonce du résumé de résultat |
+
+**Lecture des statuts.** « Oui » signifie que le comportement est présent dans les sources V38 et couvert par un test du dépôt exécuté sur le build V38 ; « Partiel » signifie qu'une partie est livrée et que le reste figure en « Preuve restante » ; « Non » signifie non livré. Aucune ligne ne vaut certification : une preuve de la mauvaise classe (logique, navigateur, lecteur d'écran, appareil, audit) ne comble pas la case.
 
 **Invariants à ne jamais casser pour l'accessibilité** : un effet, une palette, une réduction de mouvement ou un changement de vitesse d'approche ne modifie jamais l'horloge de jugement, les fenêtres, les signatures de partition ni les records. La compensation reste explicite et réversible.
 
 ### 11.4 Limites et preuves
 
-- Preuves automatisables : contraste calculé, présence des noms/rôles, focus, reflow, taille des cibles, absence de couleur seule dans le DOM.
+- Preuves automatisables, non exécutées en V38 : contraste calculé, présence des noms et rôles, focus, reflow, taille des cibles, absence de couleur seule dans le DOM. La couleur seule du canvas ne se vérifie pas par le DOM : elle demande un contrôle du rendu et un test daltonisme.
+- Preuves V38 disponibles : séparation des records assistés et réduction de mouvement (tests logiques du dépôt) ; panneau d'erreur, état vide actionnable et progression (contrôles navigateur V38). Ces preuves ne valent pas audit d'accessibilité.
 - Preuves manuelles : parcours clavier complet, zoom 200 %, lecteur d'écran (NVDA, VoiceOver), mouvement réduit, une main.
 - Preuves non réalisées à ce jour : audit WCAG externe, test daltonisme réel, laboratoire photosensibilité, appareils physiques, jeu sans vision, étude cognitive.
 - **V38 ne peut pas déclarer « conforme WCAG 2.2 AA »** : elle vise la cible, expose ses limites et documente ses preuves. Le mot « conforme » est réservé à un audit terminé.
 
 ### 11.5 Déclaration type (à publier seulement après preuves)
 
-> DIVA PULSE vise WCAG 2.2 niveau AA. Cette version est partiellement vérifiée : contrastes et navigation clavier contrôlés automatiquement, audit lecteur d'écran et appareils physiques non réalisés. Les limites connues sont décrites dans le guide de la version. Aucune conformité complète n'est revendiquée.
+> DIVA PULSE vise WCAG 2.2 niveau AA. Cette version est partiellement vérifiée : [preuves réellement exécutées sur ce build]. [Preuves non réalisées : contraste mesuré, zoom et reflow, lecteur d'écran, daltonisme, appareils physiques.] Les limites connues sont décrites dans le guide de la version. Aucune conformité complète n'est revendiquée.
 
-Cette déclaration est un modèle. Elle ne doit être publiée qu'avec la version, le build et les preuves correspondantes.
+Cette déclaration est un modèle. Elle ne doit être publiée qu'avec la version, le build et les preuves correspondantes ; les crochets doivent être remplacés, jamais recopiés d'une version antérieure (chapitre 14).
 
 ### 11.6 Backlog et statuts
 
