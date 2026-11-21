@@ -253,7 +253,7 @@ L'accessibilité reste suivie par `UX-01` à `UX-05`, `QA-03`, `QA-07` et `DIR-0
 ### Ordre de production
 
 1. **Décisions** : plateformes, langues, nombre de personnages, vocal ou instrumental, budget de sous-traitance.
-2. **Socle** : progression/tutoriel/UX (fait en V38), architecture i18n, pipeline de personnages, matrice de test.
+2. **Socle** : progression (`GAME-06`) et états d'erreur (`UX-06`) marqués « Fait » en V38 ; académie « Partiel » (`GAME-08` : deux leçons et un guide de calibration, sans onboarding de première visite, `QA-07` ouvert) ; `UX-01` à `UX-05` non certifiés ; architecture i18n, pipeline de personnages, matrice de test.
 3. **Production** : morceaux et partitions, modèles, costumes, scènes, chorégraphies, sound design.
 4. **Finition** : accessibilité, localisation, playtests, équilibrage.
 5. **Certification** : appareils réels, packaging signé, audit légal, build de sortie.
