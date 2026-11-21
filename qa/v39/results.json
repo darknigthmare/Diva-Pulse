@@ -1,0 +1,79 @@
+{
+  "version": "39.0.0",
+  "buildSha256": "aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa",
+  "mode": "http",
+  "nativeHTTP": true,
+  "buildUnchanged": true,
+  "clicksToFirstNote": 1,
+  "passed": 16,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "V39 boots on native HTTP with the current version",
+      "passed": true
+    },
+    {
+      "name": "First-visit card is visible without blocking the library",
+      "passed": true
+    },
+    {
+      "name": "First-visit card explains the four glyphs and their keys",
+      "passed": true
+    },
+    {
+      "name": "First-visit card explains HOLD and CHAIN in words",
+      "passed": true
+    },
+    {
+      "name": "First-visit path counts one click to the first note",
+      "passed": true
+    },
+    {
+      "name": "Hostile or absent storage never blocks the entry",
+      "passed": true
+    },
+    {
+      "name": "A single click starts a playable first song",
+      "passed": true
+    },
+    {
+      "name": "A started visit stays dismissed in the library",
+      "passed": true
+    },
+    {
+      "name": "A seen visit is not shown again after reload",
+      "passed": true
+    },
+    {
+      "name": "Cleared storage restores the first-visit entry",
+      "passed": true
+    },
+    {
+      "name": "The guide lists four ordered steps and both rules",
+      "passed": true
+    },
+    {
+      "name": "Leaving the guide dismisses the card without starting a song",
+      "passed": true
+    },
+    {
+      "name": "Help offers a replay of the first visit",
+      "passed": true
+    },
+    {
+      "name": "Replay opens the guide and records the replay count",
+      "passed": true
+    },
+    {
+      "name": "No uncaught page error during the whole scenario",
+      "passed": true
+    },
+    {
+      "name": "Build bytes were not modified by the scenario",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failure": null,
+  "scope": "Native HTTP/IndexedDB first visit and entry path. Software GPU and emulated viewport; no physical device, acoustic latency, screen-reader or human comprehension certification."
+}

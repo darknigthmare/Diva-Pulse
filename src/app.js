@@ -188,7 +188,9 @@
             $('pvVideo').pause();
             $('pvVideo').hidden = true;
             this.clearSources();
-        } this.view = view; $('app').className = 'mode-' + view; document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === view)); document.querySelectorAll('.nav').forEach(n => n.classList.toggle('active', n.dataset.view === view)); if (view === 'library') {
+        } this.view = view; $('app').className = 'mode-' + view; document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === view)); document.querySelectorAll('.nav').forEach(n => { const active = n.dataset.view === view; n.classList.toggle('active', active); if (active)
+            n.setAttribute('aria-current', 'page'); else
+            n.removeAttribute('aria-current'); }); if (view === 'library') {
             await this.applyScene();
             this.renderLibrary();
         } if (view === 'wardrobe') {
@@ -841,5 +843,6 @@
     root.PulseLive34.install(app);
     if(root.PulseProgression)root.PulseProgression.install(app);
     if(root.PulseUIStates)root.PulseUIStates.install(app);
+    if(root.PulseFirstVisit)root.PulseFirstVisit.install(app);
     app.init().catch(e => { console.error(e); document.body.innerHTML = `<div style="padding:40px;font-family:system-ui;color:#eef;background:#102;min-height:100vh"><h1>DIVA PULSE</h1><h2>Le démarrage n’a pas abouti.</h2><p>${esc(e.message)}</p><p>Utiliser le lanceur local fourni, puis un navigateur récent. Les données existantes ne sont pas supprimées.</p></div>`; });
 })(globalThis);

@@ -1,0 +1,67 @@
+{
+  "version": "39.0.0",
+  "buildSha256": "aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa",
+  "mode": "http",
+  "buildUnchanged": true,
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "C1",
+      "name": "text contrast measured in the DOM reaches 4.5:1",
+      "passed": true,
+      "detail": "[{\"selector\": \"#firstVisitTitle\", \"ratio\": 14.93, \"fontSize\": 19, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \".first-visit-card p\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \".first-visit-rules\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \"#selectedTitle\", \"ratio\": 17.31, \"fontSize\": 38.4, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \"#playButton\", \"ratio\": 11.7, \"fontSize\": 12, \"color\": \"rgb(9, 37, 33)\"}, {\"selector\": \"#progressionCard p\", \"ratio\": 7.22, \"fontSize\": 11, \"color\": \"rgb(151, 164, 189)\"}]"
+    },
+    {
+      "id": "C2",
+      "name": "keyboard focus is visible on every early stop",
+      "passed": true,
+      "detail": "[{\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": \"fullscreen\", \"width\": 2, \"style\": \"solid\"}]"
+    },
+    {
+      "id": "C3",
+      "name": "targets reach 24px and primary actions 44px",
+      "passed": true,
+      "detail": "{\"small\": [], \"primaries\": [{\"id\": \"playButton\", \"w\": 482, \"h\": 53, \"ok\": true}, {\"id\": \"firstVisitStart\", \"w\": 242, \"h\": 44, \"ok\": true}]}"
+    },
+    {
+      "id": "C4",
+      "name": "no horizontal scrolling at 320px on library, settings and results",
+      "passed": true,
+      "detail": "{\"library\": {\"scroll\": 320, \"inner\": 320}, \"settings\": {\"scroll\": 320, \"inner\": 320}, \"results\": {\"scroll\": 320, \"inner\": 320}}"
+    },
+    {
+      "id": "C5",
+      "name": "200% emulated zoom keeps settings readable without horizontal scrolling",
+      "passed": true,
+      "detail": "{\"scroll\": 320, \"inner\": 320}"
+    },
+    {
+      "id": "C6",
+      "name": "active states expose DOM attributes, not colour alone",
+      "passed": true,
+      "detail": "{\"nav\": \"page\", \"difficulty\": true, \"favorite\": \"false\", \"progress\": true}"
+    },
+    {
+      "id": "C7",
+      "name": "non-text surfaces reach 3:1",
+      "passed": true,
+      "detail": "{\"primarySurface\": 13.82, \"focusRing\": 13.82}"
+    },
+    {
+      "id": "C8",
+      "name": "no keyboard focus trap in the library",
+      "passed": true,
+      "detail": "[\"BUTTON\", \"academyButton\", \"addAudio\", \"autoMapQuick\", \"autoShowQuick\", \"backupButton\", \"catalogButton\", \"favoriteSong\", \"filterFavorite\", \"firstVisitDetail\", \"firstVisitSkip\", \"firstVisitStart\", \"importChart\", \"libraryAudit\", \"listenPreview\", \"previewStage\", \"progressionButton\", \"searchSongs\", \"setlistsButton\", \"songManage\", \"sortSongs\"]"
+    },
+    {
+      "id": "C0",
+      "name": "no uncaught page error during the accessibility scenario",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "failure": null,
+  "scope": "Measured DOM and emulated viewport only: canvas internals, screen readers, real colour-vision deficiencies and physical devices are out of scope. Not a WCAG conformance audit."
+}

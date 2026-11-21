@@ -1,0 +1,73 @@
+{
+  "version": "39.0.0",
+  "buildSha256": "aa779dff6fe21d188537cc08a0324803e4e8417dae92c372eff90cb848a180fa",
+  "commit": "284f9f191500be2dbaa18570f316c7ffa7b85ecb",
+  "kind": "rapport technique de mesures",
+  "audit": false,
+  "browserMeasured": true,
+  "checks": [
+    {
+      "id": "C1",
+      "name": "Contraste texte 4,5:1",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "text contrast measured in the DOM reaches 4.5:1 · [{\"selector\": \"#firstVisitTitle\", \"ratio\": 14.93, \"fontSize\": 19, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \".first-visit-card p\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \".first-visit-rules\", \"ratio\": 10.74, \"fontSize\": 11, \"color\": \"rgb(195, 211, 221)\"}, {\"selector\": \"#selectedTitle\", \"ratio\": 17.31, \"fontSize\": 38.4, \"color\": \"rgb(238, 244, 255)\"}, {\"selector\": \"#playButton\", \"ratio\": 11.7, \"fontSize\": 12, \"color\": \"rgb(9, 37, 33)\"}, {\"selector\": \"#progressionCard p\", \"ratio\": 7.22, \"fontSize\": 11, \"color\": \"rgb(151, 164, 189)\"}]"
+    },
+    {
+      "id": "C2",
+      "name": "Focus visible 2 px",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "keyboard focus is visible on every early stop · [{\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": null, \"width\": 2, \"style\": \"solid\"}, {\"tag\": \"BUTTON\", \"id\": \"fullscreen\", \"width\": 2, \"style\": \"solid\"}]"
+    },
+    {
+      "id": "C3",
+      "name": "Cibles 24 px / actions 44 px",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "targets reach 24px and primary actions 44px · {\"small\": [], \"primaries\": [{\"id\": \"playButton\", \"w\": 482, \"h\": 53, \"ok\": true}, {\"id\": \"firstVisitStart\", \"w\": 242, \"h\": 44, \"ok\": true}]}"
+    },
+    {
+      "id": "C4",
+      "name": "Reflow 320 px",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "no horizontal scrolling at 320px on library, settings and results · {\"library\": {\"scroll\": 320, \"inner\": 320}, \"settings\": {\"scroll\": 320, \"inner\": 320}, \"results\": {\"scroll\": 320, \"inner\": 320}}"
+    },
+    {
+      "id": "C5",
+      "name": "Zoom 200 %",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "200% emulated zoom keeps settings readable without horizontal scrolling · {\"scroll\": 320, \"inner\": 320}"
+    },
+    {
+      "id": "C6",
+      "name": "État sans couleur seule",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "active states expose DOM attributes, not colour alone · {\"nav\": \"page\", \"difficulty\": true, \"favorite\": \"false\", \"progress\": true}"
+    },
+    {
+      "id": "C7",
+      "name": "Contraste non textuel 3:1",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "non-text surfaces reach 3:1 · {\"primarySurface\": 13.82, \"focusRing\": 13.82}"
+    },
+    {
+      "id": "C8",
+      "name": "Absence de piège de focus",
+      "kind": "browser",
+      "status": "passed",
+      "detail": "no keyboard focus trap in the library · [\"BUTTON\", \"academyButton\", \"addAudio\", \"autoMapQuick\", \"autoShowQuick\", \"backupButton\", \"catalogButton\", \"favoriteSong\", \"filterFavorite\", \"firstVisitDetail\", \"firstVisitSkip\", \"firstVisitStart\", \"importChart\", \"libraryAudit\", \"listenPreview\", \"previewStage\", \"progressionButton\", \"searchSongs\", \"setlistsButton\", \"songManage\", \"sortSongs\"]"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "pending": 0,
+    "total": 8
+  },
+  "scope": "Mesures DOM et viewport émulé : le canvas, les lecteurs d’écran, le daltonisme réel et les appareils physiques restent hors preuve. Aucune conformité WCAG n’est revendiquée."
+}
